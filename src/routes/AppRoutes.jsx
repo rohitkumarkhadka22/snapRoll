@@ -4,8 +4,8 @@ import Home from "../pages/Home";
 import HowItWorks from "../pages/HowItWorks";
 import Pricing from "../pages/Pricing";
 import FAQ from "../pages/FAQ";
-import Contact from "../pages/Contact";
 import Events from "../pages/Events";
+import Contact from "../pages/Contact";
 
 const AppRoutes = () => {
   return (
