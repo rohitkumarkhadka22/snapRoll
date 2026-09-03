@@ -28,6 +28,7 @@ import {
   EyeOff,
 } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
+import useLanguage from "../context/useLanguage";
 
 /* =========================================================
    EVENT IMAGES
@@ -88,47 +89,13 @@ const playSound = (type = "click") => {
 };
 
 /* =========================================================
-   STEPS
-========================================================= */
-
-const steps = [
-  {
-    number: "01",
-    title: "Host creates a roll",
-    description:
-      "Name the event, set an end date, choose filters, and decide how many shots and guests can join.",
-  },
-  {
-    number: "02",
-    title: "Share the QR code",
-    description:
-      "SnapRoll generates a unique QR design that guests can scan, print, project, or simply receive as a link.",
-  },
-  {
-    number: "03",
-    title: "Guests jump in",
-    description:
-      "Guests scan the code or enter it manually, then choose a display name. No account or app-store detour required.",
-  },
-  {
-    number: "04",
-    title: "Everyone shoots",
-    description:
-      "Everyone captures moments using the event's shared filter set and shot pool.",
-  },
-  {
-    number: "05",
-    title: "The roll is revealed",
-    description:
-      "Photos stay hidden until the host chooses the perfect reveal moment.",
-  },
-];
-
-/* =========================================================
    MAIN
 ========================================================= */
 
 const HowItWorks = () => {
+  const { t, selectedLanguage } = useLanguage();
+  const h = t.howItWorks;
+
   const [openStep, setOpenStep] = useState(null);
 
   const [eventName, setEventName] = useState("Sarah's Birthday");
@@ -139,6 +106,39 @@ const HowItWorks = () => {
 
   const [created, setCreated] = useState(false);
   const [capturedPhotos, setCapturedPhotos] = useState([]);
+
+  const steps = [
+    {
+      number: "01",
+      key: "create",
+      title: h.steps.create.title,
+      description: h.steps.create.description,
+    },
+    {
+      number: "02",
+      key: "qr",
+      title: h.steps.qr.title,
+      description: h.steps.qr.description,
+    },
+    {
+      number: "03",
+      key: "join",
+      title: h.steps.join.title,
+      description: h.steps.join.description,
+    },
+    {
+      number: "04",
+      key: "shoot",
+      title: h.steps.shoot.title,
+      description: h.steps.shoot.description,
+    },
+    {
+      number: "05",
+      key: "reveal",
+      title: h.steps.reveal.title,
+      description: h.steps.reveal.description,
+    },
+  ];
 
   const scrollToStep = (id) => {
     const element = document.getElementById(`step-${id}`);
@@ -170,18 +170,17 @@ const HowItWorks = () => {
         <div className="relative mx-auto max-w-5xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2 text-[10px] tracking-[0.18em] text-white/50 backdrop-blur-xl sm:text-xs">
             <Sparkles size={13} />
-            HOW IT WORKS
+            {h.badge}
           </div>
 
           <h1 className="font-serif text-5xl leading-[0.95] tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl">
-            From first scan
+            {h.heroTitle1}
             <br />
-            <span className="text-white/30">to final reveal.</span>
+            <span className="text-white/30">{h.heroTitle2}</span>
           </h1>
 
           <p className="mx-auto mt-7 max-w-2xl text-sm leading-7 text-white/45 sm:text-base">
-            A simple five-step flow that turns every guest into part of the
-            story — without accounts, complicated setup, or waiting around.
+            {h.heroDescription}
           </p>
         </div>
 
@@ -198,7 +197,7 @@ const HowItWorks = () => {
             <HeroFloat
               className="left-[1%] top-[20%] -rotate-6 opacity-0 -translate-y-3 group-hover:translate-y-0 group-hover:opacity-100"
               icon={<QrCode size={25} />}
-              label="SCAN"
+              label={h.scan}
               delay="duration-300"
               onClick={() => scrollToStep("qr")}
             />
@@ -206,7 +205,7 @@ const HowItWorks = () => {
             <HeroFloat
               className="right-[1%] top-[16%] rotate-6 opacity-0 translate-y-3 group-hover:translate-y-0 group-hover:opacity-100"
               icon={<Camera size={25} />}
-              label="SHOOT"
+              label={h.shoot}
               delay="delay-75 duration-500"
               onClick={() => scrollToStep("shoot")}
             />
@@ -214,7 +213,7 @@ const HowItWorks = () => {
             <HeroFloat
               className="bottom-[10%] left-[8%] rotate-6 opacity-0 translate-y-3 group-hover:translate-y-0 group-hover:opacity-100"
               icon={<Users size={25} />}
-              label="JOIN"
+              label={h.join}
               delay="delay-150 duration-500"
               onClick={() => scrollToStep("join")}
             />
@@ -222,7 +221,7 @@ const HowItWorks = () => {
             <HeroFloat
               className="bottom-[8%] right-[8%] -rotate-6 opacity-0 -translate-y-3 group-hover:translate-y-0 group-hover:opacity-100"
               icon={<Sparkles size={25} />}
-              label="REVEAL"
+              label={h.reveal}
               delay="delay-200 duration-500"
               onClick={() => scrollToStep("reveal")}
             />
@@ -255,13 +254,13 @@ const HowItWorks = () => {
                   </div>
 
                   <h3 className="mt-5 font-serif text-3xl leading-none">
-                    Capture
+                    {h.phoneTitle1}
                     <br />
-                    the moment.
+                    {h.phoneTitle2}
                   </h3>
 
                   <p className="mt-4 max-w-40 text-[10px] leading-5 text-white/40">
-                    One shared camera. Every guest. Every memory.
+                    {h.phoneDescription}
                   </p>
 
                   <div className="mt-7 grid grid-cols-2 gap-1.5">
@@ -272,7 +271,7 @@ const HowItWorks = () => {
                       >
                         <img
                           src={image}
-                          alt={`Memory ${index + 1}`}
+                          alt={`${h.snaprollMemory} ${index + 1}`}
                           className="h-full w-full object-cover"
                         />
                       </div>
@@ -281,7 +280,9 @@ const HowItWorks = () => {
 
                   <div className="mt-auto rounded-2xl border border-white/10 bg-black/50 p-3 backdrop-blur-xl">
                     <div className="flex items-center justify-between">
-                      <span className="text-[8px] text-white/40">MOMENTS</span>
+                      <span className="text-[8px] text-white/40">
+                        {h.moments}
+                      </span>
 
                       <span className="text-xs text-white/80">
                         {capturedPhotos.length || 18} / {shots}
@@ -314,7 +315,7 @@ const HowItWorks = () => {
                 />
 
                 <span className="absolute left-5 top-5 whitespace-nowrap rounded-full border border-white/10 bg-black/80 px-2 py-1 text-[7px] uppercase tracking-[0.12em] text-white/60 backdrop-blur-xl">
-                  Try it
+                  {h.tryIt}
                 </span>
               </div>
             </div>
@@ -329,13 +330,13 @@ const HowItWorks = () => {
       <section className="px-4 pb-28 sm:px-8 sm:pb-32 lg:px-12">
         <div className="mx-auto max-w-7xl">
           {steps.map((step, index) => {
-            const ids = ["create", "qr", "join", "shoot", "reveal"];
-
             return (
-              <div key={step.number} id={`step-${ids[index]}`}>
+              <div key={step.number} id={`step-${step.key}`}>
                 <StepSection
                   step={step}
                   index={index}
+                  h={h}
+                  selectedLanguage={selectedLanguage}
                   openStep={openStep}
                   setOpenStep={setOpenStep}
                   eventName={eventName}
@@ -366,20 +367,20 @@ const HowItWorks = () => {
 
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="mb-5 text-xs tracking-[0.2em] text-white/30">
-            READY TO CAPTURE?
+            {h.readyToCapture}
           </p>
 
           <h2 className="font-serif text-4xl tracking-[-0.04em] sm:text-5xl md:text-6xl">
-            Your next event deserves
+            {h.finalTitle1}
             <br />
-            <span className="text-white/30">a roll of its own.</span>
+            <span className="text-white/30">{h.finalTitle2}</span>
           </h2>
 
           <button
             onClick={() => playSound("success")}
             className="mt-9 inline-flex cursor-pointer items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black transition duration-300 hover:scale-105 hover:bg-white/90 active:scale-95"
           >
-            Create your roll
+            {h.createYourRoll}
             <Sparkles size={15} />
           </button>
         </div>
@@ -395,6 +396,8 @@ const HowItWorks = () => {
 const StepSection = ({
   step,
   index,
+  h,
+  selectedLanguage,
   openStep,
   setOpenStep,
   eventName,
@@ -430,7 +433,7 @@ const StepSection = ({
 
             <div className="min-w-0 flex-1">
               <p className="mb-4 text-[11px] uppercase tracking-[0.2em] text-white/30">
-                Step {step.number}
+                {h.step} {step.number}
               </p>
 
               <h2 className="font-serif text-4xl leading-tight tracking-[-0.04em] sm:text-5xl">
@@ -442,7 +445,7 @@ const StepSection = ({
               </p>
 
               <div className="mt-8 hidden grid-cols-2 gap-3 sm:grid">
-                {getFeatures(index).map((feature) => (
+                {h.steps[step.key].features.map((feature) => (
                   <div
                     key={feature}
                     className="flex items-center gap-2 text-sm text-white/45"
@@ -456,25 +459,26 @@ const StepSection = ({
                 ))}
               </div>
 
-              {/* POWER HINT — OUTSIDE PHONE */}
+              {/* POWER HINT */}
+
               <div className="mt-8 hidden items-center gap-4 sm:flex">
                 <div className="h-px w-10 shrink-0 bg-white/10" />
 
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.18em] text-white/30">
-                    Quick hint
+                    {h.quickHint}
                   </p>
 
                   <p className="mt-1 flex items-center gap-2 text-sm text-white/50">
                     {isEven ? (
                       <>
-                        Tap the power button
+                        {h.tapPower}
                         <span className="text-base text-white/25">→</span>
                       </>
                     ) : (
                       <>
                         <span className="text-base text-white/25">←</span>
-                        Tap the power button
+                        {h.tapPower}
                       </>
                     )}
                   </p>
@@ -491,7 +495,7 @@ const StepSection = ({
                 className="mt-7 flex w-full cursor-pointer items-center justify-between border-t border-white/[0.08] pt-5 sm:hidden"
               >
                 <span className="text-xs uppercase tracking-[0.15em] text-white/40">
-                  What happens here
+                  {h.whatHappens}
                 </span>
 
                 <ChevronDown
@@ -508,7 +512,7 @@ const StepSection = ({
                 }`}
               >
                 <div className="space-y-3 pt-5">
-                  {getFeatures(index).map((feature) => (
+                  {h.steps[step.key].features.map((feature) => (
                     <div
                       key={feature}
                       className="flex items-center gap-2 text-sm text-white/45"
@@ -528,6 +532,8 @@ const StepSection = ({
         <div className="flex w-full min-w-0 justify-center lg:w-1/2">
           <PhoneMockup
             step={index}
+            h={h}
+            selectedLanguage={selectedLanguage}
             eventName={eventName}
             setEventName={setEventName}
             eventDate={eventDate}
@@ -553,6 +559,8 @@ const StepSection = ({
 
 const PhoneMockup = ({
   step,
+  h,
+  selectedLanguage,
   eventName,
   setEventName,
   eventDate,
@@ -594,19 +602,19 @@ const PhoneMockup = ({
             setSilent((prev) => !prev);
             playSound("click");
           }}
-          title="Silent"
+          title={h.silent}
           className="absolute -left-[4px] top-[110px] z-30 h-8 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:h-9 sm:w-[6px]"
         />
 
         <button
           onClick={() => changeVolume(10)}
-          title="Volume up"
+          title={h.volumeUp}
           className="absolute -left-[4px] top-[165px] z-30 h-12 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:h-13 sm:w-[6px]"
         />
 
         <button
           onClick={() => changeVolume(-10)}
-          title="Volume down"
+          title={h.volumeDown}
           className="absolute -left-[4px] top-[220px] z-30 h-12 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:h-13 sm:w-[6px]"
         />
 
@@ -614,7 +622,7 @@ const PhoneMockup = ({
 
         <button
           onClick={togglePower}
-          title={powered ? "Turn phone off" : "Turn phone on"}
+          title={powered ? h.turnPhoneOff : h.turnPhoneOn}
           className="absolute -right-[4px] top-[180px] z-40 h-18 w-[5px] translate-x-full cursor-pointer rounded-r-md border border-white/20 bg-[#292929] transition hover:bg-[#555] active:scale-90 sm:-right-[6px] sm:h-20 sm:w-[6px]"
         />
 
@@ -626,11 +634,13 @@ const PhoneMockup = ({
 
             <div className="relative h-[600px] min-h-[600px] overflow-hidden sm:h-[620px] sm:min-h-[620px]">
               {!powered ? (
-                <PowerOffScreen onPower={togglePower} />
+                <PowerOffScreen h={h} onPower={togglePower} />
               ) : (
                 <>
                   {step === 0 && (
                     <CreateRoll
+                      h={h}
+                      selectedLanguage={selectedLanguage}
                       eventName={eventName}
                       setEventName={setEventName}
                       eventDate={eventDate}
@@ -646,16 +656,18 @@ const PhoneMockup = ({
 
                   {step === 1 && (
                     <ShareQR
+                      h={h}
                       eventName={eventName}
                       shots={shots}
                       guests={guests}
                     />
                   )}
 
-                  {step === 2 && <GuestJoin eventName={eventName} />}
+                  {step === 2 && <GuestJoin h={h} eventName={eventName} />}
 
                   {step === 3 && (
                     <ShootCamera
+                      h={h}
                       silent={silent}
                       volume={volume}
                       shots={shots}
@@ -666,6 +678,7 @@ const PhoneMockup = ({
 
                   {step === 4 && (
                     <RevealRoll
+                      h={h}
                       eventName={eventName}
                       capturedPhotos={capturedPhotos}
                     />
@@ -683,7 +696,7 @@ const PhoneMockup = ({
             <div className="flex items-center gap-2">
               {silent ? <VolumeX size={12} /> : <Volume2 size={12} />}
 
-              {silent ? "Silent" : `${volume}%`}
+              {silent ? h.silent : `${volume}%`}
             </div>
           </div>
         )}
@@ -708,6 +721,8 @@ const PhoneMockup = ({
 ========================================================= */
 
 const CreateRoll = ({
+  h,
+  selectedLanguage,
   eventName,
   setEventName,
   eventDate,
@@ -729,18 +744,18 @@ const CreateRoll = ({
         </div>
 
         <p className="mt-7 text-[10px] uppercase tracking-[0.2em] text-white/30">
-          Roll created
+          {h.rollCreated}
         </p>
 
         <h3 className="mt-2 max-w-[210px] font-serif text-3xl">{eventName}</h3>
 
         <p className="mt-3 text-xs text-white/35">
-          {shots} shots · {guests} guests
+          {shots} {h.shots} · {guests} {h.guests}
         </p>
 
         <p className="mt-2 text-[10px] text-white/20">
-          Ends{" "}
-          {new Date(eventDate).toLocaleDateString("en-US", {
+          {h.ends}{" "}
+          {new Date(eventDate).toLocaleDateString(selectedLanguage.code, {
             month: "short",
             day: "numeric",
             year: "numeric",
@@ -752,7 +767,7 @@ const CreateRoll = ({
           className="mt-8 flex cursor-pointer items-center gap-2 rounded-full border border-white/10 px-5 py-2.5 text-xs text-white/50 transition hover:bg-white/[0.06]"
         >
           <RotateCcw size={13} />
-          Edit roll
+          {h.editRoll}
         </button>
       </div>
     );
@@ -763,10 +778,10 @@ const CreateRoll = ({
       <div className="flex items-start justify-between">
         <div>
           <p className="text-[10px] uppercase tracking-[0.18em] text-white/30">
-            New roll
+            {h.newRoll}
           </p>
 
-          <h3 className="mt-2 font-serif text-2xl">Create your event</h3>
+          <h3 className="mt-2 font-serif text-2xl">{h.create}</h3>
         </div>
 
         <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
@@ -781,14 +796,14 @@ const CreateRoll = ({
           <div className="mb-2 flex items-center gap-2">
             <Sparkles size={14} className="text-white/30" />
 
-            <span className="text-[10px] text-white/30">Event name</span>
+            <span className="text-[10px] text-white/30">{h.eventName}</span>
           </div>
 
           <input
             value={eventName}
             onChange={(e) => setEventName(e.target.value)}
             className="w-full bg-transparent text-xs text-white/80 outline-none"
-            placeholder="Your event name"
+            placeholder={h.eventNamePlaceholder}
           />
         </div>
 
@@ -798,7 +813,7 @@ const CreateRoll = ({
           <div className="mb-2 flex items-center gap-2">
             <CalendarDays size={14} className="text-white/30" />
 
-            <span className="text-[10px] text-white/30">End date</span>
+            <span className="text-[10px] text-white/30">{h.endDate}</span>
           </div>
 
           <input
@@ -818,7 +833,7 @@ const CreateRoll = ({
           <div className="mb-3 flex items-center gap-2">
             <Filter size={14} className="text-white/35" />
 
-            <span className="text-[10px] text-white/35">Filters</span>
+            <span className="text-[10px] text-white/35">{h.filters}</span>
           </div>
 
           <div className="flex gap-2">
@@ -846,7 +861,7 @@ const CreateRoll = ({
         <div className="grid grid-cols-2 gap-3">
           <NumberSetting
             icon={<Camera size={13} />}
-            label="Shots"
+            label={h.shots}
             value={shots}
             min={6}
             max={100}
@@ -858,7 +873,7 @@ const CreateRoll = ({
 
           <NumberSetting
             icon={<Users size={13} />}
-            label="Guests"
+            label={h.guests}
             value={guests}
             min={2}
             max={200}
@@ -875,7 +890,7 @@ const CreateRoll = ({
         disabled={!eventName.trim()}
         className="mt-5 flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-white py-3 text-xs font-semibold text-black transition hover:scale-[1.02] active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
       >
-        Create roll
+        {h.createRoll}
         <Check size={13} />
       </button>
     </div>
@@ -886,7 +901,7 @@ const CreateRoll = ({
    STEP 02 — QR
 ========================================================= */
 
-const ShareQR = ({ eventName, shots, guests }) => {
+const ShareQR = ({ h, eventName, shots, guests }) => {
   const [copied, setCopied] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("WARM");
   const [selectedImage, setSelectedImage] = useState(EVENT_IMAGES[0]);
@@ -927,10 +942,10 @@ const ShareQR = ({ eventName, shots, guests }) => {
 
       <div className="text-center">
         <p className="text-[9px] uppercase tracking-[0.18em] text-white/30">
-          Step 02
+          {h.step} 02
         </p>
 
-        <h3 className="mt-2 font-serif text-2xl">Share the roll</h3>
+        <h3 className="mt-2 font-serif text-2xl">{h.shareRoll}</h3>
       </div>
 
       {/* PHOTO AREA */}
@@ -938,7 +953,7 @@ const ShareQR = ({ eventName, shots, guests }) => {
       <div className="relative mt-6 overflow-hidden rounded-3xl border border-white/10">
         <img
           src={selectedImage}
-          alt="Event"
+          alt={h.preview}
           className={`h-[220px] w-full object-cover transition-all duration-500 ${
             filters.find((item) => item.name === selectedFilter)?.className ||
             ""
@@ -949,7 +964,7 @@ const ShareQR = ({ eventName, shots, guests }) => {
 
         <div className="absolute bottom-3 left-3">
           <p className="text-[8px] uppercase tracking-[0.15em] text-white/40">
-            Preview
+            {h.preview}
           </p>
 
           <p className="mt-1 font-serif text-xl">{eventName}</p>
@@ -963,7 +978,7 @@ const ShareQR = ({ eventName, shots, guests }) => {
           <Filter size={12} className="text-white/40" />
 
           <span className="text-[9px] uppercase tracking-[0.15em] text-white/35">
-            Choose filter
+            {h.chooseFilter}
           </span>
         </div>
 
@@ -1015,13 +1030,13 @@ const ShareQR = ({ eventName, shots, guests }) => {
 
         <div className="min-w-0 text-left">
           <p className="text-[8px] uppercase tracking-[0.15em] text-white/30">
-            Scan to join
+            {h.scanToJoin}
           </p>
 
           <p className="mt-1 truncate text-xs text-white/65">{eventName}</p>
 
           <p className="mt-1 text-[8px] text-white/25">
-            {shots} shots · {guests} guests
+            {shots} {h.shots} · {guests} {h.guests}
           </p>
         </div>
       </div>
@@ -1033,12 +1048,12 @@ const ShareQR = ({ eventName, shots, guests }) => {
         {copied ? (
           <>
             <Check size={12} />
-            Link copied
+            {h.linkCopied}
           </>
         ) : (
           <>
             <Share2 size={12} />
-            Copy invite link
+            {h.copyInviteLink}
           </>
         )}
       </button>
@@ -1050,7 +1065,7 @@ const ShareQR = ({ eventName, shots, guests }) => {
    STEP 03 — JOIN
 ========================================================= */
 
-const GuestJoin = ({ eventName }) => {
+const GuestJoin = ({ h, eventName }) => {
   const [name, setName] = useState("Rohit");
   const [joined, setJoined] = useState(false);
 
@@ -1065,7 +1080,7 @@ const GuestJoin = ({ eventName }) => {
         <div className="absolute right-0 top-0 h-full w-[45%] overflow-hidden border-l border-white/10">
           <img
             src={previewImage}
-            alt="Captured preview"
+            alt={h.preview}
             className="h-full w-full object-cover opacity-70"
           />
 
@@ -1080,14 +1095,15 @@ const GuestJoin = ({ eventName }) => {
           </div>
 
           <p className="mt-6 text-[9px] uppercase tracking-[0.2em] text-white/30">
-            Welcome
+            {h.welcome}
           </p>
 
-          <h3 className="mt-2 font-serif text-2xl">Hey, {name || "Guest"}.</h3>
+          <h3 className="mt-2 font-serif text-2xl">
+            {h.hey}, {name || h.guest}.
+          </h3>
 
           <p className="mt-3 text-[10px] leading-5 text-white/35">
-            You're now part of{" "}
-            <span className="text-white/65">{eventName}</span>
+            {h.nowPartOf} <span className="text-white/65">{eventName}</span>
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -1104,7 +1120,7 @@ const GuestJoin = ({ eventName }) => {
               >
                 <img
                   src={image}
-                  alt="Preview"
+                  alt={h.preview}
                   className="h-full w-full object-cover"
                 />
               </button>
@@ -1118,7 +1134,7 @@ const GuestJoin = ({ eventName }) => {
             }}
             className="mt-7 cursor-pointer rounded-full border border-white/10 px-4 py-2 text-[9px] text-white/40 transition hover:bg-white/[0.06]"
           >
-            Change name
+            {h.changeName}
           </button>
 
           <button
@@ -1129,12 +1145,13 @@ const GuestJoin = ({ eventName }) => {
             className="mt-2 flex items-center gap-2 text-[9px] text-white/35 hover:text-white/60"
           >
             <Eye size={12} />
-            View preview
+            {h.viewPreview}
           </button>
         </div>
 
         {previewOpen && (
           <PreviewModal
+            h={h}
             image={previewImage}
             onClose={() => setPreviewOpen(false)}
           />
@@ -1150,7 +1167,7 @@ const GuestJoin = ({ eventName }) => {
       <div className="absolute right-0 top-0 h-full w-[42%] overflow-hidden">
         <img
           src={previewImage}
-          alt="Event preview"
+          alt={h.preview}
           className="h-full w-full object-cover opacity-65"
         />
 
@@ -1175,23 +1192,23 @@ const GuestJoin = ({ eventName }) => {
         </div>
 
         <p className="mt-5 text-[9px] uppercase tracking-[0.18em] text-white/30">
-          Join roll
+          {h.joinRoll}
         </p>
 
-        <h3 className="mt-2 font-serif text-2xl">You're invited.</h3>
+        <h3 className="mt-2 font-serif text-2xl">{h.invited}</h3>
 
         <p className="mt-3 max-w-[160px] text-[10px] leading-5 text-white/35">
-          Join <span className="text-white/70">{eventName}</span>
+          {h.join} <span className="text-white/70">{eventName}</span>
         </p>
 
         <div className="mt-7 rounded-2xl border border-white/[0.09] bg-black/70 p-4 backdrop-blur-xl">
-          <p className="text-[9px] text-white/30">Display name</p>
+          <p className="text-[9px] text-white/30">{h.displayName}</p>
 
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="mt-2 w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2.5 text-[10px] text-white outline-none placeholder:text-white/20 focus:border-white/20"
-            placeholder="Your name"
+            placeholder={h.yourName}
           />
 
           <button
@@ -1202,18 +1219,19 @@ const GuestJoin = ({ eventName }) => {
             disabled={!name.trim()}
             className="mt-3 w-full cursor-pointer rounded-xl bg-white py-2.5 text-[10px] font-semibold text-black transition hover:scale-[1.02] active:scale-95 disabled:opacity-40"
           >
-            Join the roll
+            {h.joinTheRoll}
           </button>
         </div>
 
         <div className="mt-4 flex items-center gap-2 text-[9px] text-white/25">
           <LockKeyhole size={11} />
-          No account. No app download.
+          {h.noAccount}
         </div>
       </div>
 
       {previewOpen && (
         <PreviewModal
+          h={h}
           image={previewImage}
           onClose={() => setPreviewOpen(false)}
         />
@@ -1227,6 +1245,7 @@ const GuestJoin = ({ eventName }) => {
 ========================================================= */
 
 const ShootCamera = ({
+  h,
   silent,
   volume,
   shots,
@@ -1293,7 +1312,7 @@ const ShootCamera = ({
       <div className="relative h-full min-h-[600px] overflow-hidden bg-black sm:min-h-[620px]">
         <img
           src={capturedPhotos[selectedPhoto]}
-          alt="Captured memory"
+          alt={h.capturedMemory}
           className={`absolute inset-0 h-full w-full object-cover ${
             filter === "B&W" ? "grayscale" : ""
           }`}
@@ -1349,7 +1368,7 @@ const ShootCamera = ({
         <div className="absolute bottom-6 left-4 z-20">
           <div className="rounded-2xl border border-white/15 bg-black/45 px-4 py-3 backdrop-blur-xl">
             <p className="text-[8px] uppercase tracking-[0.15em] text-white/40">
-              Captured
+              {h.captured}
             </p>
 
             <p className="mt-1 font-serif text-2xl">
@@ -1361,6 +1380,7 @@ const ShootCamera = ({
 
         {settingsOpen && (
           <CameraSettings
+            h={h}
             grid={grid}
             setGrid={setGrid}
             timer={timer}
@@ -1389,7 +1409,7 @@ const ShootCamera = ({
               ? capturedPhotos[capturedPhotos.length - 1]
               : EVENT_IMAGES[1]
           }
-          alt="Camera preview"
+          alt={h.cameraPreview}
           className={`h-full w-full object-cover opacity-45 transition-all duration-700 ${
             filter === "B&W"
               ? "grayscale"
@@ -1419,9 +1439,7 @@ const ShootCamera = ({
         )}
       </div>
 
-      {/* =====================================================
-          CAPTURE FEEDBACK
-      ===================================================== */}
+      {/* CAPTURE FEEDBACK */}
 
       {captureFeedback && (
         <div className="absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2">
@@ -1431,7 +1449,7 @@ const ShootCamera = ({
             </p>
 
             <p className="mt-1 whitespace-nowrap text-[9px] uppercase tracking-[0.18em] text-white/45">
-              {capturedPhotos.length === 1 ? "Photo taken" : "Photos taken"}
+              {capturedPhotos.length === 1 ? h.photoTaken : h.photosTaken}
             </p>
           </div>
         </div>
@@ -1442,6 +1460,7 @@ const ShootCamera = ({
       <div className="relative z-10 flex items-center justify-between">
         <button
           onClick={() => !silent && playSound("click")}
+          title={h.back}
           className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-black/40 backdrop-blur"
         >
           <ArrowLeft size={15} />
@@ -1468,6 +1487,7 @@ const ShootCamera = ({
 
             if (!silent) playSound("click");
           }}
+          title={h.cameraSettings}
           className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border transition ${
             settingsOpen
               ? "border-white/30 bg-white/15"
@@ -1483,12 +1503,12 @@ const ShootCamera = ({
       <div className="absolute left-3 top-1/2 z-10 -translate-y-1/2 sm:left-5">
         <div className="rounded-2xl border border-white/15 bg-black/40 px-3 py-3 text-center backdrop-blur-xl">
           <p className="text-[8px] uppercase tracking-[0.15em] text-white/40">
-            Shots
+            {h.shots}
           </p>
 
           <p className="mt-1 font-serif text-2xl">{remaining}</p>
 
-          <div className="mx-auto mt-1 text-[8px] text-white/30">left</div>
+          <div className="mx-auto mt-1 text-[8px] text-white/30">{h.left}</div>
         </div>
       </div>
 
@@ -1502,17 +1522,18 @@ const ShootCamera = ({
 
             if (!silent) playSound("click");
           }}
+          title={h.preview}
           className="absolute right-3 top-1/2 z-10 flex -translate-y-1/2 cursor-pointer flex-col items-center gap-1 rounded-2xl border border-white/15 bg-black/45 p-2 backdrop-blur-xl sm:right-4"
         >
           <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-white/10">
             <img
               src={capturedPhotos[capturedPhotos.length - 1]}
-              alt="Latest capture"
+              alt={h.latestCapture}
               className="h-full w-full object-cover"
             />
           </div>
 
-          <span className="text-[7px] text-white/55">Preview</span>
+          <span className="text-[7px] text-white/55">{h.preview}</span>
 
           <span className="text-[7px] text-white/35">
             {capturedPhotos.length}
@@ -1546,12 +1567,12 @@ const ShootCamera = ({
 
             if (!silent) playSound("click");
           }}
+          title={flashEnabled ? h.flashOn : h.flashOff}
           className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border transition ${
             flashEnabled
               ? "border-white/30 bg-white/20"
               : "border-white/10 bg-black/40"
           }`}
-          title={flashEnabled ? "Flash on" : "Flash off"}
         >
           <Zap size={14} />
         </button>
@@ -1561,6 +1582,7 @@ const ShootCamera = ({
         <button
           onClick={takePhoto}
           disabled={remaining === 0}
+          title={h.takePhoto}
           className="group flex h-[74px] w-[74px] cursor-pointer items-center justify-center rounded-full border border-white/50 bg-white/[0.08] transition duration-200 hover:scale-105 active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 sm:h-[78px] sm:w-[78px]"
         >
           <span className="h-[57px] w-[57px] rounded-full bg-white shadow-[0_0_25px_rgba(255,255,255,0.25)] transition group-hover:scale-95 sm:h-[60px] sm:w-[60px]" />
@@ -1577,6 +1599,7 @@ const ShootCamera = ({
 
             if (!silent) playSound("click");
           }}
+          title={h.gallery}
           className="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-black/40"
         >
           <ImageIcon size={14} />
@@ -1595,7 +1618,7 @@ const ShootCamera = ({
         <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5 text-[9px] text-white/40 backdrop-blur-xl">
           {silent ? <VolumeX size={11} /> : <Volume2 size={11} />}
 
-          {silent ? "Silent" : `${volume}%`}
+          {silent ? h.silent : `${volume}%`}
         </div>
       </div>
 
@@ -1603,6 +1626,7 @@ const ShootCamera = ({
 
       {settingsOpen && (
         <CameraSettings
+          h={h}
           grid={grid}
           setGrid={setGrid}
           timer={timer}
@@ -1621,6 +1645,7 @@ const ShootCamera = ({
 ========================================================= */
 
 const CameraSettings = ({
+  h,
   grid,
   setGrid,
   timer,
@@ -1634,14 +1659,15 @@ const CameraSettings = ({
       <div className="flex items-center justify-between">
         <div>
           <p className="text-[8px] uppercase tracking-[0.18em] text-white/30">
-            Camera settings
+            {h.cameraSettings}
           </p>
 
-          <h4 className="mt-1 font-serif text-xl">Customize your shot</h4>
+          <h4 className="mt-1 font-serif text-xl">{h.customizeShot}</h4>
         </div>
 
         <button
           onClick={onClose}
+          title={h.close}
           className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.04]"
         >
           <X size={14} />
@@ -1662,9 +1688,9 @@ const CameraSettings = ({
             <ScanLine size={14} className="text-white/45" />
 
             <div className="text-left">
-              <p className="text-[10px] text-white/65">Camera grid</p>
+              <p className="text-[10px] text-white/65">{h.cameraGrid}</p>
 
-              <p className="text-[8px] text-white/25">Align your frame</p>
+              <p className="text-[8px] text-white/25">{h.alignFrame}</p>
             </div>
           </div>
 
@@ -1684,10 +1710,10 @@ const CameraSettings = ({
             <Camera size={14} className="text-white/45" />
 
             <div className="text-left">
-              <p className="text-[10px] text-white/65">Self timer</p>
+              <p className="text-[10px] text-white/65">{h.selfTimer}</p>
 
               <p className="text-[8px] text-white/25">
-                {timer ? "3 second timer" : "Instant capture"}
+                {timer ? h.threeSecondTimer : h.instantCapture}
               </p>
             </div>
           </div>
@@ -1708,9 +1734,9 @@ const CameraSettings = ({
             <RotateCcw size={14} className="text-white/45" />
 
             <div className="text-left">
-              <p className="text-[10px] text-white/65">Mirror camera</p>
+              <p className="text-[10px] text-white/65">{h.mirrorCamera}</p>
 
-              <p className="text-[8px] text-white/25">Flip the preview</p>
+              <p className="text-[8px] text-white/25">{h.flipPreview}</p>
             </div>
           </div>
 
@@ -1726,7 +1752,7 @@ const CameraSettings = ({
         className="mt-3 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-white py-3 text-[10px] font-semibold text-black transition hover:bg-white/90 active:scale-95"
       >
         <Check size={12} />
-        Done
+        {h.done}
       </button>
     </div>
   );
@@ -1756,18 +1782,34 @@ const Toggle = ({ active }) => {
    STEP 05 — REVEAL
 ========================================================= */
 
-const RevealRoll = ({ eventName, capturedPhotos }) => {
+const RevealRoll = ({ h, eventName, capturedPhotos }) => {
   const [reveal, setReveal] = useState(false);
-  const [timing, setTiming] = useState("Right after it ends");
+
+  const [timing, setTiming] = useState("rightAfter");
 
   const memories = capturedPhotos.length > 0 ? capturedPhotos : EVENT_IMAGES;
+
+  const timingOptions = [
+    {
+      key: "during",
+      label: h.duringEvent,
+    },
+    {
+      key: "rightAfter",
+      label: h.rightAfter,
+    },
+    {
+      key: "schedule",
+      label: h.scheduleTime,
+    },
+  ];
 
   return (
     <div className="h-full min-h-[600px] overflow-y-auto px-5 pb-7 pt-14 sm:min-h-[620px]">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-[10px] uppercase tracking-[0.18em] text-white/30">
-            Roll complete
+            {h.rollComplete}
           </p>
 
           <h3 className="mt-2 max-w-[200px] font-serif text-2xl">
@@ -1791,7 +1833,7 @@ const RevealRoll = ({ eventName, capturedPhotos }) => {
             >
               <img
                 src={image}
-                alt={`Memory ${index + 1}`}
+                alt={`${h.snaprollMemory} ${index + 1}`}
                 className={`h-full w-full object-cover transition-all duration-700 ${
                   reveal ? "scale-100" : "scale-110"
                 }`}
@@ -1808,11 +1850,11 @@ const RevealRoll = ({ eventName, capturedPhotos }) => {
               </div>
 
               <p className="mt-3 text-[10px] uppercase tracking-[0.16em] text-white/50">
-                Memories locked
+                {h.memoriesLocked}
               </p>
 
               <p className="mt-1 text-[8px] text-white/25">
-                Reveal to unlock the roll
+                {h.revealToUnlock}
               </p>
             </div>
           </div>
@@ -1827,7 +1869,7 @@ const RevealRoll = ({ eventName, capturedPhotos }) => {
                 <Sparkles size={11} />
 
                 <span className="text-[8px] uppercase tracking-[0.15em] text-white/75">
-                  Memories unlocked
+                  {h.memoriesUnlocked}
                 </span>
               </div>
             </div>
@@ -1838,30 +1880,28 @@ const RevealRoll = ({ eventName, capturedPhotos }) => {
       {/* TIMING */}
 
       <div className="mt-5 space-y-2">
-        {["During the event", "Right after it ends", "Schedule a time"].map(
-          (item) => (
-            <button
-              key={item}
-              onClick={() => {
-                setTiming(item);
-                playSound("click");
-              }}
-              className={`flex w-full cursor-pointer items-center justify-between rounded-xl border px-3.5 py-3 text-left transition ${
-                timing === item
-                  ? "border-white/20 bg-white/[0.08]"
-                  : "border-white/[0.07] bg-white/[0.025]"
-              }`}
-            >
-              <span className="text-[10px] text-white/50">{item}</span>
+        {timingOptions.map((item) => (
+          <button
+            key={item.key}
+            onClick={() => {
+              setTiming(item.key);
+              playSound("click");
+            }}
+            className={`flex w-full cursor-pointer items-center justify-between rounded-xl border px-3.5 py-3 text-left transition ${
+              timing === item.key
+                ? "border-white/20 bg-white/[0.08]"
+                : "border-white/[0.07] bg-white/[0.025]"
+            }`}
+          >
+            <span className="text-[10px] text-white/50">{item.label}</span>
 
-              {timing === item && (
-                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white text-black">
-                  <Check size={9} />
-                </span>
-              )}
-            </button>
-          ),
-        )}
+            {timing === item.key && (
+              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white text-black">
+                <Check size={9} />
+              </span>
+            )}
+          </button>
+        ))}
       </div>
 
       <button
@@ -1874,12 +1914,12 @@ const RevealRoll = ({ eventName, capturedPhotos }) => {
         {reveal ? (
           <>
             <EyeOff size={13} />
-            Hide photos
+            {h.hidePhotos}
           </>
         ) : (
           <>
             <Sparkles size={13} />
-            Reveal the roll
+            {h.revealRoll}
           </>
         )}
       </button>
@@ -1891,7 +1931,7 @@ const RevealRoll = ({ eventName, capturedPhotos }) => {
    POWER OFF
 ========================================================= */
 
-const PowerOffScreen = ({ onPower }) => {
+const PowerOffScreen = ({ h, onPower }) => {
   return (
     <div className="flex h-full min-h-[600px] flex-col items-center justify-center bg-black px-6 text-center sm:min-h-[620px]">
       <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.025]">
@@ -1899,18 +1939,18 @@ const PowerOffScreen = ({ onPower }) => {
       </div>
 
       <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-white/20">
-        Power off
+        {h.powerOff}
       </p>
 
       <p className="mt-2 max-w-[180px] text-[10px] leading-5 text-white/15">
-        Press the side power button to turn this SnapRoll camera on.
+        {h.powerOffDescription}
       </p>
 
       <button
         onClick={onPower}
         className="mt-7 cursor-pointer rounded-full border border-white/10 px-5 py-2.5 text-xs text-white/40 transition hover:bg-white/[0.06] active:scale-95"
       >
-        Turn on
+        {h.turnOn}
       </button>
     </div>
   );
@@ -1920,18 +1960,19 @@ const PowerOffScreen = ({ onPower }) => {
    PREVIEW MODAL
 ========================================================= */
 
-const PreviewModal = ({ image, onClose }) => {
+const PreviewModal = ({ h, image, onClose }) => {
   return (
     <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 p-5 backdrop-blur-xl">
       <div className="relative w-full max-w-[280px] overflow-hidden rounded-3xl border border-white/15 bg-black">
         <img
           src={image}
-          alt="Photo preview"
+          alt={h.photoPreview}
           className="h-[360px] w-full object-cover"
         />
 
         <button
           onClick={onClose}
+          title={h.close}
           className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-black/60 backdrop-blur-xl"
         >
           <X size={14} />
@@ -1939,10 +1980,10 @@ const PreviewModal = ({ image, onClose }) => {
 
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4 pt-14">
           <p className="text-[8px] uppercase tracking-[0.15em] text-white/40">
-            Photo preview
+            {h.photoPreview}
           </p>
 
-          <p className="mt-1 font-serif text-lg">SnapRoll memory</p>
+          <p className="mt-1 font-serif text-lg">{h.snaprollMemory}</p>
         </div>
       </div>
     </div>
@@ -2014,47 +2055,6 @@ const NumberSetting = ({ icon, label, value, min, max, onChange }) => {
       </div>
     </div>
   );
-};
-
-/* =========================================================
-   FEATURES
-========================================================= */
-
-const getFeatures = (index) => {
-  const features = [
-    [
-      "Name your event",
-      "Choose an end date",
-      "Choose your filters",
-      "Set shot & guest limits",
-    ],
-    [
-      "Unique event QR code",
-      "Choose your camera filter",
-      "Print or project it",
-      "Share as a link",
-    ],
-    [
-      "Scan or enter the code",
-      "Choose a display name",
-      "Preview captured moments",
-      "No account required",
-    ],
-    [
-      "Shared filter set",
-      "Camera settings",
-      "Shared shot pool",
-      "Capture from every angle",
-    ],
-    [
-      "Photos stay hidden",
-      "Reveal during the event",
-      "Reveal when it ends",
-      "Schedule a reveal time",
-    ],
-  ];
-
-  return features[index];
 };
 
 export default HowItWorks;

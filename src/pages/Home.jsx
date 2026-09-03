@@ -2,28 +2,37 @@ import { Link } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
 import { useRef } from "react";
 import ScrollReveal from "../components/ScrollReveal";
+import useLanguage from "../context/useLanguage";
 
 const Home = () => {
+  // =========================================================
+  // GLOBAL LANGUAGE
+  // =========================================================
+  const { t } = useLanguage();
+
+  // =========================================================
+  // STEPS
+  // =========================================================
   const steps = [
     {
       number: "01",
-      title: "Create",
-      text: "Set up your event and choose the film-style experience.",
+      title: t.home.steps.create.title,
+      text: t.home.steps.create.text,
     },
     {
       number: "02",
-      title: "Share",
-      text: "Share your unique QR code with everyone at the event.",
+      title: t.home.steps.share.title,
+      text: t.home.steps.share.text,
     },
     {
       number: "03",
-      title: "Shoot",
-      text: "Guests join instantly and start capturing their perspective.",
+      title: t.home.steps.shoot.title,
+      text: t.home.steps.shoot.text,
     },
     {
       number: "04",
-      title: "Reveal",
-      text: "Reveal the entire collection when the host chooses the moment.",
+      title: t.home.steps.reveal.title,
+      text: t.home.steps.reveal.text,
     },
   ];
 
@@ -40,25 +49,24 @@ const Home = () => {
           <div className="relative z-20 max-w-xl">
             <ScrollReveal>
               <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-gray-500 sm:text-sm">
-                Your moments. Your story.
+                {t.home.eyebrow}
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={150}>
               <h1 className="font-serif text-4xl font-medium leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl">
-                Capture
+                {t.home.heroTitle1}
                 <br />
-                <span className="text-gray-500">moments.</span>
+                <span className="text-gray-500">{t.home.heroTitle2}</span>
                 <br />
-                Share
-                <br className="sm:hidden" /> stories.
+                {t.home.heroTitle3}
+                <br className="sm:hidden" /> {t.home.heroTitle4}
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={300}>
               <p className="mt-6 max-w-lg text-base leading-7 text-gray-400 sm:mt-7 sm:text-lg sm:leading-8">
-                SnapRoll turns your events into shared memories — one camera,
-                one event, and everyone's perspective.
+                {t.home.heroDescription}
               </p>
             </ScrollReveal>
 
@@ -68,7 +76,8 @@ const Home = () => {
                   to="/events"
                   className="group inline-flex h-13 items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:bg-gray-200 hover:shadow-xl hover:shadow-white/10"
                 >
-                  Get Started
+                  {t.home.getStarted}
+
                   <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
                     →
                   </span>
@@ -78,7 +87,8 @@ const Home = () => {
                   to="/how-it-works"
                   className="group inline-flex h-13 items-center justify-center rounded-full border border-white/20 px-7 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:border-white hover:bg-white hover:text-black"
                 >
-                  How It Works
+                  {t.home.howItWorks}
+
                   <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
                     ↗
                   </span>
@@ -89,7 +99,7 @@ const Home = () => {
             <ScrollReveal delay={600}>
               <div className="mt-8">
                 <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.22em] text-gray-600">
-                  Coming soon on
+                  {t.home.comingSoon}
                 </p>
 
                 <div className="flex flex-wrap items-center gap-3">
@@ -112,11 +122,11 @@ const Home = () => {
 
                     <div className="flex min-w-0 flex-col justify-center">
                       <p className="whitespace-nowrap text-[9px] font-medium leading-none text-gray-600">
-                        Download on the
+                        {t.home.downloadOn}
                       </p>
 
                       <p className="mt-1.5 whitespace-nowrap text-base font-semibold leading-none text-black">
-                        App Store
+                        {t.home.appStore}
                       </p>
                     </div>
                   </a>
@@ -155,11 +165,11 @@ const Home = () => {
 
                     <div className="flex min-w-0 flex-col justify-center">
                       <p className="whitespace-nowrap text-[9px] font-medium leading-none text-gray-600">
-                        GET IT ON
+                        {t.home.getItOn}
                       </p>
 
                       <p className="mt-1.5 whitespace-nowrap text-base font-semibold leading-none text-black">
-                        Google Play
+                        {t.home.googlePlay}
                       </p>
                     </div>
                   </a>
@@ -173,14 +183,12 @@ const Home = () => {
           ====================================================== */}
           <ScrollReveal delay={250} direction="left">
             <div className="relative mx-auto h-135 w-full max-w-150 sm:h-155 lg:h-170">
-              {/* =================================================
-              MEMORY 02
-              ================================================== */}
+              {/* MEMORY 02 */}
               <div className="absolute right-[3%] top-[5%] hidden w-53.75 rotate-10 rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-7 sm:block lg:right-[8%] lg:w-61.25">
                 <div className="flex aspect-4/5 items-center justify-center rounded-xl bg-neutral-900">
                   <div className="text-center">
                     <span className="block text-[9px] uppercase tracking-[0.3em] text-gray-600">
-                      Memory
+                      {t.home.memory}
                     </span>
 
                     <span className="mt-2 block font-serif text-3xl text-gray-700">
@@ -198,36 +206,23 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* =================================================
-              PHONE
-              ================================================== */}
+              {/* PHONE */}
               <div className="absolute left-1/2 top-1/2 z-20 h-117.5 w-58.75 -translate-x-1/2 -translate-y-1/2 rotate-[-4deg] transition-transform duration-700 hover:-rotate-1 sm:h-137.5 sm:w-68.75 lg:h-147.5 lg:w-73.75">
-                {/* =================================================
-                LEFT SIDE BUTTONS
-                OUTSIDE PHONE BODY
-                ================================================== */}
+                {/* LEFT SIDE BUTTONS */}
                 <div className="pointer-events-none absolute -left-4 top-[19%] z-50 flex flex-col gap-5 sm:-left-5">
-                  {/* SILENT / ACTION */}
                   <span className="block h-6 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-7" />
 
-                  {/* VOLUME UP */}
                   <span className="block h-9 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-10" />
 
-                  {/* VOLUME DOWN */}
                   <span className="block h-9 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-10" />
                 </div>
 
-                {/* =================================================
-                RIGHT SIDE POWER BUTTON
-                OUTSIDE PHONE BODY
-                ================================================== */}
+                {/* RIGHT SIDE POWER BUTTON */}
                 <div className="pointer-events-none absolute -right-2.5 top-[29%] z-50">
                   <span className="block h-12 w-1 rounded-r-full border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-14" />
                 </div>
 
-                {/* =================================================
-                OUTER PHONE FRAME
-                ================================================== */}
+                {/* OUTER PHONE FRAME */}
                 <div
                   className="
                     absolute
@@ -244,9 +239,7 @@ const Home = () => {
                     sm:rounded-[48px]
                   "
                 >
-                  {/* =================================================
-                  INNER BLACK BODY
-                  ================================================== */}
+                  {/* INNER BLACK BODY */}
                   <div
                     className="
                       relative
@@ -261,9 +254,7 @@ const Home = () => {
                       sm:rounded-[41px]
                     "
                   >
-                    {/* =================================================
-                    SCREEN
-                    ================================================== */}
+                    {/* SCREEN */}
                     <div className="relative h-full w-full overflow-hidden rounded-[31px] bg-neutral-950 sm:rounded-[36px]">
                       {/* DYNAMIC ISLAND */}
                       <div className="absolute left-1/2 top-2.5 z-40 h-7 w-24 -translate-x-1/2 rounded-full bg-black shadow-inner sm:top-3 sm:h-8 sm:w-28" />
@@ -287,24 +278,24 @@ const Home = () => {
                         <div className="mb-4 rounded-2xl border border-white/10 bg-white/4 p-4 backdrop-blur-sm sm:mb-5 sm:p-5">
                           <div className="flex items-center justify-between">
                             <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500">
-                              Your Story
+                              {t.home.yourStory}
                             </span>
 
                             <span className="text-[9px] text-gray-600">
-                              today
+                              {t.home.today}
                             </span>
                           </div>
 
                           <p className="mt-3 font-serif text-2xl leading-tight text-white sm:text-3xl">
-                            Little moments
+                            {t.home.littleMoments}
                             <br />
-                            become stories.
+                            {t.home.becomeStories}
                           </p>
                         </div>
 
                         <div className="flex items-center justify-between border-t border-white/10 pt-4">
                           <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500">
-                            Capture
+                            {t.home.capture}
                           </span>
 
                           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black sm:h-10 sm:w-10">
@@ -317,14 +308,12 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* =================================================
-              MEMORY 01
-              ================================================== */}
+              {/* MEMORY 01 */}
               <div className="absolute bottom-[5%] left-[2%] z-30 w-41.25 rotate-[-11deg] rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-[-7deg] sm:w-48.75 lg:left-[6%] lg:w-52.5">
                 <div className="flex aspect-square items-center justify-center rounded-xl bg-neutral-900">
                   <div className="text-center">
                     <span className="block text-[9px] uppercase tracking-[0.3em] text-gray-600">
-                      Memory
+                      {t.home.memory}
                     </span>
 
                     <span className="mt-2 block font-serif text-4xl text-gray-700">
@@ -335,7 +324,7 @@ const Home = () => {
 
                 <div className="pt-3">
                   <p className="text-[9px] uppercase tracking-[0.2em] text-black">
-                    A moment worth keeping
+                    {t.home.aMomentWorthKeeping}
                   </p>
                 </div>
               </div>
@@ -343,7 +332,7 @@ const Home = () => {
               {/* KEEP THE MOMENT */}
               <div className="absolute bottom-[18%] right-[1%] z-30 hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md sm:block lg:right-[3%]">
                 <span className="text-[9px] uppercase tracking-[0.25em] text-gray-400">
-                  Keep the moment
+                  {t.home.keepTheMoment}
                 </span>
               </div>
 
@@ -367,12 +356,11 @@ const Home = () => {
             <ScrollReveal direction="right">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
-                  What it does
+                  {t.home.whatItDoes}
                 </p>
 
                 <p className="mt-6 max-w-xs text-sm leading-6 text-gray-600">
-                  A digital disposable camera for the moments you don't want to
-                  miss.
+                  {t.home.disposableCamera}
                 </p>
 
                 <div className="mt-10">
@@ -392,7 +380,7 @@ const Home = () => {
                       <span className="h-px w-7 bg-white/20" />
 
                       <p className="text-[9px] font-medium uppercase tracking-[0.28em] text-gray-500">
-                        Scan to join
+                        {t.home.scanToJoin}
                       </p>
 
                       <span className="h-px w-7 bg-white/20" />
@@ -405,28 +393,26 @@ const Home = () => {
             <ScrollReveal delay={150} direction="left">
               <div>
                 <h2 className="max-w-4xl font-serif text-3xl leading-tight tracking-[-0.02em] sm:text-4xl md:text-5xl lg:text-6xl">
-                  One event.
+                  {t.home.oneEvent}
                   <br />
-                  One shared camera.
+                  {t.home.oneSharedCamera}
                   <br />
-                  <span className="text-gray-500">Everyone's memories.</span>
+                  <span className="text-gray-500">
+                    {t.home.everyoneMemories}
+                  </span>
                 </h2>
 
                 <p className="mt-8 max-w-3xl text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
-                  SnapRoll turns any event — a wedding, birthday, trip, or party
-                  — into a shared disposable camera. The host sets it up in the
-                  app and gets a unique QR code.
+                  {t.home.whatItDoesDescription1}
                 </p>
 
                 <p className="mt-6 max-w-3xl text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
-                  Guests simply scan the QR code with their phone and are taken
-                  directly into that event. No searching, no complicated setup,
-                  and no need to download anything just to join.
+                  {t.home.whatItDoesDescription2}
                 </p>
 
                 <div className="mt-12 border-l border-white/20 pl-6 sm:pl-8">
                   <p className="max-w-2xl font-serif text-2xl leading-tight text-white sm:text-3xl">
-                    Scan once. Join the event. Start capturing the moment.
+                    {t.home.scanOnce}
                   </p>
                 </div>
               </div>
@@ -444,14 +430,14 @@ const Home = () => {
             <ScrollReveal direction="right">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
-                  How it works
+                  {t.home.howItWorksTitle}
                 </p>
 
                 <h2 className="mt-4 max-w-2xl font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
-                  Four steps.
+                  {t.home.fourSteps}
                   <br />
                   <span className="text-gray-500">
-                    One unforgettable event.
+                    {t.home.oneUnforgettableEvent}
                   </span>
                 </h2>
               </div>
@@ -462,7 +448,8 @@ const Home = () => {
                 to="/how-it-works"
                 className="group inline-flex items-center text-sm font-medium text-gray-400 transition-colors hover:text-white"
               >
-                Explore how it works
+                {t.home.exploreHowItWorks}
+
                 <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
                   →
                 </span>
@@ -513,15 +500,15 @@ const Home = () => {
         <div className="mx-auto max-w-7xl px-5 py-28 text-center sm:px-8 sm:py-36 lg:px-12">
           <ScrollReveal>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
-              Ready to make memories?
+              {t.home.ready}
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={150}>
             <h2 className="mx-auto mt-5 max-w-4xl font-serif text-4xl leading-tight tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-7xl">
-              Give your next event
+              {t.home.finalTitle}
               <br />
-              <span className="text-gray-500">a story worth remembering.</span>
+              <span className="text-gray-500">{t.home.finalTitle2}</span>
             </h2>
           </ScrollReveal>
 
@@ -530,7 +517,8 @@ const Home = () => {
               to="/events"
               className="group mt-10 inline-flex h-14 items-center justify-center rounded-full bg-white px-8 text-sm font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:bg-gray-200 hover:shadow-xl hover:shadow-white/10"
             >
-              Get Started
+              {t.home.getStarted}
+
               <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>

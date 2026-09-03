@@ -1,32 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo1.png";
+import useLanguage from "../context/useLanguage";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [languageOpen, setLanguageOpen] = useState(false);
 
-  // SAVED LANGUAGE
-  const [selectedLanguage, setSelectedLanguage] = useState(() => {
-    const savedLanguage = localStorage.getItem("snaproll-language");
-
-    if (savedLanguage) {
-      try {
-        return JSON.parse(savedLanguage);
-      } catch {
-        return {
-          flag: "🇬🇧",
-          name: "English",
-        };
-      }
-    }
-
-    return {
-      flag: "🇬🇧",
-      name: "English",
-    };
-  });
+  // GLOBAL LANGUAGE
+  const { selectedLanguage, languages, changeLanguage, t } = useLanguage();
 
   const lastScrollY = useRef(0);
 
@@ -41,14 +24,6 @@ const Navbar = () => {
     e.currentTarget.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
   };
 
-  // LANGUAGES
-  const languages = [
-    { flag: "🇬🇧", name: "English" },
-    { flag: "🇪🇸", name: "Spanish" },
-    { flag: "🇫🇷", name: "French" },
-    { flag: "🇵🇹", name: "Portuguese" },
-  ];
-
   // CLOSE MENU
   const closeMenu = () => {
     setMenuOpen(false);
@@ -57,10 +32,7 @@ const Navbar = () => {
 
   // CHANGE LANGUAGE
   const handleLanguageSelect = (language) => {
-    setSelectedLanguage(language);
-
-    localStorage.setItem("snaproll-language", JSON.stringify(language));
-
+    changeLanguage(language);
     setLanguageOpen(false);
   };
 
@@ -112,7 +84,7 @@ const Navbar = () => {
           relative mx-auto flex h-18 max-w-7xl items-center
           rounded-[26px]
           border border-white/18
-         bg-black/70
+          bg-black/70
           px-4
           shadow-[0_8px_40px_rgba(0,0,0,0.28)]
           backdrop-blur-2xl
@@ -234,7 +206,8 @@ const Navbar = () => {
               "
             >
               <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(180px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.48),rgba(255,255,255,0.18)_35%,rgba(255,255,255,0.05)_58%,transparent_78%)] opacity-0 blur-[2px] transition-opacity duration-300 group-hover:opacity-100" />
-              <span className="relative z-10">Home</span>
+
+              <span className="relative z-10">{t.nav.home}</span>
             </Link>
 
             {/* HOW IT WORKS */}
@@ -257,7 +230,8 @@ const Navbar = () => {
               "
             >
               <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(180px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.48),rgba(255,255,255,0.18)_35%,rgba(255,255,255,0.05)_58%,transparent_78%)] opacity-0 blur-[2px] transition-opacity duration-300 group-hover:opacity-100" />
-              <span className="relative z-10">How It Works</span>
+
+              <span className="relative z-10">{t.nav.howItWorks}</span>
             </Link>
 
             {/* PRICING */}
@@ -280,7 +254,8 @@ const Navbar = () => {
               "
             >
               <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(180px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.48),rgba(255,255,255,0.18)_35%,rgba(255,255,255,0.05)_58%,transparent_78%)] opacity-0 blur-[2px] transition-opacity duration-300 group-hover:opacity-100" />
-              <span className="relative z-10">Pricing</span>
+
+              <span className="relative z-10">{t.nav.pricing}</span>
             </Link>
 
             {/* FAQ */}
@@ -303,7 +278,8 @@ const Navbar = () => {
               "
             >
               <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(180px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.48),rgba(255,255,255,0.18)_35%,rgba(255,255,255,0.05)_58%,transparent_78%)] opacity-0 blur-[2px] transition-opacity duration-300 group-hover:opacity-100" />
-              <span className="relative z-10">FAQ</span>
+
+              <span className="relative z-10">{t.nav.faq}</span>
             </Link>
 
             {/* CONTACT */}
@@ -327,7 +303,8 @@ const Navbar = () => {
               "
             >
               <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(180px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.48),rgba(255,255,255,0.18)_35%,rgba(255,255,255,0.05)_58%,transparent_78%)] opacity-0 blur-[2px] transition-opacity duration-300 group-hover:opacity-100" />
-              <span className="relative z-10">Contact</span>
+
+              <span className="relative z-10">{t.nav.contact}</span>
             </Link>
           </div>
         </div>
@@ -352,10 +329,12 @@ const Navbar = () => {
             "
           >
             <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(110px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.38),rgba(255,255,255,0.10)_38%,transparent_72%)] opacity-0 blur-[1px] transition-opacity duration-300 group-hover:opacity-100" />
+
             <span className="absolute inset-x-0 top-0 h-px bg-white" />
 
             <span className="relative flex items-center gap-2">
-              Build Your Event
+              {t.nav.buildEvent}
+
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>
@@ -474,7 +453,7 @@ const Navbar = () => {
                 transition-colors hover:text-white
               "
             >
-              Home
+              {t.nav.home}
             </Link>
 
             {/* HOW IT WORKS */}
@@ -487,7 +466,7 @@ const Navbar = () => {
                 transition-colors hover:text-white
               "
             >
-              How It Works
+              {t.nav.howItWorks}
             </Link>
 
             {/* PRICING */}
@@ -500,7 +479,7 @@ const Navbar = () => {
                 transition-colors hover:text-white
               "
             >
-              Pricing
+              {t.nav.pricing}
             </Link>
 
             {/* FAQ */}
@@ -513,7 +492,7 @@ const Navbar = () => {
                 transition-colors hover:text-white
               "
             >
-              FAQ
+              {t.nav.faq}
             </Link>
 
             {/* CONTACT */}
@@ -526,7 +505,7 @@ const Navbar = () => {
                 transition-colors hover:text-white
               "
             >
-              Contact
+              {t.nav.contact}
             </Link>
 
             {/* MOBILE LANGUAGE */}
@@ -596,7 +575,8 @@ const Navbar = () => {
               <span className="absolute inset-x-0 top-0 h-px bg-white" />
 
               <span className="relative flex items-center justify-center gap-2">
-                Build Your Event
+                {t.nav.buildEvent}
+
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                   →
                 </span>

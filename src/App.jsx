@@ -20,8 +20,8 @@ function App() {
 
   return (
     <MainLayout>
-      {" "}
-      <ScrollToTop /> <AppRoutes />{" "}
+      <ScrollToTop />
+      <AppRoutes />
     </MainLayout>
   );
 }
