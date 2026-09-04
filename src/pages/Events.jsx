@@ -1,4 +1,3 @@
-
 import { ArrowRight, Camera, Heart, Sparkles, Star } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 
@@ -92,9 +91,8 @@ const PhoneCard = ({ event, className = "" }) => {
     <div
       className={`
         group relative shrink-0 cursor-pointer
-        transform-gpu will-change-transform
         transition-transform duration-300 ease-out
-        hover:z-50 hover:-translate-y-2
+        hover:z-50 hover:-translate-y-2 hover:will-change-transform
         ${className}
       `}
     >
@@ -106,8 +104,8 @@ const PhoneCard = ({ event, className = "" }) => {
           h-12 w-[68%]
           -translate-x-1/2
           rounded-full
-          bg-black/60
-          blur-xl
+          bg-black/50
+          blur-lg
         "
       />
 
@@ -116,7 +114,6 @@ const PhoneCard = ({ event, className = "" }) => {
         className="
           relative
           h-125 w-59.5
-          transform-gpu
           overflow-hidden
           rounded-[38px]
           border-[6px] border-neutral-800
@@ -178,7 +175,7 @@ const PhoneCard = ({ event, className = "" }) => {
               "
             />
 
-            {/* CAMERA */}
+            {/* CAMERA — solid bg instead of backdrop-blur */}
             <div
               className="
                 absolute left-4 top-12
@@ -186,27 +183,25 @@ const PhoneCard = ({ event, className = "" }) => {
                 items-center justify-center
                 rounded-full
                 border border-white/20
-                bg-black/25
+                bg-black/45
                 text-white
-                backdrop-blur-md
               "
             >
               <Camera size={14} />
             </div>
 
-            {/* LIVE MEMORIES */}
+            {/* LIVE MEMORIES — solid bg instead of backdrop-blur */}
             <div
               className="
                 absolute right-4 top-12
                 rounded-full
                 border border-white/15
-                bg-black/25
+                bg-black/45
                 px-2.5 py-1
                 text-[7px]
                 uppercase
                 tracking-[0.15em]
                 text-white/80
-                backdrop-blur-md
               "
             >
               Live memories
@@ -233,9 +228,8 @@ const PhoneCard = ({ event, className = "" }) => {
                     items-center justify-center
                     rounded-full
                     border border-white/20
-                    bg-black/25
+                    bg-black/45
                     text-white
-                    backdrop-blur-md
                     transition-transform duration-200
                     hover:scale-105
                   "
@@ -292,9 +286,7 @@ const PhoneCard = ({ event, className = "" }) => {
               </div>
 
               {/* MOMENTS */}
-              <span className="text-[9px] text-white/30">
-                {event.moments}
-              </span>
+              <span className="text-[9px] text-white/30">{event.moments}</span>
             </div>
           </div>
 
@@ -327,6 +319,12 @@ const Events = () => {
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
       {/* =========================================================
           BACKGROUND
+          Reduced from 5 blurred glows to 2, and cut blur radius from
+          100px to 70px. Large-area `blur()` filters are one of the
+          most expensive things a browser can paint, and having 5 of
+          them stacked (each bigger than the viewport) forced a full
+          repaint pass on many scroll/composite frames. Two glows,
+          smaller blur, is visually almost the same and much cheaper.
       ========================================================= */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {/* TOP GLOW */}
@@ -337,29 +335,7 @@ const Events = () => {
             -translate-x-1/2
             rounded-full
             bg-white/5
-            blur-[100px]
-          "
-        />
-
-        {/* LEFT GLOW */}
-        <div
-          className="
-            absolute -left-56 top-[30%]
-            h-125 w-125
-            rounded-full
-            bg-white/[0.025]
-            blur-[100px]
-          "
-        />
-
-        {/* RIGHT GLOW */}
-        <div
-          className="
-            absolute -right-56 top-[52%]
-            h-125 w-125
-            rounded-full
-            bg-white/[0.025]
-            blur-[100px]
+            blur-[70px]
           "
         />
 
@@ -370,8 +346,8 @@ const Events = () => {
             h-100 w-200
             -translate-x-1/2
             rounded-full
-            bg-white/[0.02]
-            blur-[100px]
+            bg-white/2
+            blur-[70px]
           "
         />
       </div>
@@ -413,9 +389,7 @@ const Events = () => {
               >
                 Every event has
                 <br />
-                <span className="text-white/30">
-                  a story to capture.
-                </span>
+                <span className="text-white/30">a story to capture.</span>
               </h1>
             </ScrollReveal>
 
@@ -456,64 +430,42 @@ const Events = () => {
               lg:flex
             "
           >
-            {/* CENTER LIGHT */}
-            <div
-              className="
-                pointer-events-none
-                absolute left-1/2 top-1/2
-                h-125 w-200
-                -translate-x-1/2
-                -translate-y-1/2
-                rounded-full
-                bg-white/[0.025]
-                blur-[100px]
-              "
-            />
+            {/* CENTER LIGHT — removed; the two page-level glows above
+                already cover this area, so this extra oversized blurred
+                layer was pure redundant paint cost. */}
 
-            {/* PHONE 1 */}
-            <div className="absolute left-[1%] top-42.5 z-10 transform-gpu">
+            {/* PHONE 1 — Birthday */}
+            <div className="absolute left-[1%] top-42.5 z-10">
               <ScrollReveal delay={0}>
-                <PhoneCard
-                  event={events[0]}
-                  className="-rotate-12"
-                />
+                <PhoneCard event={events[0]} className="-rotate-12" />
               </ScrollReveal>
             </div>
 
-            {/* PHONE 2 */}
-            <div className="absolute left-[18%] top-17.5 z-20 transform-gpu">
-              <ScrollReveal delay={60}>
-                <PhoneCard
-                  event={events[1]}
-                  className="-rotate-6"
-                />
+            {/* PHONE 2 — Wedding */}
+            <div className="absolute left-[18%] top-17.5 z-20">
+              <ScrollReveal delay={200}>
+                <PhoneCard event={events[1]} className="-rotate-6" />
               </ScrollReveal>
             </div>
 
-            {/* CENTER PHONE */}
-            <div className="relative z-40 transform-gpu">
-              <ScrollReveal delay={100}>
+            {/* CENTER PHONE — Anniversary */}
+            <div className="relative z-40">
+              <ScrollReveal delay={400}>
                 <PhoneCard event={events[2]} />
               </ScrollReveal>
             </div>
 
-            {/* PHONE 4 */}
-            <div className="absolute right-[18%] top-13.75 z-20 transform-gpu">
-              <ScrollReveal delay={60}>
-                <PhoneCard
-                  event={events[3]}
-                  className="rotate-6"
-                />
+            {/* PHONE 4 — Graduation */}
+            <div className="absolute right-[18%] top-13.75 z-20">
+              <ScrollReveal delay={600}>
+                <PhoneCard event={events[3]} className="rotate-6" />
               </ScrollReveal>
             </div>
 
-            {/* PHONE 5 */}
-            <div className="absolute right-[1%] top-45 z-10 transform-gpu">
-              <ScrollReveal delay={0}>
-                <PhoneCard
-                  event={events[4]}
-                  className="rotate-12"
-                />
+            {/* PHONE 5 — Private Party */}
+            <div className="absolute right-[1%] top-45 z-10">
+              <ScrollReveal delay={800}>
+                <PhoneCard event={events[4]} className="rotate-12" />
               </ScrollReveal>
             </div>
           </div>
@@ -537,11 +489,7 @@ const Events = () => {
                 key={event.title}
                 delay={index * 40}
                 direction="up"
-                className={
-                  index === 4
-                    ? "col-start-2 -translate-y-3 transform-gpu"
-                    : "transform-gpu"
-                }
+                className={index === 4 ? "col-start-2 -translate-y-3" : ""}
               >
                 <PhoneCard event={event} />
               </ScrollReveal>
@@ -562,70 +510,47 @@ const Events = () => {
             {/* TOP TWO */}
             <div className="flex w-full items-start justify-between px-1">
               {/* FIRST BIRTHDAY */}
-              <ScrollReveal
-                delay={0}
-                className="origin-left transform-gpu"
-              >
-                <PhoneCard
-                  event={events[5]}
-                  className="-rotate-6"
-                />
+              <ScrollReveal delay={0} className="origin-left">
+                <PhoneCard event={events[5]} className="-rotate-6" />
               </ScrollReveal>
 
               {/* BABY SHOWER — THIS IS KEPT */}
               <ScrollReveal
-                delay={60}
+                delay={180}
                 direction="up"
                 className="
                   origin-right
                   -ml-16
                   translate-y-12
-                  transform-gpu
                 "
               >
-                <PhoneCard
-                  event={events[6]}
-                  className="rotate-6"
-                />
+                <PhoneCard event={events[6]} className="rotate-6" />
               </ScrollReveal>
             </div>
 
             {/* CENTER */}
-            <ScrollReveal
-              delay={100}
-              className="relative z-20 -mt-20 transform-gpu"
-            >
+            <ScrollReveal delay={360} className="relative z-20 -mt-20">
               <PhoneCard event={events[7]} />
             </ScrollReveal>
 
             {/* BOTTOM TWO */}
             <div className="-mt-16 flex w-full items-start justify-between px-1">
               {/* REUNION */}
-              <ScrollReveal
-                delay={40}
-                className="origin-left transform-gpu"
-              >
-                <PhoneCard
-                  event={events[8]}
-                  className="-rotate-6"
-                />
+              <ScrollReveal delay={540} className="origin-left">
+                <PhoneCard event={events[8]} className="-rotate-6" />
               </ScrollReveal>
 
               {/* NEW YEAR */}
               <ScrollReveal
-                delay={80}
+                delay={720}
                 direction="up"
                 className="
                   origin-right
                   -ml-14
                   translate-y-10
-                  transform-gpu
                 "
               >
-                <PhoneCard
-                  event={events[9]}
-                  className="rotate-6"
-                />
+                <PhoneCard event={events[9]} className="rotate-6" />
               </ScrollReveal>
             </div>
           </div>
@@ -671,9 +596,7 @@ const Events = () => {
                 >
                   Whatever you're
                   <br />
-                  <span className="text-white/30">
-                    celebrating.
-                  </span>
+                  <span className="text-white/30">celebrating.</span>
                 </h2>
               </div>
             </ScrollReveal>
@@ -697,10 +620,7 @@ const Events = () => {
           {/* EVENT PILLS */}
           <div className="mt-12 flex flex-wrap gap-3">
             {events.map((event, index) => (
-              <ScrollReveal
-                key={event.title}
-                delay={index * 25}
-              >
+              <ScrollReveal key={event.title} delay={index * 25}>
                 <div
                   className="
                     group
@@ -812,10 +732,7 @@ const Events = () => {
                     ["02", "Invite", "Share it with guests."],
                     ["03", "Capture", "Collect every moment."],
                   ].map(([number, title, description], index) => (
-                    <ScrollReveal
-                      key={number}
-                      delay={index * 50}
-                    >
+                    <ScrollReveal key={number} delay={index * 50}>
                       <div
                         className="
                           rounded-[22px]
@@ -832,9 +749,7 @@ const Events = () => {
                           {number}
                         </span>
 
-                        <h3 className="mt-8 text-lg font-medium">
-                          {title}
-                        </h3>
+                        <h3 className="mt-8 text-lg font-medium">{title}</h3>
 
                         <p
                           className="
@@ -857,10 +772,7 @@ const Events = () => {
                             text-black
                           "
                         >
-                          <Star
-                            size={11}
-                            fill="currentColor"
-                          />
+                          <Star size={11} fill="currentColor" />
                         </div>
                       </div>
                     </ScrollReveal>
@@ -918,7 +830,6 @@ const Events = () => {
               "
             >
               Create Event
-
               <ArrowRight
                 size={15}
                 className="
@@ -936,4 +847,3 @@ const Events = () => {
 };
 
 export default Events;
-

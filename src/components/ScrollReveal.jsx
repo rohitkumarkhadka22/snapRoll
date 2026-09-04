@@ -10,45 +10,53 @@ const ScrollReveal = ({
   const elementRef = useRef(null);
 
   const hiddenStyles = {
-    up: "translate-y-10",
-    down: "-translate-y-10",
-    left: "translate-x-10",
-    right: "-translate-x-10",
+    up: "translate-y-6",
+    down: "-translate-y-6",
+    left: "translate-x-6",
+    right: "-translate-x-6",
     none: "",
   };
 
   useEffect(() => {
     const element = elementRef.current;
 
+    if (!element) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target);
+          observer.unobserve(element);
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.05,
+        rootMargin: "0px 0px -20px 0px",
       },
     );
 
-    if (element) observer.observe(element);
+    observer.observe(element);
 
-    return () => {
-      if (element) observer.unobserve(element);
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div
       ref={elementRef}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-1000 ease-out ${
-        isVisible
-          ? "translate-x-0 translate-y-0 opacity-100"
-          : `${hiddenStyles[direction]} opacity-0`
-      } ${className}`}
+      style={{
+        transitionDelay: isVisible ? `${delay}ms` : "0ms",
+      }}
+      className={`
+        transition-[transform,opacity]
+        duration-500
+        ease-out
+        ${
+          isVisible
+            ? "translate-x-0 translate-y-0 opacity-100"
+            : `${hiddenStyles[direction]} opacity-0`
+        }
+        ${className}
+      `}
     >
       {children}
     </div>

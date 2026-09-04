@@ -281,6 +281,111 @@ const translations = {
       finalTitle2: "a roll of its own.",
       createYourRoll: "Create your roll",
     },
+
+    faq: {
+      badge: "FAQ",
+      eyebrow: "Need to know",
+      title1: "Questions,",
+      title2: "without the guesswork.",
+      heroDescription:
+        "From joining an event to choosing filters and revealing the final roll, here's what you need to know about SnapRoll.",
+
+      phoneStory: "Your Story",
+      phoneMoments: "Little moments.",
+      phoneFilter: "Vintage",
+      phoneDescription: "A few answers before you start capturing the moments.",
+
+      frequentlyAsked: "Frequently asked",
+      everything: "Everything",
+      inOnePlace: "in one place.",
+      questionCount: "09 questions",
+
+      groups: [
+        {
+          label: "Getting Started",
+          description: "Everything you need to know before joining an event.",
+          items: [
+            {
+              question: "Do guests need to create an account?",
+              answer:
+                "No. Guests scan the event's QR code, type in a display name, and start shooting — no sign-up, no password, no app-store detour required.",
+            },
+            {
+              question: "Do I need to download the app to join an event?",
+              answer:
+                "No. Guests can join an event by scanning its QR code or entering the event code, then choosing a display name. No app download is required to join.",
+            },
+          ],
+        },
+
+        {
+          label: "Events & Features",
+          description: "How SnapRoll works once your event is underway.",
+          items: [
+            {
+              question: "When do we get to see the photos?",
+              answer:
+                "Photos stay hidden until the host's chosen reveal moment. They can be revealed during the event, right after it ends, or at a scheduled date and time.",
+            },
+            {
+              question: "Is there a limit on guests or photos?",
+              answer:
+                "Hosts can choose the guest and shot limits for their event. Guest options include 5, 10, 15, 20, 25, or a custom number. Shot options include 20, 35, 50, 100, 200, or unlimited.",
+            },
+          ],
+        },
+
+        {
+          label: "Filters",
+          description: "Give every event its own visual character.",
+          items: [
+            {
+              question: "What filters can I use?",
+              answer:
+                "SnapRoll offers seven filters: Normal, Vintage, Black & White, Dreamy, Nostalgic, Cool, and Grainy. The host can choose which filters are available for the event.",
+            },
+          ],
+        },
+
+        {
+          label: "Pricing",
+          description: "Simple and straightforward.",
+          items: [
+            {
+              question: "Is SnapRoll free?",
+              answer:
+                "Yes. SnapRoll currently has no in-app purchases or paid tiers.",
+            },
+          ],
+        },
+
+        {
+          label: "Account & App",
+          description: "A few things worth knowing about the app.",
+          items: [
+            {
+              question: "Can I delete my account and data?",
+              answer:
+                "Yes. A host can permanently delete their profile and data from within the app.",
+            },
+            {
+              question: "What languages is the app available in?",
+              answer:
+                "The app is fully translated into four languages: English, Français, Español, and Português.",
+            },
+            {
+              question: "Is SnapRoll available on iOS and Android?",
+              answer:
+                "SnapRoll is designed to be available on both iOS and Android.",
+            },
+          ],
+        },
+      ],
+
+      finalLabel: "SnapRoll",
+      finalTitle1: "The answers are simple.",
+      finalTitle2: "The memories are yours.",
+    },
   },
 
   /* =====================================================
@@ -566,6 +671,114 @@ const translations = {
       finalTitle2: "su propio rollo.",
       createYourRoll: "Crea tu rollo",
     },
+
+    faq: {
+      badge: "Preguntas frecuentes",
+      eyebrow: "Lo que necesitas saber",
+      title1: "Preguntas,",
+      title2: "sin complicaciones.",
+      heroDescription:
+        "Desde unirte a un evento hasta elegir filtros y revelar el roll final, esto es lo que necesitas saber sobre SnapRoll.",
+
+      phoneStory: "Tu historia",
+      phoneMoments: "Pequeños momentos.",
+      phoneFilter: "Vintage",
+      phoneDescription:
+        "Algunas respuestas antes de empezar a capturar los momentos.",
+
+      frequentlyAsked: "Preguntas frecuentes",
+      everything: "Todo",
+      inOnePlace: "en un solo lugar.",
+      questionCount: "09 preguntas",
+
+      groups: [
+        {
+          label: "Primeros pasos",
+          description:
+            "Todo lo que necesitas saber antes de unirte a un evento.",
+          items: [
+            {
+              question: "¿Los invitados necesitan crear una cuenta?",
+              answer:
+                "No. Los invitados escanean el código QR del evento, escriben un nombre y empiezan a capturar — sin registro, sin contraseña y sin necesidad de ir a una tienda de aplicaciones.",
+            },
+            {
+              question:
+                "¿Necesito descargar la aplicación para unirme a un evento?",
+              answer:
+                "No. Los invitados pueden unirse escaneando el código QR o introduciendo el código del evento y eligiendo un nombre. No es necesario descargar la aplicación.",
+            },
+          ],
+        },
+
+        {
+          label: "Eventos y funciones",
+          description: "Cómo funciona SnapRoll una vez que comienza tu evento.",
+          items: [
+            {
+              question: "¿Cuándo podemos ver las fotos?",
+              answer:
+                "Las fotos permanecen ocultas hasta el momento de revelación elegido por el anfitrión. Se pueden revelar durante el evento, justo después de terminar o en una fecha y hora programadas.",
+            },
+            {
+              question: "¿Hay un límite de invitados o fotos?",
+              answer:
+                "Los anfitriones pueden elegir los límites de invitados y fotos. Las opciones de invitados son 5, 10, 15, 20, 25 o un número personalizado. Las opciones de fotos son 20, 35, 50, 100, 200 o ilimitadas.",
+            },
+          ],
+        },
+
+        {
+          label: "Filtros",
+          description: "Dale a cada evento su propio estilo visual.",
+          items: [
+            {
+              question: "¿Qué filtros puedo utilizar?",
+              answer:
+                "SnapRoll ofrece siete filtros: Normal, Vintage, Blanco y negro, Dreamy, Nostálgico, Cool y Grainy. El anfitrión puede elegir qué filtros estarán disponibles.",
+            },
+          ],
+        },
+
+        {
+          label: "Precios",
+          description: "Simple y directo.",
+          items: [
+            {
+              question: "¿SnapRoll es gratis?",
+              answer:
+                "Sí. Actualmente SnapRoll no tiene compras dentro de la aplicación ni planes de pago.",
+            },
+          ],
+        },
+
+        {
+          label: "Cuenta y aplicación",
+          description: "Algunas cosas que conviene saber sobre la aplicación.",
+          items: [
+            {
+              question: "¿Puedo eliminar mi cuenta y mis datos?",
+              answer:
+                "Sí. El anfitrión puede eliminar permanentemente su perfil y sus datos desde la aplicación.",
+            },
+            {
+              question: "¿En qué idiomas está disponible la aplicación?",
+              answer:
+                "La aplicación está completamente traducida a cuatro idiomas: English, Français, Español y Português.",
+            },
+            {
+              question: "¿SnapRoll está disponible en iOS y Android?",
+              answer:
+                "SnapRoll está diseñado para estar disponible tanto en iOS como en Android.",
+            },
+          ],
+        },
+      ],
+
+      finalLabel: "SnapRoll",
+      finalTitle1: "Las respuestas son simples.",
+      finalTitle2: "Los recuerdos son tuyos.",
+    },
   },
 
   /* =====================================================
@@ -849,6 +1062,116 @@ const translations = {
       finalTitle1: "Votre prochain événement mérite",
       finalTitle2: "son propre roll.",
       createYourRoll: "Créer votre roll",
+    },
+
+    faq: {
+      badge: "FAQ",
+      eyebrow: "À savoir",
+      title1: "Des questions,",
+      title2: "sans prise de tête.",
+      heroDescription:
+        "De la participation à un événement au choix des filtres et à la révélation du roll final, voici ce que vous devez savoir sur SnapRoll.",
+
+      phoneStory: "Votre histoire",
+      phoneMoments: "Petits moments.",
+      phoneFilter: "Vintage",
+      phoneDescription:
+        "Quelques réponses avant de commencer à capturer les moments.",
+
+      frequentlyAsked: "Questions fréquentes",
+      everything: "Tout",
+      inOnePlace: "au même endroit.",
+      questionCount: "09 questions",
+
+      groups: [
+        {
+          label: "Premiers pas",
+          description:
+            "Tout ce que vous devez savoir avant de rejoindre un événement.",
+          items: [
+            {
+              question: "Les invités doivent-ils créer un compte ?",
+              answer:
+                "Non. Les invités scannent le QR code de l'événement, saisissent un nom et commencent à prendre des photos — sans inscription, sans mot de passe et sans passer par l'App Store.",
+            },
+            {
+              question:
+                "Dois-je télécharger l'application pour rejoindre un événement ?",
+              answer:
+                "Non. Les invités peuvent rejoindre un événement en scannant le QR code ou en saisissant le code de l'événement, puis en choisissant un nom. Aucun téléchargement n'est nécessaire.",
+            },
+          ],
+        },
+
+        {
+          label: "Événements et fonctionnalités",
+          description:
+            "Comment SnapRoll fonctionne une fois votre événement commencé.",
+          items: [
+            {
+              question: "Quand pouvons-nous voir les photos ?",
+              answer:
+                "Les photos restent cachées jusqu'au moment de révélation choisi par l'hôte. Elles peuvent être révélées pendant l'événement, juste après sa fin ou à une date et une heure programmées.",
+            },
+            {
+              question: "Y a-t-il une limite d'invités ou de photos ?",
+              answer:
+                "Les hôtes peuvent choisir les limites d'invités et de photos. Les options d'invités sont 5, 10, 15, 20, 25 ou un nombre personnalisé. Les options de photos sont 20, 35, 50, 100, 200 ou illimitées.",
+            },
+          ],
+        },
+
+        {
+          label: "Filtres",
+          description: "Donnez à chaque événement son propre caractère visuel.",
+          items: [
+            {
+              question: "Quels filtres puis-je utiliser ?",
+              answer:
+                "SnapRoll propose sept filtres : Normal, Vintage, Noir et blanc, Dreamy, Nostalgique, Cool et Grainy. L'hôte peut choisir les filtres disponibles pour l'événement.",
+            },
+          ],
+        },
+
+        {
+          label: "Tarifs",
+          description: "Simple et transparent.",
+          items: [
+            {
+              question: "SnapRoll est-il gratuit ?",
+              answer:
+                "Oui. SnapRoll ne propose actuellement aucun achat intégré ni formule payante.",
+            },
+          ],
+        },
+
+        {
+          label: "Compte et application",
+          description: "Quelques informations utiles sur l'application.",
+          items: [
+            {
+              question: "Puis-je supprimer mon compte et mes données ?",
+              answer:
+                "Oui. L'hôte peut supprimer définitivement son profil et ses données depuis l'application.",
+            },
+            {
+              question:
+                "Dans quelles langues l'application est-elle disponible ?",
+              answer:
+                "L'application est entièrement traduite en quatre langues : English, Français, Español et Português.",
+            },
+            {
+              question: "SnapRoll est-il disponible sur iOS et Android ?",
+              answer:
+                "SnapRoll est conçu pour être disponible sur iOS et Android.",
+            },
+          ],
+        },
+      ],
+
+      finalLabel: "SnapRoll",
+      finalTitle1: "Les réponses sont simples.",
+      finalTitle2: "Les souvenirs sont à vous.",
     },
   },
 
@@ -1135,6 +1458,114 @@ const translations = {
       finalTitle1: "Seu próximo evento merece",
       finalTitle2: "seu próprio roll.",
       createYourRoll: "Criar seu roll",
+    },
+
+    faq: {
+      badge: "FAQ",
+      eyebrow: "O que você precisa saber",
+      title1: "Perguntas,",
+      title2: "sem complicação.",
+      heroDescription:
+        "Desde entrar em um evento até escolher filtros e revelar o roll final, veja o que você precisa saber sobre o SnapRoll.",
+
+      phoneStory: "Sua história",
+      phoneMoments: "Pequenos momentos.",
+      phoneFilter: "Vintage",
+      phoneDescription:
+        "Algumas respostas antes de começar a capturar os momentos.",
+
+      frequentlyAsked: "Perguntas frequentes",
+      everything: "Tudo",
+      inOnePlace: "em um só lugar.",
+      questionCount: "09 perguntas",
+
+      groups: [
+        {
+          label: "Primeiros passos",
+          description:
+            "Tudo o que você precisa saber antes de entrar em um evento.",
+          items: [
+            {
+              question: "Os convidados precisam criar uma conta?",
+              answer:
+                "Não. Os convidados escaneiam o QR code do evento, digitam um nome e começam a fotografar — sem cadastro, sem senha e sem precisar acessar uma loja de aplicativos.",
+            },
+            {
+              question: "Preciso baixar o aplicativo para entrar em um evento?",
+              answer:
+                "Não. Os convidados podem entrar escaneando o QR code ou digitando o código do evento e escolhendo um nome. Não é necessário baixar o aplicativo.",
+            },
+          ],
+        },
+
+        {
+          label: "Eventos e recursos",
+          description: "Como o SnapRoll funciona depois que seu evento começa.",
+          items: [
+            {
+              question: "Quando podemos ver as fotos?",
+              answer:
+                "As fotos ficam ocultas até o momento de revelação escolhido pelo anfitrião. Elas podem ser reveladas durante o evento, logo após o término ou em uma data e horário programados.",
+            },
+            {
+              question: "Existe limite de convidados ou fotos?",
+              answer:
+                "Os anfitriões podem escolher os limites de convidados e fotos. As opções de convidados são 5, 10, 15, 20, 25 ou um número personalizado. As opções de fotos são 20, 35, 50, 100, 200 ou ilimitadas.",
+            },
+          ],
+        },
+
+        {
+          label: "Filtros",
+          description: "Dê a cada evento seu próprio estilo visual.",
+          items: [
+            {
+              question: "Quais filtros posso usar?",
+              answer:
+                "O SnapRoll oferece sete filtros: Normal, Vintage, Preto e branco, Dreamy, Nostálgico, Cool e Grainy. O anfitrião pode escolher quais filtros estarão disponíveis no evento.",
+            },
+          ],
+        },
+
+        {
+          label: "Preços",
+          description: "Simples e direto.",
+          items: [
+            {
+              question: "O SnapRoll é gratuito?",
+              answer:
+                "Sim. Atualmente, o SnapRoll não possui compras no aplicativo nem planos pagos.",
+            },
+          ],
+        },
+
+        {
+          label: "Conta e aplicativo",
+          description:
+            "Algumas coisas importantes para saber sobre o aplicativo.",
+          items: [
+            {
+              question: "Posso excluir minha conta e meus dados?",
+              answer:
+                "Sim. O anfitrião pode excluir permanentemente seu perfil e seus dados dentro do aplicativo.",
+            },
+            {
+              question: "Em quais idiomas o aplicativo está disponível?",
+              answer:
+                "O aplicativo está totalmente traduzido para quatro idiomas: English, Français, Español e Português.",
+            },
+            {
+              question: "O SnapRoll está disponível no iOS e Android?",
+              answer:
+                "O SnapRoll foi desenvolvido para estar disponível tanto no iOS quanto no Android.",
+            },
+          ],
+        },
+      ],
+
+      finalLabel: "SnapRoll",
+      finalTitle1: "As respostas são simples.",
+      finalTitle2: "As memórias são suas.",
     },
   },
 };

@@ -1,83 +1,10 @@
 import { useState } from "react";
-
-const faqGroups = [
-  {
-    label: "Getting Started",
-    description: "Everything you need to know before joining an event.",
-    items: [
-      {
-        question: "Do guests need to create an account?",
-        answer:
-          "No. Guests scan the event's QR code, type in a display name, and start shooting — no sign-up, no password, no app-store detour required.",
-      },
-      {
-        question: "Do I need to download the app to join an event?",
-        answer:
-          "No. Guests can join an event by scanning its QR code or entering the event code, then choosing a display name. No app download is required to join.",
-      },
-    ],
-  },
-  {
-    label: "Events & Features",
-    description: "How Snaproll works once your event is underway.",
-    items: [
-      {
-        question: "When do we get to see the photos?",
-        answer:
-          "Photos stay hidden until the host's chosen reveal moment. They can be revealed during the event, right after it ends, or at a scheduled date and time.",
-      },
-      {
-        question: "Is there a limit on guests or photos?",
-        answer:
-          "Hosts can choose the guest and shot limits for their event. Guest options include 5, 10, 15, 20, 25, or a custom number. Shot options include 20, 35, 50, 100, 200, or unlimited.",
-      },
-    ],
-  },
-  {
-    label: "Filters",
-    description: "Give every event its own visual character.",
-    items: [
-      {
-        question: "What filters can I use?",
-        answer:
-          "Snaproll offers seven filters: Normal, Vintage, Black & White, Dreamy, Nostalgic, Cool, and Grainy. The host can choose which filters are available for the event.",
-      },
-    ],
-  },
-  {
-    label: "Pricing",
-    description: "Simple and straightforward.",
-    items: [
-      {
-        question: "Is Snaproll free?",
-        answer:
-          "Yes. Snaproll currently has no in-app purchases or paid tiers.",
-      },
-    ],
-  },
-  {
-    label: "Account & App",
-    description: "A few things worth knowing about the app.",
-    items: [
-      {
-        question: "Can I delete my account and data?",
-        answer:
-          "Yes. A host can permanently delete their profile and data from within the app.",
-      },
-      {
-        question: "What languages is the app available in?",
-        answer:
-          "The app is fully translated into five languages: English, Français, Español, Português, and नेपाली.",
-      },
-      {
-        question: "Is Snaproll available on iOS and Android?",
-        answer: "Snaproll is designed to be available on both iOS and Android.",
-      },
-    ],
-  },
-];
+import useLanguage from "../context/useLanguage";
 
 const FAQ = () => {
+  const { t } = useLanguage();
+  const faq = t.faq;
+
   const [openItem, setOpenItem] = useState("0-0");
 
   const toggleItem = (groupIndex, itemIndex) => {
@@ -96,7 +23,7 @@ const FAQ = () => {
           <div className="flex flex-col items-center lg:items-start">
             <div className="mb-8 self-start">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
-                FAQ
+                {faq.badge}
               </p>
             </div>
 
@@ -119,13 +46,11 @@ const FAQ = () => {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <span className="block text-[7px] uppercase tracking-[0.3em] text-gray-600">
-                        Your Story
+                        {faq.phoneStory}
                       </span>
 
                       <p className="mt-3 font-serif text-2xl leading-tight text-gray-700">
-                        Little
-                        <br />
-                        moments.
+                        {faq.phoneMoments}
                       </p>
                     </div>
                   </div>
@@ -134,7 +59,7 @@ const FAQ = () => {
 
                   <div className="absolute bottom-4 left-4 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-sm">
                     <span className="text-[7px] uppercase tracking-[0.2em] text-gray-500">
-                      Vintage
+                      {faq.phoneFilter}
                     </span>
                   </div>
                 </div>
@@ -149,25 +74,24 @@ const FAQ = () => {
             </div>
 
             <p className="mt-8 max-w-xs text-center text-sm leading-6 text-gray-600 lg:text-left">
-              A few answers before you start capturing the moments.
+              {faq.phoneDescription}
             </p>
           </div>
 
           {/* HERO TEXT */}
           <div>
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-gray-600">
-              Need to know
+              {faq.eyebrow}
             </p>
 
             <h1 className="max-w-3xl font-serif text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl md:text-6xl lg:text-7xl">
-              Questions,
+              {faq.title1}
               <br />
-              <span className="text-gray-500">without the guesswork.</span>
+              <span className="text-gray-500">{faq.title2}</span>
             </h1>
 
             <p className="mt-7 max-w-xl text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
-              From joining an event to choosing filters and revealing the final
-              roll, here's what you need to know about Snaproll.
+              {faq.heroDescription}
             </p>
           </div>
         </div>
@@ -184,27 +108,27 @@ const FAQ = () => {
             {/* LEFT SIDE */}
             <div className="lg:sticky lg:top-28 lg:self-start">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
-                Frequently asked
+                {faq.frequentlyAsked}
               </p>
 
               <h2 className="mt-5 max-w-xs font-serif text-3xl leading-tight sm:text-4xl">
-                Everything
+                {faq.everything}
                 <br />
-                <span className="text-gray-500">in one place.</span>
+                <span className="text-gray-500">{faq.inOnePlace}</span>
               </h2>
 
               <div className="mt-8 flex items-center gap-3">
                 <span className="h-px w-10 bg-white/20" />
 
                 <span className="text-[10px] uppercase tracking-[0.22em] text-gray-600">
-                  09 questions
+                  {faq.questionCount}
                 </span>
               </div>
             </div>
 
             {/* RIGHT SIDE */}
             <div>
-              {faqGroups.map((group, groupIndex) => (
+              {faq.groups.map((group, groupIndex) => (
                 <div
                   key={group.label}
                   className={groupIndex !== 0 ? "mt-16 sm:mt-20" : ""}
@@ -226,15 +150,11 @@ const FAQ = () => {
 
                   {/* QUESTIONS */}
                   <div className="border-t border-white/10">
-                    {group.items.map((faq, itemIndex) => {
+                    {group.items.map((faqItem, itemIndex) => {
                       const id = `${groupIndex}-${itemIndex}`;
                       const isOpen = openItem === id;
 
-                      /*
-                       * Calculate the question number without
-                       * mutating any variable during render.
-                       */
-                      const previousQuestions = faqGroups
+                      const previousQuestions = faq.groups
                         .slice(0, groupIndex)
                         .reduce(
                           (total, currentGroup) =>
@@ -246,7 +166,7 @@ const FAQ = () => {
 
                       return (
                         <div
-                          key={faq.question}
+                          key={faqItem.question}
                           className="border-b border-white/10"
                         >
                           <button
@@ -269,7 +189,7 @@ const FAQ = () => {
                                     : "text-gray-300 group-hover:text-white"
                                 }`}
                               >
-                                {faq.question}
+                                {faqItem.question}
                               </span>
                             </div>
 
@@ -296,7 +216,7 @@ const FAQ = () => {
                             <div className="overflow-hidden">
                               <div className="pb-6 pl-8 sm:pl-12">
                                 <p className="max-w-2xl text-sm leading-6 text-gray-500 sm:text-[15px] sm:leading-7">
-                                  {faq.answer}
+                                  {faqItem.answer}
                                 </p>
                               </div>
                             </div>
@@ -319,15 +239,15 @@ const FAQ = () => {
           <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
-                Snaproll
+                {faq.finalLabel}
               </p>
             </div>
 
             <div>
               <p className="max-w-3xl font-serif text-2xl leading-tight tracking-[-0.02em] sm:text-3xl md:text-4xl">
-                The answers are simple.
+                {faq.finalTitle1}
                 <br />
-                <span className="text-gray-500">The memories are yours.</span>
+                <span className="text-gray-500">{faq.finalTitle2}</span>
               </p>
             </div>
           </div>
