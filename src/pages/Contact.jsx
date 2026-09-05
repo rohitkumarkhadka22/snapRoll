@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   ArrowUpRight,
   Camera,
@@ -11,7 +12,11 @@ import {
   Users,
 } from "lucide-react";
 
+import useLanguage from "../context/useLanguage";
+
 const Contact = () => {
+  const { t } = useLanguage();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -44,21 +49,21 @@ const Contact = () => {
     const newErrors = {};
 
     if (!form.name.trim()) {
-      newErrors.name = "What’s your name?";
+      newErrors.name = t.contact.nameError;
     }
 
     if (!form.email.trim()) {
-      newErrors.email = "Where can we reach you?";
+      newErrors.email = t.contact.emailError;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = "That email doesn’t look quite right.";
+      newErrors.email = t.contact.emailInvalid;
     }
 
     if (!form.subject.trim()) {
-      newErrors.subject = "What’s this about?";
+      newErrors.subject = t.contact.subjectError;
     }
 
     if (!form.message.trim()) {
-      newErrors.message = "Tell us a little more.";
+      newErrors.message = t.contact.messageError;
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -83,43 +88,35 @@ const Contact = () => {
 
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
-      {/* =========================
-          BACKGROUND
-      ========================== */}
+      {/* BACKGROUND */}
       <div className="pointer-events-none fixed inset-0 -z-0 overflow-hidden">
         <div className="absolute left-1/2 top-[-220px] h-150 w-150 -translate-x-1/2 rounded-full bg-white/[0.035] blur-[160px]" />
-
         <div className="absolute -left-60 top-[42%] h-125 w-125 rounded-full bg-white/[0.025] blur-[150px]" />
-
         <div className="absolute -right-60 bottom-[-120px] h-150 w-150 rounded-full bg-white/[0.025] blur-[160px]" />
       </div>
 
-      {/* =========================
-          HERO
-      ========================== */}
+      {/* HERO */}
       <section className="relative z-10 px-5 pb-20 pt-32 sm:px-8 sm:pt-40 lg:px-12 lg:pb-28">
         <div className="mx-auto max-w-7xl">
           <div className="grid items-end gap-12 lg:grid-cols-[1fr_0.62fr] lg:gap-20">
             <div>
               <div className="mb-8 flex items-center gap-3">
                 <span className="h-px w-10 bg-white/30" />
-
                 <span className="text-[9px] uppercase tracking-[0.38em] text-white/35">
-                  SnapRoll / Contact
+                  {t.contact.badge}
                 </span>
               </div>
 
               <h1 className="max-w-5xl font-serif text-[4rem] leading-[0.84] tracking-[-0.06em] sm:text-7xl md:text-8xl lg:text-[9rem]">
-                Let&apos;s
+                {t.contact.title1}
                 <br />
-                <span className="text-white/25">talk.</span>
+                <span className="text-white/25">{t.contact.title2}</span>
               </h1>
             </div>
 
             <div className="lg:pb-4">
               <p className="max-w-md text-sm leading-7 text-white/45 sm:text-base">
-                Planning an event, curious about SnapRoll, or just have
-                something to say? We&apos;re listening.
+                {t.contact.description}
               </p>
 
               <div className="mt-8 flex items-center gap-3">
@@ -128,23 +125,18 @@ const Contact = () => {
                 </div>
 
                 <span className="text-[9px] uppercase tracking-[0.25em] text-white/30">
-                  Say hello
+                  {t.contact.sayHello}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* =========================
-              HERO VISUAL
-          ========================== */}
+          {/* HERO VISUAL */}
           <div className="relative mt-20 h-105 overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#060606] sm:h-125 lg:h-145">
             <div className="absolute inset-0 opacity-30">
               <div className="absolute left-1/2 top-0 h-full w-px bg-white/[0.08]" />
-
               <div className="absolute left-0 top-1/2 h-px w-full bg-white/[0.08]" />
-
               <div className="absolute left-[25%] top-0 h-full w-px bg-white/[0.025]" />
-
               <div className="absolute left-[75%] top-0 h-full w-px bg-white/[0.025]" />
             </div>
 
@@ -155,20 +147,18 @@ const Contact = () => {
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white/60" />
 
               <span className="text-[8px] uppercase tracking-[0.25em] text-white/35">
-                Always rolling
+                {t.contact.alwaysRolling}
               </span>
             </div>
 
             {/* Top right */}
             <div className="absolute right-5 top-5 hidden rounded-full border border-white/10 bg-black/55 px-3 py-2 backdrop-blur-xl sm:right-8 sm:top-8 sm:block">
               <span className="text-[8px] uppercase tracking-[0.25em] text-white/30">
-                Shared memories
+                {t.contact.sharedMemories}
               </span>
             </div>
 
-            {/* =========================
-                PHONE
-            ========================== */}
+            {/* PHONE */}
             <div className="absolute left-1/2 top-1/2 h-78 w-47 -translate-x-1/2 -translate-y-1/2 rotate-[-5deg] rounded-[2.6rem] border border-white/20 bg-[#111] p-2 shadow-[0_45px_110px_rgba(0,0,0,0.85)] transition-transform duration-700 hover:rotate-0 sm:h-100 sm:w-60 sm:p-2.5">
               <div className="relative h-full w-full overflow-hidden rounded-[2.15rem] border border-white/10 bg-black">
                 <div className="absolute left-1/2 top-3 z-30 h-5 w-20 -translate-x-1/2 rounded-full bg-black" />
@@ -177,11 +167,11 @@ const Contact = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-[6px] uppercase tracking-[0.22em] text-white/30 sm:text-[7px]">
-                        SUMMER PARTY
+                        {t.contact.summerParty}
                       </p>
 
                       <p className="mt-1 font-serif text-sm sm:text-base">
-                        The good stuff.
+                        {t.contact.theGoodStuff}
                       </p>
                     </div>
 
@@ -194,25 +184,22 @@ const Contact = () => {
                   <div className="mt-6 grid grid-cols-3 gap-1.5">
                     <div className="rounded-lg border border-white/10 bg-white/[0.035] p-2">
                       <p className="text-[5px] uppercase tracking-wider text-white/25">
-                        Moments
+                        {t.contact.moments}
                       </p>
-
                       <p className="mt-1 text-xs">18</p>
                     </div>
 
                     <div className="rounded-lg border border-white/10 bg-white/[0.035] p-2">
                       <p className="text-[5px] uppercase tracking-wider text-white/25">
-                        Left
+                        {t.contact.left}
                       </p>
-
                       <p className="mt-1 text-xs">06</p>
                     </div>
 
                     <div className="rounded-lg border border-white/10 bg-white/[0.035] p-2">
                       <p className="text-[5px] uppercase tracking-wider text-white/25">
-                        People
+                        {t.contact.people}
                       </p>
-
                       <p className="mt-1 text-xs">42</p>
                     </div>
                   </div>
@@ -221,13 +208,11 @@ const Contact = () => {
                   <div className="mt-5 grid flex-1 grid-cols-2 gap-1.5 overflow-hidden">
                     <div className="relative overflow-hidden rounded-xl bg-linear-to-br from-white/20 via-white/5 to-black">
                       <div className="absolute bottom-2 left-2 h-8 w-8 rounded-full bg-white/10 blur-md" />
-
                       <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
                     </div>
 
                     <div className="relative overflow-hidden rounded-xl bg-linear-to-bl from-white/15 via-white/5 to-black">
                       <div className="absolute right-2 top-3 h-10 w-10 rounded-full bg-white/10 blur-md" />
-
                       <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
                     </div>
 
@@ -251,9 +236,7 @@ const Contact = () => {
 
               {/* Phone buttons */}
               <div className="absolute -left-1 top-25 h-9 w-1 rounded-l-full bg-white/20" />
-
               <div className="absolute -left-1 top-38 h-9 w-1 rounded-l-full bg-white/20" />
-
               <div className="absolute -right-1 top-32 h-14 w-1 rounded-r-full bg-white/20" />
             </div>
 
@@ -261,19 +244,21 @@ const Contact = () => {
             <div className="absolute bottom-8 left-5 hidden w-50 rounded-2xl border border-white/10 bg-black/55 p-4 backdrop-blur-2xl sm:block lg:left-10 lg:w-56">
               <div className="flex items-center justify-between">
                 <span className="text-[8px] uppercase tracking-[0.2em] text-white/25">
-                  Your event
+                  {t.contact.yourEvent}
                 </span>
 
                 <ArrowUpRight size={12} className="text-white/25" />
               </div>
 
-              <p className="mt-3 font-serif text-lg">Make memories.</p>
+              <p className="mt-3 font-serif text-lg">
+                {t.contact.makeMemories}
+              </p>
 
               <div className="mt-4 h-px bg-white/10" />
 
               <div className="mt-3 flex items-center justify-between">
                 <span className="text-[8px] text-white/25">
-                  One shared camera
+                  {t.contact.oneSharedCamera}
                 </span>
 
                 <Camera size={12} className="text-white/35" />
@@ -289,10 +274,12 @@ const Contact = () => {
 
                 <div>
                   <p className="text-[8px] uppercase tracking-[0.2em] text-white/20">
-                    Guests
+                    {t.contact.guests}
                   </p>
 
-                  <p className="mt-1 text-xs text-white/65">50 people</p>
+                  <p className="mt-1 text-xs text-white/65">
+                    {t.contact.guestCount}
+                  </p>
                 </div>
               </div>
             </div>
@@ -305,37 +292,29 @@ const Contact = () => {
               />
 
               <span className="rounded-full border border-white/10 bg-black/60 px-3 py-1.5 text-[8px] uppercase tracking-[0.18em] text-white/40 backdrop-blur-xl">
-                Say hello
+                {t.contact.sayHello}
               </span>
             </div>
 
             {/* Bottom label */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
               <div className="flex items-center gap-2 text-[7px] uppercase tracking-[0.3em] text-white/20">
-                <span>Snap</span>
-
+                <span>{t.contact.snap}</span>
                 <span className="h-1 w-1 rounded-full bg-white/20" />
-
-                <span>Share</span>
-
+                <span>{t.contact.share}</span>
                 <span className="h-1 w-1 rounded-full bg-white/20" />
-
-                <span>Remember</span>
+                <span>{t.contact.remember}</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* =========================
-          CONTACT AREA
-      ========================== */}
+      {/* CONTACT AREA */}
       <section className="relative z-10 px-5 pb-24 sm:px-8 lg:px-12 lg:pb-32">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-6 lg:grid-cols-[0.65fr_1.35fr]">
-            {/* =========================
-                INFO CARD
-            ========================== */}
+            {/* INFO CARD */}
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] p-6 backdrop-blur-xl sm:p-8 lg:p-10">
               <div className="absolute right-[-80px] top-[-80px] h-45 w-45 rounded-full bg-white/[0.025] blur-[70px]" />
 
@@ -345,18 +324,17 @@ const Contact = () => {
                 </div>
 
                 <p className="mt-8 text-[9px] uppercase tracking-[0.3em] text-white/25">
-                  Get in touch
+                  {t.contact.getInTouch}
                 </p>
 
                 <h2 className="mt-3 font-serif text-3xl leading-[1.05] sm:text-4xl">
-                  Good things
+                  {t.contact.goodThings}
                   <br />
-                  start with hello.
+                  {t.contact.startWithHello}
                 </h2>
 
                 <p className="mt-5 max-w-sm text-sm leading-6 text-white/35">
-                  Questions about your event? Need a little help? Or simply want
-                  to talk about cameras and memories?
+                  {t.contact.contactDescription}
                 </p>
 
                 {/* Email */}
@@ -380,6 +358,7 @@ const Contact = () => {
                         stroke="#EA4335"
                         strokeWidth="1.8"
                       />
+
                       <path
                         d="M4 7l8 6 8-6"
                         fill="none"
@@ -393,7 +372,7 @@ const Contact = () => {
 
                   <div className="min-w-0">
                     <p className="text-[8px] uppercase tracking-[0.2em] text-white/20">
-                      Email us
+                      {t.contact.emailUs}
                     </p>
 
                     <p className="mt-1 truncate text-sm text-white/60 transition-colors group-hover:text-white">
@@ -407,113 +386,112 @@ const Contact = () => {
                   />
                 </a>
 
-                {/* =========================
-    FIND US
-========================== */}
+                {/* FIND US */}
                 <div className="mt-8 border-t border-white/10 pt-7">
                   <p className="text-[8px] uppercase tracking-[0.25em] text-white/20">
-                    Find us
+                    {t.contact.findUs}
                   </p>
 
                   <div className="mt-4 flex flex-wrap gap-2.5">
                     {/* Instagram */}
                     <a
                       href="#"
-                      aria-label="SnapRoll on Instagram"
+                      aria-label={`SnapRoll on ${t.contact.instagram}`}
                       className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] uppercase tracking-wider text-white/40 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
                     >
                       <svg
                         viewBox="0 0 24 24"
-                        className="h-4 w-4 shrink-0"
+                        className="h-4 w-4"
+                        fill="none"
                         aria-hidden="true"
                       >
-                        <defs>
-                          <linearGradient
-                            id="instagramGradient"
-                            x1="0%"
-                            y1="100%"
-                            x2="100%"
-                            y2="0%"
-                          >
-                            <stop offset="0%" stopColor="#FFD600" />
-                            <stop offset="35%" stopColor="#FF7A00" />
-                            <stop offset="65%" stopColor="#FF0069" />
-                            <stop offset="100%" stopColor="#D300C5" />
-                          </linearGradient>
-                        </defs>
-
                         <rect
                           x="3"
                           y="3"
                           width="18"
                           height="18"
                           rx="5"
-                          fill="none"
                           stroke="url(#instagramGradient)"
-                          strokeWidth="2"
+                          strokeWidth="1.8"
                         />
 
                         <circle
                           cx="12"
                           cy="12"
                           r="4"
-                          fill="none"
                           stroke="url(#instagramGradient)"
-                          strokeWidth="2"
+                          strokeWidth="1.8"
                         />
 
-                        <circle cx="17.5" cy="6.5" r="1.2" fill="#FF0069" />
+                        <circle cx="17.5" cy="6.5" r="1" fill="#F56040" />
+
+                        <defs>
+                          <linearGradient
+                            id="instagramGradient"
+                            x1="3"
+                            y1="21"
+                            x2="21"
+                            y2="3"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stopColor="#FFDC80" />
+                            <stop offset="0.25" stopColor="#FCAF45" />
+                            <stop offset="0.5" stopColor="#F77737" />
+                            <stop offset="0.75" stopColor="#E1306C" />
+                            <stop offset="1" stopColor="#833AB4" />
+                          </linearGradient>
+                        </defs>
                       </svg>
 
-                      <span className="transition-colors duration-300 group-hover:text-white">
-                        Instagram
-                      </span>
+                      <span>{t.contact.instagram}</span>
 
                       <ArrowUpRight
                         size={11}
-                        className="text-white/20 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/70"
+                        className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                       />
                     </a>
 
                     {/* TikTok */}
                     <a
                       href="#"
-                      aria-label="SnapRoll on TikTok"
+                      aria-label={`SnapRoll on ${t.contact.tiktok}`}
                       className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] uppercase tracking-wider text-white/40 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
                     >
                       <svg
                         viewBox="0 0 24 24"
-                        className="h-4 w-4 shrink-0"
+                        className="h-4 w-4"
+                        fill="none"
                         aria-hidden="true"
                       >
-                        {/* TikTok cyan shadow */}
                         <path
-                          d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.17V2h-3.36v13.64a2.9 2.9 0 1 1-2.9-2.9c.3 0 .59.05.86.13V9.45a6.29 6.29 0 1 0 5.4 6.19V8.72a8.1 8.1 0 0 0 4.76 1.54V6.9a4.83 4.83 0 0 1-.99-.21Z"
-                          fill="#25F4EE"
-                          transform="translate(-0.8, 0.6)"
+                          d="M14 4v10.2a3.2 3.2 0 1 1-2.6-3.15"
+                          stroke="#25F4EE"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
 
-                        {/* TikTok pink shadow */}
                         <path
-                          d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.17V2h-3.36v13.64a2.9 2.9 0 1 1-2.9-2.9c.3 0 .59.05.86.13V9.45a6.29 6.29 0 1 0 5.4 6.19V8.72a8.1 8.1 0 0 0 4.76 1.54V6.9a4.83 4.83 0 0 1-.99-.21Z"
-                          fill="#FE2C55"
-                          transform="translate(0.8, -0.6)"
+                          d="M14 4c.4 2.4 1.8 4 4.2 4.6"
+                          stroke="#FE2C55"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
                         />
 
-                        {/* Main TikTok mark */}
                         <path
-                          d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.17V2h-3.36v13.64a2.9 2.9 0 1 1-2.9-2.9c.3 0 .59.05.86.13V9.45a6.29 6.29 0 1 0 5.4 6.19V8.72a8.1 8.1 0 0 0 4.76 1.54V6.9a4.83 4.83 0 0 1-.99-.21Z"
-                          fill="white"
+                          d="M14 4c.4 2.4 1.8 4 4.2 4.6"
+                          stroke="white"
+                          strokeWidth="1.1"
+                          strokeLinecap="round"
+                          opacity="0.85"
                         />
                       </svg>
 
-                      <span className="transition-colors duration-300 group-hover:text-white">
-                        TikTok
-                      </span>
+                      <span>{t.contact.tiktok}</span>
 
                       <ArrowUpRight
                         size={11}
-                        className="text-white/20 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/70"
+                        className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                       />
                     </a>
                   </div>
@@ -524,26 +502,24 @@ const Contact = () => {
                   <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white/50" />
 
                   <span className="text-[8px] uppercase tracking-[0.2em] text-white/20">
-                    Usually replies within 24h
+                    {t.contact.responseTime}
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* =========================
-                FORM
-            ========================== */}
+            {/* FORM */}
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#080808] p-6 sm:p-8 lg:p-10">
               <div className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-linear-to-r from-transparent via-white/30 to-transparent" />
 
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-[9px] uppercase tracking-[0.3em] text-white/20">
-                    Drop us a line
+                    {t.contact.dropUsALine}
                   </p>
 
                   <h2 className="mt-3 font-serif text-3xl sm:text-4xl">
-                    Tell us everything.
+                    {t.contact.tellUsEverything}
                   </h2>
                 </div>
 
@@ -560,7 +536,7 @@ const Contact = () => {
                       htmlFor="name"
                       className="mb-2 block text-[8px] uppercase tracking-[0.22em] text-white/25"
                     >
-                      Name
+                      {t.contact.name}
                     </label>
 
                     <input
@@ -570,7 +546,7 @@ const Contact = () => {
                       autoComplete="name"
                       value={form.name}
                       onChange={handleChange}
-                      placeholder="Your name"
+                      placeholder={t.contact.yourName}
                       aria-invalid={Boolean(errors.name)}
                       className={`h-13 w-full rounded-xl border ${
                         errors.name
@@ -592,7 +568,7 @@ const Contact = () => {
                       htmlFor="email"
                       className="mb-2 block text-[8px] uppercase tracking-[0.22em] text-white/25"
                     >
-                      Email
+                      {t.contact.email}
                     </label>
 
                     <input
@@ -602,7 +578,7 @@ const Contact = () => {
                       autoComplete="email"
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="you@example.com"
+                      placeholder={t.contact.emailPlaceholder}
                       aria-invalid={Boolean(errors.email)}
                       className={`h-13 w-full rounded-xl border ${
                         errors.email
@@ -625,7 +601,7 @@ const Contact = () => {
                     htmlFor="subject"
                     className="mb-2 block text-[8px] uppercase tracking-[0.22em] text-white/25"
                   >
-                    Subject
+                    {t.contact.subject}
                   </label>
 
                   <input
@@ -634,7 +610,7 @@ const Contact = () => {
                     type="text"
                     value={form.subject}
                     onChange={handleChange}
-                    placeholder="What can we help with?"
+                    placeholder={t.contact.subjectPlaceholder}
                     aria-invalid={Boolean(errors.subject)}
                     className={`h-13 w-full rounded-xl border ${
                       errors.subject
@@ -656,7 +632,7 @@ const Contact = () => {
                     htmlFor="message"
                     className="mb-2 block text-[8px] uppercase tracking-[0.22em] text-white/25"
                   >
-                    Message
+                    {t.contact.message}
                   </label>
 
                   <textarea
@@ -665,7 +641,7 @@ const Contact = () => {
                     rows={6}
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Tell us what’s happening..."
+                    placeholder={t.contact.messagePlaceholder}
                     aria-invalid={Boolean(errors.message)}
                     className={`w-full resize-none rounded-xl border ${
                       errors.message
@@ -684,7 +660,7 @@ const Contact = () => {
                 {/* Submit */}
                 <div className="mt-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                   <p className="max-w-xs text-[9px] leading-5 text-white/20">
-                    No forms, no fuss. Just tell us what&apos;s on your mind.
+                    {t.contact.formNote}
                   </p>
 
                   <button
@@ -693,12 +669,12 @@ const Contact = () => {
                   >
                     {submitted ? (
                       <>
-                        <span>Message sent</span>
+                        <span>{t.contact.messageSent}</span>
                         <Check size={15} />
                       </>
                     ) : (
                       <>
-                        <span>Send message</span>
+                        <span>{t.contact.sendMessage}</span>
 
                         <ArrowUpRight
                           size={15}
@@ -725,7 +701,7 @@ const Contact = () => {
                   </div>
 
                   <span className="whitespace-nowrap text-[9px] text-white/60">
-                    Thanks — we&apos;ll be in touch.
+                    {t.contact.successMessage}
                   </span>
                 </div>
               )}
@@ -734,9 +710,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* =========================
-          FINAL CTA
-      ========================== */}
+      {/* FINAL CTA */}
       <section className="relative z-10 px-5 pb-24 sm:px-8 lg:px-12 lg:pb-32">
         <div className="mx-auto max-w-7xl">
           <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#070707] px-6 py-16 text-center sm:px-10 sm:py-24">
@@ -746,28 +720,30 @@ const Contact = () => {
 
             <div className="relative">
               <p className="text-[9px] uppercase tracking-[0.35em] text-white/20">
-                Ready when you are
+                {t.contact.readyWhenYouAre}
               </p>
 
               <h2 className="mx-auto mt-5 max-w-3xl font-serif text-4xl leading-[0.95] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
-                Make your next event
+                {t.contact.finalTitle1}
                 <br />
-                <span className="text-white/25">worth remembering.</span>
+                <span className="text-white/25">{t.contact.finalTitle2}</span>
               </h2>
 
               <p className="mx-auto mt-7 max-w-md text-sm leading-6 text-white/30">
-                One shared camera. Everyone gets to capture the moment.
+                {t.contact.finalDescription}
               </p>
 
               <a
                 href="/events"
                 className="group relative mx-auto mt-9 flex w-fit items-center gap-3 rounded-full border border-white/15 bg-white/[0.06] px-6 py-3.5 text-xs text-white transition-all duration-300 hover:border-white/30 hover:bg-white/[0.1]"
               >
-                Build your event
+                {t.contact.buildYourEvent}
+
                 <ChevronRight
                   size={14}
                   className="transition-transform duration-300 group-hover:translate-x-1"
                 />
+
                 <MousePointer2
                   size={17}
                   className="absolute -bottom-5 -right-5 rotate-[-12deg] fill-white text-black opacity-0 transition-all duration-300 group-hover:opacity-100"
