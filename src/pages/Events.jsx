@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { ArrowRight, Camera, Heart, Sparkles, Star } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
+import { LanguageContext } from "../context/LanguageContext";
 
 import birthdayImage from "../assets/images/events/birthday.jpg";
 import weddingImage from "../assets/images/events/wedding.jpg";
@@ -15,78 +17,70 @@ import newYearImage from "../assets/images/events/new-year.jpg";
 
 const events = [
   {
-    title: "Birthday",
-    description: "Every smile. Every surprise.",
+    key: "birthday",
     emoji: "🎂",
     image: birthdayImage,
-    moments: "124 moments",
+    moments: "124",
   },
   {
-    title: "Wedding",
-    description: "Moments worth forever.",
+    key: "wedding",
     emoji: "💍",
     image: weddingImage,
-    moments: "110 moments",
+    moments: "110",
   },
   {
-    title: "Anniversary",
-    description: "Celebrate your story.",
+    key: "anniversary",
     emoji: "🥂",
     image: anniversaryImage,
-    moments: "115 moments",
+    moments: "115",
   },
   {
-    title: "Graduation",
-    description: "A milestone to remember.",
+    key: "graduation",
     emoji: "🎓",
     image: graduationImage,
-    moments: "98 moments",
+    moments: "98",
   },
   {
-    title: "Private Party",
-    description: "Your people. Your moments.",
+    key: "party",
     emoji: "🎉",
     image: partyImage,
-    moments: "132 moments",
+    moments: "132",
   },
   {
-    title: "First Birthday",
-    description: "A little one. A big celebration.",
+    key: "firstBirthday",
     emoji: "🧸",
     image: babyFirstBirthdayImage,
-    moments: "106 moments",
+    moments: "106",
   },
   {
-    title: "Baby Shower",
-    description: "Celebrating a beautiful beginning.",
+    key: "babyShower",
     emoji: "🍼",
     image: babyShowerImage,
-    moments: "118 moments",
+    moments: "118",
   },
   {
-    title: "College Event",
-    description: "Friends, memories and good times.",
+    key: "collegeEvent",
     emoji: "🎓",
     image: collegeEventImage,
-    moments: "143 moments",
+    moments: "143",
   },
   {
-    title: "Reunion",
-    description: "Old friends. New memories.",
+    key: "reunion",
     emoji: "🤝",
     image: reunionImage,
-    moments: "92 moments",
+    moments: "92",
   },
   {
-    title: "New Year",
-    description: "New year. New memories.",
+    key: "newYear",
     emoji: "🎆",
     image: newYearImage,
-    moments: "156 moments",
+    moments: "156",
   },
 ];
 
-const PhoneCard = ({ event, className = "" }) => {
+const PhoneCard = ({ event, className = "", t }) => {
+  const eventTranslation = t.events.eventTypes[event.key];
+
   return (
     <div
       className={`
@@ -142,7 +136,7 @@ const PhoneCard = ({ event, className = "" }) => {
           <div className="relative h-[57%] shrink-0 overflow-hidden">
             <img
               src={event.image}
-              alt={`${event.title} event`}
+              alt={`${eventTranslation.title} event`}
               draggable="false"
               loading="lazy"
               decoding="async"
@@ -175,7 +169,7 @@ const PhoneCard = ({ event, className = "" }) => {
               "
             />
 
-            {/* CAMERA — solid bg instead of backdrop-blur */}
+            {/* CAMERA */}
             <div
               className="
                 absolute left-4 top-12
@@ -190,7 +184,7 @@ const PhoneCard = ({ event, className = "" }) => {
               <Camera size={14} />
             </div>
 
-            {/* LIVE MEMORIES — solid bg instead of backdrop-blur */}
+            {/* LIVE MEMORIES */}
             <div
               className="
                 absolute right-4 top-12
@@ -204,7 +198,7 @@ const PhoneCard = ({ event, className = "" }) => {
                 text-white/80
               "
             >
-              Live memories
+              {t.events.liveMemories}
             </div>
 
             {/* EVENT TITLE */}
@@ -212,11 +206,11 @@ const PhoneCard = ({ event, className = "" }) => {
               <div className="flex items-end justify-between">
                 <div>
                   <p className="text-[8px] uppercase tracking-[0.22em] text-white/55">
-                    SnapRoll Event
+                    {t.events.snaprollEvent}
                   </p>
 
                   <h3 className="mt-1 text-lg font-medium text-white">
-                    {event.title}
+                    {eventTranslation.title}
                   </h3>
                 </div>
 
@@ -233,7 +227,7 @@ const PhoneCard = ({ event, className = "" }) => {
                     transition-transform duration-200
                     hover:scale-105
                   "
-                  aria-label={`Like ${event.title}`}
+                  aria-label={`Like ${eventTranslation.title}`}
                 >
                   <Heart size={14} />
                 </button>
@@ -247,11 +241,11 @@ const PhoneCard = ({ event, className = "" }) => {
             <div className="flex items-start justify-between">
               <div>
                 <p className="text-[8px] uppercase tracking-[0.2em] text-white/30">
-                  Memories
+                  {t.events.memories}
                 </p>
 
                 <h3 className="mt-1 text-xl font-medium tracking-[-0.04em]">
-                  {event.title}
+                  {eventTranslation.title}
                 </h3>
               </div>
 
@@ -260,7 +254,7 @@ const PhoneCard = ({ event, className = "" }) => {
 
             {/* DESCRIPTION */}
             <p className="mt-2 text-[10px] leading-5 text-white/35">
-              {event.description}
+              {eventTranslation.description}
             </p>
 
             {/* BOTTOM */}
@@ -286,7 +280,9 @@ const PhoneCard = ({ event, className = "" }) => {
               </div>
 
               {/* MOMENTS */}
-              <span className="text-[9px] text-white/30">{event.moments}</span>
+              <span className="text-[9px] text-white/30">
+                {event.moments} {t.events.moments}
+              </span>
             </div>
           </div>
 
@@ -307,6 +303,8 @@ const PhoneCard = ({ event, className = "" }) => {
 };
 
 const Events = () => {
+  const { t } = useContext(LanguageContext);
+
   const handleCreateEvent = () => {
     window.scrollTo({
       top: 0,
@@ -319,12 +317,6 @@ const Events = () => {
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
       {/* =========================================================
           BACKGROUND
-          Reduced from 5 blurred glows to 2, and cut blur radius from
-          100px to 70px. Large-area `blur()` filters are one of the
-          most expensive things a browser can paint, and having 5 of
-          them stacked (each bigger than the viewport) forced a full
-          repaint pass on many scroll/composite frames. Two glows,
-          smaller blur, is visually almost the same and much cheaper.
       ========================================================= */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {/* TOP GLOW */}
@@ -346,7 +338,7 @@ const Events = () => {
             h-100 w-200
             -translate-x-1/2
             rounded-full
-            bg-white/2
+            bg-white/[0.02]
             blur-[70px]
           "
         />
@@ -372,7 +364,7 @@ const Events = () => {
                 "
               >
                 <Camera size={13} />
-                SnapRoll Events
+                {t.events.badge}
               </div>
             </ScrollReveal>
 
@@ -387,9 +379,9 @@ const Events = () => {
                   lg:text-7xl
                 "
               >
-                Every event has
+                {t.events.heroTitle1}
                 <br />
-                <span className="text-white/30">a story to capture.</span>
+                <span className="text-white/30">{t.events.heroTitle2}</span>
               </h1>
             </ScrollReveal>
 
@@ -405,8 +397,7 @@ const Events = () => {
                   sm:text-base
                 "
               >
-                Birthdays, weddings, anniversaries and everything in between.
-                Bring everyone's moments together with SnapRoll.
+                {t.events.heroDescription}
               </p>
             </ScrollReveal>
           </div>
@@ -418,9 +409,7 @@ const Events = () => {
       ========================================================= */}
       <section className="relative px-4 pb-28 pt-6 sm:px-8 lg:px-12">
         <div className="mx-auto max-w-7xl">
-          {/* =====================================================
-              DESKTOP
-          ===================================================== */}
+          {/* DESKTOP */}
           <div
             className="
               relative hidden
@@ -430,49 +419,43 @@ const Events = () => {
               lg:flex
             "
           >
-            {/* CENTER LIGHT — removed; the two page-level glows above
-                already cover this area, so this extra oversized blurred
-                layer was pure redundant paint cost. */}
-
             {/* PHONE 1 — Birthday */}
             <div className="absolute left-[1%] top-42.5 z-10">
               <ScrollReveal delay={0}>
-                <PhoneCard event={events[0]} className="-rotate-12" />
+                <PhoneCard event={events[0]} t={t} className="-rotate-12" />
               </ScrollReveal>
             </div>
 
             {/* PHONE 2 — Wedding */}
             <div className="absolute left-[18%] top-17.5 z-20">
               <ScrollReveal delay={200}>
-                <PhoneCard event={events[1]} className="-rotate-6" />
+                <PhoneCard event={events[1]} t={t} className="-rotate-6" />
               </ScrollReveal>
             </div>
 
             {/* CENTER PHONE — Anniversary */}
             <div className="relative z-40">
               <ScrollReveal delay={400}>
-                <PhoneCard event={events[2]} />
+                <PhoneCard event={events[2]} t={t} />
               </ScrollReveal>
             </div>
 
             {/* PHONE 4 — Graduation */}
             <div className="absolute right-[18%] top-13.75 z-20">
               <ScrollReveal delay={600}>
-                <PhoneCard event={events[3]} className="rotate-6" />
+                <PhoneCard event={events[3]} t={t} className="rotate-6" />
               </ScrollReveal>
             </div>
 
             {/* PHONE 5 — Private Party */}
             <div className="absolute right-[1%] top-45 z-10">
               <ScrollReveal delay={800}>
-                <PhoneCard event={events[4]} className="rotate-12" />
+                <PhoneCard event={events[4]} t={t} className="rotate-12" />
               </ScrollReveal>
             </div>
           </div>
 
-          {/* =====================================================
-              TABLET
-          ===================================================== */}
+          {/* TABLET */}
           <div
             className="
               hidden
@@ -486,19 +469,17 @@ const Events = () => {
           >
             {events.map((event, index) => (
               <ScrollReveal
-                key={event.title}
+                key={event.key}
                 delay={index * 40}
                 direction="up"
                 className={index === 4 ? "col-start-2 -translate-y-3" : ""}
               >
-                <PhoneCard event={event} />
+                <PhoneCard event={event} t={t} />
               </ScrollReveal>
             ))}
           </div>
 
-          {/* =====================================================
-              MOBILE
-          ===================================================== */}
+          {/* MOBILE */}
           <div
             className="
               relative mx-auto
@@ -511,10 +492,10 @@ const Events = () => {
             <div className="flex w-full items-start justify-between px-1">
               {/* FIRST BIRTHDAY */}
               <ScrollReveal delay={0} className="origin-left">
-                <PhoneCard event={events[5]} className="-rotate-6" />
+                <PhoneCard event={events[5]} t={t} className="-rotate-6" />
               </ScrollReveal>
 
-              {/* BABY SHOWER — THIS IS KEPT */}
+              {/* BABY SHOWER */}
               <ScrollReveal
                 delay={180}
                 direction="up"
@@ -524,20 +505,20 @@ const Events = () => {
                   translate-y-12
                 "
               >
-                <PhoneCard event={events[6]} className="rotate-6" />
+                <PhoneCard event={events[6]} t={t} className="rotate-6" />
               </ScrollReveal>
             </div>
 
             {/* CENTER */}
             <ScrollReveal delay={360} className="relative z-20 -mt-20">
-              <PhoneCard event={events[7]} />
+              <PhoneCard event={events[7]} t={t} />
             </ScrollReveal>
 
             {/* BOTTOM TWO */}
             <div className="-mt-16 flex w-full items-start justify-between px-1">
               {/* REUNION */}
               <ScrollReveal delay={540} className="origin-left">
-                <PhoneCard event={events[8]} className="-rotate-6" />
+                <PhoneCard event={events[8]} t={t} className="-rotate-6" />
               </ScrollReveal>
 
               {/* NEW YEAR */}
@@ -550,7 +531,7 @@ const Events = () => {
                   translate-y-10
                 "
               >
-                <PhoneCard event={events[9]} className="rotate-6" />
+                <PhoneCard event={events[9]} t={t} className="rotate-6" />
               </ScrollReveal>
             </div>
           </div>
@@ -582,7 +563,7 @@ const Events = () => {
                     text-white/25
                   "
                 >
-                  Made for every occasion
+                  {t.events.madeFor}
                 </p>
 
                 <h2
@@ -594,9 +575,9 @@ const Events = () => {
                     sm:text-4xl
                   "
                 >
-                  Whatever you're
+                  {t.events.celebrating1}
                   <br />
-                  <span className="text-white/30">celebrating.</span>
+                  <span className="text-white/30">{t.events.celebrating2}</span>
                 </h2>
               </div>
             </ScrollReveal>
@@ -611,54 +592,57 @@ const Events = () => {
                   text-white/40
                 "
               >
-                SnapRoll gives every guest a simple way to capture, share and
-                relive the moments that made your event special.
+                {t.events.occasionDescription}
               </p>
             </ScrollReveal>
           </div>
 
           {/* EVENT PILLS */}
           <div className="mt-12 flex flex-wrap gap-3">
-            {events.map((event, index) => (
-              <ScrollReveal key={event.title} delay={index * 25}>
-                <div
-                  className="
-                    group
-                    flex
-                    cursor-pointer
-                    items-center
-                    gap-3
-                    rounded-full
-                    border border-white/10
-                    bg-white/[0.035]
-                    px-5 py-3
-                    text-sm
-                    text-white/55
-                    transition-all
-                    duration-200
-                    hover:-translate-y-1
-                    hover:border-white/20
-                    hover:bg-white/7
-                    hover:text-white
-                  "
-                >
-                  <span>{event.emoji}</span>
+            {events.map((event, index) => {
+              const eventTranslation = t.events.eventTypes[event.key];
 
-                  <span>{event.title}</span>
-
-                  <ArrowRight
-                    size={13}
+              return (
+                <ScrollReveal key={event.key} delay={index * 25}>
+                  <div
                     className="
-                      text-white/20
-                      transition-transform
+                      group
+                      flex
+                      cursor-pointer
+                      items-center
+                      gap-3
+                      rounded-full
+                      border border-white/10
+                      bg-white/[0.035]
+                      px-5 py-3
+                      text-sm
+                      text-white/55
+                      transition-all
                       duration-200
-                      group-hover:translate-x-1
-                      group-hover:text-white/60
+                      hover:-translate-y-1
+                      hover:border-white/20
+                      hover:bg-white/7
+                      hover:text-white
                     "
-                  />
-                </div>
-              </ScrollReveal>
-            ))}
+                  >
+                    <span>{event.emoji}</span>
+
+                    <span>{eventTranslation.title}</span>
+
+                    <ArrowRight
+                      size={13}
+                      className="
+                        text-white/20
+                        transition-transform
+                        duration-200
+                        group-hover:translate-x-1
+                        group-hover:text-white/60
+                      "
+                    />
+                  </div>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -704,10 +688,10 @@ const Events = () => {
                       sm:text-4xl
                     "
                   >
-                    Simple for you.
+                    {t.events.simpleTitle1}
                     <br />
                     <span className="text-white/30">
-                      Beautiful for everyone.
+                      {t.events.simpleTitle2}
                     </span>
                   </h2>
 
@@ -720,21 +704,36 @@ const Events = () => {
                       text-white/40
                     "
                   >
-                    Create your event, invite your guests and let SnapRoll
-                    collect all those little moments in one place.
+                    {t.events.simpleDescription}
                   </p>
                 </div>
 
                 {/* STEPS */}
-                <div className="grid gap-3 sm:grid-cols-3">
+                <div className="grid gap-3 sm:grid-cols-3 cursor-pointer">
                   {[
-                    ["01", "Create", "Set up your event."],
-                    ["02", "Invite", "Share it with guests."],
-                    ["03", "Capture", "Collect every moment."],
+                    [
+                      "01",
+                      t.events.steps.create,
+                      t.events.steps.createDescription,
+                    ],
+                    [
+                      "02",
+                      t.events.steps.invite,
+                      t.events.steps.inviteDescription,
+                    ],
+                    [
+                      "03",
+                      t.events.steps.capture,
+                      t.events.steps.captureDescription,
+                    ],
                   ].map(([number, title, description], index) => (
                     <ScrollReveal key={number} delay={index * 50}>
                       <div
                         className="
+                          flex
+                          h-full
+                          min-h-52
+                          flex-col
                           rounded-[22px]
                           border border-white/8
                           bg-black/20
@@ -749,11 +748,21 @@ const Events = () => {
                           {number}
                         </span>
 
-                        <h3 className="mt-8 text-lg font-medium">{title}</h3>
+                        <h3
+                          className="
+                            mt-8
+                            min-h-7
+                            text-lg
+                            font-medium
+                          "
+                        >
+                          {title}
+                        </h3>
 
                         <p
                           className="
                             mt-2
+                            min-h-10
                             text-xs
                             leading-5
                             text-white/35
@@ -764,7 +773,7 @@ const Events = () => {
 
                         <div
                           className="
-                            mt-6
+                            mt-auto
                             flex h-6 w-6
                             items-center justify-center
                             rounded-full
@@ -791,20 +800,19 @@ const Events = () => {
         <div className="mx-auto max-w-3xl text-center">
           <ScrollReveal>
             <p className="text-[10px] uppercase tracking-[0.25em] text-white/25">
-              Your memories start here
+              {t.events.ctaLabel}
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={50}>
             <h2 className="mt-5 text-4xl font-medium tracking-tighter sm:text-5xl">
-              Ready to build your event?
+              {t.events.ctaTitle}
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-white/40">
-              Choose your occasion and create a SnapRoll experience your guests
-              will love.
+              {t.events.ctaDescription}
             </p>
           </ScrollReveal>
 
@@ -827,9 +835,11 @@ const Events = () => {
                 transition-all
                 duration-200
                 hover:-translate-y-0.5
+                
               "
             >
-              Create Event
+              {t.events.createEvent}
+
               <ArrowRight
                 size={15}
                 className="

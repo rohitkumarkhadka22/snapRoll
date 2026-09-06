@@ -30,8 +30,8 @@ const ScrollReveal = ({
         }
       },
       {
-        threshold: 0.05,
-        rootMargin: "0px 0px -20px 0px",
+        threshold: 0,
+        rootMargin: "0px 0px -10% 0px",
       },
     );
 
@@ -44,9 +44,10 @@ const ScrollReveal = ({
     <div
       ref={elementRef}
       style={{
-        transitionDelay: isVisible ? `${delay}ms` : "0ms",
+        transitionDelay: isVisible ? `${delay}ms` : undefined,
       }}
       className={`
+        transform-gpu
         transition-[transform,opacity]
         duration-500
         ease-out

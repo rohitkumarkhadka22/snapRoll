@@ -282,6 +282,111 @@ const translations = {
       createYourRoll: "Create your roll",
     },
 
+    /* =====================================================
+       EVENTS
+    ===================================================== */
+
+    events: {
+      badge: "SnapRoll Events",
+
+      heroTitle1: "Every event has",
+      heroTitle2: "a story to capture.",
+
+      heroDescription:
+        "Birthdays, weddings, anniversaries and everything in between. Bring everyone's moments together with SnapRoll.",
+
+      madeFor: "Made for every occasion",
+
+      celebrating1: "Whatever you're",
+      celebrating2: "celebrating.",
+
+      occasionDescription:
+        "SnapRoll gives every guest a simple way to capture, share and relive the moments that made your event special.",
+
+      simpleTitle1: "Simple for you.",
+      simpleTitle2: "Beautiful for everyone.",
+
+      simpleDescription:
+        "Create your event, invite your guests and let SnapRoll collect all those little moments in one place.",
+
+      memories: "Memories",
+      liveMemories: "Live memories",
+      snaprollEvent: "SnapRoll Event",
+      moments: "moments",
+
+      steps: {
+        create: "Create",
+        createDescription: "Set up your event.",
+
+        invite: "Invite",
+        inviteDescription: "Share it with guests.",
+
+        capture: "Capture",
+        captureDescription: "Collect every moment.",
+      },
+
+      ctaLabel: "Your memories start here",
+
+      ctaTitle: "Ready to build your event?",
+
+      ctaDescription:
+        "Choose your occasion and create a SnapRoll experience your guests will love.",
+
+      createEvent: "Create Event",
+
+      eventTypes: {
+        birthday: {
+          title: "Birthday",
+          description: "Every smile. Every surprise.",
+        },
+
+        wedding: {
+          title: "Wedding",
+          description: "Moments worth forever.",
+        },
+
+        anniversary: {
+          title: "Anniversary",
+          description: "Celebrate your story.",
+        },
+
+        graduation: {
+          title: "Graduation",
+          description: "A milestone to remember.",
+        },
+
+        party: {
+          title: "Private Party",
+          description: "Your people. Your moments.",
+        },
+
+        firstBirthday: {
+          title: "First Birthday",
+          description: "A little one. A big celebration.",
+        },
+
+        babyShower: {
+          title: "Baby Shower",
+          description: "Celebrating a beautiful beginning.",
+        },
+
+        collegeEvent: {
+          title: "College Event",
+          description: "Friends, memories and good times.",
+        },
+
+        reunion: {
+          title: "Reunion",
+          description: "Old friends. New memories.",
+        },
+
+        newYear: {
+          title: "New Year",
+          description: "New year. New memories.",
+        },
+      },
+    },
+
     faq: {
       badge: "FAQ",
       eyebrow: "Need to know",
@@ -734,6 +839,96 @@ const translations = {
       finalTitle1: "Tu próximo evento merece",
       finalTitle2: "su propio rollo.",
       createYourRoll: "Crea tu rollo",
+    },
+
+    events: {
+      badge: "Eventos SnapRoll",
+
+      heroTitle1: "Cada evento tiene",
+      heroTitle2: "una historia que capturar.",
+
+      heroDescription:
+        "Cumpleaños, bodas, aniversarios y todo lo demás. Reúne los momentos de todos con SnapRoll.",
+
+      madeFor: "Hecho para cada ocasión",
+
+      celebrating1: "Celebres lo que",
+      celebrating2: "celebres.",
+
+      occasionDescription:
+        "SnapRoll ofrece a cada invitado una forma sencilla de capturar, compartir y revivir los momentos que hicieron especial tu evento.",
+
+      simpleTitle1: "Simple para ti.",
+      simpleTitle2: "Hermoso para todos.",
+
+      simpleDescription:
+        "Crea tu evento, invita a tus invitados y deja que SnapRoll reúna todos esos pequeños momentos en un solo lugar.",
+
+      memories: "Recuerdos",
+      liveMemories: "Recuerdos en vivo",
+      snaprollEvent: "Evento SnapRoll",
+      moments: "momentos",
+
+      steps: {
+        create: "Crear",
+        createDescription: "Configura tu evento.",
+        invite: "Invitar",
+        inviteDescription: "Compártelo con tus invitados.",
+        capture: "Capturar",
+        captureDescription: "Recoge cada momento.",
+      },
+
+      ctaLabel: "Tus recuerdos empiezan aquí",
+
+      ctaTitle: "¿Listo para crear tu evento?",
+
+      ctaDescription:
+        "Elige tu ocasión y crea una experiencia SnapRoll que encantará a tus invitados.",
+
+      createEvent: "Crear evento",
+
+      eventTypes: {
+        birthday: {
+          title: "Cumpleaños",
+          description: "Cada sonrisa. Cada sorpresa.",
+        },
+        wedding: {
+          title: "Boda",
+          description: "Momentos para siempre.",
+        },
+        anniversary: {
+          title: "Aniversario",
+          description: "Celebra vuestra historia.",
+        },
+        graduation: {
+          title: "Graduación",
+          description: "Un momento para recordar.",
+        },
+        party: {
+          title: "Fiesta privada",
+          description: "Tu gente. Tus momentos.",
+        },
+        firstBirthday: {
+          title: "Primer cumpleaños",
+          description: "Un pequeño. Una gran celebración.",
+        },
+        babyShower: {
+          title: "Baby Shower",
+          description: "Celebrando un hermoso comienzo.",
+        },
+        collegeEvent: {
+          title: "Evento universitario",
+          description: "Amigos, recuerdos y buenos momentos.",
+        },
+        reunion: {
+          title: "Reencuentro",
+          description: "Viejos amigos. Nuevos recuerdos.",
+        },
+        newYear: {
+          title: "Año Nuevo",
+          description: "Año nuevo. Nuevos recuerdos.",
+        },
+      },
     },
 
     faq: {
@@ -1190,6 +1385,96 @@ const translations = {
       finalTitle1: "Votre prochain événement mérite",
       finalTitle2: "son propre roll.",
       createYourRoll: "Créer votre roll",
+    },
+
+    events: {
+      badge: "Événements SnapRoll",
+
+      heroTitle1: "Chaque événement a",
+      heroTitle2: "une histoire à capturer.",
+
+      heroDescription:
+        "Anniversaires, mariages, anniversaires de couple et bien plus encore. Réunissez les moments de chacun avec SnapRoll.",
+
+      madeFor: "Créé pour chaque occasion",
+
+      celebrating1: "Peu importe ce que vous",
+      celebrating2: "célébrez.",
+
+      occasionDescription:
+        "SnapRoll offre à chaque invité un moyen simple de capturer, partager et revivre les moments qui ont rendu votre événement spécial.",
+
+      simpleTitle1: "Simple pour vous.",
+      simpleTitle2: "Magnifique pour tous.",
+
+      simpleDescription:
+        "Créez votre événement, invitez vos invités et laissez SnapRoll réunir tous ces petits moments au même endroit.",
+
+      memories: "Souvenirs",
+      liveMemories: "Souvenirs en direct",
+      snaprollEvent: "Événement SnapRoll",
+      moments: "moments",
+
+      steps: {
+        create: "Créer",
+        createDescription: "Configurez votre événement.",
+        invite: "Inviter",
+        inviteDescription: "Partagez-le avec vos invités.",
+        capture: "Capturer",
+        captureDescription: "Collectez chaque moment.",
+      },
+
+      ctaLabel: "Vos souvenirs commencent ici",
+
+      ctaTitle: "Prêt à créer votre événement ?",
+
+      ctaDescription:
+        "Choisissez votre occasion et créez une expérience SnapRoll que vos invités vont adorer.",
+
+      createEvent: "Créer l'événement",
+
+      eventTypes: {
+        birthday: {
+          title: "Anniversaire",
+          description: "Chaque sourire. Chaque surprise.",
+        },
+        wedding: {
+          title: "Mariage",
+          description: "Des moments pour toujours.",
+        },
+        anniversary: {
+          title: "Anniversaire de couple",
+          description: "Célébrez votre histoire.",
+        },
+        graduation: {
+          title: "Diplôme",
+          description: "Une étape à ne jamais oublier.",
+        },
+        party: {
+          title: "Fête privée",
+          description: "Vos proches. Vos moments.",
+        },
+        firstBirthday: {
+          title: "Premier anniversaire",
+          description: "Un petit être. Une grande célébration.",
+        },
+        babyShower: {
+          title: "Baby Shower",
+          description: "Célébrons un magnifique commencement.",
+        },
+        collegeEvent: {
+          title: "Événement universitaire",
+          description: "Amis, souvenirs et bons moments.",
+        },
+        reunion: {
+          title: "Retrouvailles",
+          description: "Vieux amis. Nouveaux souvenirs.",
+        },
+        newYear: {
+          title: "Nouvel An",
+          description: "Nouvelle année. Nouveaux souvenirs.",
+        },
+      },
     },
 
     faq: {
@@ -1651,6 +1936,107 @@ const translations = {
       finalTitle1: "Seu próximo evento merece",
       finalTitle2: "seu próprio roll.",
       createYourRoll: "Criar seu roll",
+    },
+
+    events: {
+      badge: "Eventos SnapRoll",
+
+      heroTitle1: "Todo evento tem",
+      heroTitle2: "uma história para capturar.",
+
+      heroDescription:
+        "Aniversários, casamentos, celebrações e tudo mais. Reúna os momentos de todos com o SnapRoll.",
+
+      madeFor: "Feito para cada ocasião",
+
+      celebrating1: "Não importa o que você",
+      celebrating2: "esteja celebrando.",
+
+      occasionDescription:
+        "O SnapRoll oferece a cada convidado uma maneira simples de capturar, compartilhar e reviver os momentos que tornaram seu evento especial.",
+
+      simpleTitle1: "Simples para você.",
+      simpleTitle2: "Bonito para todos.",
+
+      simpleDescription:
+        "Crie seu evento, convide seus convidados e deixe o SnapRoll reunir todos esses pequenos momentos em um só lugar.",
+
+      memories: "Memórias",
+      liveMemories: "Memórias ao vivo",
+      snaprollEvent: "Evento SnapRoll",
+      moments: "momentos",
+
+      steps: {
+        create: "Criar",
+        createDescription: "Configure seu evento.",
+
+        invite: "Convidar",
+        inviteDescription: "Compartilhe com seus convidados.",
+
+        capture: "Capturar",
+        captureDescription: "Colete cada momento.",
+      },
+
+      ctaLabel: "Suas memórias começam aqui",
+
+      ctaTitle: "Pronto para criar seu evento?",
+
+      ctaDescription:
+        "Escolha sua ocasião e crie uma experiência SnapRoll que seus convidados vão adorar.",
+
+      createEvent: "Criar evento",
+
+      eventTypes: {
+        birthday: {
+          title: "Aniversário",
+          description: "Cada sorriso. Cada surpresa.",
+        },
+
+        wedding: {
+          title: "Casamento",
+          description: "Momentos para sempre.",
+        },
+
+        anniversary: {
+          title: "Aniversário de casamento",
+          description: "Celebre sua história.",
+        },
+
+        graduation: {
+          title: "Formatura",
+          description: "Um marco para lembrar.",
+        },
+
+        party: {
+          title: "Festa privada",
+          description: "Sua gente. Seus momentos.",
+        },
+
+        firstBirthday: {
+          title: "Primeiro aniversário",
+          description: "Um pequeno. Uma grande celebração.",
+        },
+
+        babyShower: {
+          title: "Chá de bebê",
+          description: "Celebrando um lindo começo.",
+        },
+
+        collegeEvent: {
+          title: "Evento universitário",
+          description: "Amigos, memórias e bons momentos.",
+        },
+
+        reunion: {
+          title: "Reencontro",
+          description: "Velhos amigos. Novas memórias.",
+        },
+
+        newYear: {
+          title: "Ano Novo",
+          description: "Ano novo. Novas memórias.",
+        },
+      },
     },
 
     faq: {
