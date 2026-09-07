@@ -70,32 +70,160 @@ const Home = () => {
               </p>
             </ScrollReveal>
 
+            {/* =====================================================
+            LIQUID GLASS HERO BUTTONS
+            ====================================================== */}
             <ScrollReveal delay={450}>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                {/* GET STARTED */}
                 <Link
                   to="/events"
-                  className="group inline-flex h-13 items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:bg-gray-200 hover:shadow-xl hover:shadow-white/10"
+                  className="
+                    group
+                    relative
+                    inline-flex
+                    h-13
+                    items-center
+                    justify-center
+                    overflow-hidden
+                    rounded-full
+                    border
+                    border-white/25
+                    bg-white/10
+                    px-7
+                    py-3
+                    text-sm
+                    font-semibold
+                    text-white
+                    backdrop-blur-xl
+                    backdrop-saturate-150
+                    shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_30px_rgba(0,0,0,0.3)]
+                    transition-all
+                    duration-500
+                    hover:-translate-y-1
+                    hover:border-white/40
+                    hover:bg-white/15
+                    hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_15px_40px_rgba(255,255,255,0.08)]
+                  "
                 >
-                  {t.home.getStarted}
+                  {/* GLASS REFLECTION */}
+                  <span
+                    className="
+                      pointer-events-none
+                      absolute
+                      inset-0
+                      -translate-x-full
+                      bg-linear-to-r
+                      from-transparent
+                      via-white/15
+                      to-transparent
+                      opacity-0
+                      transition-all
+                      duration-700
+                      group-hover:translate-x-full
+                      group-hover:opacity-100
+                    "
+                  />
 
-                  <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
+                  {/* TOP HIGHLIGHT */}
+                  <span
+                    className="
+                      pointer-events-none
+                      absolute
+                      inset-x-4
+                      top-0
+                      h-px
+                      bg-linear-to-r
+                      from-transparent
+                      via-white/60
+                      to-transparent
+                      opacity-60
+                    "
+                  />
+
+                  <span className="relative z-10">{t.home.getStarted}</span>
+
+                  <span className="relative z-10 ml-3 transition-transform duration-300 group-hover:translate-x-1">
                     →
                   </span>
                 </Link>
 
+                {/* HOW IT WORKS */}
                 <Link
                   to="/how-it-works"
-                  className="group inline-flex h-13 items-center justify-center rounded-full border border-white/20 px-7 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:border-white hover:bg-white hover:text-black"
+                  className="
+                    group
+                    relative
+                    inline-flex
+                    h-13
+                    items-center
+                    justify-center
+                    overflow-hidden
+                    rounded-full
+                    border
+                    border-white/15
+                    bg-white/5
+                    px-7
+                    py-3
+                    text-sm
+                    font-semibold
+                    text-white
+                    backdrop-blur-xl
+                    backdrop-saturate-150
+                    shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_8px_30px_rgba(0,0,0,0.25)]
+                    transition-all
+                    duration-500
+                    hover:-translate-y-1
+                    hover:border-white/35
+                    hover:bg-white/10
+                    hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_15px_40px_rgba(255,255,255,0.06)]
+                  "
                 >
-                  {t.home.howItWorks}
+                  {/* GLASS REFLECTION */}
+                  <span
+                    className="
+                      pointer-events-none
+                      absolute
+                      inset-0
+                      -translate-x-full
+                      bg-linear-to-r
+                      from-transparent
+                      via-white/10
+                      to-transparent
+                      opacity-0
+                      transition-all
+                      duration-700
+                      group-hover:translate-x-full
+                      group-hover:opacity-100
+                    "
+                  />
 
-                  <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
+                  {/* TOP HIGHLIGHT */}
+                  <span
+                    className="
+                      pointer-events-none
+                      absolute
+                      inset-x-4
+                      top-0
+                      h-px
+                      bg-linear-to-r
+                      from-transparent
+                      via-white/45
+                      to-transparent
+                      opacity-50
+                    "
+                  />
+
+                  <span className="relative z-10">{t.home.howItWorks}</span>
+
+                  <span className="relative z-10 ml-3 transition-transform duration-300 group-hover:translate-x-1">
                     ↗
                   </span>
                 </Link>
               </div>
             </ScrollReveal>
 
+            {/* COMING SOON */}
             <ScrollReveal delay={600}>
               <div className="mt-8">
                 <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.22em] text-gray-600">
@@ -515,11 +643,72 @@ const Home = () => {
           <ScrollReveal delay={300}>
             <Link
               to="/events"
-              className="group mt-10 inline-flex h-14 items-center justify-center rounded-full bg-white px-8 text-sm font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:bg-gray-200 hover:shadow-xl hover:shadow-white/10"
+              className="
+                group
+                relative
+                mt-10
+                inline-flex
+                h-14
+                items-center
+                justify-center
+                overflow-hidden
+                rounded-full
+                border
+                border-white/20
+                bg-white/10
+                px-8
+                text-sm
+                font-semibold
+                text-white
+                backdrop-blur-xl
+                backdrop-saturate-150
+                shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_10px_35px_rgba(0,0,0,0.3)]
+                transition-all
+                duration-500
+                hover:-translate-y-1
+                hover:border-white/35
+                hover:bg-white/15
+                hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_15px_40px_rgba(255,255,255,0.08)]
+              "
             >
-              {t.home.getStarted}
+              {/* GLASS REFLECTION */}
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  -translate-x-full
+                  bg-linear-to-r
+                  from-transparent
+                  via-white/15
+                  to-transparent
+                  opacity-0
+                  transition-all
+                  duration-700
+                  group-hover:translate-x-full
+                  group-hover:opacity-100
+                "
+              />
 
-              <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
+              {/* TOP HIGHLIGHT */}
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-x-5
+                  top-0
+                  h-px
+                  bg-linear-to-r
+                  from-transparent
+                  via-white/55
+                  to-transparent
+                  opacity-60
+                "
+              />
+
+              <span className="relative z-10">{t.home.getStarted}</span>
+
+              <span className="relative z-10 ml-3 transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>
             </Link>
@@ -686,10 +875,10 @@ const LiquidStepCard = ({ step, index }) => {
                 text-white/15
                 transition-all
                 duration-500
+                group-hover:rotate-[-8deg]
                 group-hover:border-white/25
                 group-hover:bg-white/10
                 group-hover:text-white
-                group-hover:rotate-[-8deg]
               "
             >
               ↗
@@ -706,7 +895,6 @@ const LiquidStepCard = ({ step, index }) => {
                 duration-500
                 ease-out
                 group-hover:translate-x-1
-                group-hover:text-white
               "
             >
               {step.title}
