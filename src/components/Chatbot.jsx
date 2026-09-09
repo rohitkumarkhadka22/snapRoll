@@ -160,11 +160,7 @@ const Chatbot = () => {
                 <img
                   src={chatbotImage}
                   alt="SnapRoll Assistant"
-                  className="
-                    h-full
-                    w-full
-                    object-cover
-                  "
+                  className="h-full w-full object-cover"
                 />
               </div>
 
@@ -193,6 +189,7 @@ const Chatbot = () => {
             <button
               onClick={() => setIsOpen(false)}
               className="
+                cursor-pointer
                 rounded-full
                 p-2
                 text-white/50
@@ -213,7 +210,6 @@ const Chatbot = () => {
           ================================================== */}
           <div
             onWheel={(e) => {
-              // Keep mouse-wheel scrolling inside chatbot
               e.stopPropagation();
             }}
             className="
@@ -415,6 +411,7 @@ const Chatbot = () => {
                   h-10
                   w-10
                   shrink-0
+                  cursor-pointer
                   items-center
                   justify-center
                   rounded-xl
@@ -453,6 +450,7 @@ const Chatbot = () => {
           flex
           h-14
           w-14
+          cursor-pointer
           items-center
           justify-center
           overflow-hidden
