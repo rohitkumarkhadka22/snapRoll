@@ -15,11 +15,15 @@ const FAQ = () => {
 
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
-      {/* HERO */}
-
+      {/* =========================================================
+          HERO
+      ========================================================== */}
       <section className="relative mx-auto max-w-7xl px-5 pb-20 pt-28 sm:px-8 sm:pb-24 sm:pt-32 lg:px-12 lg:pb-28">
         <div className="grid items-center gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
-          {/* PHONE */}
+          
+          {/* =====================================================
+              PHONE — HOME STYLE
+          ====================================================== */}
           <div className="flex flex-col items-center lg:items-start">
             <div className="mb-8 self-start">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
@@ -27,58 +31,181 @@ const FAQ = () => {
               </p>
             </div>
 
-            <div className="relative h-105 w-52.5 -rotate-6 rounded-[36px] bg-white p-2 shadow-2xl shadow-white/10 transition-transform duration-700 hover:-rotate-3 sm:h-120 sm:w-60">
-              <div className="relative h-full w-full overflow-hidden rounded-[29px] bg-neutral-950">
-                {/* NOTCH */}
-                <div className="absolute left-1/2 top-3 z-30 h-5 w-18 -translate-x-1/2 rounded-full bg-black" />
+            {/* PHONE VISUAL */}
+            <div className="relative h-135 w-full max-w-150 sm:h-155">
+              
+              {/* PHONE */}
+              <div className="absolute left-1/2 top-1/2 z-20 h-117.5 w-58.75 -translate-x-1/2 -translate-y-1/2 rotate-[-4deg] transition-transform duration-700 hover:-rotate-1 sm:h-137.5 sm:w-68.75">
+                
+                {/* LEFT SIDE BUTTONS */}
+                <div className="pointer-events-none absolute -left-4 top-[19%] z-50 flex flex-col gap-5 sm:-left-5">
+                  <span className="block h-6 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-7" />
 
-                {/* HEADER */}
-                <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-5 pt-11">
-                  <span className="text-[9px] font-semibold uppercase tracking-[0.25em] text-white">
-                    SnapRoll
-                  </span>
+                  <span className="block h-9 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-10" />
 
-                  <span className="text-[8px] text-gray-600">01 / 24</span>
+                  <span className="block h-9 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-10" />
                 </div>
 
-                {/* CAMERA AREA */}
-                <div className="absolute inset-x-4 top-22 bottom-20 overflow-hidden rounded-[22px] bg-neutral-900">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <span className="block text-[7px] uppercase tracking-[0.3em] text-gray-600">
-                        {faq.phoneStory}
-                      </span>
+                {/* RIGHT POWER BUTTON */}
+                <div className="pointer-events-none absolute -right-2.5 top-[29%] z-50">
+                  <span className="block h-12 w-1 rounded-r-full border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-14" />
+                </div>
 
-                      <p className="mt-3 font-serif text-2xl leading-tight text-gray-700">
-                        {faq.phoneMoments}
-                      </p>
+                {/* OUTER PHONE FRAME */}
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    rounded-[42px]
+                    border
+                    border-white/30
+                    bg-linear-to-br
+                    from-white
+                    via-gray-200
+                    to-gray-500
+                    p-1.5
+                    shadow-[0_35px_90px_rgba(255,255,255,0.12)]
+                    sm:rounded-[48px]
+                  "
+                >
+                  {/* INNER BLACK BODY */}
+                  <div
+                    className="
+                      relative
+                      h-full
+                      w-full
+                      overflow-hidden
+                      rounded-[36px]
+                      border
+                      border-black/80
+                      bg-black
+                      p-1
+                      sm:rounded-[41px]
+                    "
+                  >
+                    {/* SCREEN */}
+                    <div className="relative h-full w-full overflow-hidden rounded-[31px] bg-neutral-950 sm:rounded-[36px]">
+                      
+                      {/* DYNAMIC ISLAND */}
+                      <div className="absolute left-1/2 top-2.5 z-40 h-7 w-24 -translate-x-1/2 rounded-full bg-black shadow-inner sm:top-3 sm:h-8 sm:w-28" />
+
+                      {/* CAMERA DOT */}
+                      <div className="absolute left-1/2 top-[18px] z-50 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-gray-700 sm:top-[20px]" />
+
+                      {/* TOP CONTENT */}
+                      <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-5 pt-12 sm:px-6 sm:pt-14">
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white">
+                          SnapRoll
+                        </span>
+
+                        <span className="text-[9px] text-gray-500">
+                          FAQ
+                        </span>
+                      </div>
+
+                      {/* MAIN SCREEN CONTENT */}
+                      <div className="flex h-full flex-col justify-end p-5 sm:p-6">
+                        
+                        {/* MAIN FAQ CARD */}
+                        <div className="mb-4 rounded-2xl border border-white/10 bg-white/4 p-4 backdrop-blur-sm sm:mb-5 sm:p-5">
+                          
+                          {/* CARD HEADER */}
+                          <div className="flex items-center justify-between">
+                            <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500">
+                              {faq.frequentlyAsked}
+                            </span>
+
+                            <span className="text-[9px] text-gray-600">
+                              FAQ
+                            </span>
+                          </div>
+
+                          {/* CARD TITLE */}
+                          <p className="mt-4 font-serif text-2xl leading-tight text-white sm:text-3xl">
+                            {faq.everything}
+                            <br />
+                            <span className="text-gray-500">
+                              {faq.inOnePlace}
+                            </span>
+                          </p>
+
+                          {/* QUESTION PREVIEW */}
+                          {faq.groups?.[0]?.items?.[0] && (
+                            <div className="mt-5 border-t border-white/10 pt-4">
+                              
+                              <div className="flex items-center justify-between gap-3">
+                                <span className="text-[10px] leading-4 text-gray-300">
+                                  {faq.groups[0].items[0].question}
+                                </span>
+
+                                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-black">
+                                  −
+                                </span>
+                              </div>
+
+                              <p className="mt-3 line-clamp-3 text-[9px] leading-4 text-gray-500">
+                                {faq.groups[0].items[0].answer}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* BOTTOM BAR */}
+                        <div className="flex items-center justify-between border-t border-white/10 pt-4">
+                          <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500">
+                            {faq.badge}
+                          </span>
+
+                          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black sm:h-10 sm:w-10">
+                            →
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                </div>
+              </div>
 
-                  <div className="absolute inset-3 rounded-[18px] border border-white/10" />
+              {/* =================================================
+                  MEMORY CARD
+              ================================================== */}
+              <div className="absolute bottom-[4%] left-[2%] z-30 hidden w-36 rotate-[-10deg] rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-[-6deg] sm:block">
+                <div className="flex aspect-square items-center justify-center rounded-xl bg-neutral-900">
+                  <div className="text-center">
+                    <span className="block text-[8px] uppercase tracking-[0.3em] text-gray-600">
+                      SnapRoll
+                    </span>
 
-                  <div className="absolute bottom-4 left-4 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-sm">
-                    <span className="text-[7px] uppercase tracking-[0.2em] text-gray-500">
-                      {faq.phoneFilter}
+                    <span className="mt-2 block font-serif text-3xl text-gray-700">
+                      ?
                     </span>
                   </div>
                 </div>
 
-                {/* CAMERA BUTTON */}
-                <div className="absolute bottom-6 left-0 right-0 flex justify-center">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full border-[3px] border-white/20">
-                    <div className="h-7 w-7 rounded-full bg-white" />
-                  </div>
+                <div className="pt-3">
+                  <p className="text-[8px] uppercase tracking-[0.2em] text-black">
+                    {faq.questionCount}
+                  </p>
                 </div>
+              </div>
+
+              {/* FLOATING LABEL */}
+              <div className="absolute bottom-[16%] right-[2%] z-30 hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md sm:block">
+                <span className="text-[8px] uppercase tracking-[0.25em] text-gray-400">
+                  {faq.phoneStory}
+                </span>
               </div>
             </div>
 
+            {/* PHONE DESCRIPTION */}
             <p className="mt-8 max-w-xs text-center text-sm leading-6 text-gray-600 lg:text-left">
               {faq.phoneDescription}
             </p>
           </div>
 
-          {/* HERO TEXT */}
+          {/* =====================================================
+              HERO TEXT
+          ====================================================== */}
           <div>
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-gray-600">
               {faq.eyebrow}
@@ -100,11 +227,13 @@ const FAQ = () => {
         <div className="pointer-events-none absolute bottom-0 left-0 h-28 w-full bg-linear-to-t from-black to-transparent" />
       </section>
 
-      {/* FAQ LIST */}
-
+      {/* =========================================================
+          FAQ LIST
+      ========================================================== */}
       <section className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
           <div className="grid gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
+            
             {/* LEFT SIDE */}
             <div className="lg:sticky lg:top-28 lg:self-start">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
@@ -114,7 +243,9 @@ const FAQ = () => {
               <h2 className="mt-5 max-w-xs font-serif text-3xl leading-tight sm:text-4xl">
                 {faq.everything}
                 <br />
-                <span className="text-gray-500">{faq.inOnePlace}</span>
+                <span className="text-gray-500">
+                  {faq.inOnePlace}
+                </span>
               </h2>
 
               <div className="mt-8 flex items-center gap-3">
@@ -162,20 +293,25 @@ const FAQ = () => {
                           0,
                         );
 
-                      const questionNumber = previousQuestions + itemIndex + 1;
+                      const questionNumber =
+                        previousQuestions + itemIndex + 1;
 
                       return (
                         <div
                           key={faqItem.question}
                           className="border-b border-white/10"
                         >
+                          {/* QUESTION BUTTON */}
                           <button
                             type="button"
-                            onClick={() => toggleItem(groupIndex, itemIndex)}
+                            onClick={() =>
+                              toggleItem(groupIndex, itemIndex)
+                            }
                             aria-expanded={isOpen}
                             className="group flex w-full items-center justify-between gap-5 py-5 text-left sm:py-6"
                           >
                             <div className="flex min-w-0 items-start gap-4 sm:gap-6">
+                              
                               {/* NUMBER */}
                               <span className="pt-1 text-[9px] tracking-[0.2em] text-gray-700">
                                 {String(questionNumber).padStart(2, "0")}
@@ -232,11 +368,13 @@ const FAQ = () => {
         </div>
       </section>
 
-      {/* FINAL STATEMENT */}
-
+      {/* =========================================================
+          FINAL STATEMENT
+      ========================================================== */}
       <section className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
           <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
+            
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
                 {faq.finalLabel}
@@ -247,9 +385,12 @@ const FAQ = () => {
               <p className="max-w-3xl font-serif text-2xl leading-tight tracking-[-0.02em] sm:text-3xl md:text-4xl">
                 {faq.finalTitle1}
                 <br />
-                <span className="text-gray-500">{faq.finalTitle2}</span>
+                <span className="text-gray-500">
+                  {faq.finalTitle2}
+                </span>
               </p>
             </div>
+
           </div>
         </div>
       </section>
