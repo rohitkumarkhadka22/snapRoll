@@ -93,19 +93,18 @@ const Pricing = () => {
           HERO
       ========================================================= */}
       <section className="relative overflow-hidden px-6 pb-20 pt-36 sm:px-8 md:pb-28 md:pt-44">
-        {/* Background glow */}
         <div className="pointer-events-none absolute left-1/2 top-20 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-white/[0.035] blur-3xl" />
 
         <div className="relative mx-auto max-w-5xl text-center">
           <ScrollReveal>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs tracking-[0.18em] text-white/60 backdrop-blur-xl">
+            <div className="mb-6 inline-flex cursor-default items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs tracking-[0.18em] text-white/60 backdrop-blur-xl">
               <Sparkles size={13} strokeWidth={1.5} />
               SIMPLE PRICING
             </div>
           </ScrollReveal>
 
           <ScrollReveal>
-            <h1 className="mx-auto max-w-4xl font-serif text-5xl leading-[0.98] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+            <h1 className="mx-auto max-w-4xl cursor-default font-serif text-5xl leading-[0.98] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
               Simple pricing.
               <br />
               <span className="text-white/40">No surprises.</span>
@@ -113,7 +112,7 @@ const Pricing = () => {
           </ScrollReveal>
 
           <ScrollReveal>
-            <p className="mx-auto mt-7 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
+            <p className="mx-auto mt-7 max-w-2xl cursor-default text-base leading-7 text-white/55 sm:text-lg">
               Bring everyone into the moment, capture every memory, and keep
               everything together in one shared event.
             </p>
@@ -129,7 +128,7 @@ const Pricing = () => {
           {plans.map((plan) => (
             <ScrollReveal key={plan.name}>
               <div
-                className={`group relative flex h-full flex-col overflow-hidden rounded-[30px] border p-7 transition-all duration-500 sm:p-8 ${
+                className={`group relative flex h-full cursor-default flex-col overflow-hidden rounded-[30px] border p-7 transition-all duration-500 sm:p-8 ${
                   plan.popular
                     ? "border-white/20 bg-white/[0.09] shadow-[0_0_80px_rgba(255,255,255,0.05)]"
                     : "border-white/10 bg-white/[0.035] hover:border-white/20 hover:bg-white/[0.055]"
@@ -137,7 +136,7 @@ const Pricing = () => {
               >
                 {/* Popular badge */}
                 {plan.popular && (
-                  <div className="absolute right-5 top-5 rounded-full border border-white/10 bg-white px-3 py-1.5 text-[10px] font-medium tracking-[0.16em] text-black">
+                  <div className="absolute right-5 top-5 cursor-default rounded-full border border-white/10 bg-white px-3 py-1.5 text-[10px] font-medium tracking-[0.16em] text-black">
                     MOST POPULAR
                   </div>
                 )}
@@ -146,15 +145,15 @@ const Pricing = () => {
                 <div className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-white/[0.04] blur-3xl transition-all duration-700 group-hover:bg-white/[0.07]" />
 
                 <div className="relative">
-                  <p className="text-sm font-medium tracking-wide text-white/60">
+                  <p className="cursor-default text-sm font-medium tracking-wide text-white/60">
                     {plan.name}
                   </p>
 
-                  <p className="mt-3 max-w-[220px] text-sm leading-6 text-white/40">
+                  <p className="mt-3 max-w-[220px] cursor-default text-sm leading-6 text-white/40">
                     {plan.description}
                   </p>
 
-                  <div className="mt-8 flex items-end gap-2">
+                  <div className="mt-8 flex cursor-default items-end gap-2">
                     <span className="font-serif text-5xl tracking-tight sm:text-6xl">
                       {plan.price}
                     </span>
@@ -167,7 +166,7 @@ const Pricing = () => {
                   {/* CTA */}
                   <Link
                     to={plan.link}
-                    className={`mt-8 flex h-12 w-full items-center justify-center gap-2 rounded-full border text-sm font-medium transition-all duration-300 ${
+                    className={`mt-8 flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-full border text-sm font-medium transition-all duration-300 ${
                       plan.popular
                         ? "border-white bg-white text-black hover:bg-white/90"
                         : "border-white/10 bg-white/[0.06] text-white hover:border-white/20 hover:bg-white/[0.1]"
@@ -186,7 +185,7 @@ const Pricing = () => {
 
                 {/* Features */}
                 <div className="relative flex-1">
-                  <p className="mb-5 text-xs uppercase tracking-[0.16em] text-white/35">
+                  <p className="mb-5 cursor-default text-xs uppercase tracking-[0.16em] text-white/35">
                     Includes
                   </p>
 
@@ -194,7 +193,7 @@ const Pricing = () => {
                     {plan.features.map((feature) => (
                       <li
                         key={feature}
-                        className="flex items-start gap-3 text-sm text-white/65"
+                        className="flex cursor-default items-start gap-3 text-sm text-white/65"
                       >
                         <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
                           <Check size={11} strokeWidth={2} />
@@ -219,11 +218,11 @@ const Pricing = () => {
           <ScrollReveal>
             <div className="grid gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-start">
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-white/35">
+                <p className="cursor-default text-xs uppercase tracking-[0.2em] text-white/35">
                   Why SnapRoll
                 </p>
 
-                <h2 className="mt-5 max-w-md font-serif text-4xl leading-tight sm:text-5xl">
+                <h2 className="mt-5 max-w-md cursor-default font-serif text-4xl leading-tight sm:text-5xl">
                   Your event.
                   <br />
                   <span className="text-white/40">Everyone’s memories.</span>
@@ -231,7 +230,7 @@ const Pricing = () => {
               </div>
 
               <div className="grid gap-8 sm:grid-cols-2">
-                <div>
+                <div className="cursor-default">
                   <p className="font-serif text-2xl">No downloads.</p>
                   <p className="mt-3 text-sm leading-6 text-white/45">
                     Guests scan a QR code and start capturing. There is nothing
@@ -239,7 +238,7 @@ const Pricing = () => {
                   </p>
                 </div>
 
-                <div>
+                <div className="cursor-default">
                   <p className="font-serif text-2xl">One shared roll.</p>
                   <p className="mt-3 text-sm leading-6 text-white/45">
                     Everyone contributes to the same collection, making your
@@ -247,7 +246,7 @@ const Pricing = () => {
                   </p>
                 </div>
 
-                <div>
+                <div className="cursor-default">
                   <p className="font-serif text-2xl">Built for moments.</p>
                   <p className="mt-3 text-sm leading-6 text-white/45">
                     From birthdays to weddings, SnapRoll keeps the experience
@@ -255,7 +254,7 @@ const Pricing = () => {
                   </p>
                 </div>
 
-                <div>
+                <div className="cursor-default">
                   <p className="font-serif text-2xl">Reveal when ready.</p>
                   <p className="mt-3 text-sm leading-6 text-white/45">
                     Keep the photos hidden and reveal them together for a little
@@ -275,15 +274,15 @@ const Pricing = () => {
         <div className="mx-auto max-w-4xl">
           <ScrollReveal>
             <div className="text-center">
-              <p className="text-xs uppercase tracking-[0.2em] text-white/35">
+              <p className="cursor-default text-xs uppercase tracking-[0.2em] text-white/35">
                 Questions
               </p>
 
-              <h2 className="mt-5 font-serif text-4xl sm:text-5xl md:text-6xl">
+              <h2 className="mt-5 cursor-default font-serif text-4xl sm:text-5xl md:text-6xl">
                 Pricing, clarified.
               </h2>
 
-              <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-white/45">
+              <p className="mx-auto mt-5 max-w-xl cursor-default text-sm leading-6 text-white/45">
                 Everything you need to know before bringing SnapRoll to your
                 next event.
               </p>
@@ -299,12 +298,12 @@ const Pricing = () => {
                       {faq.question}
                     </span>
 
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition-transform duration-300 group-open:rotate-45">
+                    <span className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition-transform duration-300 group-open:rotate-45">
                       <span className="text-lg leading-none">+</span>
                     </span>
                   </summary>
 
-                  <p className="max-w-2xl pt-4 text-sm leading-7 text-white/45">
+                  <p className="max-w-2xl cursor-default pt-4 text-sm leading-7 text-white/45">
                     {faq.answer}
                   </p>
                 </details>
@@ -323,15 +322,15 @@ const Pricing = () => {
             <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.06] blur-3xl" />
 
             <div className="relative">
-              <p className="text-xs uppercase tracking-[0.2em] text-white/35">
+              <p className="cursor-default text-xs uppercase tracking-[0.2em] text-white/35">
                 Ready?
               </p>
 
-              <h2 className="mx-auto mt-5 max-w-3xl font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
+              <h2 className="mx-auto mt-5 max-w-3xl cursor-default font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
                 Turn your next event into a roll of memories.
               </h2>
 
-              <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-white/45">
+              <p className="mx-auto mt-5 max-w-xl cursor-default text-sm leading-6 text-white/45">
                 Create an event, share the QR code, and let everyone capture the
                 moment together.
               </p>
@@ -339,7 +338,7 @@ const Pricing = () => {
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link
                   to="/"
-                  className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white bg-white px-7 text-sm font-medium text-black transition-all duration-300 hover:bg-white/90"
+                  className="group inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full border border-white bg-white px-7 text-sm font-medium text-black transition-all duration-300 hover:bg-white/90"
                 >
                   Get Started
                   <ArrowRight
@@ -350,7 +349,7 @@ const Pricing = () => {
 
                 <Link
                   to="/how-it-works"
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-7 text-sm font-medium text-white transition-all duration-300 hover:border-white/20 hover:bg-white/[0.09]"
+                  className="inline-flex h-12 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-7 text-sm font-medium text-white transition-all duration-300 hover:border-white/20 hover:bg-white/[0.09]"
                 >
                   See how it works
                 </Link>
