@@ -6,6 +6,7 @@ import Pricing from "../pages/Pricing";
 import FAQ from "../pages/FAQ";
 import Events from "../pages/Events";
 import Contact from "../pages/Contact";
+import CreateEvent from "../pages/CreateEvent";
 
 const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AppRoutes = () => {
       <Route path="/faq" element={<FAQ />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/events" element={<Events />} />
+      <Route path="/create-event" element={<CreateEvent />} />
     </Routes>
   );
 };

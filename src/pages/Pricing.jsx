@@ -22,7 +22,7 @@ const Pricing = () => {
         "Private event gallery",
       ],
       button: "Get Started",
-      link: "/",
+      link: "/create-event",
     },
     {
       name: "Event",
