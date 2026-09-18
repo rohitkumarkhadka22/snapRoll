@@ -387,6 +387,64 @@ const translations = {
       },
     },
 
+    createEventPage: {
+      badge: "CREATE YOUR EVENT",
+
+      title1: "Create your",
+      title2: "SnapRoll.",
+
+      description:
+        "Set up your event, choose your preferences, and create a shared camera experience for everyone.",
+
+      eventDetails: "Event details",
+
+      eventName: "Event name",
+      eventNamePlaceholder: "Your event name",
+
+      eventDate: "Event date",
+      chooseDate: "Choose a date",
+
+      guestLimit: "Guest limit",
+      shotLimit: "Shot limit",
+
+      guests: "Guests",
+      shots: "Shots",
+
+      freeEvent: "Free Event",
+      freePlanInfo:
+        "Create your event for free with no account required. Share the QR code with your guests and start collecting memories.",
+
+      createEvent: "Create event",
+      creating: "Creating...",
+
+      eventCreated: "Event created",
+      eventReady: "Your event is ready",
+
+      shareEvent: "Share your event",
+      scanToJoin: "Scan to join",
+
+      copyInviteLink: "Copy invite link",
+      linkCopied: "Link copied",
+
+      back: "Back",
+      continue: "Continue",
+      next: "Next",
+      previous: "Previous",
+
+      chooseOccasion: "Choose your occasion",
+
+      birthday: "Birthday",
+      wedding: "Wedding",
+      anniversary: "Anniversary",
+      graduation: "Graduation",
+      party: "Private Party",
+      firstBirthday: "First Birthday",
+      babyShower: "Baby Shower",
+      collegeEvent: "College Event",
+      reunion: "Reunion",
+      newYear: "New Year",
+    },
+
     faq: {
       badge: "FAQ",
       eyebrow: "Need to know",
@@ -554,6 +612,8 @@ const translations = {
       finalDescription:
         "One shared camera. Everyone gets to capture the moment.",
       buildYourEvent: "Build your event",
+      validationEventName: "Every memory needs a name. Give your event one.",
+      validationEventDate: "Choose the day your memories will begin.",
     },
   },
 
@@ -931,6 +991,64 @@ const translations = {
       },
     },
 
+    createEventPage: {
+      badge: "CREA TU EVENTO",
+
+      title1: "Crea tu",
+      title2: "SnapRoll.",
+
+      description:
+        "Configura tu evento, elige tus preferencias y crea una experiencia de cámara compartida para todos.",
+
+      eventDetails: "Detalles del evento",
+
+      eventName: "Nombre del evento",
+      eventNamePlaceholder: "Nombre de tu evento",
+
+      eventDate: "Fecha del evento",
+      chooseDate: "Elige una fecha",
+
+      guestLimit: "Límite de invitados",
+      shotLimit: "Límite de fotos",
+
+      guests: "Invitados",
+      shots: "Fotos",
+
+      freeEvent: "Evento gratuito",
+      freePlanInfo:
+        "Crea tu evento gratis sin necesidad de una cuenta. Comparte el código QR con tus invitados y empieza a recopilar recuerdos.",
+
+      createEvent: "Crear evento",
+      creating: "Creando...",
+
+      eventCreated: "Evento creado",
+      eventReady: "Tu evento está listo",
+
+      shareEvent: "Comparte tu evento",
+      scanToJoin: "Escanea para unirte",
+
+      copyInviteLink: "Copiar enlace",
+      linkCopied: "Enlace copiado",
+
+      back: "Atrás",
+      continue: "Continuar",
+      next: "Siguiente",
+      previous: "Anterior",
+
+      chooseOccasion: "Elige tu ocasión",
+
+      birthday: "Cumpleaños",
+      wedding: "Boda",
+      anniversary: "Aniversario",
+      graduation: "Graduación",
+      party: "Fiesta privada",
+      firstBirthday: "Primer cumpleaños",
+      babyShower: "Baby Shower",
+      collegeEvent: "Evento universitario",
+      reunion: "Reencuentro",
+      newYear: "Año Nuevo",
+    },
+
     faq: {
       badge: "Preguntas frecuentes",
       eyebrow: "Lo que necesitas saber",
@@ -1101,6 +1219,9 @@ const translations = {
       finalDescription:
         "Una cámara compartida. Todos pueden capturar el momento.",
       buildYourEvent: "Crea tu evento",
+      validationEventName:
+        "Cada recuerdo necesita un nombre. Dale uno a tu evento.",
+      validationEventDate: "Elige el día en que comenzarán tus recuerdos.",
     },
   },
 
@@ -1477,6 +1598,64 @@ const translations = {
       },
     },
 
+    createEventPage: {
+      badge: "CRÉEZ VOTRE ÉVÉNEMENT",
+
+      title1: "Créez votre",
+      title2: "SnapRoll.",
+
+      description:
+        "Configurez votre événement, choisissez vos préférences et créez une expérience photo partagée pour tous.",
+
+      eventDetails: "Détails de l'événement",
+
+      eventName: "Nom de l'événement",
+      eventNamePlaceholder: "Nom de votre événement",
+
+      eventDate: "Date de l'événement",
+      chooseDate: "Choisissez une date",
+
+      guestLimit: "Limite d'invités",
+      shotLimit: "Limite de photos",
+
+      guests: "Invités",
+      shots: "Photos",
+
+      freeEvent: "Événement gratuit",
+      freePlanInfo:
+        "Créez votre événement gratuitement, sans compte. Partagez le QR code avec vos invités et commencez à collectionner vos souvenirs.",
+
+      createEvent: "Créer l'événement",
+      creating: "Création...",
+
+      eventCreated: "Événement créé",
+      eventReady: "Votre événement est prêt",
+
+      shareEvent: "Partagez votre événement",
+      scanToJoin: "Scanner pour rejoindre",
+
+      copyInviteLink: "Copier le lien",
+      linkCopied: "Lien copié",
+
+      back: "Retour",
+      continue: "Continuer",
+      next: "Suivant",
+      previous: "Précédent",
+
+      chooseOccasion: "Choisissez votre occasion",
+
+      birthday: "Anniversaire",
+      wedding: "Mariage",
+      anniversary: "Anniversaire de couple",
+      graduation: "Diplôme",
+      party: "Fête privée",
+      firstBirthday: "Premier anniversaire",
+      babyShower: "Baby Shower",
+      collegeEvent: "Événement universitaire",
+      reunion: "Retrouvailles",
+      newYear: "Nouvel An",
+    },
+
     faq: {
       badge: "FAQ",
       eyebrow: "À savoir",
@@ -1650,6 +1829,9 @@ const translations = {
       finalDescription:
         "Un appareil photo partagé. Chacun peut capturer le moment.",
       buildYourEvent: "Créer votre événement",
+      validationEventName:
+        "Chaque souvenir a besoin d'un nom. Donnez-en un à votre événement.",
+      validationEventDate: "Choisissez le jour où vos souvenirs commenceront.",
     },
   },
 
@@ -2039,6 +2221,64 @@ const translations = {
       },
     },
 
+    createEventPage: {
+      badge: "CRIE SEU EVENTO",
+
+      title1: "Crie seu",
+      title2: "SnapRoll.",
+
+      description:
+        "Configure seu evento, escolha suas preferências e crie uma experiência de câmera compartilhada para todos.",
+
+      eventDetails: "Detalhes do evento",
+
+      eventName: "Nome do evento",
+      eventNamePlaceholder: "Nome do seu evento",
+
+      eventDate: "Data do evento",
+      chooseDate: "Escolha uma data",
+
+      guestLimit: "Limite de convidados",
+      shotLimit: "Limite de fotos",
+
+      guests: "Convidados",
+      shots: "Fotos",
+
+      freeEvent: "Evento gratuito",
+      freePlanInfo:
+        "Crie seu evento gratuitamente, sem precisar de uma conta. Compartilhe o QR code com seus convidados e comece a reunir memórias.",
+
+      createEvent: "Criar evento",
+      creating: "Criando...",
+
+      eventCreated: "Evento criado",
+      eventReady: "Seu evento está pronto",
+
+      shareEvent: "Compartilhe seu evento",
+      scanToJoin: "Escaneie para participar",
+
+      copyInviteLink: "Copiar link",
+      linkCopied: "Link copiado",
+
+      back: "Voltar",
+      continue: "Continuar",
+      next: "Próximo",
+      previous: "Anterior",
+
+      chooseOccasion: "Escolha sua ocasião",
+
+      birthday: "Aniversário",
+      wedding: "Casamento",
+      anniversary: "Aniversário de casamento",
+      graduation: "Formatura",
+      party: "Festa privada",
+      firstBirthday: "Primeiro aniversário",
+      babyShower: "Chá de bebê",
+      collegeEvent: "Evento universitário",
+      reunion: "Reencontro",
+      newYear: "Ano Novo",
+    },
+
     faq: {
       badge: "FAQ",
       eyebrow: "O que você precisa saber",
@@ -2209,6 +2449,9 @@ const translations = {
       finalDescription:
         "Uma câmera compartilhada. Todos podem capturar o momento.",
       buildYourEvent: "Crie seu evento",
+      validationEventName:
+        "Toda memória precisa de um nome. Dê um ao seu evento.",
+      validationEventDate: "Escolha o dia em que suas memórias começarão.",
     },
   },
 };

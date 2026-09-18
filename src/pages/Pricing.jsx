@@ -22,7 +22,7 @@ const Pricing = () => {
         "Private event gallery",
       ],
       button: "Get Started",
-      link: "/create-event",
+      link: "/events/create",
     },
     {
       name: "Event",
@@ -92,19 +92,19 @@ const Pricing = () => {
       {/* =========================================================
           HERO
       ========================================================= */}
-      <section className="relative overflow-hidden px-6 pb-20 pt-36 sm:px-8 md:pb-28 md:pt-44">
-        <div className="pointer-events-none absolute left-1/2 top-20 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-white/[0.035] blur-3xl" />
+      <section className="relative overflow-hidden px-5 pb-16 pt-32 sm:px-8 sm:pb-20 sm:pt-36 md:pb-24 md:pt-40 lg:pb-28 lg:pt-44">
+        <div className="pointer-events-none absolute left-1/2 top-16 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-white/[0.035] blur-3xl sm:top-20 sm:h-[420px] sm:w-[420px]" />
 
         <div className="relative mx-auto max-w-5xl text-center">
           <ScrollReveal>
-            <div className="mb-6 inline-flex cursor-default items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs tracking-[0.18em] text-white/60 backdrop-blur-xl">
+            <div className="mb-5 inline-flex cursor-default items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] tracking-[0.18em] text-white/60 backdrop-blur-xl sm:mb-6 sm:text-xs">
               <Sparkles size={13} strokeWidth={1.5} />
               SIMPLE PRICING
             </div>
           </ScrollReveal>
 
           <ScrollReveal>
-            <h1 className="mx-auto max-w-4xl cursor-default font-serif text-5xl leading-[0.98] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+            <h1 className="mx-auto max-w-4xl cursor-default font-serif text-4xl leading-[1] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
               Simple pricing.
               <br />
               <span className="text-white/40">No surprises.</span>
@@ -112,7 +112,7 @@ const Pricing = () => {
           </ScrollReveal>
 
           <ScrollReveal>
-            <p className="mx-auto mt-7 max-w-2xl cursor-default text-base leading-7 text-white/55 sm:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl cursor-default text-sm leading-6 text-white/55 sm:mt-7 sm:text-lg sm:leading-7">
               Bring everyone into the moment, capture every memory, and keep
               everything together in one shared event.
             </p>
@@ -123,12 +123,12 @@ const Pricing = () => {
       {/* =========================================================
           PRICING CARDS
       ========================================================= */}
-      <section className="px-6 pb-28 sm:px-8">
+      <section className="px-5 pb-20 sm:px-8 sm:pb-24 md:pb-28">
         <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-3">
           {plans.map((plan) => (
             <ScrollReveal key={plan.name}>
               <div
-                className={`group relative flex h-full cursor-default flex-col overflow-hidden rounded-[30px] border p-7 transition-all duration-500 sm:p-8 ${
+                className={`group relative flex h-full cursor-default flex-col overflow-hidden rounded-[26px] border p-6 transition-all duration-500 sm:rounded-[30px] sm:p-8 ${
                   plan.popular
                     ? "border-white/20 bg-white/[0.09] shadow-[0_0_80px_rgba(255,255,255,0.05)]"
                     : "border-white/10 bg-white/[0.035] hover:border-white/20 hover:bg-white/[0.055]"
@@ -136,7 +136,7 @@ const Pricing = () => {
               >
                 {/* Popular badge */}
                 {plan.popular && (
-                  <div className="absolute right-5 top-5 cursor-default rounded-full border border-white/10 bg-white px-3 py-1.5 text-[10px] font-medium tracking-[0.16em] text-black">
+                  <div className="absolute right-4 top-4 cursor-default rounded-full border border-white/10 bg-white px-2.5 py-1.5 text-[9px] font-medium tracking-[0.16em] text-black sm:right-5 sm:top-5 sm:px-3">
                     MOST POPULAR
                   </div>
                 )}
@@ -153,7 +153,7 @@ const Pricing = () => {
                     {plan.description}
                   </p>
 
-                  <div className="mt-8 flex cursor-default items-end gap-2">
+                  <div className="mt-7 flex cursor-default items-end gap-2 sm:mt-8">
                     <span className="font-serif text-5xl tracking-tight sm:text-6xl">
                       {plan.price}
                     </span>
@@ -166,7 +166,7 @@ const Pricing = () => {
                   {/* CTA */}
                   <Link
                     to={plan.link}
-                    className={`mt-8 flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-full border text-sm font-medium transition-all duration-300 ${
+                    className={`mt-7 flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-full border text-sm font-medium transition-all duration-300 sm:mt-8 ${
                       plan.popular
                         ? "border-white bg-white text-black hover:bg-white/90"
                         : "border-white/10 bg-white/[0.06] text-white hover:border-white/20 hover:bg-white/[0.1]"
@@ -181,7 +181,7 @@ const Pricing = () => {
                 </div>
 
                 {/* Divider */}
-                <div className="my-8 h-px bg-white/[0.08]" />
+                <div className="my-7 h-px bg-white/[0.08] sm:my-8" />
 
                 {/* Features */}
                 <div className="relative flex-1">
@@ -189,7 +189,7 @@ const Pricing = () => {
                     Includes
                   </p>
 
-                  <ul className="space-y-4">
+                  <ul className="space-y-3.5 sm:space-y-4">
                     {plan.features.map((feature) => (
                       <li
                         key={feature}
@@ -213,10 +213,10 @@ const Pricing = () => {
       {/* =========================================================
           WHY SNAPROLL
       ========================================================= */}
-      <section className="border-y border-white/[0.07] px-6 py-24 sm:px-8 md:py-32">
+      <section className="border-y border-white/[0.07] px-5 py-20 sm:px-8 sm:py-24 md:py-28 lg:py-32">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal>
-            <div className="grid gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-start">
+            <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-start md:gap-12">
               <div>
                 <p className="cursor-default text-xs uppercase tracking-[0.2em] text-white/35">
                   Why SnapRoll
@@ -270,7 +270,7 @@ const Pricing = () => {
       {/* =========================================================
           FAQ
       ========================================================= */}
-      <section className="px-6 py-24 sm:px-8 md:py-32">
+      <section className="px-5 py-20 sm:px-8 sm:py-24 md:py-28 lg:py-32">
         <div className="mx-auto max-w-4xl">
           <ScrollReveal>
             <div className="text-center">
@@ -289,12 +289,12 @@ const Pricing = () => {
             </div>
           </ScrollReveal>
 
-          <div className="mt-14 divide-y divide-white/[0.08] border-y border-white/[0.08]">
+          <div className="mt-10 divide-y divide-white/[0.08] border-y border-white/[0.08] sm:mt-14">
             {faqs.map((faq) => (
               <ScrollReveal key={faq.question}>
-                <details className="group py-6">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left">
-                    <span className="font-serif text-lg sm:text-xl">
+                <details className="group py-5 sm:py-6">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left sm:gap-6">
+                    <span className="font-serif text-base sm:text-xl">
                       {faq.question}
                     </span>
 
@@ -316,9 +316,9 @@ const Pricing = () => {
       {/* =========================================================
           FINAL CTA
       ========================================================= */}
-      <section className="px-6 pb-28 sm:px-8 md:pb-36">
+      <section className="px-5 pb-20 sm:px-8 sm:pb-28 md:pb-36">
         <ScrollReveal>
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.045] px-6 py-16 text-center backdrop-blur-xl sm:px-10 md:py-24">
+          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.045] px-5 py-14 text-center backdrop-blur-xl sm:rounded-[36px] sm:px-10 sm:py-16 md:py-24">
             <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.06] blur-3xl" />
 
             <div className="relative">
@@ -326,7 +326,7 @@ const Pricing = () => {
                 Ready?
               </p>
 
-              <h2 className="mx-auto mt-5 max-w-3xl cursor-default font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
+              <h2 className="mx-auto mt-5 max-w-3xl cursor-default font-serif text-3xl leading-tight sm:text-5xl md:text-6xl">
                 Turn your next event into a roll of memories.
               </h2>
 
@@ -337,10 +337,9 @@ const Pricing = () => {
 
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link
-                  to="/"
-                  className="group inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full border border-white bg-white px-7 text-sm font-medium text-black transition-all duration-300 hover:bg-white/90"
+                  to="/events/create"
+                  className="group inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-white bg-white px-7 text-sm font-medium text-black transition-all duration-300 hover:bg-white/90 sm:w-auto"
                 >
-                  Get Started
                   <ArrowRight
                     size={15}
                     className="transition-transform duration-300 group-hover:translate-x-0.5"
@@ -349,7 +348,7 @@ const Pricing = () => {
 
                 <Link
                   to="/how-it-works"
-                  className="inline-flex h-12 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-7 text-sm font-medium text-white transition-all duration-300 hover:border-white/20 hover:bg-white/[0.09]"
+                  className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-7 text-sm font-medium text-white transition-all duration-300 hover:border-white/20 hover:bg-white/[0.09] sm:w-auto"
                 >
                   See how it works
                 </Link>

@@ -164,22 +164,22 @@ const HowItWorks = () => {
           HERO
       ===================================================== */}
 
-      <section className="relative px-5 pb-20 pt-32 sm:px-8 sm:pb-24 sm:pt-36 md:pt-44 lg:px-12">
-        <div className="pointer-events-none absolute left-1/2 top-20 h-87.5 w-87.5 -translate-x-1/2 rounded-full bg-white/4.5r-[120px] sm:h-100 sm:w-100" />
+      <section className="relative px-4 pb-16 pt-28 sm:px-8 sm:pb-24 sm:pt-36 md:pt-40 lg:px-12 lg:pb-20 lg:pt-44">
+        <div className="pointer-events-none absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-white/[0.045] blur-[120px] sm:h-100 sm:w-100" />
 
         <div className="relative mx-auto max-w-5xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2 text-[10px] tracking-[0.18em] text-white/50 backdrop-blur-xl sm:text-xs">
+          <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2 text-[10px] tracking-[0.18em] text-white/50 backdrop-blur-xl sm:text-xs">
             <Sparkles size={13} />
-            {h.badge}
+            <span className="truncate">{h.badge}</span>
           </div>
 
-          <h1 className="font-serif text-5xl leading-[0.95] tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="font-serif text-4xl leading-[0.95] tracking-tighter sm:text-6xl md:text-[4rem] lg:text-8xl">
             {h.heroTitle1}
             <br />
             <span className="text-white/30">{h.heroTitle2}</span>
           </h1>
 
-          <p className="mx-auto mt-7 max-w-2xl text-sm leading-7 text-white/45 sm:text-base">
+          <p className="mx-auto mt-7 max-w-2xl px-1 text-sm leading-7 text-white/45 sm:px-0 sm:text-base">
             {h.heroDescription}
           </p>
         </div>
@@ -189,13 +189,13 @@ const HowItWorks = () => {
         ================================================= */}
 
         <ScrollReveal>
-          <div className="group relative mx-auto mt-12 h-115 max-w-5xl sm:mt-17 sm:h-150">
-            <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/4 blur-3xl" />
+          <div className="group relative mx-auto mt-10 h-105 max-w-5xl sm:mt-14 sm:h-130 lg:mt-17 lg:h-150">
+            <div className="absolute left-1/2 top-1/2 h-60 w-60 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.04] blur-3xl sm:h-72 sm:w-72" />
 
             <div className="absolute left-1/2 top-1/2 hidden h-px w-[74%] -translate-x-1/2 bg-linear-to-r from-transparent via-white/10 to-transparent sm:block" />
 
             <HeroFloat
-              className="left-[1%] top-[20%] -rotate-6 opacity-0 -translate-y-3 group-hover:translate-y-0 group-hover:opacity-100"
+              className="left-0 top-[18%] -rotate-6 opacity-0 -translate-y-3 sm:left-[1%] sm:top-[20%]"
               icon={<QrCode size={25} />}
               label={h.scan}
               delay="duration-300"
@@ -203,7 +203,7 @@ const HowItWorks = () => {
             />
 
             <HeroFloat
-              className="right-[1%] top-[16%] rotate-6 opacity-0 translate-y-3 group-hover:translate-y-0 group-hover:opacity-100"
+              className="right-0 top-[14%] rotate-6 opacity-0 translate-y-3 sm:right-[1%] sm:top-[16%]"
               icon={<Camera size={25} />}
               label={h.shoot}
               delay="delay-75 duration-500"
@@ -211,7 +211,7 @@ const HowItWorks = () => {
             />
 
             <HeroFloat
-              className="bottom-[10%] left-[8%] rotate-6 opacity-0 translate-y-3 group-hover:translate-y-0 group-hover:opacity-100"
+              className="bottom-[8%] left-[3%] rotate-6 opacity-0 translate-y-3 sm:bottom-[10%] sm:left-[8%]"
               icon={<Users size={25} />}
               label={h.join}
               delay="delay-150 duration-500"
@@ -219,7 +219,7 @@ const HowItWorks = () => {
             />
 
             <HeroFloat
-              className="bottom-[8%] right-[8%] -rotate-6 opacity-0 -translate-y-3 group-hover:translate-y-0 group-hover:opacity-100"
+              className="bottom-[6%] right-[3%] -rotate-6 opacity-0 -translate-y-3 sm:bottom-[8%] sm:right-[8%]"
               icon={<Sparkles size={25} />}
               label={h.reveal}
               delay="delay-200 duration-500"
@@ -228,7 +228,7 @@ const HowItWorks = () => {
 
             {/* HERO PHONE */}
 
-            <div className="absolute left-1/2 top-1/2 h-143.75 w-75 -translate-x-1/2 -translate-y-1/2 rotate-2 rounded-[2.8rem] border border-white/15 bg-[#080808] p-2 shadow-[0_35px_100px_rgba(255,255,255,0.09)] transition-all duration-700 group-hover:rotate-0 group-hover:translate-y-[-52%]">
+            <div className="absolute left-1/2 top-1/2 h-135 w-70 -translate-x-1/2 -translate-y-1/2 rotate-2 rounded-[2.8rem] border border-white/15 bg-[#080808] p-2 shadow-[0_35px_100px_rgba(255,255,255,0.09)] transition-all duration-700 group-hover:rotate-0 group-hover:translate-y-[-52%] sm:h-140 sm:w-72 lg:h-143.75 lg:w-75">
               <PhoneReflection />
 
               <div className="relative h-full overflow-hidden rounded-[2.3rem] border border-white/8 bg-[#111]">
@@ -307,7 +307,7 @@ const HowItWorks = () => {
 
             {/* HERO CURSOR */}
 
-            <div className="pointer-events-none absolute bottom-7 right-[24%] hidden opacity-0 transition-all duration-500 group-hover:translate-x-2 group-hover:translate-y-2 group-hover:opacity-100 md:block">
+            <div className="pointer-events-none absolute bottom-5 right-[20%] hidden opacity-0 transition-all duration-500 group-hover:translate-x-2 group-hover:translate-y-2 group-hover:opacity-100 lg:block">
               <div className="relative">
                 <MousePointer2
                   size={27}
@@ -327,7 +327,7 @@ const HowItWorks = () => {
           STEPS
       ===================================================== */}
 
-      <section className="px-4 pb-28 sm:px-8 sm:pb-32 lg:px-12">
+      <section className="px-4 pb-20 sm:px-8 sm:pb-32 lg:px-12">
         <div className="mx-auto max-w-7xl">
           {steps.map((step, index) => {
             return (
@@ -362,7 +362,7 @@ const HowItWorks = () => {
           CTA
       ===================================================== */}
 
-      <section className="relative overflow-hidden border-t border-white/8 px-6 py-24 sm:px-8 sm:py-28">
+      <section className="relative overflow-hidden border-t border-white/8 px-5 py-20 sm:px-8 sm:py-28">
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-87.5 w-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.035] blur-[100px]" />
 
         <div className="relative mx-auto max-w-3xl text-center">
@@ -370,7 +370,7 @@ const HowItWorks = () => {
             {h.readyToCapture}
           </p>
 
-          <h2 className="font-serif text-4xl tracking-[-0.04em] sm:text-5xl md:text-6xl">
+          <h2 className="font-serif text-3xl tracking-[-0.04em] sm:text-5xl md:text-6xl">
             {h.finalTitle1}
             <br />
             <span className="text-white/30">{h.finalTitle2}</span>
@@ -419,15 +419,15 @@ const StepSection = ({
   return (
     <ScrollReveal>
       <div
-        className={`relative flex flex-col items-center gap-12 border-t border-white/[0.08] py-20 sm:gap-16 sm:py-24 md:gap-20 lg:py-32 ${
+        className={`relative flex flex-col items-center gap-10 border-t border-white/[0.08] py-16 sm:gap-16 sm:py-24 md:gap-14 lg:gap-20 lg:py-32 ${
           isEven ? "lg:flex-row" : "lg:flex-row-reverse"
         }`}
       >
         {/* TEXT */}
 
-        <div className="w-full lg:w-1/2">
-          <div className="flex items-start gap-4 sm:gap-7">
-            <span className="font-serif text-5xl leading-none tracking-[-0.05em] text-white/15 sm:text-7xl">
+        <div className="w-full min-w-0 lg:w-1/2">
+          <div className="flex items-start gap-3 sm:gap-7">
+            <span className="shrink-0 font-serif text-4xl leading-none tracking-[-0.05em] text-white/15 sm:text-7xl">
               {step.number}
             </span>
 
@@ -436,7 +436,7 @@ const StepSection = ({
                 {h.step} {step.number}
               </p>
 
-              <h2 className="font-serif text-4xl leading-tight tracking-[-0.04em] sm:text-5xl">
+              <h2 className="font-serif text-3xl leading-tight tracking-[-0.04em] sm:text-5xl">
                 {step.title}
               </h2>
 
@@ -454,7 +454,7 @@ const StepSection = ({
                       <Check size={10} />
                     </span>
 
-                    {feature}
+                    <span className="min-w-0">{feature}</span>
                   </div>
                 ))}
               </div>
@@ -575,13 +575,11 @@ const PhoneMockup = ({
   setCapturedPhotos,
 }) => {
   const [powered, setPowered] = useState(false);
-
   const [silent, setSilent] = useState(false);
   const [volume, setVolume] = useState(60);
 
   const changeVolume = (amount) => {
     setVolume((prev) => Math.min(100, Math.max(0, prev + amount)));
-
     playSound("click");
   };
 
@@ -591,10 +589,10 @@ const PhoneMockup = ({
   };
 
   return (
-    <div className="relative flex w-full max-w-[430px] justify-center px-3 sm:px-5">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.045] blur-[100px] sm:h-80 sm:w-80" />
+    <div className="relative flex w-full max-w-[430px] justify-center px-2 sm:px-5">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.045] blur-[100px] sm:h-80 sm:w-80" />
 
-      <div className="relative w-full max-w-[330px] sm:max-w-[340px]">
+      <div className="relative w-full max-w-[305px] sm:max-w-[330px] lg:max-w-[340px]">
         {/* LEFT SIDE BUTTONS */}
 
         <button
@@ -603,19 +601,19 @@ const PhoneMockup = ({
             playSound("click");
           }}
           title={h.silent}
-          className="absolute -left-[4px] top-[110px] z-30 h-8 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:h-9 sm:w-[6px]"
+          className="absolute -left-[3px] top-[100px] z-30 h-8 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:top-[110px] sm:h-9 sm:w-[6px]"
         />
 
         <button
           onClick={() => changeVolume(10)}
           title={h.volumeUp}
-          className="absolute -left-[4px] top-[165px] z-30 h-12 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:h-13 sm:w-[6px]"
+          className="absolute -left-[3px] top-[150px] z-30 h-11 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:top-[165px] sm:h-13 sm:w-[6px]"
         />
 
         <button
           onClick={() => changeVolume(-10)}
           title={h.volumeDown}
-          className="absolute -left-[4px] top-[220px] z-30 h-12 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:h-13 sm:w-[6px]"
+          className="absolute -left-[3px] top-[200px] z-30 h-11 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:top-[220px] sm:h-13 sm:w-[6px]"
         />
 
         {/* RIGHT POWER */}
@@ -623,16 +621,16 @@ const PhoneMockup = ({
         <button
           onClick={togglePower}
           title={powered ? h.turnPhoneOff : h.turnPhoneOn}
-          className="absolute -right-[4px] top-[180px] z-40 h-18 w-[5px] translate-x-full cursor-pointer rounded-r-md border border-white/20 bg-[#292929] transition hover:bg-[#555] active:scale-90 sm:-right-[6px] sm:h-20 sm:w-[6px]"
+          className="absolute -right-[3px] top-[170px] z-40 h-16 w-[5px] translate-x-full cursor-pointer rounded-r-md border border-white/20 bg-[#292929] transition hover:bg-[#555] active:scale-90 sm:-right-[6px] sm:top-[180px] sm:h-20 sm:w-[6px]"
         />
 
         {/* PHONE */}
 
-        <div className="relative rounded-[43px] border border-white/[0.18] bg-[#171717] p-[6px] shadow-[0_35px_100px_rgba(0,0,0,0.8)] transition-transform duration-700 hover:-translate-y-2 sm:rounded-[48px] sm:p-[7px]">
-          <div className="relative overflow-hidden rounded-[36px] border border-white/[0.08] bg-black sm:rounded-[40px]">
-            <div className="absolute left-1/2 top-3 z-40 h-[24px] w-[90px] -translate-x-1/2 rounded-full bg-black shadow-inner sm:h-[25px] sm:w-[96px]" />
+        <div className="relative rounded-[40px] border border-white/[0.18] bg-[#171717] p-[5px] shadow-[0_35px_100px_rgba(0,0,0,0.8)] transition-transform duration-700 hover:-translate-y-2 sm:rounded-[48px] sm:p-[7px]">
+          <div className="relative overflow-hidden rounded-[34px] border border-white/[0.08] bg-black sm:rounded-[40px]">
+            <div className="absolute left-1/2 top-3 z-40 h-[23px] w-[82px] -translate-x-1/2 rounded-full bg-black shadow-inner sm:h-[25px] sm:w-[96px]" />
 
-            <div className="relative h-[600px] min-h-[600px] overflow-hidden sm:h-[620px] sm:min-h-[620px]">
+            <div className="relative h-[570px] min-h-[570px] overflow-hidden sm:h-[620px] sm:min-h-[620px]">
               {!powered ? (
                 <PowerOffScreen h={h} onPower={togglePower} />
               ) : (
@@ -692,7 +690,7 @@ const PhoneMockup = ({
         {/* SOUND */}
 
         {powered && (
-          <div className="absolute -right-20 top-8 hidden rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-[9px] text-white/35 backdrop-blur-xl sm:block">
+          <div className="absolute -right-16 top-8 hidden rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-[9px] text-white/35 backdrop-blur-xl sm:-right-20 sm:block">
             <div className="flex items-center gap-2">
               {silent ? <VolumeX size={12} /> : <Volume2 size={12} />}
 
@@ -703,7 +701,7 @@ const PhoneMockup = ({
 
         {/* CURSOR */}
 
-        <div className="pointer-events-none absolute -right-7 bottom-24 hidden animate-[bounce_2.5s_infinite] md:block">
+        <div className="pointer-events-none absolute -right-7 bottom-24 hidden animate-[bounce_2.5s_infinite] lg:block">
           <div className="rounded-full border border-white/10 bg-black/80 p-2 shadow-xl backdrop-blur">
             <MousePointer2
               size={17}
@@ -738,7 +736,7 @@ const CreateRoll = ({
 
   if (created) {
     return (
-      <div className="flex h-full min-h-[600px] flex-col items-center justify-center overflow-y-auto px-5 py-12 text-center sm:min-h-[620px] sm:px-6">
+      <div className="flex h-full min-h-[570px] flex-col items-center justify-center overflow-y-auto px-4 py-10 text-center sm:min-h-[620px] sm:px-6">
         <div className="flex h-20 w-20 shrink-0 animate-[pulse_2s_infinite] items-center justify-center rounded-full border border-white/15 bg-white/[0.06]">
           <Check size={30} />
         </div>
@@ -774,9 +772,9 @@ const CreateRoll = ({
   }
 
   return (
-    <div className="h-full overflow-y-auto px-4 pb-7 pt-14 scrollbar-thin sm:px-5">
-      <div className="flex items-start justify-between">
-        <div>
+    <div className="h-full overflow-y-auto px-3 pb-6 pt-12 scrollbar-thin sm:px-5 sm:pb-7 sm:pt-14">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
           <p className="text-[10px] uppercase tracking-[0.18em] text-white/30">
             {h.newRoll}
           </p>
@@ -784,7 +782,7 @@ const CreateRoll = ({
           <h3 className="mt-2 font-serif text-2xl">{h.create}</h3>
         </div>
 
-        <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
           <Sparkles size={14} className="text-white/50" />
         </div>
       </div>
@@ -858,7 +856,7 @@ const CreateRoll = ({
 
         {/* SHOTS / GUESTS */}
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3">
           <NumberSetting
             icon={<Camera size={13} />}
             label={h.shots}
@@ -937,7 +935,7 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
   };
 
   return (
-    <div className="relative h-full min-h-[600px] overflow-y-auto bg-[#080808] px-4 pb-7 pt-14 sm:min-h-[620px]">
+    <div className="relative h-full min-h-[570px] overflow-y-auto bg-[#080808] px-3 pb-6 pt-12 sm:min-h-[620px] sm:px-4 sm:pb-7 sm:pt-14">
       {/* HEADER */}
 
       <div className="text-center">
@@ -954,7 +952,7 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
         <img
           src={selectedImage}
           alt={h.preview}
-          className={`h-[220px] w-full object-cover transition-all duration-500 ${
+          className={`h-[200px] w-full object-cover transition-all duration-500 sm:h-[220px] ${
             filters.find((item) => item.name === selectedFilter)?.className ||
             ""
           }`}
@@ -962,12 +960,12 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
 
-        <div className="absolute bottom-3 left-3">
+        <div className="absolute bottom-3 left-3 min-w-0 max-w-[90%]">
           <p className="text-[8px] uppercase tracking-[0.15em] text-white/40">
             {h.preview}
           </p>
 
-          <p className="mt-1 font-serif text-xl">{eventName}</p>
+          <p className="mt-1 truncate font-serif text-xl">{eventName}</p>
         </div>
       </div>
 
@@ -991,7 +989,7 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
                 setSelectedImage(EVENT_IMAGES[index]);
                 playSound("click");
               }}
-              className={`relative overflow-hidden rounded-xl border p-1 transition ${
+              className={`relative min-w-0 overflow-hidden rounded-xl border p-1 transition ${
                 selectedFilter === item.name
                   ? "border-white/40 bg-white/[0.12]"
                   : "border-white/10 bg-white/[0.03] hover:bg-white/[0.07]"
@@ -1000,7 +998,7 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
               <img
                 src={EVENT_IMAGES[index]}
                 alt={item.name}
-                className={`h-14 w-full rounded-lg object-cover ${item.className}`}
+                className={`h-12 w-full rounded-lg object-cover sm:h-14 ${item.className}`}
               />
 
               <span className="mt-1 block text-[8px] text-white/50">
@@ -1020,7 +1018,7 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
       {/* QR */}
 
       <div className="mt-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.035] p-3">
-        <div className="rounded-xl bg-white p-2">
+        <div className="shrink-0 rounded-xl bg-white p-2">
           <QRCodeSVG
             value={`https://snaproll.app/join/${encodeURIComponent(eventName)}`}
             size={65}
@@ -1074,10 +1072,10 @@ const GuestJoin = ({ h, eventName }) => {
 
   if (joined) {
     return (
-      <div className="relative flex h-full min-h-[600px] flex-col overflow-hidden bg-black sm:min-h-[620px]">
+      <div className="relative flex h-full min-h-[570px] flex-col overflow-hidden bg-black sm:min-h-[620px]">
         {/* RIGHT PREVIEW */}
 
-        <div className="absolute right-0 top-0 h-full w-[45%] overflow-hidden border-l border-white/10">
+        <div className="absolute right-0 top-0 h-full w-[38%] overflow-hidden border-l border-white/10 lg:w-[45%]">
           <img
             src={previewImage}
             alt={h.preview}
@@ -1089,7 +1087,7 @@ const GuestJoin = ({ h, eventName }) => {
 
         {/* LEFT CONTENT */}
 
-        <div className="relative z-10 flex h-full w-[65%] flex-col items-center justify-center bg-gradient-to-r from-black via-black/95 to-transparent px-5 text-center">
+        <div className="relative z-10 flex h-full w-[70%] flex-col items-center justify-center bg-gradient-to-r from-black via-black/95 to-transparent px-3 text-center sm:w-[68%] sm:px-4 lg:w-[65%] lg:px-5">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.05]">
             <Check size={25} />
           </div>
@@ -1098,11 +1096,11 @@ const GuestJoin = ({ h, eventName }) => {
             {h.welcome}
           </p>
 
-          <h3 className="mt-2 font-serif text-2xl">
+          <h3 className="mt-2 max-w-full truncate font-serif text-2xl">
             {h.hey}, {name || h.guest}.
           </h3>
 
-          <p className="mt-3 text-[10px] leading-5 text-white/35">
+          <p className="mt-3 max-w-[160px] text-[10px] leading-5 text-white/35">
             {h.nowPartOf} <span className="text-white/65">{eventName}</span>
           </p>
 
@@ -1114,7 +1112,7 @@ const GuestJoin = ({ h, eventName }) => {
                   setPreviewImage(image);
                   playSound("click");
                 }}
-                className={`h-10 w-10 overflow-hidden rounded-lg border transition ${
+                className={`h-10 w-10 cursor-pointer overflow-hidden rounded-lg border transition ${
                   previewImage === image ? "border-white/60" : "border-white/10"
                 }`}
               >
@@ -1142,7 +1140,7 @@ const GuestJoin = ({ h, eventName }) => {
               setPreviewOpen(true);
               playSound("click");
             }}
-            className="mt-2 flex items-center gap-2 text-[9px] text-white/35 hover:text-white/60"
+            className="mt-2 flex cursor-pointer items-center gap-2 text-[9px] text-white/35 hover:text-white/60"
           >
             <Eye size={12} />
             {h.viewPreview}
@@ -1161,10 +1159,10 @@ const GuestJoin = ({ h, eventName }) => {
   }
 
   return (
-    <div className="relative flex h-full min-h-[600px] overflow-hidden bg-black sm:min-h-[620px]">
+    <div className="relative flex h-full min-h-[570px] overflow-hidden bg-black sm:min-h-[620px]">
       {/* RIGHT PHOTO */}
 
-      <div className="absolute right-0 top-0 h-full w-[42%] overflow-hidden">
+      <div className="absolute right-0 top-0 h-full w-[35%] overflow-hidden lg:w-[42%]">
         <img
           src={previewImage}
           alt={h.preview}
@@ -1178,7 +1176,7 @@ const GuestJoin = ({ h, eventName }) => {
             setPreviewOpen(true);
             playSound("click");
           }}
-          className="absolute bottom-20 right-3 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-black/50 backdrop-blur-xl"
+          className="absolute bottom-20 right-2 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/50 backdrop-blur-xl sm:right-3"
         >
           <Eye size={13} />
         </button>
@@ -1186,7 +1184,7 @@ const GuestJoin = ({ h, eventName }) => {
 
       {/* LEFT */}
 
-      <div className="relative z-10 flex w-[70%] flex-col justify-center px-5">
+      <div className="relative z-10 flex w-[78%] flex-col justify-center px-4 sm:w-[74%] sm:px-4 lg:w-[70%] lg:px-5">
         <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05]">
           <ScanLine size={22} className="text-white/70" />
         </div>
@@ -1201,7 +1199,7 @@ const GuestJoin = ({ h, eventName }) => {
           {h.join} <span className="text-white/70">{eventName}</span>
         </p>
 
-        <div className="mt-7 rounded-2xl border border-white/[0.09] bg-black/70 p-4 backdrop-blur-xl">
+        <div className="mt-7 max-w-[230px] rounded-2xl border border-white/[0.09] bg-black/70 p-4 backdrop-blur-xl">
           <p className="text-[9px] text-white/30">{h.displayName}</p>
 
           <input
@@ -1253,18 +1251,12 @@ const ShootCamera = ({
   setCapturedPhotos,
 }) => {
   const [remaining, setRemaining] = useState(shots);
-
   const [filter, setFilter] = useState("WARM");
-
   const [flashEnabled, setFlashEnabled] = useState(false);
-
   const [captureFeedback, setCaptureFeedback] = useState(false);
-
   const [viewingPhotos, setViewingPhotos] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(0);
-
   const [settingsOpen, setSettingsOpen] = useState(false);
-
   const [grid, setGrid] = useState(true);
   const [timer, setTimer] = useState(false);
   const [mirror, setMirror] = useState(false);
@@ -1275,9 +1267,7 @@ const ShootCamera = ({
     const nextPhoto = EVENT_IMAGES[capturedPhotos.length % EVENT_IMAGES.length];
 
     setRemaining((prev) => prev - 1);
-
     setCapturedPhotos((prev) => [...prev, nextPhoto]);
-
     setCaptureFeedback(true);
 
     if (!silent) {
@@ -1309,7 +1299,7 @@ const ShootCamera = ({
 
   if (viewingPhotos && capturedPhotos.length > 0) {
     return (
-      <div className="relative h-full min-h-[600px] overflow-hidden bg-black sm:min-h-[620px]">
+      <div className="relative h-full min-h-[570px] overflow-hidden bg-black sm:min-h-[620px]">
         <img
           src={capturedPhotos[selectedPhoto]}
           alt={h.capturedMemory}
@@ -1320,7 +1310,7 @@ const ShootCamera = ({
 
         <div className="absolute inset-0 bg-black/20" />
 
-        <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-4 pt-14 sm:px-5">
+        <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-3 pt-12 sm:px-5 sm:pt-14">
           <button
             onClick={() => {
               setViewingPhotos(false);
@@ -1347,11 +1337,11 @@ const ShootCamera = ({
           </button>
         </div>
 
-        <div className="absolute bottom-28 right-3 z-20 flex flex-col gap-2">
+        <div className="absolute bottom-28 right-2 z-20 flex flex-col gap-2 sm:right-3">
           <button
             onClick={nextPhoto}
             disabled={selectedPhoto >= capturedPhotos.length - 1}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/45 backdrop-blur-xl disabled:opacity-25"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/45 backdrop-blur-xl disabled:cursor-not-allowed disabled:opacity-25"
           >
             <ChevronRight size={18} />
           </button>
@@ -1359,13 +1349,13 @@ const ShootCamera = ({
           <button
             onClick={previousPhoto}
             disabled={selectedPhoto <= 0}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/45 backdrop-blur-xl disabled:opacity-25"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/45 backdrop-blur-xl disabled:cursor-not-allowed disabled:opacity-25"
           >
             <ChevronLeft size={18} />
           </button>
         </div>
 
-        <div className="absolute bottom-6 left-4 z-20">
+        <div className="absolute bottom-5 left-3 z-20 sm:bottom-6 sm:left-4">
           <div className="rounded-2xl border border-white/15 bg-black/45 px-4 py-3 backdrop-blur-xl">
             <p className="text-[8px] uppercase tracking-[0.15em] text-white/40">
               {h.captured}
@@ -1399,7 +1389,7 @@ const ShootCamera = ({
   ======================================================= */
 
   return (
-    <div className="relative flex h-full min-h-[600px] flex-col justify-between overflow-hidden bg-[#151515] p-4 pt-14 sm:min-h-[620px] sm:p-5 sm:pt-14">
+    <div className="relative flex h-full min-h-[570px] flex-col justify-between overflow-hidden bg-[#151515] p-3 pt-12 sm:min-h-[620px] sm:p-5 sm:pt-14">
       {/* IMAGE */}
 
       <div className="absolute inset-0 overflow-hidden">
@@ -1443,7 +1433,7 @@ const ShootCamera = ({
 
       {captureFeedback && (
         <div className="absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2">
-          <div className="rounded-2xl border border-white/15 bg-black/75 px-6 py-4 text-center shadow-2xl backdrop-blur-xl">
+          <div className="rounded-2xl border border-white/15 bg-black/75 px-5 py-4 text-center shadow-2xl backdrop-blur-xl sm:px-6">
             <p className="font-serif text-3xl text-white">
               {capturedPhotos.length}
             </p>
@@ -1479,8 +1469,6 @@ const ShootCamera = ({
           {filter}
         </button>
 
-        {/* SETTINGS */}
-
         <button
           onClick={() => {
             setSettingsOpen(true);
@@ -1500,8 +1488,8 @@ const ShootCamera = ({
 
       {/* LEFT COUNTER */}
 
-      <div className="absolute left-3 top-1/2 z-10 -translate-y-1/2 sm:left-5">
-        <div className="rounded-2xl border border-white/15 bg-black/40 px-3 py-3 text-center backdrop-blur-xl">
+      <div className="absolute left-2 top-1/2 z-10 -translate-y-1/2 sm:left-5">
+        <div className="rounded-2xl border border-white/15 bg-black/40 px-2.5 py-3 text-center backdrop-blur-xl sm:px-3">
           <p className="text-[8px] uppercase tracking-[0.15em] text-white/40">
             {h.shots}
           </p>
@@ -1523,9 +1511,9 @@ const ShootCamera = ({
             if (!silent) playSound("click");
           }}
           title={h.preview}
-          className="absolute right-3 top-1/2 z-10 flex -translate-y-1/2 cursor-pointer flex-col items-center gap-1 rounded-2xl border border-white/15 bg-black/45 p-2 backdrop-blur-xl sm:right-4"
+          className="absolute right-2 top-1/2 z-10 flex -translate-y-1/2 cursor-pointer flex-col items-center gap-1 rounded-2xl border border-white/15 bg-black/45 p-1.5 backdrop-blur-xl sm:right-4 sm:p-2"
         >
-          <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-white/10">
+          <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-white/10 sm:h-12 sm:w-12">
             <img
               src={capturedPhotos[capturedPhotos.length - 1]}
               alt={h.latestCapture}
@@ -1544,11 +1532,11 @@ const ShootCamera = ({
       {/* CENTER */}
 
       <div className="relative z-10 flex flex-1 items-center justify-center">
-        <div className="h-28 w-28 rounded-full border border-white/[0.18] bg-white/[0.025] backdrop-blur-xl sm:h-32 sm:w-32" />
+        <div className="h-24 w-24 rounded-full border border-white/[0.18] bg-white/[0.025] backdrop-blur-xl sm:h-32 sm:w-32" />
 
-        <div className="absolute h-20 w-20 rounded-full border border-white/[0.08] sm:h-24 sm:w-24" />
+        <div className="absolute h-16 w-16 rounded-full border border-white/[0.08] sm:h-24 sm:w-24" />
 
-        <div className="absolute right-8 top-1/2 animate-[bounce_2s_infinite] sm:right-9">
+        <div className="absolute right-7 top-1/2 animate-[bounce_2s_infinite] sm:right-9">
           <MousePointer2
             size={20}
             className="rotate-[-12deg] fill-white text-white"
@@ -1558,8 +1546,8 @@ const ShootCamera = ({
 
       {/* BOTTOM */}
 
-      <div className="relative z-10 mt-auto flex items-center justify-between px-1 pb-2 sm:px-2">
-        {/* FLASH BUTTON */}
+      <div className="relative z-10 mt-auto flex items-center justify-between px-0 pb-1 sm:px-2 sm:pb-2">
+        {/* FLASH */}
 
         <button
           onClick={() => {
@@ -1568,7 +1556,7 @@ const ShootCamera = ({
             if (!silent) playSound("click");
           }}
           title={flashEnabled ? h.flashOn : h.flashOff}
-          className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border transition ${
+          className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border transition sm:h-10 sm:w-10 ${
             flashEnabled
               ? "border-white/30 bg-white/20"
               : "border-white/10 bg-black/40"
@@ -1583,9 +1571,9 @@ const ShootCamera = ({
           onClick={takePhoto}
           disabled={remaining === 0}
           title={h.takePhoto}
-          className="group flex h-[74px] w-[74px] cursor-pointer items-center justify-center rounded-full border border-white/50 bg-white/[0.08] transition duration-200 hover:scale-105 active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 sm:h-[78px] sm:w-[78px]"
+          className="group flex h-[68px] w-[68px] cursor-pointer items-center justify-center rounded-full border border-white/50 bg-white/[0.08] transition duration-200 hover:scale-105 active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 sm:h-[78px] sm:w-[78px]"
         >
-          <span className="h-[57px] w-[57px] rounded-full bg-white shadow-[0_0_25px_rgba(255,255,255,0.25)] transition group-hover:scale-95 sm:h-[60px] sm:w-[60px]" />
+          <span className="h-[52px] w-[52px] rounded-full bg-white shadow-[0_0_25px_rgba(255,255,255,0.25)] transition group-hover:scale-95 sm:h-[60px] sm:w-[60px]" />
         </button>
 
         {/* GALLERY */}
@@ -1600,7 +1588,7 @@ const ShootCamera = ({
             if (!silent) playSound("click");
           }}
           title={h.gallery}
-          className="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-black/40"
+          className="relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-black/40 sm:h-10 sm:w-10"
         >
           <ImageIcon size={14} />
 
@@ -1614,7 +1602,7 @@ const ShootCamera = ({
 
       {/* SOUND */}
 
-      <div className="absolute bottom-28 left-1/2 z-10 -translate-x-1/2">
+      <div className="absolute bottom-24 left-1/2 z-10 -translate-x-1/2 sm:bottom-28">
         <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5 text-[9px] text-white/40 backdrop-blur-xl">
           {silent ? <VolumeX size={11} /> : <Volume2 size={11} />}
 
@@ -1655,26 +1643,28 @@ const CameraSettings = ({
   onClose,
 }) => {
   return (
-    <div className="absolute inset-x-3 bottom-3 z-[60] overflow-hidden rounded-3xl border border-white/15 bg-black/90 p-4 shadow-2xl backdrop-blur-2xl">
-      <div className="flex items-center justify-between">
-        <div>
+    <div className="absolute inset-x-2 bottom-2 z-[60] overflow-hidden rounded-3xl border border-white/15 bg-black/90 p-3 shadow-2xl backdrop-blur-2xl sm:inset-x-3 sm:bottom-3 sm:p-4">
+      <div className="flex items-center justify-between gap-3">
+        <div className="min-w-0">
           <p className="text-[8px] uppercase tracking-[0.18em] text-white/30">
             {h.cameraSettings}
           </p>
 
-          <h4 className="mt-1 font-serif text-xl">{h.customizeShot}</h4>
+          <h4 className="mt-1 truncate font-serif text-xl">
+            {h.customizeShot}
+          </h4>
         </div>
 
         <button
           onClick={onClose}
           title={h.close}
-          className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.04]"
+          className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.04]"
         >
           <X size={14} />
         </button>
       </div>
 
-      <div className="mt-4 space-y-2">
+      <div className="mt-3 space-y-2 sm:mt-4">
         {/* GRID */}
 
         <button
@@ -1682,15 +1672,17 @@ const CameraSettings = ({
             setGrid((prev) => !prev);
             playSound("click");
           }}
-          className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-white/10 bg-white/[0.035] px-3 py-3 transition hover:bg-white/[0.07]"
+          className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2.5 transition hover:bg-white/[0.07] sm:py-3"
         >
-          <div className="flex items-center gap-3">
-            <ScanLine size={14} className="text-white/45" />
+          <div className="flex min-w-0 items-center gap-3">
+            <ScanLine size={14} className="shrink-0 text-white/45" />
 
-            <div className="text-left">
+            <div className="min-w-0 text-left">
               <p className="text-[10px] text-white/65">{h.cameraGrid}</p>
 
-              <p className="text-[8px] text-white/25">{h.alignFrame}</p>
+              <p className="truncate text-[8px] text-white/25">
+                {h.alignFrame}
+              </p>
             </div>
           </div>
 
@@ -1704,15 +1696,15 @@ const CameraSettings = ({
             setTimer((prev) => !prev);
             playSound("click");
           }}
-          className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-white/10 bg-white/[0.035] px-3 py-3 transition hover:bg-white/[0.07]"
+          className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2.5 transition hover:bg-white/[0.07] sm:py-3"
         >
-          <div className="flex items-center gap-3">
-            <Camera size={14} className="text-white/45" />
+          <div className="flex min-w-0 items-center gap-3">
+            <Camera size={14} className="shrink-0 text-white/45" />
 
-            <div className="text-left">
+            <div className="min-w-0 text-left">
               <p className="text-[10px] text-white/65">{h.selfTimer}</p>
 
-              <p className="text-[8px] text-white/25">
+              <p className="truncate text-[8px] text-white/25">
                 {timer ? h.threeSecondTimer : h.instantCapture}
               </p>
             </div>
@@ -1728,15 +1720,17 @@ const CameraSettings = ({
             setMirror((prev) => !prev);
             playSound("click");
           }}
-          className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-white/10 bg-white/[0.035] px-3 py-3 transition hover:bg-white/[0.07]"
+          className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2.5 transition hover:bg-white/[0.07] sm:py-3"
         >
-          <div className="flex items-center gap-3">
-            <RotateCcw size={14} className="text-white/45" />
+          <div className="flex min-w-0 items-center gap-3">
+            <RotateCcw size={14} className="shrink-0 text-white/45" />
 
-            <div className="text-left">
+            <div className="min-w-0 text-left">
               <p className="text-[10px] text-white/65">{h.mirrorCamera}</p>
 
-              <p className="text-[8px] text-white/25">{h.flipPreview}</p>
+              <p className="truncate text-[8px] text-white/25">
+                {h.flipPreview}
+              </p>
             </div>
           </div>
 
@@ -1765,7 +1759,7 @@ const CameraSettings = ({
 const Toggle = ({ active }) => {
   return (
     <span
-      className={`relative h-5 w-9 rounded-full transition ${
+      className={`relative h-5 w-9 shrink-0 rounded-full transition ${
         active ? "bg-white" : "bg-white/10"
       }`}
     >
@@ -1784,7 +1778,6 @@ const Toggle = ({ active }) => {
 
 const RevealRoll = ({ h, eventName, capturedPhotos }) => {
   const [reveal, setReveal] = useState(false);
-
   const [timing, setTiming] = useState("rightAfter");
 
   const memories = capturedPhotos.length > 0 ? capturedPhotos : EVENT_IMAGES;
@@ -1805,26 +1798,26 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
   ];
 
   return (
-    <div className="h-full min-h-[600px] overflow-y-auto px-5 pb-7 pt-14 sm:min-h-[620px]">
-      <div className="flex items-center justify-between">
-        <div>
+    <div className="h-full min-h-[570px] overflow-y-auto px-4 pb-6 pt-12 sm:min-h-[620px] sm:px-5 sm:pb-7 sm:pt-14">
+      <div className="flex items-center justify-between gap-3">
+        <div className="min-w-0">
           <p className="text-[10px] uppercase tracking-[0.18em] text-white/30">
             {h.rollComplete}
           </p>
 
-          <h3 className="mt-2 max-w-[200px] font-serif text-2xl">
+          <h3 className="mt-2 max-w-[200px] truncate font-serif text-2xl">
             {eventName}
           </h3>
         </div>
 
-        <div className="flex h-10 w-10 animate-pulse items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
+        <div className="flex h-10 w-10 shrink-0 animate-pulse items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
           <Sparkles size={16} />
         </div>
       </div>
 
       {/* MEMORIES */}
 
-      <div className="relative mt-7 h-48 overflow-hidden rounded-3xl border border-white/[0.1]">
+      <div className="relative mt-7 h-44 overflow-hidden rounded-3xl border border-white/[0.1] sm:h-48">
         <div className="absolute inset-0 grid grid-cols-3 gap-1 p-1">
           {memories.slice(0, 6).map((image, index) => (
             <div
@@ -1843,8 +1836,8 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
         </div>
 
         {!reveal && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/65 backdrop-blur-[10px]">
-            <div className="text-center">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/65 px-4 text-center backdrop-blur-[10px]">
+            <div>
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
                 <LockKeyhole size={20} className="text-white/60" />
               </div>
@@ -1933,7 +1926,7 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
 
 const PowerOffScreen = ({ h, onPower }) => {
   return (
-    <div className="flex h-full min-h-[600px] flex-col items-center justify-center bg-black px-6 text-center sm:min-h-[620px]">
+    <div className="flex h-full min-h-[570px] flex-col items-center justify-center bg-black px-5 text-center sm:min-h-[620px] sm:px-6">
       <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.025]">
         <Power size={24} className="text-white/25" />
       </div>
@@ -1962,18 +1955,18 @@ const PowerOffScreen = ({ h, onPower }) => {
 
 const PreviewModal = ({ h, image, onClose }) => {
   return (
-    <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 p-5 backdrop-blur-xl">
-      <div className="relative w-full max-w-[280px] overflow-hidden rounded-3xl border border-white/15 bg-black">
+    <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-xl sm:p-5">
+      <div className="relative w-full max-w-[260px] overflow-hidden rounded-3xl border border-white/15 bg-black sm:max-w-[280px]">
         <img
           src={image}
           alt={h.photoPreview}
-          className="h-[360px] w-full object-cover"
+          className="h-[330px] w-full object-cover sm:h-[360px]"
         />
 
         <button
           onClick={onClose}
           title={h.close}
-          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-black/60 backdrop-blur-xl"
+          className="absolute right-3 top-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/60 backdrop-blur-xl"
         >
           <X size={14} />
         </button>
@@ -1998,11 +1991,11 @@ const HeroFloat = ({ className, icon, label, delay, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={`absolute z-20 flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-black/65 px-4 py-3 text-left backdrop-blur-xl transition-all ${delay} hover:border-white/20 hover:bg-white/[0.08] ${className}`}
+      className={`absolute z-20 flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-black/65 px-3 py-2.5 text-left backdrop-blur-xl transition-all ${delay} hover:border-white/20 hover:bg-white/[0.08] sm:gap-3 sm:px-4 sm:py-3 ${className}`}
     >
-      <span className="text-white/70">{icon}</span>
+      <span className="shrink-0 text-white/70">{icon}</span>
 
-      <span className="text-[9px] font-medium tracking-[0.2em] text-white/50">
+      <span className="text-[8px] font-medium tracking-[0.16em] text-white/50 sm:text-[9px] sm:tracking-[0.2em]">
         {label}
       </span>
     </button>
@@ -2029,17 +2022,17 @@ const PhoneReflection = () => {
 
 const NumberSetting = ({ icon, label, value, min, max, onChange }) => {
   return (
-    <div className="rounded-2xl border border-white/[0.09] bg-white/[0.035] p-3">
+    <div className="min-w-0 rounded-2xl border border-white/[0.09] bg-white/[0.035] p-2.5 sm:p-3">
       <div className="flex items-center gap-2 text-white/30">
         {icon}
 
-        <span className="text-[9px]">{label}</span>
+        <span className="truncate text-[9px]">{label}</span>
       </div>
 
-      <div className="mt-2 flex items-center justify-between">
+      <div className="mt-2 flex items-center justify-between gap-1">
         <button
           onClick={() => onChange(Math.max(min, value - 1))}
-          className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-white/10 text-white/50 transition hover:bg-white/10"
+          className="flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/10 text-white/50 transition hover:bg-white/10"
         >
           −
         </button>
@@ -2048,7 +2041,7 @@ const NumberSetting = ({ icon, label, value, min, max, onChange }) => {
 
         <button
           onClick={() => onChange(Math.min(max, value + 1))}
-          className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-white/10 text-white/50 transition hover:bg-white/10"
+          className="flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/10 text-white/50 transition hover:bg-white/10"
         >
           +
         </button>

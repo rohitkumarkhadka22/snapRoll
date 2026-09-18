@@ -8,7 +8,6 @@ const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [languageOpen, setLanguageOpen] = useState(false);
 
-  // GLOBAL LANGUAGE
   const { selectedLanguage, languages, changeLanguage, t } = useLanguage();
 
   const lastScrollY = useRef(0);
@@ -24,39 +23,31 @@ const Navbar = () => {
     e.currentTarget.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
   };
 
-  // CLOSE MENU
   const closeMenu = () => {
     setMenuOpen(false);
     setLanguageOpen(false);
   };
 
-  // CHANGE LANGUAGE
   const handleLanguageSelect = (language) => {
     changeLanguage(language);
     setLanguageOpen(false);
   };
 
-  // NAVBAR SCROLL
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Always show at top
       if (currentScrollY <= 20) {
         setShowNavbar(true);
         lastScrollY.current = currentScrollY;
         return;
       }
 
-      // Hide while scrolling down
       if (currentScrollY > lastScrollY.current) {
         setShowNavbar(false);
         setMenuOpen(false);
         setLanguageOpen(false);
-      }
-
-      // Show while scrolling up
-      else if (currentScrollY < lastScrollY.current) {
+      } else if (currentScrollY < lastScrollY.current) {
         setShowNavbar(true);
       }
 
@@ -74,7 +65,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 w-full px-3 pt-0 transition-transform duration-500 ease-in-out sm:px-5 sm:pt-0 ${
+      className={`fixed left-0 top-0 z-50 w-full px-3 pt-0 transition-transform duration-500 ease-in-out sm:px-5 ${
         showNavbar ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -111,9 +102,8 @@ const Navbar = () => {
           <div className="absolute bottom-0 left-1/4 right-1/4 h-px bg-white/[0.07]" />
         </div>
 
-        {/* MOBILE LEFT SIDE: HAMBURGER + LOGO */}
-        <div className="relative z-10 flex items-center gap-1.5 md:hidden">
-          {/* HAMBURGER */}
+        {/* MOBILE + TABLET LEFT SIDE */}
+        <div className="relative z-10 flex items-center gap-1.5 lg:hidden">
           <button
             type="button"
             onClick={() => {
@@ -122,6 +112,7 @@ const Navbar = () => {
             }}
             className="
               flex h-11 w-11
+              cursor-pointer
               items-center justify-center
               rounded-full
               border border-white/15
@@ -141,7 +132,6 @@ const Navbar = () => {
             </span>
           </button>
 
-          {/* MOBILE LOGO */}
           <Link
             to="/"
             onClick={closeMenu}
@@ -167,7 +157,7 @@ const Navbar = () => {
           className="
             group relative z-10 hidden
             shrink-0 items-center
-            md:flex
+            lg:flex
           "
         >
           <img
@@ -184,7 +174,7 @@ const Navbar = () => {
         </Link>
 
         {/* DESKTOP NAV */}
-        <div className="relative z-10 hidden flex-1 items-center justify-center md:flex">
+        <div className="relative z-10 hidden flex-1 items-center justify-center lg:flex">
           <div className="flex items-center gap-2 lg:gap-3 xl:-translate-x-4">
             {/* HOME */}
             <Link
@@ -310,7 +300,7 @@ const Navbar = () => {
         </div>
 
         {/* DESKTOP RIGHT SIDE */}
-        <div className="relative z-10 hidden shrink-0 items-center gap-2.5 md:flex">
+        <div className="relative z-10 hidden shrink-0 items-center gap-2.5 lg:flex">
           {/* BUILD YOUR EVENT */}
           <Link
             to="/events"
@@ -349,12 +339,12 @@ const Navbar = () => {
               onMouseMove={handleLiquidMouseMove}
               className="
                 group relative flex items-center gap-2
+                cursor-pointer
                 rounded-full
                 border border-white/13
                 bg-white/6
                 px-3.5 py-2.5
                 text-white
-                cursor-pointer
                 shadow-inner shadow-white/3
                 backdrop-blur-xl
                 transition-all duration-300
@@ -426,7 +416,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE + TABLET MENU */}
       {menuOpen && (
         <div
           className="
@@ -437,13 +427,12 @@ const Navbar = () => {
             shadow-[0_20px_70px_rgba(0,0,0,0.45)]
             backdrop-blur-2xl
             backdrop-saturate-150
-            md:hidden
+            lg:hidden
           "
         >
           <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-white/20" />
 
           <div className="relative flex flex-col p-5">
-            {/* HOME */}
             <Link
               to="/"
               onClick={closeMenu}
@@ -456,7 +445,6 @@ const Navbar = () => {
               {t.nav.home}
             </Link>
 
-            {/* HOW IT WORKS */}
             <Link
               to="/how-it-works"
               onClick={closeMenu}
@@ -469,7 +457,6 @@ const Navbar = () => {
               {t.nav.howItWorks}
             </Link>
 
-            {/* PRICING */}
             <Link
               to="/pricing"
               onClick={closeMenu}
@@ -482,7 +469,6 @@ const Navbar = () => {
               {t.nav.pricing}
             </Link>
 
-            {/* FAQ */}
             <Link
               to="/faq"
               onClick={closeMenu}
@@ -495,7 +481,6 @@ const Navbar = () => {
               {t.nav.faq}
             </Link>
 
-            {/* CONTACT */}
             <Link
               to="/contact"
               onClick={closeMenu}
@@ -508,7 +493,7 @@ const Navbar = () => {
               {t.nav.contact}
             </Link>
 
-            {/* MOBILE LANGUAGE */}
+            {/* MOBILE + TABLET LANGUAGE */}
             <div className="mt-5">
               <p
                 className="
@@ -523,14 +508,14 @@ const Navbar = () => {
                 Language
               </p>
 
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {languages.map((language) => (
                   <button
                     key={language.name}
                     type="button"
                     onClick={() => handleLanguageSelect(language)}
                     onMouseMove={handleLiquidMouseMove}
-                    className={`group relative flex items-center gap-2 rounded-xl border px-3 py-2.5 text-left transition-all duration-300 ${
+                    className={`group relative flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2.5 text-left transition-all duration-300 ${
                       selectedLanguage.name === language.name
                         ? "border-white/20 bg-white/10 text-white"
                         : "border-white/10 text-gray-400 hover:bg-white/6 hover:text-white"
@@ -550,7 +535,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* MOBILE BUILD YOUR EVENT */}
+            {/* MOBILE + TABLET BUILD YOUR EVENT */}
             <Link
               to="/events"
               onClick={closeMenu}

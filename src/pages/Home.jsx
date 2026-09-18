@@ -43,10 +43,38 @@ const Home = () => {
       {/* =========================================================
       HERO
       ========================================================== */}
-      <section className="relative mx-auto flex min-h-screen max-w-7xl items-center px-5 pb-16 pt-28 sm:px-8 sm:pt-32 lg:px-12 lg:pt-24">
-        <div className="grid w-full grid-cols-1 items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-6">
+      <section
+        className="
+          relative
+          mx-auto
+          flex
+          min-h-screen
+          max-w-7xl
+          items-center
+          px-5
+          pb-16
+          pt-28
+          sm:px-8
+          sm:pt-32
+          md:pt-28
+          lg:px-12
+          lg:pt-24
+        "
+      >
+        <div
+          className="
+            grid
+            w-full
+            grid-cols-1
+            items-center
+            gap-10
+            md:gap-12
+            lg:grid-cols-[0.95fr_1.05fr]
+            lg:gap-6
+          "
+        >
           {/* LEFT CONTENT */}
-          <div className="relative z-20 max-w-xl">
+          <div className="relative z-20 max-w-xl md:max-w-2xl lg:max-w-xl">
             <ScrollReveal>
               <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-gray-500 sm:text-sm">
                 {t.home.eyebrow}
@@ -54,7 +82,19 @@ const Home = () => {
             </ScrollReveal>
 
             <ScrollReveal delay={150}>
-              <h1 className="font-serif text-4xl font-medium leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl">
+              <h1
+                className="
+                  font-serif
+                  text-4xl
+                  font-medium
+                  leading-[0.98]
+                  tracking-[-0.045em]
+                  sm:text-6xl
+                  md:text-6xl
+                  lg:text-7xl
+                  xl:text-8xl
+                "
+              >
                 {t.home.heroTitle1}
                 <br />
                 <span className="text-gray-500">{t.home.heroTitle2}</span>
@@ -74,7 +114,7 @@ const Home = () => {
             LIQUID GLASS HERO BUTTONS
             ====================================================== */}
             <ScrollReveal delay={450}>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 {/* GET STARTED */}
                 <Link
                   to="/events"
@@ -83,6 +123,7 @@ const Home = () => {
                     relative
                     inline-flex
                     h-13
+                    w-full
                     items-center
                     justify-center
                     overflow-hidden
@@ -104,9 +145,9 @@ const Home = () => {
                     hover:border-white/40
                     hover:bg-white/15
                     hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_15px_40px_rgba(255,255,255,0.08)]
+                    sm:w-auto
                   "
                 >
-                  {/* GLASS REFLECTION */}
                   <span
                     className="
                       pointer-events-none
@@ -125,7 +166,6 @@ const Home = () => {
                     "
                   />
 
-                  {/* TOP HIGHLIGHT */}
                   <span
                     className="
                       pointer-events-none
@@ -156,6 +196,7 @@ const Home = () => {
                     relative
                     inline-flex
                     h-13
+                    w-full
                     items-center
                     justify-center
                     overflow-hidden
@@ -177,9 +218,9 @@ const Home = () => {
                     hover:border-white/35
                     hover:bg-white/10
                     hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_15px_40px_rgba(255,255,255,0.06)]
+                    sm:w-auto
                   "
                 >
-                  {/* GLASS REFLECTION */}
                   <span
                     className="
                       pointer-events-none
@@ -198,7 +239,6 @@ const Home = () => {
                     "
                   />
 
-                  {/* TOP HIGHLIGHT */}
                   <span
                     className="
                       pointer-events-none
@@ -237,7 +277,7 @@ const Home = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Apple App Store"
-                    className="flex h-14 w-40 cursor-pointer items-center gap-3 rounded-xl bg-white px-4 text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 hover:shadow-lg"
+                    className="flex h-14 w-full cursor-pointer items-center gap-3 rounded-xl bg-white px-4 text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 hover:shadow-lg sm:w-40"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -265,7 +305,7 @@ const Home = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open Google Play Store"
-                    className="flex h-14 w-40 cursor-pointer items-center gap-3 rounded-xl bg-white px-4 text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 hover:shadow-lg"
+                    className="flex h-14 w-full cursor-pointer items-center gap-3 rounded-xl bg-white px-4 text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 hover:shadow-lg sm:w-40"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -310,9 +350,23 @@ const Home = () => {
           RIGHT — SNAPROLL VISUAL
           ====================================================== */}
           <ScrollReveal delay={250} direction="left">
-            <div className="relative mx-auto h-135 w-full max-w-150 sm:h-155 lg:h-170">
+            <div
+              className="
+                relative
+                mx-auto
+                h-120
+                w-full
+                max-w-125
+                sm:h-145
+                sm:max-w-137.5
+                md:h-145
+                md:max-w-137.5
+                lg:h-170
+                lg:max-w-150
+              "
+            >
               {/* MEMORY 02 */}
-              <div className="absolute right-[3%] top-[5%] hidden w-53.75 rotate-10 rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-7 sm:block lg:right-[8%] lg:w-61.25">
+              <div className="absolute right-[2%] top-[5%] hidden w-48 rotate-10 rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-7 sm:block sm:w-53.75 md:right-[5%] lg:right-[8%] lg:w-61.25">
                 <div className="flex aspect-4/5 items-center justify-center rounded-xl bg-neutral-900">
                   <div className="text-center">
                     <span className="block text-[9px] uppercase tracking-[0.3em] text-gray-600">
@@ -335,7 +389,28 @@ const Home = () => {
               </div>
 
               {/* PHONE */}
-              <div className="absolute left-1/2 top-1/2 z-20 h-117.5 w-58.75 -translate-x-1/2 -translate-y-1/2 rotate-[-4deg] transition-transform duration-700 hover:-rotate-1 sm:h-137.5 sm:w-68.75 lg:h-147.5 lg:w-73.75">
+              <div
+                className="
+                  absolute
+                  left-1/2
+                  top-1/2
+                  z-20
+                  h-105
+                  w-52.5
+                  -translate-x-1/2
+                  -translate-y-1/2
+                  rotate-[-4deg]
+                  transition-transform
+                  duration-700
+                  hover:-rotate-1
+                  sm:h-125
+                  sm:w-62.5
+                  md:h-130
+                  md:w-65
+                  lg:h-147.5
+                  lg:w-73.75
+                "
+              >
                 {/* LEFT SIDE BUTTONS */}
                 <div className="pointer-events-none absolute -left-4 top-[19%] z-50 flex flex-col gap-5 sm:-left-5">
                   <span className="block h-6 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-7" />
@@ -355,7 +430,7 @@ const Home = () => {
                   className="
                     absolute
                     inset-0
-                    rounded-[42px]
+                    rounded-[38px]
                     border
                     border-white/30
                     bg-linear-to-br
@@ -364,7 +439,8 @@ const Home = () => {
                     to-gray-500
                     p-1.5
                     shadow-[0_35px_90px_rgba(255,255,255,0.12)]
-                    sm:rounded-[48px]
+                    sm:rounded-[44px]
+                    lg:rounded-[48px]
                   "
                 >
                   {/* INNER BLACK BODY */}
@@ -374,24 +450,25 @@ const Home = () => {
                       h-full
                       w-full
                       overflow-hidden
-                      rounded-[36px]
+                      rounded-[32px]
                       border
                       border-black/80
                       bg-black
                       p-1
-                      sm:rounded-[41px]
+                      sm:rounded-[38px]
+                      lg:rounded-[41px]
                     "
                   >
                     {/* SCREEN */}
-                    <div className="relative h-full w-full overflow-hidden rounded-[31px] bg-neutral-950 sm:rounded-[36px]">
+                    <div className="relative h-full w-full overflow-hidden rounded-[27px] bg-neutral-950 sm:rounded-[33px] lg:rounded-[36px]">
                       {/* DYNAMIC ISLAND */}
-                      <div className="absolute left-1/2 top-2.5 z-40 h-7 w-24 -translate-x-1/2 rounded-full bg-black shadow-inner sm:top-3 sm:h-8 sm:w-28" />
+                      <div className="absolute left-1/2 top-2.5 z-40 h-7 w-22 -translate-x-1/2 rounded-full bg-black shadow-inner sm:top-3 sm:h-8 sm:w-28" />
 
                       {/* CAMERA DOT */}
                       <div className="absolute left-1/2 top-[18px] z-50 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-gray-700 sm:top-[20px]" />
 
                       {/* TOP CONTENT */}
-                      <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-5 pt-12 sm:px-6 sm:pt-14">
+                      <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-4 pt-11 sm:px-6 sm:pt-14">
                         <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white">
                           SnapRoll
                         </span>
@@ -402,8 +479,8 @@ const Home = () => {
                       </div>
 
                       {/* MAIN SCREEN CONTENT */}
-                      <div className="flex h-full flex-col justify-end p-5 sm:p-6">
-                        <div className="mb-4 rounded-2xl border border-white/10 bg-white/4 p-4 backdrop-blur-sm sm:mb-5 sm:p-5">
+                      <div className="flex h-full flex-col justify-end p-4 sm:p-6">
+                        <div className="mb-4 rounded-2xl border border-white/10 bg-white/4 p-3.5 backdrop-blur-sm sm:mb-5 sm:p-5">
                           <div className="flex items-center justify-between">
                             <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500">
                               {t.home.yourStory}
@@ -414,7 +491,7 @@ const Home = () => {
                             </span>
                           </div>
 
-                          <p className="mt-3 font-serif text-2xl leading-tight text-white sm:text-3xl">
+                          <p className="mt-3 font-serif text-xl leading-tight text-white sm:text-3xl">
                             {t.home.littleMoments}
                             <br />
                             {t.home.becomeStories}
@@ -437,7 +514,7 @@ const Home = () => {
               </div>
 
               {/* MEMORY 01 */}
-              <div className="absolute bottom-[5%] left-[2%] z-30 w-41.25 rotate-[-11deg] rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-[-7deg] sm:w-48.75 lg:left-[6%] lg:w-52.5">
+              <div className="absolute bottom-[5%] left-[2%] z-30 w-37.5 rotate-[-11deg] rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-[-7deg] sm:w-48.75 md:left-[4%] lg:left-[6%] lg:w-52.5">
                 <div className="flex aspect-square items-center justify-center rounded-xl bg-neutral-900">
                   <div className="text-center">
                     <span className="block text-[9px] uppercase tracking-[0.3em] text-gray-600">
@@ -480,7 +557,7 @@ const Home = () => {
       ========================================================== */}
       <section className="border-t border-white/10 bg-black">
         <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
-          <div className="grid gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:items-center lg:gap-24">
+          <div className="grid gap-14 md:gap-16 lg:grid-cols-[0.7fr_1.3fr] lg:items-center lg:gap-24">
             <ScrollReveal direction="right">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
@@ -492,8 +569,8 @@ const Home = () => {
                 </p>
 
                 <div className="mt-10">
-                  <div className="inline-flex flex-col items-center">
-                    <div className="rounded-[28px] bg-white p-5 shadow-2xl shadow-white/5 transition-transform duration-500 hover:-translate-y-2">
+                  <div className="inline-flex w-full flex-col items-center sm:w-auto">
+                    <div className="rounded-[28px] bg-white p-4 shadow-2xl shadow-white/5 transition-transform duration-500 hover:-translate-y-2 sm:p-5">
                       <QRCodeSVG
                         value={eventUrl}
                         size={220}
@@ -501,13 +578,14 @@ const Home = () => {
                         fgColor="#000000"
                         level="H"
                         includeMargin={false}
+                        className="h-auto w-[min(220px,65vw)]"
                       />
                     </div>
 
                     <div className="mt-5 flex items-center gap-3">
                       <span className="h-px w-7 bg-white/20" />
 
-                      <p className="text-[9px] font-medium uppercase tracking-[0.28em] text-gray-500">
+                      <p className="text-center text-[9px] font-medium uppercase tracking-[0.28em] text-gray-500">
                         {t.home.scanToJoin}
                       </p>
 
@@ -649,6 +727,7 @@ const Home = () => {
                 mt-10
                 inline-flex
                 h-14
+                w-full
                 items-center
                 justify-center
                 overflow-hidden
@@ -669,9 +748,9 @@ const Home = () => {
                 hover:border-white/35
                 hover:bg-white/15
                 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_15px_40px_rgba(255,255,255,0.08)]
+                sm:w-auto
               "
             >
-              {/* GLASS REFLECTION */}
               <span
                 className="
                   pointer-events-none
@@ -690,7 +769,6 @@ const Home = () => {
                 "
               />
 
-              {/* TOP HIGHLIGHT */}
               <span
                 className="
                   pointer-events-none
