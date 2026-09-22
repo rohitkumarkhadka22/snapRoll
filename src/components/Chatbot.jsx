@@ -13,10 +13,10 @@ const Chatbot = () => {
   ]);
   const [loading, setLoading] = useState(false);
 
-  // Reference to the bottom of the chat
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
 
-  // Automatically scroll to latest message
+  // Automatically scroll to the latest message
   useEffect(() => {
     if (!isOpen) return;
 
@@ -30,13 +30,41 @@ const Chatbot = () => {
     return () => clearTimeout(timer);
   }, [messages, loading, isOpen]);
 
+  // Focus input when chatbot opens
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 200);
+    }
+  }, [isOpen]);
+
   // Send message
   const sendMessage = async () => {
     if (!message.trim() || loading) return;
 
     const userMessage = message.trim();
 
-    // Add user message immediately
+    /*
+      Build conversation BEFORE adding the new message to state.
+
+      This gives the backend:
+      - previous user messages
+      - previous AI responses
+      - current user message
+    */
+    const conversation = [
+      ...messages.map((msg) => ({
+        role: msg.role,
+        content: msg.content,
+      })),
+      {
+        role: "user",
+        content: userMessage,
+      },
+    ];
+
+    // Show user message immediately
     setMessages((prev) => [
       ...prev,
       {
@@ -56,6 +84,7 @@ const Chatbot = () => {
         },
         body: JSON.stringify({
           message: userMessage,
+          conversation,
         }),
       });
 
@@ -94,6 +123,11 @@ const Chatbot = () => {
       e.preventDefault();
       sendMessage();
     }
+  };
+
+  // Close chatbot
+  const closeChat = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -139,7 +173,7 @@ const Chatbot = () => {
             "
           >
             <div className="flex items-center gap-3">
-              {/* ROBOT IMAGE */}
+              {/* BOT IMAGE */}
               <div
                 className="
                   relative
@@ -180,14 +214,16 @@ const Chatbot = () => {
                     "
                   />
 
-                  <p className="text-[11px] text-white/45">Online</p>
+                  <p className="text-[11px] text-white/45">
+                    {loading ? "Thinking..." : "Online"}
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* CLOSE BUTTON */}
+            {/* CLOSE */}
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={closeChat}
               className="
                 cursor-pointer
                 rounded-full
@@ -206,7 +242,7 @@ const Chatbot = () => {
           </div>
 
           {/* =================================================
-              MESSAGES AREA
+              MESSAGES
           ================================================== */}
           <div
             onWheel={(e) => {
@@ -227,7 +263,7 @@ const Chatbot = () => {
           >
             {messages.map((msg, index) => (
               <div
-                key={index}
+                key={`${msg.role}-${index}`}
                 className={`
                   flex
                   ${msg.role === "user" ? "justify-end" : "justify-start"}
@@ -351,7 +387,7 @@ const Chatbot = () => {
               </div>
             )}
 
-            {/* AUTO SCROLL ANCHOR */}
+            {/* AUTO SCROLL */}
             <div ref={messagesEndRef} className="h-px w-full" />
           </div>
 
@@ -383,13 +419,16 @@ const Chatbot = () => {
                 focus-within:bg-white/[0.07]
               "
             >
-              {/* INPUT */}
               <input
+                ref={inputRef}
                 type="text"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask about SnapRoll..."
+                placeholder={
+                  loading ? "SnapRoll AI is thinking..." : "Ask anything..."
+                }
+                disabled={loading}
                 className="
                   min-w-0
                   flex-1
@@ -399,6 +438,8 @@ const Chatbot = () => {
                   text-white
                   outline-none
                   placeholder:text-white/25
+                  disabled:cursor-not-allowed
+                  disabled:opacity-60
                 "
               />
 
@@ -432,6 +473,10 @@ const Chatbot = () => {
                 <Send size={16} />
               </button>
             </div>
+
+            <p className="mt-2 text-center text-[9px] text-white/20">
+              SnapRoll AI can make mistakes. Check important information.
+            </p>
           </div>
         </div>
       )}
@@ -497,7 +542,7 @@ const Chatbot = () => {
       </button>
 
       {/* =====================================================
-          CUSTOM ANIMATIONS + CHAT SCROLLBAR
+          ANIMATIONS + SCROLLBAR
       ====================================================== */}
       <style>{`
         @keyframes chatOpen {
@@ -524,10 +569,6 @@ const Chatbot = () => {
           }
         }
 
-        /* =========================================
-           CHATBOT MESSAGE SCROLLBAR ONLY
-        ========================================== */
-
         .chatbot-messages::-webkit-scrollbar {
           width: 5px;
         }
@@ -545,7 +586,6 @@ const Chatbot = () => {
           background: rgba(255, 255, 255, 0.22);
         }
 
-        /* Firefox */
         .chatbot-messages {
           scrollbar-width: thin;
           scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
