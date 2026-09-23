@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { X, Send, Sparkles } from "lucide-react";
 import chatbotImage from "../assets/images/chatbot.jpg";
 
@@ -16,7 +17,7 @@ const Chatbot = () => {
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
-  // Automatically scroll to the latest message
+  // Automatically scroll chatbot messages to the latest message
   useEffect(() => {
     if (!isOpen) return;
 
@@ -33,9 +34,11 @@ const Chatbot = () => {
   // Focus input when chatbot opens
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         inputRef.current?.focus();
       }, 200);
+
+      return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
@@ -45,24 +48,14 @@ const Chatbot = () => {
 
     const userMessage = message.trim();
 
-    /*
-      Build conversation BEFORE adding the new message to state.
-
-      This gives the backend:
-      - previous user messages
-      - previous AI responses
-      - current user message
-    */
-    const conversation = [
-      ...messages.map((msg) => ({
+    // Send previous conversation only.
+    // Backend adds the current message exactly once.
+    const conversation = messages
+      .map((msg) => ({
         role: msg.role,
         content: msg.content,
-      })),
-      {
-        role: "user",
-        content: userMessage,
-      },
-    ];
+      }))
+      .slice(-16);
 
     // Show user message immediately
     setMessages((prev) => [
@@ -130,7 +123,9 @@ const Chatbot = () => {
     setIsOpen(false);
   };
 
-  return (
+  // Render chatbot directly into document.body.
+  // This keeps it independent from Lenis and page layout containers.
+  return createPortal(
     <>
       {/* =====================================================
           CHAT WINDOW
@@ -141,7 +136,7 @@ const Chatbot = () => {
             fixed
             bottom-24
             right-5
-            z-[9999]
+            z-[999999]
             flex
             h-[520px]
             w-[360px]
@@ -246,6 +241,9 @@ const Chatbot = () => {
           ================================================== */}
           <div
             onWheel={(e) => {
+              e.stopPropagation();
+            }}
+            onTouchMove={(e) => {
               e.stopPropagation();
             }}
             className="
@@ -491,7 +489,7 @@ const Chatbot = () => {
           fixed
           bottom-5
           right-5
-          z-[9999]
+          z-[999999]
           flex
           h-14
           w-14
@@ -591,7 +589,8 @@ const Chatbot = () => {
           scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
         }
       `}</style>
-    </>
+    </>,
+    document.body,
   );
 };
 

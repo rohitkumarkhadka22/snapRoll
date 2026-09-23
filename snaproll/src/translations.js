@@ -616,6 +616,7 @@ const translations = {
       validationEventDate: "Choose the day your memories will begin.",
     },
   },
+  
 
   /* =====================================================
      SPANISH

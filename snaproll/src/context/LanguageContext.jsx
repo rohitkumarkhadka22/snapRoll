@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 
-import { createContext, useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import translations from "../translations";
 
 export const LanguageContext = createContext(null);
@@ -27,6 +27,16 @@ export const languages = [
     code: "pt",
   },
 ];
+
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+
+  if (!context) {
+    throw new Error("useLanguage must be used inside a LanguageProvider");
+  }
+
+  return context;
+};
 
 const LanguageProvider = ({ children }) => {
   const [selectedLanguage, setSelectedLanguage] = useState(() => {

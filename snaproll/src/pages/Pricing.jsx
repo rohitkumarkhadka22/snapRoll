@@ -96,14 +96,14 @@ const Pricing = () => {
         <div className="pointer-events-none absolute left-1/2 top-16 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-white/[0.035] blur-3xl sm:top-20 sm:h-[420px] sm:w-[420px]" />
 
         <div className="relative mx-auto max-w-5xl text-center">
-          <ScrollReveal>
+          <ScrollReveal duration={900} y={25}>
             <div className="mb-5 inline-flex cursor-default items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] tracking-[0.18em] text-white/60 backdrop-blur-xl sm:mb-6 sm:text-xs">
               <Sparkles size={13} strokeWidth={1.5} />
               SIMPLE PRICING
             </div>
           </ScrollReveal>
 
-          <ScrollReveal>
+          <ScrollReveal delay={100} duration={1000} y={30}>
             <h1 className="mx-auto max-w-4xl cursor-default font-serif text-4xl leading-[1] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
               Simple pricing.
               <br />
@@ -111,7 +111,7 @@ const Pricing = () => {
             </h1>
           </ScrollReveal>
 
-          <ScrollReveal>
+          <ScrollReveal delay={200} duration={1000} y={30}>
             <p className="mx-auto mt-6 max-w-2xl cursor-default text-sm leading-6 text-white/55 sm:mt-7 sm:text-lg sm:leading-7">
               Bring everyone into the moment, capture every memory, and keep
               everything together in one shared event.
@@ -122,11 +122,17 @@ const Pricing = () => {
 
       {/* =========================================================
           PRICING CARDS
+          Free → Event → Pro
       ========================================================= */}
       <section className="px-5 pb-20 sm:px-8 sm:pb-24 md:pb-28">
         <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-3">
-          {plans.map((plan) => (
-            <ScrollReveal key={plan.name}>
+          {plans.map((plan, index) => (
+            <ScrollReveal
+              key={plan.name}
+              delay={index * 220}
+              duration={1100}
+              y={50}
+            >
               <div
                 className={`group relative flex h-full cursor-default flex-col overflow-hidden rounded-[26px] border p-6 transition-all duration-500 sm:rounded-[30px] sm:p-8 ${
                   plan.popular
@@ -173,6 +179,7 @@ const Pricing = () => {
                     }`}
                   >
                     {plan.button}
+
                     <ArrowRight
                       size={15}
                       className="transition-transform duration-300 group-hover:translate-x-0.5"
@@ -215,7 +222,7 @@ const Pricing = () => {
       ========================================================= */}
       <section className="border-y border-white/[0.07] px-5 py-20 sm:px-8 sm:py-24 md:py-28 lg:py-32">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal>
+          <ScrollReveal duration={1000} y={40}>
             <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-start md:gap-12">
               <div>
                 <p className="cursor-default text-xs uppercase tracking-[0.2em] text-white/35">
@@ -272,7 +279,7 @@ const Pricing = () => {
       ========================================================= */}
       <section className="px-5 py-20 sm:px-8 sm:py-24 md:py-28 lg:py-32">
         <div className="mx-auto max-w-4xl">
-          <ScrollReveal>
+          <ScrollReveal duration={1000} y={35}>
             <div className="text-center">
               <p className="cursor-default text-xs uppercase tracking-[0.2em] text-white/35">
                 Questions
@@ -290,8 +297,13 @@ const Pricing = () => {
           </ScrollReveal>
 
           <div className="mt-10 divide-y divide-white/[0.08] border-y border-white/[0.08] sm:mt-14">
-            {faqs.map((faq) => (
-              <ScrollReveal key={faq.question}>
+            {faqs.map((faq, index) => (
+              <ScrollReveal
+                key={faq.question}
+                delay={index * 100}
+                duration={900}
+                y={25}
+              >
                 <details className="group py-5 sm:py-6">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left sm:gap-6">
                     <span className="font-serif text-base sm:text-xl">
@@ -317,7 +329,7 @@ const Pricing = () => {
           FINAL CTA
       ========================================================= */}
       <section className="px-5 pb-20 sm:px-8 sm:pb-28 md:pb-36">
-        <ScrollReveal>
+        <ScrollReveal duration={1100} y={45}>
           <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.045] px-5 py-14 text-center backdrop-blur-xl sm:rounded-[36px] sm:px-10 sm:py-16 md:py-24">
             <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.06] blur-3xl" />
 
@@ -340,6 +352,7 @@ const Pricing = () => {
                   to="/events/create"
                   className="group inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-white bg-white px-7 text-sm font-medium text-black transition-all duration-300 hover:bg-white/90 sm:w-auto"
                 >
+                  Create an event
                   <ArrowRight
                     size={15}
                     className="transition-transform duration-300 group-hover:translate-x-0.5"

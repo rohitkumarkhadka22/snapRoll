@@ -2,23 +2,17 @@ import { useEffect, useRef, useState } from "react";
 
 const ScrollReveal = ({
   children,
-  className = "",
   delay = 0,
-  direction = "up",
+  duration = 900,
+  y = 35,
+  once = true,
+  className = "",
 }) => {
+  const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef(null);
-
-  const hiddenStyles = {
-    up: "translate-y-6",
-    down: "-translate-y-6",
-    left: "translate-x-6",
-    right: "-translate-x-6",
-    none: "",
-  };
 
   useEffect(() => {
-    const element = elementRef.current;
+    const element = ref.current;
 
     if (!element) return;
 
@@ -26,38 +20,42 @@ const ScrollReveal = ({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(element);
+
+          if (once) {
+            observer.unobserve(element);
+          }
+        } else if (!once) {
+          setIsVisible(false);
         }
       },
       {
-        threshold: 0,
-        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px",
       },
     );
 
     observer.observe(element);
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+    };
+  }, [once]);
 
   return (
     <div
-      ref={elementRef}
+      ref={ref}
+      className={className}
       style={{
-        transitionDelay: isVisible ? `${delay}ms` : undefined,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible
+          ? "translate3d(0, 0, 0)"
+          : `translate3d(0, ${y}px, 0)`,
+        transitionProperty: "opacity, transform",
+        transitionDuration: `${duration}ms`,
+        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+        transitionDelay: `${delay}ms`,
+        willChange: "opacity, transform",
       }}
-      className={`
-        transform-gpu
-        transition-[transform,opacity]
-        duration-500
-        ease-out
-        ${
-          isVisible
-            ? "translate-x-0 translate-y-0 opacity-100"
-            : `${hiddenStyles[direction]} opacity-0`
-        }
-        ${className}
-      `}
     >
       {children}
     </div>
