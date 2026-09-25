@@ -232,3 +232,35 @@ body {
     -webkit-overflow-scrolling: touch;
   }
 }
+
+/* =========================================================
+   CONTACT PAGE — SLOW SCROLL REVEAL
+========================================================= */
+
+.contact-reveal {
+  opacity: 0;
+  transform: translate3d(0, 55px, 0);
+  filter: blur(6px);
+
+  transition:
+    opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.25s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: opacity, transform, filter;
+}
+
+.contact-reveal-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
