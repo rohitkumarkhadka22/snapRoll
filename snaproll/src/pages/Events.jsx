@@ -42,22 +42,14 @@ const events = [
   },
 ];
 
-/* =========================================================
-   EVENT CARD
-========================================================= */
+//  EVENT CARD
 
 const EventCard = ({ event, t, featured = false }) => {
   const eventTranslation = t.events.eventTypes[event.key];
 
   return (
     <article
-      className={`
-        group relative overflow-hidden rounded-[26px]
-        border border-white/10 bg-[#101010]
-        transition-transform duration-300 ease-out
-        hover:-translate-y-1
-        ${featured ? "min-h-130 sm:min-h-145 lg:min-h-160" : "min-h-115 sm:min-h-125"}
-      `}
+      className={`group relative overflow-hidden rounded-[26px] border border-white/10 bg-[#101010] transition-transform duration-300 ease-out hover:-translate-y-1 ${featured ? "min-h-130 sm:min-h-145 lg:min-h-160" : "min-h-115 sm:min-h-125"} `}
     >
       {/* IMAGE */}
       <div className="absolute inset-0">
@@ -67,11 +59,7 @@ const EventCard = ({ event, t, featured = false }) => {
           loading="lazy"
           decoding="async"
           draggable="false"
-          className="
-            h-full w-full object-cover
-            transition-transform duration-700 ease-out
-            group-hover:scale-[1.035]
-          "
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
         />
 
         <div className="absolute inset-0 bg-linear-to-t from-black via-black/35 to-black/5" />
@@ -80,32 +68,14 @@ const EventCard = ({ event, t, featured = false }) => {
       </div>
 
       {/* TOP */}
-      <div className="absolute left-4 right-4 top-4 z-20 flex items-center justify-between sm:left-5 sm:right-5 sm:top-5">
+      <div className="absolute top-4 right-4 left-4 z-20 flex items-center justify-between sm:top-5 sm:right-5 sm:left-5">
         {/* CAMERA */}
-        <div
-          className="
-            flex h-9 w-9 items-center justify-center
-            rounded-full border border-white/15
-            bg-black/35 text-white backdrop-blur-sm
-          "
-        >
+        <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur-sm">
           <Camera size={14} />
         </div>
 
         {/* LIVE MEMORIES */}
-        <div
-          className="
-            flex items-center gap-1.5
-            rounded-full border border-white/15
-            bg-black/45
-            px-2.5 py-1.5
-            text-[8px] uppercase
-            tracking-[0.14em]
-            text-white/75
-            backdrop-blur-sm
-            sm:px-3 sm:text-[9px]
-          "
-        >
+        <div className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/45 px-2.5 py-1.5 text-[8px] tracking-[0.14em] text-white/75 uppercase backdrop-blur-sm sm:px-3 sm:text-[9px]">
           <Star size={10} strokeWidth={1.8} className="fill-white text-white" />
 
           <span>{t.events.liveMemories}</span>
@@ -116,17 +86,12 @@ const EventCard = ({ event, t, featured = false }) => {
       <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-6">
         <div className="flex items-end justify-between gap-3 sm:gap-4">
           <div className="min-w-0">
-            <p className="text-[8px] uppercase tracking-[0.22em] text-white/45 sm:text-[9px]">
+            <p className="text-[8px] tracking-[0.22em] text-white/45 uppercase sm:text-[9px]">
               {t.events.snaprollEvent}
             </p>
 
             <h3
-              className={`
-                mt-2 font-medium
-                tracking-[-0.04em]
-                text-white
-                ${featured ? "text-2xl sm:text-3xl lg:text-4xl" : "text-xl sm:text-2xl"}
-              `}
+              className={`mt-2 font-medium tracking-[-0.04em] text-white ${featured ? "text-2xl sm:text-3xl lg:text-4xl" : "text-xl sm:text-2xl"} `}
             >
               {eventTranslation.title}
             </h3>
@@ -145,14 +110,7 @@ const EventCard = ({ event, t, featured = false }) => {
               {[1, 2, 3].map((item) => (
                 <div
                   key={item}
-                  className="
-                    flex h-7 w-7 shrink-0 items-center justify-center
-                    rounded-full
-                    border-2 border-[#151515]
-                    bg-white/10
-                    text-[8px]
-                    text-white/55
-                  "
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-[#151515] bg-white/10 text-[8px] text-white/55"
                 >
                   {item}
                 </div>
@@ -167,18 +125,7 @@ const EventCard = ({ event, t, featured = false }) => {
           <button
             type="button"
             aria-label={`Like ${eventTranslation.title}`}
-            className="
-              flex h-9 w-9 shrink-0
-              cursor-pointer
-              items-center justify-center
-              rounded-full
-              border border-white/15
-              bg-black/30
-              text-white/70
-              transition-all duration-200
-              hover:bg-white
-              hover:text-black
-            "
+            className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/30 text-white/70 transition-all duration-200 hover:bg-white hover:text-black"
           >
             <Heart size={14} />
           </button>
@@ -188,9 +135,7 @@ const EventCard = ({ event, t, featured = false }) => {
   );
 };
 
-/* =========================================================
-   EVENT TYPE
-========================================================= */
+//  EVENT TYPE
 
 const EventType = ({ event, t }) => {
   const eventTranslation = t.events.eventTypes[event.key];
@@ -198,21 +143,7 @@ const EventType = ({ event, t }) => {
   return (
     <button
       type="button"
-      className="
-        group flex
-        cursor-pointer
-        items-center gap-2.5
-        rounded-full
-        border border-white/10
-        bg-white/[0.035]
-        px-3.5 py-2.5
-        text-xs text-white/55
-        transition-all duration-200
-        hover:border-white/20
-        hover:bg-white/[0.07]
-        hover:text-white
-        sm:gap-3 sm:px-4 sm:py-3 sm:text-sm
-      "
+      className="group flex cursor-pointer items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.035] px-3.5 py-2.5 text-xs text-white/55 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.07] hover:text-white sm:gap-3 sm:px-4 sm:py-3 sm:text-sm"
     >
       <span className="text-sm sm:text-base">{event.emoji}</span>
 
@@ -220,20 +151,13 @@ const EventType = ({ event, t }) => {
 
       <ArrowRight
         size={13}
-        className="
-          text-white/25
-          transition-transform duration-200
-          group-hover:translate-x-1
-          group-hover:text-white/70
-        "
+        className="text-white/25 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-white/70"
       />
     </button>
   );
 };
 
-/* =========================================================
-   EVENTS PAGE
-========================================================= */
+//  EVENTS PAGE
 
 const Events = () => {
   const { t } = useContext(LanguageContext);
@@ -247,60 +171,22 @@ const Events = () => {
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
-        <div
-          className="
-            absolute left-1/2 top-0
-            h-125 w-125
-            -translate-x-1/2
-            rounded-full
-            bg-white/[0.025]
-            blur-[90px]
-            sm:h-175 sm:w-175 sm:blur-[100px]
-          "
-        />
+        <div className="absolute top-0 left-1/2 h-125 w-125 -translate-x-1/2 rounded-full bg-white/[0.025] blur-[90px] sm:h-175 sm:w-175 sm:blur-[100px]" />
 
-        <div
-          className="
-            absolute -right-40 top-[45%]
-            h-100 w-100
-            rounded-full
-            bg-white/[0.015]
-            blur-[80px]
-            sm:-right-48 sm:h-125 sm:w-125 sm:blur-[90px]
-          "
-        />
+        <div className="absolute top-[45%] -right-40 h-100 w-100 rounded-full bg-white/[0.015] blur-[80px] sm:-right-48 sm:h-125 sm:w-125 sm:blur-[90px]" />
       </div>
 
       {/* HERO */}
-      <section className="relative px-5 pb-12 pt-32 sm:px-8 sm:pb-14 sm:pt-40 lg:px-12">
+      <section className="relative px-5 pt-32 pb-12 sm:px-8 sm:pt-40 sm:pb-14 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="grid items-start gap-8 md:gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div>
-              <div
-                className="
-                  mb-6 inline-flex items-center gap-2
-                  rounded-full
-                  border border-white/10
-                  bg-white/[0.045]
-                  px-4 py-2
-                  text-[10px] text-white/55
-                  sm:mb-7 sm:text-xs
-                "
-              >
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-[10px] text-white/55 sm:mb-7 sm:text-xs">
                 <Camera size={13} />
                 {t.events.badge}
               </div>
 
-              <h1
-                className="
-                  max-w-5xl
-                  text-4xl font-medium
-                  leading-[0.95]
-                  tracking-[-0.065em]
-                  sm:text-6xl
-                  lg:text-8xl
-                "
-              >
+              <h1 className="max-w-5xl text-4xl leading-[0.95] font-medium tracking-[-0.065em] sm:text-6xl lg:text-8xl">
                 {t.events.heroTitle1}
                 <br />
 
@@ -341,31 +227,15 @@ const Events = () => {
       </section>
 
       {/* EVENT TYPES */}
-      <section
-        className="
-          relative
-          border-t border-white/8
-          px-5 py-16
-          sm:px-8 sm:py-20
-          lg:px-12
-        "
-      >
+      <section className="relative border-t border-white/8 px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 md:gap-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
-              <p className="text-[9px] uppercase tracking-[0.25em] text-white/30 sm:text-[10px]">
+              <p className="text-[9px] tracking-[0.25em] text-white/30 uppercase sm:text-[10px]">
                 {t.events.madeFor}
               </p>
 
-              <h2
-                className="
-                  mt-4 max-w-md
-                  text-3xl font-medium
-                  leading-[1]
-                  tracking-[-0.055em]
-                  sm:text-5xl
-                "
-              >
+              <h2 className="mt-4 max-w-md text-3xl leading-[1] font-medium tracking-[-0.055em] sm:text-5xl">
                 {t.events.celebrating1}
                 <br />
 
@@ -391,38 +261,15 @@ const Events = () => {
       {/* PROCESS */}
       <section className="relative px-5 pb-20 sm:px-8 sm:pb-24 lg:px-12">
         <div className="mx-auto max-w-7xl">
-          <div
-            className="
-              overflow-hidden
-              rounded-[26px]
-              border border-white/10
-              bg-white/[0.035]
-              sm:rounded-[28px]
-            "
-          >
+          <div className="overflow-hidden rounded-[26px] border border-white/10 bg-white/[0.035] sm:rounded-[28px]">
             <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
               {/* LEFT */}
               <div className="p-5 sm:p-8 lg:p-9">
-                <div
-                  className="
-                    flex h-9 w-9
-                    items-center justify-center
-                    rounded-xl
-                    bg-white text-black
-                  "
-                >
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-black">
                   <Sparkles size={16} />
                 </div>
 
-                <h2
-                  className="
-                    mt-4
-                    text-2xl font-medium
-                    leading-tight
-                    tracking-[-0.045em]
-                    sm:text-3xl
-                  "
-                >
+                <h2 className="mt-4 text-2xl leading-tight font-medium tracking-[-0.045em] sm:text-3xl">
                   {t.events.simpleTitle1}
                   <br />
 
@@ -435,80 +282,28 @@ const Events = () => {
               </div>
 
               {/* RIGHT */}
-              <div
-                className="
-                  grid
-                  border-t border-white/8
-                  sm:grid-cols-3
-                  lg:border-l lg:border-t-0
-                "
-              >
+              <div className="grid border-t border-white/8 sm:grid-cols-3 lg:border-t-0 lg:border-l">
                 {[
-                  [
-                    "01",
-                    t.events.steps.create,
-                    t.events.steps.createDescription,
-                  ],
-                  [
-                    "02",
-                    t.events.steps.invite,
-                    t.events.steps.inviteDescription,
-                  ],
-                  [
-                    "03",
-                    t.events.steps.capture,
-                    t.events.steps.captureDescription,
-                  ],
+                  ["01", t.events.steps.create, t.events.steps.createDescription],
+                  ["02", t.events.steps.invite, t.events.steps.inviteDescription],
+                  ["03", t.events.steps.capture, t.events.steps.captureDescription],
                 ].map(([number, title, description], index) => (
                   <div
                     key={number}
-                    className="
-                      group
-                      flex min-h-32
-                      cursor-pointer
-                      flex-col
-                      border-b border-white/8
-                      p-4
-                      opacity-0
-                      animate-[fadeUp_0.6s_ease-out_forwards]
-                      transition-all duration-200
-                      hover:bg-white/[0.025]
-                      last:border-b-0
-                      sm:min-h-36
-                      sm:border-b-0
-                      sm:border-r
-                      sm:last:border-r-0
-                      lg:min-h-40
-                    "
+                    className="group flex min-h-32 animate-[fadeUp_0.6s_ease-out_forwards] cursor-pointer flex-col border-b border-white/8 p-4 opacity-0 transition-all duration-200 last:border-b-0 hover:bg-white/[0.025] sm:min-h-36 sm:border-r sm:border-b-0 sm:last:border-r-0 lg:min-h-40"
                     style={{
                       animationDelay: `${index * 120}ms`,
                     }}
                   >
-                    <span className="text-[9px] tracking-[0.2em] text-white/25">
-                      {number}
-                    </span>
+                    <span className="text-[9px] tracking-[0.2em] text-white/25">{number}</span>
 
-                    <h3 className="mt-4 text-sm font-medium sm:text-base">
-                      {title}
-                    </h3>
+                    <h3 className="mt-4 text-sm font-medium sm:text-base">{title}</h3>
 
                     <p className="mt-1.5 text-[10px] leading-4 text-white/35 sm:text-[11px] sm:leading-4.5">
                       {description}
                     </p>
 
-                    <div
-                      className="
-                        mt-auto
-                        flex h-5 w-5
-                        items-center justify-center
-                        rounded-full
-                        border border-white/10
-                        bg-white
-                        text-black
-                        transition-transform duration-200
-                        group-hover:scale-105
-                      "
-                    >
+                    <div className="mt-auto flex h-5 w-5 items-center justify-center rounded-full border border-white/10 bg-white text-black transition-transform duration-200 group-hover:scale-105">
                       <Check size={10} strokeWidth={2.5} />
                     </div>
                   </div>
@@ -522,19 +317,11 @@ const Events = () => {
       {/* CTA */}
       <section className="relative px-5 pb-24 sm:px-8 sm:pb-28 lg:px-12">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-[9px] uppercase tracking-[0.25em] text-white/25 sm:text-[10px]">
+          <p className="text-[9px] tracking-[0.25em] text-white/25 uppercase sm:text-[10px]">
             {t.events.ctaLabel}
           </p>
 
-          <h2
-            className="
-              mt-5
-              text-3xl font-medium
-              tracking-[-0.055em]
-              sm:text-5xl
-              md:text-6xl
-            "
-          >
+          <h2 className="mt-5 text-3xl font-medium tracking-[-0.055em] sm:text-5xl md:text-6xl">
             {t.events.ctaTitle}
           </h2>
 
@@ -545,29 +332,13 @@ const Events = () => {
           <button
             type="button"
             onClick={handleCreateEvent}
-            className="
-              group mt-7
-              inline-flex
-              cursor-pointer
-              items-center gap-3
-              rounded-full
-              bg-white
-              px-6 py-3.5
-              text-sm font-medium
-              text-black
-              transition-transform duration-200
-              hover:-translate-y-0.5
-              sm:mt-8
-            "
+            className="group mt-7 inline-flex cursor-pointer items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-medium text-black transition-transform duration-200 hover:-translate-y-0.5 sm:mt-8"
           >
             {t.events.createEvent}
 
             <ArrowRight
               size={15}
-              className="
-                transition-transform duration-200
-                group-hover:translate-x-1
-              "
+              className="transition-transform duration-200 group-hover:translate-x-1"
             />
           </button>
         </div>

@@ -15,10 +15,7 @@ const Navbar = () => {
   const handleLiquidMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
 
-    e.currentTarget.style.setProperty(
-      "--mouse-x",
-      `${e.clientX - rect.left}px`,
-    );
+    e.currentTarget.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
 
     e.currentTarget.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
   };
@@ -65,41 +62,19 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 w-full px-3 pt-0 transition-transform duration-500 ease-in-out sm:px-5 ${
+      className={`fixed top-0 left-0 z-50 w-full px-3 pt-0 transition-transform duration-500 ease-in-out sm:px-5 ${
         showNavbar ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       {/* LIQUID GLASS NAVBAR */}
-      <nav
-        className="
-          relative mx-auto flex h-18 max-w-7xl items-center
-          rounded-[26px]
-          border border-white/18
-          bg-black/70
-          px-4
-          shadow-[0_8px_40px_rgba(0,0,0,0.28)]
-          backdrop-blur-2xl
-          backdrop-saturate-150
-          sm:h-20 sm:px-6
-          lg:px-7
-        "
-      >
+      <nav className="relative mx-auto flex h-18 max-w-7xl items-center rounded-[26px] border border-white/18 bg-black/70 px-4 shadow-[0_8px_40px_rgba(0,0,0,0.28)] backdrop-blur-2xl backdrop-saturate-150 sm:h-20 sm:px-6 lg:px-7">
         {/* LIQUID GLASS HIGHLIGHT */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[26px]">
-          <div
-            className="
-              absolute -left-20 -top-16
-              h-32 w-72
-              -rotate-12
-              rounded-full
-              bg-white/10
-              blur-2xl
-            "
-          />
+          <div className="absolute -top-16 -left-20 h-32 w-72 -rotate-12 rounded-full bg-white/10 blur-2xl" />
 
           <div className="absolute inset-x-10 top-0 h-px bg-white/18" />
 
-          <div className="absolute bottom-0 left-1/4 right-1/4 h-px bg-white/[0.07]" />
+          <div className="absolute right-1/4 bottom-0 left-1/4 h-px bg-white/[0.07]" />
         </div>
 
         {/* MOBILE + TABLET LEFT SIDE */}
@@ -110,42 +85,18 @@ const Navbar = () => {
               setMenuOpen((prev) => !prev);
               setLanguageOpen(false);
             }}
-            className="
-              flex h-11 w-11
-              cursor-pointer
-              items-center justify-center
-              rounded-full
-              border border-white/15
-              bg-white/10
-              text-white
-              shadow-inner shadow-white/4
-              backdrop-blur-xl
-              transition-all duration-300
-              hover:border-white/25
-              hover:bg-white/13
-            "
+            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/10 text-white shadow-inner shadow-white/4 backdrop-blur-xl transition-all duration-300 hover:border-white/25 hover:bg-white/13"
             aria-label="Toggle navigation menu"
             aria-expanded={menuOpen}
           >
-            <span className="relative text-xl leading-none">
-              {menuOpen ? "×" : "☰"}
-            </span>
+            <span className="relative text-xl leading-none">{menuOpen ? "×" : "☰"}</span>
           </button>
 
-          <Link
-            to="/"
-            onClick={closeMenu}
-            className="flex shrink-0 items-center"
-          >
+          <Link to="/" onClick={closeMenu} className="flex shrink-0 items-center">
             <img
               src={logo}
               alt="SnapRoll"
-              className="
-                h-12 w-12
-                object-contain
-                transition duration-300
-                hover:scale-105
-              "
+              className="h-12 w-12 object-contain transition duration-300 hover:scale-105"
             />
           </Link>
         </div>
@@ -154,22 +105,12 @@ const Navbar = () => {
         <Link
           to="/"
           onClick={closeMenu}
-          className="
-            group relative z-10 hidden
-            shrink-0 items-center
-            lg:flex
-          "
+          className="group relative z-10 hidden shrink-0 items-center lg:flex"
         >
           <img
             src={logo}
             alt="SnapRoll"
-            className="
-              h-14 w-14
-              object-contain
-              transition duration-300
-              group-hover:scale-105
-              sm:h-16 sm:w-16
-            "
+            className="h-14 w-14 object-contain transition duration-300 group-hover:scale-105 sm:h-16 sm:w-16"
           />
         </Link>
 
@@ -180,20 +121,7 @@ const Navbar = () => {
             <Link
               to="/"
               onMouseMove={handleLiquidMouseMove}
-              className="
-                group relative overflow-hidden rounded-2xl
-                border border-white/12 bg-white/4.5
-                px-4 py-2.5
-                text-sm font-medium text-white/80
-                backdrop-blur-xl backdrop-saturate-150
-                shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]
-                transition-all duration-500
-                ease-[cubic-bezier(0.22,1,0.36,1)]
-                hover:-translate-y-0.5 hover:scale-[1.035]
-                hover:border-white/30 hover:bg-white/16
-                hover:text-white
-                hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]
-              "
+              className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
               <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(180px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.48),rgba(255,255,255,0.18)_35%,rgba(255,255,255,0.05)_58%,transparent_78%)] opacity-0 blur-[2px] transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -204,20 +132,7 @@ const Navbar = () => {
             <Link
               to="/how-it-works"
               onMouseMove={handleLiquidMouseMove}
-              className="
-                group relative overflow-hidden rounded-2xl
-                border border-white/12 bg-white/4.5
-                px-4 py-2.5
-                text-sm font-medium text-white/80
-                backdrop-blur-xl backdrop-saturate-150
-                shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]
-                transition-all duration-500
-                ease-[cubic-bezier(0.22,1,0.36,1)]
-                hover:-translate-y-0.5 hover:scale-[1.035]
-                hover:border-white/30 hover:bg-white/16
-                hover:text-white
-                hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]
-              "
+              className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
               <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(180px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.48),rgba(255,255,255,0.18)_35%,rgba(255,255,255,0.05)_58%,transparent_78%)] opacity-0 blur-[2px] transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -228,20 +143,7 @@ const Navbar = () => {
             <Link
               to="/pricing"
               onMouseMove={handleLiquidMouseMove}
-              className="
-                group relative overflow-hidden rounded-2xl
-                border border-white/12 bg-white/4.5
-                px-4 py-2.5
-                text-sm font-medium text-white/80
-                backdrop-blur-xl backdrop-saturate-150
-                shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]
-                transition-all duration-500
-                ease-[cubic-bezier(0.22,1,0.36,1)]
-                hover:-translate-y-0.5 hover:scale-[1.035]
-                hover:border-white/30 hover:bg-white/16
-                hover:text-white
-                hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]
-              "
+              className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
               <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(180px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.48),rgba(255,255,255,0.18)_35%,rgba(255,255,255,0.05)_58%,transparent_78%)] opacity-0 blur-[2px] transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -252,20 +154,7 @@ const Navbar = () => {
             <Link
               to="/faq"
               onMouseMove={handleLiquidMouseMove}
-              className="
-                group relative overflow-hidden rounded-2xl
-                border border-white/12 bg-white/4.5
-                px-4 py-2.5
-                text-sm font-medium text-white/80
-                backdrop-blur-xl backdrop-saturate-150
-                shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]
-                transition-all duration-500
-                ease-[cubic-bezier(0.22,1,0.36,1)]
-                hover:-translate-y-0.5 hover:scale-[1.035]
-                hover:border-white/30 hover:bg-white/16
-                hover:text-white
-                hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]
-              "
+              className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
               <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(180px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.48),rgba(255,255,255,0.18)_35%,rgba(255,255,255,0.05)_58%,transparent_78%)] opacity-0 blur-[2px] transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -276,21 +165,7 @@ const Navbar = () => {
             <Link
               to="/contact"
               onMouseMove={handleLiquidMouseMove}
-              className="
-                group relative overflow-hidden rounded-2xl
-                border border-white/12
-                bg-white/4.5
-                px-4 py-2.5
-                text-sm font-medium text-white/80
-                backdrop-blur-xl backdrop-saturate-150
-                shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]
-                transition-all duration-500
-                ease-[cubic-bezier(0.22,1,0.36,1)]
-                hover:-translate-y-0.5 hover:scale-[1.035]
-                hover:border-white/30 hover:bg-white/16
-                hover:text-white
-                hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]
-              "
+              className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
               <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(180px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.48),rgba(255,255,255,0.18)_35%,rgba(255,255,255,0.05)_58%,transparent_78%)] opacity-0 blur-[2px] transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -305,18 +180,7 @@ const Navbar = () => {
           <Link
             to="/events"
             onMouseMove={handleLiquidMouseMove}
-            className="
-              group relative overflow-hidden rounded-full
-              border border-white/20
-              bg-white/92
-              px-5 py-2.5
-              text-sm font-semibold text-black
-              shadow-[0_2px_12px_rgba(255,255,255,0.08)]
-              transition-all duration-300
-              hover:-translate-y-0.5
-              hover:bg-white
-              hover:shadow-[0_5px_20px_rgba(255,255,255,0.12)]
-            "
+            className="group relative overflow-hidden rounded-full border border-white/20 bg-white/92 px-5 py-2.5 text-sm font-semibold text-black shadow-[0_2px_12px_rgba(255,255,255,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_5px_20px_rgba(255,255,255,0.12)]"
           >
             <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(110px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.38),rgba(255,255,255,0.10)_38%,transparent_72%)] opacity-0 blur-[1px] transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -325,9 +189,7 @@ const Navbar = () => {
             <span className="relative flex items-center gap-2">
               {t.nav.buildEvent}
 
-              <span className="transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </span>
           </Link>
 
@@ -337,28 +199,13 @@ const Navbar = () => {
               type="button"
               onClick={() => setLanguageOpen((prev) => !prev)}
               onMouseMove={handleLiquidMouseMove}
-              className="
-                group relative flex items-center gap-2
-                cursor-pointer
-                rounded-full
-                border border-white/13
-                bg-white/6
-                px-3.5 py-2.5
-                text-white
-                shadow-inner shadow-white/3
-                backdrop-blur-xl
-                transition-all duration-300
-                hover:border-white/20
-                hover:bg-white/10
-              "
+              className="group relative flex cursor-pointer items-center gap-2 rounded-full border border-white/13 bg-white/6 px-3.5 py-2.5 text-white shadow-inner shadow-white/3 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/10"
               aria-label="Select language"
               aria-expanded={languageOpen}
             >
               <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(100px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.25),rgba(255,255,255,0.08)_40%,transparent_72%)] opacity-0 blur-[1px] transition-opacity duration-300 group-hover:opacity-100" />
 
-              <span className="relative text-base">
-                {selectedLanguage.flag}
-              </span>
+              <span className="relative text-base">{selectedLanguage.flag}</span>
 
               <span className="relative text-xs font-medium text-gray-300">
                 {selectedLanguage.name}
@@ -375,19 +222,7 @@ const Navbar = () => {
 
             {/* LANGUAGE DROPDOWN */}
             {languageOpen && (
-              <div
-                className="
-                  absolute right-0 top-[calc(100%+10px)]
-                  w-44 overflow-hidden
-                  rounded-2xl
-                  border border-white/18
-                  bg-black/60
-                  p-2
-                  shadow-[0_20px_60px_rgba(0,0,0,0.45)]
-                  backdrop-blur-2xl
-                  backdrop-saturate-150
-                "
-              >
+              <div className="absolute top-[calc(100%+10px)] right-0 w-44 overflow-hidden rounded-2xl border border-white/18 bg-black/60 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-2xl backdrop-saturate-150">
                 <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-white/20" />
 
                 {languages.map((language) => (
@@ -418,29 +253,14 @@ const Navbar = () => {
 
       {/* MOBILE + TABLET MENU */}
       {menuOpen && (
-        <div
-          className="
-            relative mx-0 mt-2 overflow-hidden
-            rounded-[26px]
-            border border-white/18
-            bg-black/58
-            shadow-[0_20px_70px_rgba(0,0,0,0.45)]
-            backdrop-blur-2xl
-            backdrop-saturate-150
-            lg:hidden
-          "
-        >
+        <div className="relative mx-0 mt-2 overflow-hidden rounded-[26px] border border-white/18 bg-black/58 shadow-[0_20px_70px_rgba(0,0,0,0.45)] backdrop-blur-2xl backdrop-saturate-150 lg:hidden">
           <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-white/20" />
 
           <div className="relative flex flex-col p-5">
             <Link
               to="/"
               onClick={closeMenu}
-              className="
-                border-b border-white/8
-                py-4 text-sm text-gray-300
-                transition-colors hover:text-white
-              "
+              className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
               {t.nav.home}
             </Link>
@@ -448,11 +268,7 @@ const Navbar = () => {
             <Link
               to="/how-it-works"
               onClick={closeMenu}
-              className="
-                border-b border-white/8
-                py-4 text-sm text-gray-300
-                transition-colors hover:text-white
-              "
+              className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
               {t.nav.howItWorks}
             </Link>
@@ -460,11 +276,7 @@ const Navbar = () => {
             <Link
               to="/pricing"
               onClick={closeMenu}
-              className="
-                border-b border-white/8
-                py-4 text-sm text-gray-300
-                transition-colors hover:text-white
-              "
+              className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
               {t.nav.pricing}
             </Link>
@@ -472,11 +284,7 @@ const Navbar = () => {
             <Link
               to="/faq"
               onClick={closeMenu}
-              className="
-                border-b border-white/8
-                py-4 text-sm text-gray-300
-                transition-colors hover:text-white
-              "
+              className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
               {t.nav.faq}
             </Link>
@@ -484,27 +292,14 @@ const Navbar = () => {
             <Link
               to="/contact"
               onClick={closeMenu}
-              className="
-                border-b border-white/8
-                py-4 text-sm text-gray-300
-                transition-colors hover:text-white
-              "
+              className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
               {t.nav.contact}
             </Link>
 
             {/* MOBILE + TABLET LANGUAGE */}
             <div className="mt-5">
-              <p
-                className="
-                  mb-3
-                  text-[10px]
-                  font-medium
-                  uppercase
-                  tracking-[0.2em]
-                  text-gray-600
-                "
-              >
+              <p className="mb-3 text-[10px] font-medium tracking-[0.2em] text-gray-600 uppercase">
                 Language
               </p>
 
@@ -540,20 +335,7 @@ const Navbar = () => {
               to="/events"
               onClick={closeMenu}
               onMouseMove={handleLiquidMouseMove}
-              className="
-                group relative mt-5
-                overflow-hidden
-                rounded-full
-                border border-white/20
-                bg-white/92
-                px-6 py-3
-                text-center
-                text-sm font-semibold
-                text-black
-                shadow-lg shadow-black/20
-                transition-all duration-300
-                hover:bg-white
-              "
+              className="group relative mt-5 overflow-hidden rounded-full border border-white/20 bg-white/92 px-6 py-3 text-center text-sm font-semibold text-black shadow-lg shadow-black/20 transition-all duration-300 hover:bg-white"
             >
               <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(110px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.38),rgba(255,255,255,0.10)_38%,transparent_72%)] opacity-0 blur-[1px] transition-opacity duration-300 group-hover:opacity-100" />
 

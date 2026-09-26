@@ -5,14 +5,12 @@ import ScrollReveal from "../components/ScrollReveal";
 import useLanguage from "../context/useLanguage";
 
 const Home = () => {
-  // =========================================================
   // GLOBAL LANGUAGE
-  // =========================================================
+
   const { t } = useLanguage();
 
-  // =========================================================
   // STEPS
-  // =========================================================
+
   const steps = [
     {
       number: "01",
@@ -40,61 +38,20 @@ const Home = () => {
 
   return (
     <main className="overflow-hidden bg-black text-white">
-      {/* =========================================================
-      HERO
-      ========================================================== */}
-      <section
-        className="
-          relative
-          mx-auto
-          flex
-          min-h-screen
-          max-w-7xl
-          items-center
-          px-5
-          pb-16
-          pt-28
-          sm:px-8
-          sm:pt-32
-          md:pt-28
-          lg:px-12
-          lg:pt-24
-        "
-      >
-        <div
-          className="
-            grid
-            w-full
-            grid-cols-1
-            items-center
-            gap-10
-            md:gap-12
-            lg:grid-cols-[0.95fr_1.05fr]
-            lg:gap-6
-          "
-        >
+      {/* HERO */}
+
+      <section className="relative mx-auto flex min-h-screen max-w-7xl items-center px-5 pt-28 pb-16 sm:px-8 sm:pt-32 md:pt-28 lg:px-12 lg:pt-24">
+        <div className="grid w-full grid-cols-1 items-center gap-10 md:gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-6">
           {/* LEFT CONTENT */}
           <div className="relative z-20 max-w-xl md:max-w-2xl lg:max-w-xl">
             <ScrollReveal>
-              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-gray-500 sm:text-sm">
+              <p className="mb-5 text-xs font-semibold tracking-[0.28em] text-gray-500 uppercase sm:text-sm">
                 {t.home.eyebrow}
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={150}>
-              <h1
-                className="
-                  font-serif
-                  text-4xl
-                  font-medium
-                  leading-[0.98]
-                  tracking-[-0.045em]
-                  sm:text-6xl
-                  md:text-6xl
-                  lg:text-7xl
-                  xl:text-8xl
-                "
-              >
+              <h1 className="font-serif text-4xl leading-[0.98] font-medium tracking-[-0.045em] sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl">
                 {t.home.heroTitle1}
                 <br />
                 <span className="text-gray-500">{t.home.heroTitle2}</span>
@@ -110,76 +67,18 @@ const Home = () => {
               </p>
             </ScrollReveal>
 
-            {/* =====================================================
-            LIQUID GLASS HERO BUTTONS
-            ====================================================== */}
+            {/* LIQUID GLASS HERO BUTTONS */}
+
             <ScrollReveal delay={450}>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 {/* GET STARTED */}
                 <Link
                   to="/events"
-                  className="
-                    group
-                    relative
-                    inline-flex
-                    h-13
-                    w-full
-                    items-center
-                    justify-center
-                    overflow-hidden
-                    rounded-full
-                    border
-                    border-white/25
-                    bg-white/10
-                    px-7
-                    py-3
-                    text-sm
-                    font-semibold
-                    text-white
-                    backdrop-blur-xl
-                    backdrop-saturate-150
-                    shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_30px_rgba(0,0,0,0.3)]
-                    transition-all
-                    duration-500
-                    hover:-translate-y-1
-                    hover:border-white/40
-                    hover:bg-white/15
-                    hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_15px_40px_rgba(255,255,255,0.08)]
-                    sm:w-auto
-                  "
+                  className="group relative inline-flex h-13 w-full items-center justify-center overflow-hidden rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_30px_rgba(0,0,0,0.3)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 hover:-translate-y-1 hover:border-white/40 hover:bg-white/15 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_15px_40px_rgba(255,255,255,0.08)] sm:w-auto"
                 >
-                  <span
-                    className="
-                      pointer-events-none
-                      absolute
-                      inset-0
-                      -translate-x-full
-                      bg-linear-to-r
-                      from-transparent
-                      via-white/15
-                      to-transparent
-                      opacity-0
-                      transition-all
-                      duration-700
-                      group-hover:translate-x-full
-                      group-hover:opacity-100
-                    "
-                  />
+                  <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/15 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
 
-                  <span
-                    className="
-                      pointer-events-none
-                      absolute
-                      inset-x-4
-                      top-0
-                      h-px
-                      bg-linear-to-r
-                      from-transparent
-                      via-white/60
-                      to-transparent
-                      opacity-60
-                    "
-                  />
+                  <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-white/60 to-transparent opacity-60" />
 
                   <span className="relative z-10">{t.home.getStarted}</span>
 
@@ -191,68 +90,11 @@ const Home = () => {
                 {/* HOW IT WORKS */}
                 <Link
                   to="/how-it-works"
-                  className="
-                    group
-                    relative
-                    inline-flex
-                    h-13
-                    w-full
-                    items-center
-                    justify-center
-                    overflow-hidden
-                    rounded-full
-                    border
-                    border-white/15
-                    bg-white/5
-                    px-7
-                    py-3
-                    text-sm
-                    font-semibold
-                    text-white
-                    backdrop-blur-xl
-                    backdrop-saturate-150
-                    shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_8px_30px_rgba(0,0,0,0.25)]
-                    transition-all
-                    duration-500
-                    hover:-translate-y-1
-                    hover:border-white/35
-                    hover:bg-white/10
-                    hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_15px_40px_rgba(255,255,255,0.06)]
-                    sm:w-auto
-                  "
+                  className="group relative inline-flex h-13 w-full items-center justify-center overflow-hidden rounded-full border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_8px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 hover:-translate-y-1 hover:border-white/35 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_15px_40px_rgba(255,255,255,0.06)] sm:w-auto"
                 >
-                  <span
-                    className="
-                      pointer-events-none
-                      absolute
-                      inset-0
-                      -translate-x-full
-                      bg-linear-to-r
-                      from-transparent
-                      via-white/10
-                      to-transparent
-                      opacity-0
-                      transition-all
-                      duration-700
-                      group-hover:translate-x-full
-                      group-hover:opacity-100
-                    "
-                  />
+                  <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/10 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
 
-                  <span
-                    className="
-                      pointer-events-none
-                      absolute
-                      inset-x-4
-                      top-0
-                      h-px
-                      bg-linear-to-r
-                      from-transparent
-                      via-white/45
-                      to-transparent
-                      opacity-50
-                    "
-                  />
+                  <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-white/45 to-transparent opacity-50" />
 
                   <span className="relative z-10">{t.home.howItWorks}</span>
 
@@ -266,7 +108,7 @@ const Home = () => {
             {/* COMING SOON */}
             <ScrollReveal delay={600}>
               <div className="mt-8">
-                <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.22em] text-gray-600">
+                <p className="mb-4 text-[10px] font-medium tracking-[0.22em] text-gray-600 uppercase">
                   {t.home.comingSoon}
                 </p>
 
@@ -289,11 +131,11 @@ const Home = () => {
                     </svg>
 
                     <div className="flex min-w-0 flex-col justify-center">
-                      <p className="whitespace-nowrap text-[9px] font-medium leading-none text-gray-600">
+                      <p className="text-[9px] leading-none font-medium whitespace-nowrap text-gray-600">
                         {t.home.downloadOn}
                       </p>
 
-                      <p className="mt-1.5 whitespace-nowrap text-base font-semibold leading-none text-black">
+                      <p className="mt-1.5 text-base leading-none font-semibold whitespace-nowrap text-black">
                         {t.home.appStore}
                       </p>
                     </div>
@@ -332,11 +174,11 @@ const Home = () => {
                     </svg>
 
                     <div className="flex min-w-0 flex-col justify-center">
-                      <p className="whitespace-nowrap text-[9px] font-medium leading-none text-gray-600">
+                      <p className="text-[9px] leading-none font-medium whitespace-nowrap text-gray-600">
                         {t.home.getItOn}
                       </p>
 
-                      <p className="mt-1.5 whitespace-nowrap text-base font-semibold leading-none text-black">
+                      <p className="mt-1.5 text-base leading-none font-semibold whitespace-nowrap text-black">
                         {t.home.googlePlay}
                       </p>
                     </div>
@@ -346,73 +188,33 @@ const Home = () => {
             </ScrollReveal>
           </div>
 
-          {/* =====================================================
-          RIGHT — SNAPROLL VISUAL
-          ====================================================== */}
+          {/* RIGHT — SNAPROLL VISUAL */}
+
           <ScrollReveal delay={250} direction="left">
-            <div
-              className="
-                relative
-                mx-auto
-                h-120
-                w-full
-                max-w-125
-                sm:h-145
-                sm:max-w-137.5
-                md:h-145
-                md:max-w-137.5
-                lg:h-170
-                lg:max-w-150
-              "
-            >
+            <div className="relative mx-auto h-120 w-full max-w-125 sm:h-145 sm:max-w-137.5 md:h-145 md:max-w-137.5 lg:h-170 lg:max-w-150">
               {/* MEMORY 02 */}
-              <div className="absolute right-[2%] top-[5%] hidden w-48 rotate-10 rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-7 sm:block sm:w-53.75 md:right-[5%] lg:right-[8%] lg:w-61.25">
+              <div className="absolute top-[5%] right-[2%] hidden w-48 rotate-10 rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-7 sm:block sm:w-53.75 md:right-[5%] lg:right-[8%] lg:w-61.25">
                 <div className="flex aspect-4/5 items-center justify-center rounded-xl bg-neutral-900">
                   <div className="text-center">
-                    <span className="block text-[9px] uppercase tracking-[0.3em] text-gray-600">
+                    <span className="block text-[9px] tracking-[0.3em] text-gray-600 uppercase">
                       {t.home.memory}
                     </span>
 
-                    <span className="mt-2 block font-serif text-3xl text-gray-700">
-                      02
-                    </span>
+                    <span className="mt-2 block font-serif text-3xl text-gray-700">02</span>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between px-1 pt-3">
-                  <span className="text-[9px] uppercase tracking-[0.2em] text-black">
-                    SnapRoll
-                  </span>
+                  <span className="text-[9px] tracking-[0.2em] text-black uppercase">SnapRoll</span>
 
                   <span className="text-[9px] text-gray-400">2026</span>
                 </div>
               </div>
 
               {/* PHONE */}
-              <div
-                className="
-                  absolute
-                  left-1/2
-                  top-1/2
-                  z-20
-                  h-105
-                  w-52.5
-                  -translate-x-1/2
-                  -translate-y-1/2
-                  rotate-[-4deg]
-                  transition-transform
-                  duration-700
-                  hover:-rotate-1
-                  sm:h-125
-                  sm:w-62.5
-                  md:h-130
-                  md:w-65
-                  lg:h-147.5
-                  lg:w-73.75
-                "
-              >
+              <div className="absolute top-1/2 left-1/2 z-20 h-105 w-52.5 -translate-x-1/2 -translate-y-1/2 rotate-[-4deg] transition-transform duration-700 hover:-rotate-1 sm:h-125 sm:w-62.5 md:h-130 md:w-65 lg:h-147.5 lg:w-73.75">
                 {/* LEFT SIDE BUTTONS */}
-                <div className="pointer-events-none absolute -left-4 top-[19%] z-50 flex flex-col gap-5 sm:-left-5">
+                <div className="pointer-events-none absolute top-[19%] -left-4 z-50 flex flex-col gap-5 sm:-left-5">
                   <span className="block h-6 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-7" />
 
                   <span className="block h-9 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-10" />
@@ -421,74 +223,40 @@ const Home = () => {
                 </div>
 
                 {/* RIGHT SIDE POWER BUTTON */}
-                <div className="pointer-events-none absolute -right-2.5 top-[29%] z-50">
+                <div className="pointer-events-none absolute top-[29%] -right-2.5 z-50">
                   <span className="block h-12 w-1 rounded-r-full border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-14" />
                 </div>
 
                 {/* OUTER PHONE FRAME */}
-                <div
-                  className="
-                    absolute
-                    inset-0
-                    rounded-[38px]
-                    border
-                    border-white/30
-                    bg-linear-to-br
-                    from-white
-                    via-gray-200
-                    to-gray-500
-                    p-1.5
-                    shadow-[0_35px_90px_rgba(255,255,255,0.12)]
-                    sm:rounded-[44px]
-                    lg:rounded-[48px]
-                  "
-                >
+                <div className="absolute inset-0 rounded-[38px] border border-white/30 bg-linear-to-br from-white via-gray-200 to-gray-500 p-1.5 shadow-[0_35px_90px_rgba(255,255,255,0.12)] sm:rounded-[44px] lg:rounded-[48px]">
                   {/* INNER BLACK BODY */}
-                  <div
-                    className="
-                      relative
-                      h-full
-                      w-full
-                      overflow-hidden
-                      rounded-[32px]
-                      border
-                      border-black/80
-                      bg-black
-                      p-1
-                      sm:rounded-[38px]
-                      lg:rounded-[41px]
-                    "
-                  >
+                  <div className="relative h-full w-full overflow-hidden rounded-[32px] border border-black/80 bg-black p-1 sm:rounded-[38px] lg:rounded-[41px]">
                     {/* SCREEN */}
                     <div className="relative h-full w-full overflow-hidden rounded-[27px] bg-neutral-950 sm:rounded-[33px] lg:rounded-[36px]">
                       {/* DYNAMIC ISLAND */}
-                      <div className="absolute left-1/2 top-2.5 z-40 h-7 w-22 -translate-x-1/2 rounded-full bg-black shadow-inner sm:top-3 sm:h-8 sm:w-28" />
+                      <div className="absolute top-2.5 left-1/2 z-40 h-7 w-22 -translate-x-1/2 rounded-full bg-black shadow-inner sm:top-3 sm:h-8 sm:w-28" />
 
                       {/* CAMERA DOT */}
-                      <div className="absolute left-1/2 top-[18px] z-50 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-gray-700 sm:top-[20px]" />
+                      <div className="absolute top-[18px] left-1/2 z-50 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-gray-700 sm:top-[20px]" />
 
                       {/* TOP CONTENT */}
-                      <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-4 pt-11 sm:px-6 sm:pt-14">
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white">
+                      <div className="absolute top-0 right-0 left-0 z-20 flex items-center justify-between px-4 pt-11 sm:px-6 sm:pt-14">
+                        <span className="text-[10px] font-semibold tracking-[0.25em] text-white uppercase">
                           SnapRoll
                         </span>
 
-                        <span className="text-[9px] text-gray-500">
-                          01 / 24
-                        </span>
+                        <span className="text-[9px] text-gray-500">01 / 24</span>
                       </div>
 
                       {/* MAIN SCREEN CONTENT */}
                       <div className="flex h-full flex-col justify-end p-4 sm:p-6">
                         <div className="mb-4 rounded-2xl border border-white/10 bg-white/4 p-3.5 backdrop-blur-sm sm:mb-5 sm:p-5">
                           <div className="flex items-center justify-between">
-                            <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500">
+                            <span className="text-[9px] tracking-[0.2em] text-gray-500 uppercase">
                               {t.home.yourStory}
                             </span>
 
-                            <span className="text-[9px] text-gray-600">
-                              {t.home.today}
-                            </span>
+                            <span className="text-[9px] text-gray-600">{t.home.today}</span>
                           </div>
 
                           <p className="mt-3 font-serif text-xl leading-tight text-white sm:text-3xl">
@@ -499,7 +267,7 @@ const Home = () => {
                         </div>
 
                         <div className="flex items-center justify-between border-t border-white/10 pt-4">
-                          <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500">
+                          <span className="text-[9px] tracking-[0.2em] text-gray-500 uppercase">
                             {t.home.capture}
                           </span>
 
@@ -517,32 +285,30 @@ const Home = () => {
               <div className="absolute bottom-[5%] left-[2%] z-30 w-37.5 rotate-[-11deg] rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-[-7deg] sm:w-48.75 md:left-[4%] lg:left-[6%] lg:w-52.5">
                 <div className="flex aspect-square items-center justify-center rounded-xl bg-neutral-900">
                   <div className="text-center">
-                    <span className="block text-[9px] uppercase tracking-[0.3em] text-gray-600">
+                    <span className="block text-[9px] tracking-[0.3em] text-gray-600 uppercase">
                       {t.home.memory}
                     </span>
 
-                    <span className="mt-2 block font-serif text-4xl text-gray-700">
-                      01
-                    </span>
+                    <span className="mt-2 block font-serif text-4xl text-gray-700">01</span>
                   </div>
                 </div>
 
                 <div className="pt-3">
-                  <p className="text-[9px] uppercase tracking-[0.2em] text-black">
+                  <p className="text-[9px] tracking-[0.2em] text-black uppercase">
                     {t.home.aMomentWorthKeeping}
                   </p>
                 </div>
               </div>
 
               {/* KEEP THE MOMENT */}
-              <div className="absolute bottom-[18%] right-[1%] z-30 hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md sm:block lg:right-[3%]">
-                <span className="text-[9px] uppercase tracking-[0.25em] text-gray-400">
+              <div className="absolute right-[1%] bottom-[18%] z-30 hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md sm:block lg:right-[3%]">
+                <span className="text-[9px] tracking-[0.25em] text-gray-400 uppercase">
                   {t.home.keepTheMoment}
                 </span>
               </div>
 
               {/* 24 */}
-              <div className="absolute bottom-[1%] right-[10%] hidden font-serif text-7xl text-white/4 sm:block">
+              <div className="absolute right-[10%] bottom-[1%] hidden font-serif text-7xl text-white/4 sm:block">
                 24
               </div>
             </div>
@@ -552,15 +318,14 @@ const Home = () => {
         <div className="pointer-events-none absolute bottom-0 left-0 h-32 w-full bg-linear-to-t from-black to-transparent" />
       </section>
 
-      {/* =========================================================
-      WHAT IT DOES
-      ========================================================== */}
+      {/* WHAT IT DOES */}
+
       <section className="border-t border-white/10 bg-black">
         <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
           <div className="grid gap-14 md:gap-16 lg:grid-cols-[0.7fr_1.3fr] lg:items-center lg:gap-24">
             <ScrollReveal direction="right">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
+                <p className="text-xs font-semibold tracking-[0.28em] text-gray-500 uppercase">
                   {t.home.whatItDoes}
                 </p>
 
@@ -585,7 +350,7 @@ const Home = () => {
                     <div className="mt-5 flex items-center gap-3">
                       <span className="h-px w-7 bg-white/20" />
 
-                      <p className="text-center text-[9px] font-medium uppercase tracking-[0.28em] text-gray-500">
+                      <p className="text-center text-[9px] font-medium tracking-[0.28em] text-gray-500 uppercase">
                         {t.home.scanToJoin}
                       </p>
 
@@ -603,9 +368,7 @@ const Home = () => {
                   <br />
                   {t.home.oneSharedCamera}
                   <br />
-                  <span className="text-gray-500">
-                    {t.home.everyoneMemories}
-                  </span>
+                  <span className="text-gray-500">{t.home.everyoneMemories}</span>
                 </h2>
 
                 <p className="mt-8 max-w-3xl text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
@@ -627,24 +390,21 @@ const Home = () => {
         </div>
       </section>
 
-      {/* =========================================================
-      HOW IT WORKS
-      ========================================================== */}
+      {/* HOW IT WORKS */}
+
       <section className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
             <ScrollReveal direction="right">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
+                <p className="text-xs font-semibold tracking-[0.28em] text-gray-500 uppercase">
                   {t.home.howItWorksTitle}
                 </p>
 
                 <h2 className="mt-4 max-w-2xl font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
                   {t.home.fourSteps}
                   <br />
-                  <span className="text-gray-500">
-                    {t.home.oneUnforgettableEvent}
-                  </span>
+                  <span className="text-gray-500">{t.home.oneUnforgettableEvent}</span>
                 </h2>
               </div>
             </ScrollReveal>
@@ -665,29 +425,8 @@ const Home = () => {
 
           {/* LIQUID GLASS STEPS */}
           <div className="relative mt-16">
-            <div
-              className="
-                relative
-                cursor-pointer
-                overflow-hidden
-                rounded-[26px]
-                border
-                border-white/10
-                bg-white/1
-                shadow-[0_20px_80px_rgba(0,0,0,0.45)]
-                backdrop-blur-3xl
-                backdrop-saturate-150
-              "
-            >
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  -inset-20
-                  bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.10),transparent_40%)]
-                  blur-3xl
-                "
-              />
+            <div className="relative cursor-pointer overflow-hidden rounded-[26px] border border-white/10 bg-white/1 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-3xl backdrop-saturate-150">
+              <div className="pointer-events-none absolute -inset-20 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.10),transparent_40%)] blur-3xl" />
 
               <div className="relative grid md:grid-cols-2 lg:grid-cols-4">
                 {steps.map((step, index) => (
@@ -699,13 +438,12 @@ const Home = () => {
         </div>
       </section>
 
-      {/* =========================================================
-      FINAL CTA
-      ========================================================== */}
+      {/* FINAL CTA */}
+
       <section className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-5 py-28 text-center sm:px-8 sm:py-36 lg:px-12">
           <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
+            <p className="text-xs font-semibold tracking-[0.28em] text-gray-500 uppercase">
               {t.home.ready}
             </p>
           </ScrollReveal>
@@ -721,68 +459,11 @@ const Home = () => {
           <ScrollReveal delay={300}>
             <Link
               to="/events"
-              className="
-                group
-                relative
-                mt-10
-                inline-flex
-                h-14
-                w-full
-                items-center
-                justify-center
-                overflow-hidden
-                rounded-full
-                border
-                border-white/20
-                bg-white/10
-                px-8
-                text-sm
-                font-semibold
-                text-white
-                backdrop-blur-xl
-                backdrop-saturate-150
-                shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_10px_35px_rgba(0,0,0,0.3)]
-                transition-all
-                duration-500
-                hover:-translate-y-1
-                hover:border-white/35
-                hover:bg-white/15
-                hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_15px_40px_rgba(255,255,255,0.08)]
-                sm:w-auto
-              "
+              className="group relative mt-10 inline-flex h-14 w-full items-center justify-center overflow-hidden rounded-full border border-white/20 bg-white/10 px-8 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_10px_35px_rgba(0,0,0,0.3)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 hover:-translate-y-1 hover:border-white/35 hover:bg-white/15 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_15px_40px_rgba(255,255,255,0.08)] sm:w-auto"
             >
-              <span
-                className="
-                  pointer-events-none
-                  absolute
-                  inset-0
-                  -translate-x-full
-                  bg-linear-to-r
-                  from-transparent
-                  via-white/15
-                  to-transparent
-                  opacity-0
-                  transition-all
-                  duration-700
-                  group-hover:translate-x-full
-                  group-hover:opacity-100
-                "
-              />
+              <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/15 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
 
-              <span
-                className="
-                  pointer-events-none
-                  absolute
-                  inset-x-5
-                  top-0
-                  h-px
-                  bg-linear-to-r
-                  from-transparent
-                  via-white/55
-                  to-transparent
-                  opacity-60
-                "
-              />
+              <span className="pointer-events-none absolute inset-x-5 top-0 h-px bg-linear-to-r from-transparent via-white/55 to-transparent opacity-60" />
 
               <span className="relative z-10">{t.home.getStarted}</span>
 
@@ -797,9 +478,7 @@ const Home = () => {
   );
 };
 
-/* ===============================================================
-LIQUID GLASS STEP CARD
-================================================================ */
+// LIQUID GLASS STEP CARD
 
 const LiquidStepCard = ({ step, index }) => {
   const cardRef = useRef(null);
@@ -844,178 +523,45 @@ const LiquidStepCard = ({ step, index }) => {
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="
-          group
-          relative
-          h-full
-          min-h-70
-          overflow-hidden
-          border-white/8
-          bg-white/1.5
-          p-7
-          transition-[transform,background,border-color,box-shadow]
-          duration-500
-          ease-[cubic-bezier(0.22,1,0.36,1)]
-          hover:border-white/18
-          hover:bg-white/4.5
-          hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.10)]
-          md:border-r
-          md:last:border-r-0
-          lg:border-r
-          lg:last:border-r-0
-          sm:p-8
-        "
+        className="group relative h-full min-h-70 overflow-hidden border-white/8 bg-white/1.5 p-7 transition-[transform,background,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/18 hover:bg-white/4.5 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.10)] sm:p-8 md:border-r md:last:border-r-0 lg:border-r lg:last:border-r-0"
       >
         {/* CURSOR LIGHT */}
         <div
           ref={glowRef}
-          className="
-            pointer-events-none
-            absolute
-            left-1/2
-            top-1/2
-            z-0
-            h-45
-            w-45
-            -translate-x-1/2
-            -translate-y-1/2
-            rounded-full
-            bg-white/10
-            opacity-0
-            transition-opacity
-            duration-300
-          "
+          className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-45 w-45 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 opacity-0 transition-opacity duration-300"
         />
 
         {/* TOP LIGHT */}
-        <div
-          className="
-            pointer-events-none
-            absolute
-            inset-x-0
-            top-0
-            h-px
-            bg-linear-to-r
-            from-transparent
-            via-white/30
-            to-transparent
-            opacity-40
-            transition-opacity
-            duration-500
-            group-hover:opacity-100
-          "
-        />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/30 to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-100" />
 
         {/* INNER BORDER */}
-        <div
-          className="
-            pointer-events-none
-            absolute
-            inset-0
-            rounded-none
-            ring-1
-            ring-inset
-            ring-white/3
-            transition-all
-            duration-500
-            group-hover:ring-white/10
-          "
-        />
+        <div className="pointer-events-none absolute inset-0 rounded-none ring-1 ring-white/3 transition-all duration-500 ring-inset group-hover:ring-white/10" />
 
         {/* CONTENT */}
         <div className="relative z-10 flex h-full flex-col">
           <div className="flex items-center justify-between">
-            <span
-              className="
-                text-xs
-                tracking-[0.15em]
-                text-gray-600
-                transition-colors
-                duration-300
-                group-hover:text-gray-400
-              "
-            >
+            <span className="text-xs tracking-[0.15em] text-gray-600 transition-colors duration-300 group-hover:text-gray-400">
               {step.number}
             </span>
 
-            <span
-              className="
-                flex
-                h-7
-                w-7
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-white/10
-                bg-white/2.5
-                text-[10px]
-                text-white/15
-                transition-all
-                duration-500
-                group-hover:rotate-[-8deg]
-                group-hover:border-white/25
-                group-hover:bg-white/10
-                group-hover:text-white
-              "
-            >
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/2.5 text-[10px] text-white/15 transition-all duration-500 group-hover:rotate-[-8deg] group-hover:border-white/25 group-hover:bg-white/10 group-hover:text-white">
               ↗
             </span>
           </div>
 
           <div className="mt-10">
-            <h3
-              className="
-                font-serif
-                text-3xl
-                text-white
-                transition-all
-                duration-500
-                ease-out
-                group-hover:translate-x-1
-              "
-            >
+            <h3 className="font-serif text-3xl text-white transition-all duration-500 ease-out group-hover:translate-x-1">
               {step.title}
             </h3>
 
-            <p
-              className="
-                mt-10
-                max-w-xs
-                translate-y-2
-                text-sm
-                leading-6
-                text-white/8
-                transition-all
-                duration-500
-                ease-out
-                group-hover:translate-y-0
-                group-hover:text-white
-              "
-            >
+            <p className="mt-10 max-w-xs translate-y-2 text-sm leading-6 text-white/8 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:text-white">
               {step.text}
             </p>
           </div>
         </div>
 
         {/* BOTTOM GLOW */}
-        <div
-          className="
-            pointer-events-none
-            absolute
-            -bottom-20
-            left-1/2
-            h-32
-            w-3/4
-            -translate-x-1/2
-            rounded-full
-            bg-white/2.5
-            opacity-0
-            transition-opacity
-            duration-500
-            group-hover:opacity-100
-          "
-        />
+        <div className="pointer-events-none absolute -bottom-20 left-1/2 h-32 w-3/4 -translate-x-1/2 rounded-full bg-white/2.5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       </div>
     </ScrollReveal>
   );

@@ -46,10 +46,7 @@ const LanguageProvider = ({ children }) => {
       try {
         const parsed = JSON.parse(savedLanguage);
 
-        return (
-          languages.find((language) => language.name === parsed.name) ||
-          languages[0]
-        );
+        return languages.find((language) => language.name === parsed.name) || languages[0];
       } catch {
         return languages[0];
       }
@@ -59,8 +56,7 @@ const LanguageProvider = ({ children }) => {
   });
 
   const changeLanguage = (language) => {
-    const selected =
-      languages.find((item) => item.name === language.name) || languages[0];
+    const selected = languages.find((item) => item.name === language.name) || languages[0];
 
     setSelectedLanguage(selected);
 
@@ -79,11 +75,7 @@ const LanguageProvider = ({ children }) => {
     [selectedLanguage, t],
   );
 
-  return (
-    <LanguageContext.Provider value={value}>
-      {children}
-    </LanguageContext.Provider>
-  );
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
 
 export default LanguageProvider;

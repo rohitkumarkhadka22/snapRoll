@@ -47,9 +47,7 @@ const ScrollReveal = ({
       className={className}
       style={{
         opacity: isVisible ? 1 : 0,
-        transform: isVisible
-          ? "translate3d(0, 0, 0)"
-          : `translate3d(0, ${y}px, 0)`,
+        transform: isVisible ? "translate3d(0, 0, 0)" : `translate3d(0, ${y}px, 0)`,
         transitionProperty: "opacity, transform",
         transitionDuration: `${duration}ms`,
         transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",

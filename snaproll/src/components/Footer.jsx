@@ -51,9 +51,7 @@ const Footer = () => {
           {/* GET THE APP */}
 
           <div>
-            <p className="font-serif text-xl tracking-[-0.02em] text-white">
-              GET THE APP
-            </p>
+            <p className="font-serif text-xl tracking-[-0.02em] text-white">GET THE APP</p>
 
             <div className="mt-6 flex flex-col gap-3">
               {/* APP STORE  */}
@@ -75,11 +73,11 @@ const Footer = () => {
                 </svg>
 
                 <div className="flex flex-col justify-center">
-                  <span className="text-[9px] font-medium leading-none text-gray-500">
+                  <span className="text-[9px] leading-none font-medium text-gray-500">
                     Download on the
                   </span>
 
-                  <span className="mt-1.5 text-[17px] font-medium leading-none text-white">
+                  <span className="mt-1.5 text-[17px] leading-none font-medium text-white">
                     App Store
                   </span>
                 </div>
@@ -122,11 +120,11 @@ const Footer = () => {
                 </svg>
 
                 <div className="flex flex-col justify-center">
-                  <span className="text-[9px] font-medium uppercase leading-none tracking-wide text-gray-500">
+                  <span className="text-[9px] leading-none font-medium tracking-wide text-gray-500 uppercase">
                     Get it on
                   </span>
 
-                  <span className="mt-1.5 text-[17px] font-medium leading-none text-white">
+                  <span className="mt-1.5 text-[17px] leading-none font-medium text-white">
                     Google Play
                   </span>
                 </div>
@@ -137,9 +135,7 @@ const Footer = () => {
           {/* LEGAL */}
 
           <div>
-            <p className="font-serif text-xl tracking-[-0.02em] text-white">
-              LEGAL
-            </p>
+            <p className="font-serif text-xl tracking-[-0.02em] text-white">LEGAL</p>
 
             <div className="mt-6 flex flex-col gap-4">
               <Link
@@ -188,9 +184,9 @@ const Footer = () => {
                 type="button"
                 onClick={handleBackToTop}
                 aria-label="Back to top"
-                className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/3 text-white transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white hover:text-black"
+                className="group flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/3 text-white transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white hover:text-black"
               >
-                <span className="text-base transition-transform duration-300 group-hover:-translate-y-0.5">
+                <span className="cursor-pointer text-base transition-transform duration-300 group-hover:-translate-y-0.5">
                   ↑
                 </span>
               </button>

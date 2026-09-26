@@ -13,9 +13,7 @@ import {
 
 import useLanguage from "../context/useLanguage";
 
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
+//  SCROLL REVEAL
 
 const Reveal = ({ children, className = "", delay = 0 }) => {
   const [visible, setVisible] = useState(false);
@@ -26,9 +24,7 @@ const Reveal = ({ children, className = "", delay = 0 }) => {
     const timer = setTimeout(() => {
       const elements = document.querySelectorAll(".contact-reveal");
 
-      const element = Array.from(elements).find(
-        (el) => !el.dataset.revealObserved,
-      );
+      const element = Array.from(elements).find((el) => !el.dataset.revealObserved);
 
       if (!element) return;
 
@@ -58,9 +54,7 @@ const Reveal = ({ children, className = "", delay = 0 }) => {
 
   return (
     <div
-      className={`contact-reveal ${
-        visible ? "contact-reveal-visible" : ""
-      } ${className}`}
+      className={`contact-reveal ${visible ? "contact-reveal-visible" : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -68,9 +62,7 @@ const Reveal = ({ children, className = "", delay = 0 }) => {
   );
 };
 
-/* =========================================================
-   CONTACT
-========================================================= */
+//  CONTACT
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -85,9 +77,7 @@ const Contact = () => {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
-  /* =======================================================
-     HANDLE CHANGE
-  ======================================================= */
+  //  HANDLE CHANGE
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -105,9 +95,7 @@ const Contact = () => {
     }
   };
 
-  /* =======================================================
-     HANDLE SUBMIT
-  ======================================================= */
+  //  HANDLE SUBMIT
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -155,23 +143,19 @@ const Contact = () => {
 
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
-      {/* =====================================================
-          BACKGROUND
-      ===================================================== */}
+      {/* BACKGROUND */}
 
       <div className="pointer-events-none fixed inset-0 -z-0 overflow-hidden">
-        <div className="absolute left-1/2 top-[-220px] h-150 w-150 -translate-x-1/2 rounded-full bg-white/[0.035] blur-[160px]" />
+        <div className="absolute top-[-220px] left-1/2 h-150 w-150 -translate-x-1/2 rounded-full bg-white/[0.035] blur-[160px]" />
 
-        <div className="absolute -left-60 top-[42%] h-125 w-125 rounded-full bg-white/[0.025] blur-[150px]" />
+        <div className="absolute top-[42%] -left-60 h-125 w-125 rounded-full bg-white/[0.025] blur-[150px]" />
 
         <div className="absolute -right-60 bottom-[-120px] h-150 w-150 rounded-full bg-white/[0.025] blur-[160px]" />
       </div>
 
-      {/* =====================================================
-          HERO
-      ===================================================== */}
+      {/* HERO */}
 
-      <section className="relative z-10 px-5 pb-20 pt-32 sm:px-8 sm:pt-40 lg:px-12 lg:pb-28">
+      <section className="relative z-10 px-5 pt-32 pb-20 sm:px-8 sm:pt-40 lg:px-12 lg:pb-28">
         <div className="mx-auto max-w-7xl">
           <div className="grid items-end gap-12 lg:grid-cols-[1fr_0.62fr] lg:gap-20">
             {/* TITLE */}
@@ -181,7 +165,7 @@ const Contact = () => {
                 <div className="mb-8 flex items-center gap-3">
                   <span className="h-px w-10 bg-white/30" />
 
-                  <span className="text-[9px] uppercase tracking-[0.38em] text-white/35">
+                  <span className="text-[9px] tracking-[0.38em] text-white/35 uppercase">
                     {t.contact.badge}
                   </span>
                 </div>
@@ -208,7 +192,7 @@ const Contact = () => {
                     <MessageCircle size={15} className="text-white/55" />
                   </div>
 
-                  <span className="text-[9px] uppercase tracking-[0.25em] text-white/30">
+                  <span className="text-[9px] tracking-[0.25em] text-white/30 uppercase">
                     {t.contact.sayHello}
                   </span>
                 </div>
@@ -216,52 +200,50 @@ const Contact = () => {
             </Reveal>
           </div>
 
-          {/* =================================================
-              HERO VISUAL
-          ================================================= */}
+          {/* HERO VISUAL */}
 
           <Reveal delay={280} className="relative mt-20">
             <div className="relative h-105 overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#060606] sm:h-125 lg:h-145">
               <div className="absolute inset-0 opacity-30">
-                <div className="absolute left-1/2 top-0 h-full w-px bg-white/[0.08]" />
+                <div className="absolute top-0 left-1/2 h-full w-px bg-white/[0.08]" />
 
-                <div className="absolute left-0 top-1/2 h-px w-full bg-white/[0.08]" />
+                <div className="absolute top-1/2 left-0 h-px w-full bg-white/[0.08]" />
 
-                <div className="absolute left-[25%] top-0 h-full w-px bg-white/[0.025]" />
+                <div className="absolute top-0 left-[25%] h-full w-px bg-white/[0.025]" />
 
-                <div className="absolute left-[75%] top-0 h-full w-px bg-white/[0.025]" />
+                <div className="absolute top-0 left-[75%] h-full w-px bg-white/[0.025]" />
               </div>
 
-              <div className="absolute left-1/2 top-1/2 h-100 w-100 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.035] blur-[110px]" />
+              <div className="absolute top-1/2 left-1/2 h-100 w-100 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.035] blur-[110px]" />
 
               {/* STATUS */}
 
-              <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/10 bg-black/55 px-3 py-2 backdrop-blur-xl sm:left-8 sm:top-8">
+              <div className="absolute top-5 left-5 flex items-center gap-2 rounded-full border border-white/10 bg-black/55 px-3 py-2 backdrop-blur-xl sm:top-8 sm:left-8">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white/60" />
 
-                <span className="text-[8px] uppercase tracking-[0.25em] text-white/35">
+                <span className="text-[8px] tracking-[0.25em] text-white/35 uppercase">
                   {t.contact.alwaysRolling}
                 </span>
               </div>
 
               {/* TOP RIGHT */}
 
-              <div className="absolute right-5 top-5 hidden rounded-full border border-white/10 bg-black/55 px-3 py-2 backdrop-blur-xl sm:right-8 sm:top-8 sm:block">
-                <span className="text-[8px] uppercase tracking-[0.25em] text-white/30">
+              <div className="absolute top-5 right-5 hidden rounded-full border border-white/10 bg-black/55 px-3 py-2 backdrop-blur-xl sm:top-8 sm:right-8 sm:block">
+                <span className="text-[8px] tracking-[0.25em] text-white/30 uppercase">
                   {t.contact.sharedMemories}
                 </span>
               </div>
 
               {/* PHONE */}
 
-              <div className="absolute left-1/2 top-1/2 h-78 w-47 -translate-x-1/2 -translate-y-1/2 rotate-[-5deg] rounded-[2.6rem] border border-white/20 bg-[#111] p-2 shadow-[0_45px_110px_rgba(0,0,0,0.85)] transition-transform duration-700 hover:rotate-0 sm:h-100 sm:w-60 sm:p-2.5">
+              <div className="absolute top-1/2 left-1/2 h-78 w-47 -translate-x-1/2 -translate-y-1/2 rotate-[-5deg] rounded-[2.6rem] border border-white/20 bg-[#111] p-2 shadow-[0_45px_110px_rgba(0,0,0,0.85)] transition-transform duration-700 hover:rotate-0 sm:h-100 sm:w-60 sm:p-2.5">
                 <div className="relative h-full w-full overflow-hidden rounded-[2.15rem] border border-white/10 bg-black">
-                  <div className="absolute left-1/2 top-3 z-30 h-5 w-20 -translate-x-1/2 rounded-full bg-black" />
+                  <div className="absolute top-3 left-1/2 z-30 h-5 w-20 -translate-x-1/2 rounded-full bg-black" />
 
-                  <div className="relative flex h-full flex-col bg-linear-to-b from-[#181818] via-[#090909] to-black px-4 pb-5 pt-12 sm:px-5 sm:pb-6 sm:pt-14">
+                  <div className="relative flex h-full flex-col bg-linear-to-b from-[#181818] via-[#090909] to-black px-4 pt-12 pb-5 sm:px-5 sm:pt-14 sm:pb-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-[6px] uppercase tracking-[0.22em] text-white/30 sm:text-[7px]">
+                        <p className="text-[6px] tracking-[0.22em] text-white/30 uppercase sm:text-[7px]">
                           {t.contact.summerParty}
                         </p>
 
@@ -279,7 +261,7 @@ const Contact = () => {
 
                     <div className="mt-6 grid grid-cols-3 gap-1.5">
                       <div className="rounded-lg border border-white/10 bg-white/[0.035] p-2">
-                        <p className="text-[5px] uppercase tracking-wider text-white/25">
+                        <p className="text-[5px] tracking-wider text-white/25 uppercase">
                           {t.contact.moments}
                         </p>
 
@@ -287,7 +269,7 @@ const Contact = () => {
                       </div>
 
                       <div className="rounded-lg border border-white/10 bg-white/[0.035] p-2">
-                        <p className="text-[5px] uppercase tracking-wider text-white/25">
+                        <p className="text-[5px] tracking-wider text-white/25 uppercase">
                           {t.contact.left}
                         </p>
 
@@ -295,7 +277,7 @@ const Contact = () => {
                       </div>
 
                       <div className="rounded-lg border border-white/10 bg-white/[0.035] p-2">
-                        <p className="text-[5px] uppercase tracking-wider text-white/25">
+                        <p className="text-[5px] tracking-wider text-white/25 uppercase">
                           {t.contact.people}
                         </p>
 
@@ -312,16 +294,16 @@ const Contact = () => {
                       </div>
 
                       <div className="relative overflow-hidden rounded-xl bg-linear-to-bl from-white/15 via-white/5 to-black">
-                        <div className="absolute right-2 top-3 h-10 w-10 rounded-full bg-white/10 blur-md" />
+                        <div className="absolute top-3 right-2 h-10 w-10 rounded-full bg-white/10 blur-md" />
                         <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
                       </div>
 
                       <div className="relative overflow-hidden rounded-xl bg-linear-to-tr from-white/15 via-black to-white/5">
-                        <div className="absolute bottom-2 right-2 h-12 w-12 rounded-full bg-white/10 blur-lg" />
+                        <div className="absolute right-2 bottom-2 h-12 w-12 rounded-full bg-white/10 blur-lg" />
                       </div>
 
                       <div className="relative overflow-hidden rounded-xl bg-linear-to-tl from-white/20 via-white/5 to-black">
-                        <div className="absolute left-2 top-2 h-7 w-7 rounded-full bg-white/10 blur-md" />
+                        <div className="absolute top-2 left-2 h-7 w-7 rounded-full bg-white/10 blur-md" />
                       </div>
                     </div>
 
@@ -337,34 +319,30 @@ const Contact = () => {
 
                 {/* PHONE BUTTONS */}
 
-                <div className="absolute -left-1 top-25 h-9 w-1 rounded-l-full bg-white/20" />
+                <div className="absolute top-25 -left-1 h-9 w-1 rounded-l-full bg-white/20" />
 
-                <div className="absolute -left-1 top-38 h-9 w-1 rounded-l-full bg-white/20" />
+                <div className="absolute top-38 -left-1 h-9 w-1 rounded-l-full bg-white/20" />
 
-                <div className="absolute -right-1 top-32 h-14 w-1 rounded-r-full bg-white/20" />
+                <div className="absolute top-32 -right-1 h-14 w-1 rounded-r-full bg-white/20" />
               </div>
 
               {/* LEFT CARD */}
 
               <div className="absolute bottom-8 left-5 hidden w-50 rounded-2xl border border-white/10 bg-black/55 p-4 backdrop-blur-2xl sm:block lg:left-10 lg:w-56">
                 <div className="flex items-center justify-between">
-                  <span className="text-[8px] uppercase tracking-[0.2em] text-white/25">
+                  <span className="text-[8px] tracking-[0.2em] text-white/25 uppercase">
                     {t.contact.yourEvent}
                   </span>
 
                   <ArrowUpRight size={12} className="text-white/25" />
                 </div>
 
-                <p className="mt-3 font-serif text-lg">
-                  {t.contact.makeMemories}
-                </p>
+                <p className="mt-3 font-serif text-lg">{t.contact.makeMemories}</p>
 
                 <div className="mt-4 h-px bg-white/10" />
 
                 <div className="mt-3 flex items-center justify-between">
-                  <span className="text-[8px] text-white/25">
-                    {t.contact.oneSharedCamera}
-                  </span>
+                  <span className="text-[8px] text-white/25">{t.contact.oneSharedCamera}</span>
 
                   <Camera size={12} className="text-white/35" />
                 </div>
@@ -372,20 +350,18 @@ const Contact = () => {
 
               {/* RIGHT CARD */}
 
-              <div className="absolute bottom-8 right-5 hidden w-50 rounded-2xl border border-white/10 bg-black/55 p-4 backdrop-blur-2xl sm:block lg:right-10 lg:w-56">
+              <div className="absolute right-5 bottom-8 hidden w-50 rounded-2xl border border-white/10 bg-black/55 p-4 backdrop-blur-2xl sm:block lg:right-10 lg:w-56">
                 <div className="flex items-center gap-3">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.05]">
                     <Users size={13} className="text-white/45" />
                   </div>
 
                   <div>
-                    <p className="text-[8px] uppercase tracking-[0.2em] text-white/20">
+                    <p className="text-[8px] tracking-[0.2em] text-white/20 uppercase">
                       {t.contact.guests}
                     </p>
 
-                    <p className="mt-1 text-xs text-white/65">
-                      {t.contact.guestCount}
-                    </p>
+                    <p className="mt-1 text-xs text-white/65">{t.contact.guestCount}</p>
                   </div>
                 </div>
               </div>
@@ -393,12 +369,9 @@ const Contact = () => {
               {/* CURSOR */}
 
               <div className="absolute bottom-[27%] left-[30%] hidden items-center gap-2 sm:flex">
-                <MousePointer2
-                  size={20}
-                  className="rotate-[-12deg] fill-white text-black"
-                />
+                <MousePointer2 size={20} className="rotate-[-12deg] fill-white text-black" />
 
-                <span className="rounded-full border border-white/10 bg-black/60 px-3 py-1.5 text-[8px] uppercase tracking-[0.18em] text-white/40 backdrop-blur-xl">
+                <span className="rounded-full border border-white/10 bg-black/60 px-3 py-1.5 text-[8px] tracking-[0.18em] text-white/40 uppercase backdrop-blur-xl">
                   {t.contact.sayHello}
                 </span>
               </div>
@@ -406,7 +379,7 @@ const Contact = () => {
               {/* BOTTOM LABEL */}
 
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
-                <div className="flex items-center gap-2 text-[7px] uppercase tracking-[0.3em] text-white/20">
+                <div className="flex items-center gap-2 text-[7px] tracking-[0.3em] text-white/20 uppercase">
                   <span>{t.contact.snap}</span>
 
                   <span className="h-1 w-1 rounded-full bg-white/20" />
@@ -423,9 +396,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* =====================================================
-          CONTACT AREA
-      ===================================================== */}
+      {/* CONTACT AREA */}
 
       <section className="relative z-10 px-5 pb-24 sm:px-8 lg:px-12 lg:pb-32">
         <div className="mx-auto max-w-7xl">
@@ -434,14 +405,14 @@ const Contact = () => {
 
             <Reveal>
               <div className="relative h-full overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] p-6 backdrop-blur-xl sm:p-8 lg:p-10">
-                <div className="absolute right-[-80px] top-[-80px] h-45 w-45 rounded-full bg-white/[0.025] blur-[70px]" />
+                <div className="absolute top-[-80px] right-[-80px] h-45 w-45 rounded-full bg-white/[0.025] blur-[70px]" />
 
                 <div className="relative">
                   <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
                     <Sparkles size={16} className="text-white/50" />
                   </div>
 
-                  <p className="mt-8 text-[9px] uppercase tracking-[0.3em] text-white/25">
+                  <p className="mt-8 text-[9px] tracking-[0.3em] text-white/25 uppercase">
                     {t.contact.getInTouch}
                   </p>
 
@@ -462,11 +433,7 @@ const Contact = () => {
                     className="group mt-10 flex items-center gap-4"
                   >
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-black transition-all duration-300 group-hover:border-white/25 group-hover:bg-white/[0.06]">
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="h-4 w-4 shrink-0"
-                        aria-hidden="true"
-                      >
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
                         <rect
                           x="3"
                           y="5"
@@ -490,7 +457,7 @@ const Contact = () => {
                     </div>
 
                     <div className="min-w-0">
-                      <p className="text-[8px] uppercase tracking-[0.2em] text-white/20">
+                      <p className="text-[8px] tracking-[0.2em] text-white/20 uppercase">
                         {t.contact.emailUs}
                       </p>
 
@@ -501,14 +468,14 @@ const Contact = () => {
 
                     <ArrowUpRight
                       size={14}
-                      className="ml-auto shrink-0 text-white/15 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white/60"
+                      className="ml-auto shrink-0 text-white/15 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white/60"
                     />
                   </a>
 
                   {/* FIND US */}
 
                   <div className="mt-8 border-t border-white/10 pt-7">
-                    <p className="text-[8px] uppercase tracking-[0.25em] text-white/20">
+                    <p className="text-[8px] tracking-[0.25em] text-white/20 uppercase">
                       {t.contact.findUs}
                     </p>
 
@@ -517,14 +484,9 @@ const Contact = () => {
 
                       <a
                         href="#"
-                        className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] uppercase tracking-wider text-white/40 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+                        className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] tracking-wider text-white/40 uppercase transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
                       >
-                        <svg
-                          viewBox="0 0 24 24"
-                          className="h-4 w-4"
-                          fill="none"
-                          aria-hidden="true"
-                        >
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
                           <rect
                             x="3"
                             y="3"
@@ -567,7 +529,7 @@ const Contact = () => {
 
                         <ArrowUpRight
                           size={11}
-                          className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                          className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                         />
                       </a>
 
@@ -575,14 +537,9 @@ const Contact = () => {
 
                       <a
                         href="#"
-                        className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] uppercase tracking-wider text-white/40 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+                        className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] tracking-wider text-white/40 uppercase transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
                       >
-                        <svg
-                          viewBox="0 0 24 24"
-                          className="h-4 w-4"
-                          fill="none"
-                          aria-hidden="true"
-                        >
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
                           <path
                             d="M14 4v10.2a3.2 3.2 0 1 1-2.6-3.15"
                             stroke="#25F4EE"
@@ -611,7 +568,7 @@ const Contact = () => {
 
                         <ArrowUpRight
                           size={11}
-                          className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                          className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                         />
                       </a>
                     </div>
@@ -622,7 +579,7 @@ const Contact = () => {
                   <div className="mt-8 flex items-center gap-2">
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white/50" />
 
-                    <span className="text-[8px] uppercase tracking-[0.2em] text-white/20">
+                    <span className="text-[8px] tracking-[0.2em] text-white/20 uppercase">
                       {t.contact.responseTime}
                     </span>
                   </div>
@@ -630,17 +587,15 @@ const Contact = () => {
               </div>
             </Reveal>
 
-            {/* =================================================
-                FORM
-            ================================================= */}
+            {/* FORM */}
 
             <Reveal delay={160}>
               <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#080808] p-6 sm:p-8 lg:p-10">
-                <div className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-linear-to-r from-transparent via-white/30 to-transparent" />
+                <div className="absolute top-0 left-1/2 h-px w-2/3 -translate-x-1/2 bg-linear-to-r from-transparent via-white/30 to-transparent" />
 
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-[9px] uppercase tracking-[0.3em] text-white/20">
+                    <p className="text-[9px] tracking-[0.3em] text-white/20 uppercase">
                       {t.contact.dropUsALine}
                     </p>
 
@@ -663,7 +618,7 @@ const Contact = () => {
                     <div>
                       <label
                         htmlFor="name"
-                        className="mb-2 block text-[8px] uppercase tracking-[0.22em] text-white/25"
+                        className="mb-2 block text-[8px] tracking-[0.22em] text-white/25 uppercase"
                       >
                         {t.contact.name}
                       </label>
@@ -676,15 +631,13 @@ const Contact = () => {
                         value={form.name}
                         onChange={handleChange}
                         placeholder={t.contact.yourName}
-                        className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
+                        className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white transition-all duration-300 outline-none placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
                       />
 
                       {/* ONLY ERROR IS RED */}
 
                       {errors.name && (
-                        <p className="mt-2 px-1 text-[9px] text-red-400">
-                          {errors.name}
-                        </p>
+                        <p className="mt-2 px-1 text-[9px] text-red-400">{errors.name}</p>
                       )}
                     </div>
 
@@ -693,7 +646,7 @@ const Contact = () => {
                     <div>
                       <label
                         htmlFor="email"
-                        className="mb-2 block text-[8px] uppercase tracking-[0.22em] text-white/25"
+                        className="mb-2 block text-[8px] tracking-[0.22em] text-white/25 uppercase"
                       >
                         {t.contact.email}
                       </label>
@@ -706,15 +659,13 @@ const Contact = () => {
                         value={form.email}
                         onChange={handleChange}
                         placeholder={t.contact.emailPlaceholder}
-                        className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
+                        className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white transition-all duration-300 outline-none placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
                       />
 
                       {/* ONLY ERROR IS RED */}
 
                       {errors.email && (
-                        <p className="mt-2 px-1 text-[9px] text-red-400">
-                          {errors.email}
-                        </p>
+                        <p className="mt-2 px-1 text-[9px] text-red-400">{errors.email}</p>
                       )}
                     </div>
                   </div>
@@ -724,7 +675,7 @@ const Contact = () => {
                   <div className="mt-5">
                     <label
                       htmlFor="subject"
-                      className="mb-2 block text-[8px] uppercase tracking-[0.22em] text-white/25"
+                      className="mb-2 block text-[8px] tracking-[0.22em] text-white/25 uppercase"
                     >
                       {t.contact.subject}
                     </label>
@@ -736,15 +687,13 @@ const Contact = () => {
                       value={form.subject}
                       onChange={handleChange}
                       placeholder={t.contact.subjectPlaceholder}
-                      className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
+                      className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white transition-all duration-300 outline-none placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
                     />
 
                     {/* ONLY ERROR IS RED */}
 
                     {errors.subject && (
-                      <p className="mt-2 px-1 text-[9px] text-red-400">
-                        {errors.subject}
-                      </p>
+                      <p className="mt-2 px-1 text-[9px] text-red-400">{errors.subject}</p>
                     )}
                   </div>
 
@@ -753,7 +702,7 @@ const Contact = () => {
                   <div className="mt-5">
                     <label
                       htmlFor="message"
-                      className="mb-2 block text-[8px] uppercase tracking-[0.22em] text-white/25"
+                      className="mb-2 block text-[8px] tracking-[0.22em] text-white/25 uppercase"
                     >
                       {t.contact.message}
                     </label>
@@ -765,15 +714,13 @@ const Contact = () => {
                       value={form.message}
                       onChange={handleChange}
                       placeholder={t.contact.messagePlaceholder}
-                      className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.025] px-4 py-4 text-sm leading-6 text-white outline-none transition-all duration-300 placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
+                      className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.025] px-4 py-4 text-sm leading-6 text-white transition-all duration-300 outline-none placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
                     />
 
                     {/* ONLY ERROR IS RED */}
 
                     {errors.message && (
-                      <p className="mt-2 px-1 text-[9px] text-red-400">
-                        {errors.message}
-                      </p>
+                      <p className="mt-2 px-1 text-[9px] text-red-400">{errors.message}</p>
                     )}
                   </div>
 
@@ -800,7 +747,7 @@ const Contact = () => {
 
                           <ArrowUpRight
                             size={15}
-                            className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                            className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                           />
                         </>
                       )}
@@ -808,7 +755,7 @@ const Contact = () => {
                       {!submitted && (
                         <MousePointer2
                           size={17}
-                          className="absolute -bottom-5 -right-4 rotate-[-12deg] fill-white text-black opacity-0 transition-all duration-300 group-hover:opacity-100"
+                          className="absolute -right-4 -bottom-5 rotate-[-12deg] fill-white text-black opacity-0 transition-all duration-300 group-hover:opacity-100"
                         />
                       )}
                     </button>
@@ -823,7 +770,7 @@ const Contact = () => {
                       <Check size={12} />
                     </div>
 
-                    <span className="whitespace-nowrap text-[9px] text-white/60">
+                    <span className="text-[9px] whitespace-nowrap text-white/60">
                       {t.contact.successMessage}
                     </span>
                   </div>
@@ -834,20 +781,18 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* =====================================================
-          FINAL CTA
-      ===================================================== */}
+      {/* FINAL CTA */}
 
       <section className="relative z-10 px-5 pb-24 sm:px-8 lg:px-12 lg:pb-32">
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#070707] px-6 py-16 text-center sm:px-10 sm:py-24">
-              <div className="absolute left-1/2 top-1/2 h-100 w-100 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.025] blur-[110px]" />
+              <div className="absolute top-1/2 left-1/2 h-100 w-100 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.025] blur-[110px]" />
 
-              <div className="absolute left-1/2 top-0 h-full w-px bg-white/[0.025]" />
+              <div className="absolute top-0 left-1/2 h-full w-px bg-white/[0.025]" />
 
               <div className="relative">
-                <p className="text-[9px] uppercase tracking-[0.35em] text-white/20">
+                <p className="text-[9px] tracking-[0.35em] text-white/20 uppercase">
                   {t.contact.readyWhenYouAre}
                 </p>
 
@@ -876,7 +821,7 @@ const Contact = () => {
 
                   <MousePointer2
                     size={17}
-                    className="absolute -bottom-5 -right-5 rotate-[-12deg] fill-white text-black opacity-0 transition-all duration-300 group-hover:opacity-100"
+                    className="absolute -right-5 -bottom-5 rotate-[-12deg] fill-white text-black opacity-0 transition-all duration-300 group-hover:opacity-100"
                   />
                 </a>
               </div>

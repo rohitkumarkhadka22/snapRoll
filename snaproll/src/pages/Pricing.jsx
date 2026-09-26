@@ -61,6 +61,7 @@ const Pricing = () => {
       ],
       button: "Go Pro",
       link: "/",
+      
     },
   ];
 

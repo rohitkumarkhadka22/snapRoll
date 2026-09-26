@@ -1,13 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  CalendarDays,
-  Users,
-  Camera,
-  Sparkles,
-  Check,
-  Copy,
-  ArrowLeft,
-} from "lucide-react";
+import { CalendarDays, Users, Camera, Sparkles, Check, Copy, ArrowLeft } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import { QRCodeSVG } from "qrcode.react";
 import useLanguage from "../context/useLanguage";
@@ -46,8 +38,7 @@ const CreateEvent = () => {
         const element = eventNameRef.current;
 
         if (element) {
-          const y =
-            element.getBoundingClientRect().top + window.pageYOffset - 180;
+          const y = element.getBoundingClientRect().top + window.pageYOffset - 180;
 
           window.scrollTo({
             top: y,
@@ -70,8 +61,7 @@ const CreateEvent = () => {
         const element = eventDateRef.current;
 
         if (element) {
-          const y =
-            element.getBoundingClientRect().top + window.pageYOffset - 180;
+          const y = element.getBoundingClientRect().top + window.pageYOffset - 180;
 
           window.scrollTo({
             top: y,
@@ -133,14 +123,13 @@ const CreateEvent = () => {
   const eventUrl = `https://snaproll.app/event/${eventSlug || "demo"}`;
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-black px-5 pb-24 pt-28 text-white sm:px-8 sm:pt-32">
-      {/* =========================================================
-          BACKGROUND GLOW
-      ========================================================= */}
-      <div className="pointer-events-none fixed inset-0 -z-0 overflow-hidden">
-        <div className="absolute left-1/2 top-20 h-80 w-80 -translate-x-1/2 rounded-full bg-white/[0.025] blur-3xl" />
+    <main className="min-h-screen overflow-x-hidden bg-black px-5 pt-28 pb-24 text-white sm:px-8 sm:pt-32">
+      {/* BACKGROUND GLOW */}
 
-        <div className="absolute -left-40 top-[45%] h-80 w-80 rounded-full bg-white/[0.015] blur-3xl" />
+      <div className="pointer-events-none fixed inset-0 -z-0 overflow-hidden">
+        <div className="absolute top-20 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-white/[0.025] blur-3xl" />
+
+        <div className="absolute top-[45%] -left-40 h-80 w-80 rounded-full bg-white/[0.015] blur-3xl" />
 
         <div className="absolute -right-40 bottom-10 h-80 w-80 rounded-full bg-white/[0.015] blur-3xl" />
       </div>
@@ -148,13 +137,12 @@ const CreateEvent = () => {
       <div className="relative z-10 mx-auto w-full max-w-4xl">
         {!created ? (
           <>
-            {/* =====================================================
-                HEADER
-            ===================================================== */}
+            {/* HEADER */}
+
             <ScrollReveal direction="up">
               <section className="mx-auto max-w-2xl text-center">
                 {/* BADGE */}
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-white/55 backdrop-blur-xl sm:text-xs">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] tracking-[0.2em] text-white/55 uppercase backdrop-blur-xl sm:text-xs">
                   <Sparkles size={13} strokeWidth={1.5} />
 
                   {page.badge}
@@ -172,9 +160,8 @@ const CreateEvent = () => {
               </section>
             </ScrollReveal>
 
-            {/* =====================================================
-                FORM
-            ===================================================== */}
+            {/* FORM */}
+
             <ScrollReveal direction="up" delay={100}>
               <section className="mx-auto mt-12 max-w-3xl sm:mt-16">
                 <form
@@ -183,14 +170,13 @@ const CreateEvent = () => {
                   className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.035] p-5 shadow-[0_30px_100px_rgba(0,0,0,0.5)] backdrop-blur-2xl sm:rounded-[38px] sm:p-8 md:p-10"
                 >
                   {/* TOP LINE */}
-                  <div className="pointer-events-none absolute left-10 right-10 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  <div className="pointer-events-none absolute top-0 right-10 left-10 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-                  {/* =================================================
-                      FORM HEADER
-                  ================================================= */}
+                  {/* FORM HEADER */}
+
                   <div className="mb-8 flex items-center justify-between border-b border-white/[0.07] pb-6">
                     <div>
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-white/25">
+                      <p className="text-[10px] tracking-[0.2em] text-white/25 uppercase">
                         SnapRoll
                       </p>
 
@@ -200,19 +186,14 @@ const CreateEvent = () => {
                     </div>
 
                     <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04]">
-                      <Camera
-                        size={18}
-                        strokeWidth={1.4}
-                        className="text-white/55"
-                      />
+                      <Camera size={18} strokeWidth={1.4} className="text-white/55" />
                     </div>
                   </div>
 
-                  {/* =================================================
-                      EVENT NAME
-                  ================================================= */}
+                  {/* EVENT NAME */}
+
                   <div>
-                    <label className="mb-3 block text-xs uppercase tracking-[0.15em] text-white/40">
+                    <label className="mb-3 block text-xs tracking-[0.15em] text-white/40 uppercase">
                       {page.eventName}
                     </label>
 
@@ -228,7 +209,7 @@ const CreateEvent = () => {
                         }
                       }}
                       placeholder={page.eventNamePlaceholder}
-                      className={`h-14 w-full rounded-2xl border bg-white/[0.035] px-5 text-sm text-white outline-none transition duration-300 placeholder:text-white/20 hover:border-white/[0.15] focus:bg-white/[0.055] ${
+                      className={`h-14 w-full rounded-2xl border bg-white/[0.035] px-5 text-sm text-white transition duration-300 outline-none placeholder:text-white/20 hover:border-white/[0.15] focus:bg-white/[0.055] ${
                         formError && !eventName.trim()
                           ? "border-white/30 focus:border-white/40"
                           : "border-white/[0.09] focus:border-white/25"
@@ -236,11 +217,10 @@ const CreateEvent = () => {
                     />
                   </div>
 
-                  {/* =================================================
-                      DATE
-                  ================================================= */}
+                  {/* DATE */}
+
                   <div className="mt-6">
-                    <label className="mb-3 block text-xs uppercase tracking-[0.15em] text-white/40">
+                    <label className="mb-3 block text-xs tracking-[0.15em] text-white/40 uppercase">
                       {page.eventDate}
                     </label>
 
@@ -248,7 +228,7 @@ const CreateEvent = () => {
                       <CalendarDays
                         size={18}
                         strokeWidth={1.5}
-                        className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-white/30"
+                        className="pointer-events-none absolute top-1/2 left-5 -translate-y-1/2 text-white/30"
                       />
 
                       <input
@@ -262,7 +242,7 @@ const CreateEvent = () => {
                             setFormError("");
                           }
                         }}
-                        className={`h-14 w-full rounded-2xl border bg-white/[0.035] px-5 pl-13 text-sm text-white outline-none transition duration-300 hover:border-white/[0.15] focus:bg-white/[0.055] ${
+                        className={`h-14 w-full rounded-2xl border bg-white/[0.035] px-5 pl-13 text-sm text-white transition duration-300 outline-none hover:border-white/[0.15] focus:bg-white/[0.055] ${
                           formError && !eventDate
                             ? "border-white/30 focus:border-white/40"
                             : "border-white/[0.09] focus:border-white/25"
@@ -271,23 +251,18 @@ const CreateEvent = () => {
                     </div>
                   </div>
 
-                  {/* =================================================
-                      GUESTS + PHOTOS
-                  ================================================= */}
+                  {/* GUESTS + PHOTOS */}
+
                   <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
                     {/* GUEST LIMIT */}
                     <div>
-                      <label className="mb-3 flex h-4 items-center text-xs uppercase tracking-[0.15em] text-white/40">
+                      <label className="mb-3 flex h-4 items-center text-xs tracking-[0.15em] text-white/40 uppercase">
                         {page.guestLimit}
                       </label>
 
-                      <div className="flex h-14 items-center overflow-hidden rounded-2xl border border-white/[0.09] bg-white/[0.035] transition duration-300 hover:border-white/[0.15] focus-within:border-white/25">
+                      <div className="flex h-14 items-center overflow-hidden rounded-2xl border border-white/[0.09] bg-white/[0.035] transition duration-300 focus-within:border-white/25 hover:border-white/[0.15]">
                         <div className="flex h-14 w-12 shrink-0 items-center justify-center">
-                          <Users
-                            size={18}
-                            strokeWidth={1.5}
-                            className="text-white/35"
-                          />
+                          <Users size={18} strokeWidth={1.5} className="text-white/35" />
                         </div>
 
                         <select
@@ -316,17 +291,13 @@ const CreateEvent = () => {
 
                     {/* PHOTO LIMIT */}
                     <div>
-                      <label className="mb-3 flex h-4 items-center text-xs uppercase tracking-[0.15em] text-white/40">
+                      <label className="mb-3 flex h-4 items-center text-xs tracking-[0.15em] text-white/40 uppercase">
                         {page.photoLimit}
                       </label>
 
-                      <div className="flex h-14 items-center overflow-hidden rounded-2xl border border-white/[0.09] bg-white/[0.035] transition duration-300 hover:border-white/[0.15] focus-within:border-white/25">
+                      <div className="flex h-14 items-center overflow-hidden rounded-2xl border border-white/[0.09] bg-white/[0.035] transition duration-300 focus-within:border-white/25 hover:border-white/[0.15]">
                         <div className="flex h-14 w-12 shrink-0 items-center justify-center">
-                          <Camera
-                            size={18}
-                            strokeWidth={1.5}
-                            className="text-white/35"
-                          />
+                          <Camera size={18} strokeWidth={1.5} className="text-white/35" />
                         </div>
 
                         <select
@@ -346,9 +317,8 @@ const CreateEvent = () => {
                     </div>
                   </div>
 
-                  {/* =================================================
-                      FREE EVENT INFO
-                  ================================================= */}
+                  {/* FREE EVENT INFO */}
+
                   <div className="mt-7 flex items-start gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4">
                     <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]">
                       <Sparkles size={13} strokeWidth={1.4} />
@@ -357,15 +327,12 @@ const CreateEvent = () => {
                     <div>
                       <p className="text-sm text-white/70">{page.freeEvent}</p>
 
-                      <p className="mt-1 text-xs leading-5 text-white/30">
-                        {page.freePlanInfo}
-                      </p>
+                      <p className="mt-1 text-xs leading-5 text-white/30">{page.freePlanInfo}</p>
                     </div>
                   </div>
 
-                  {/* =================================================
-                      CUSTOM FORM ERROR
-                  ================================================= */}
+                  {/* CUSTOM FORM ERROR */}
+
                   {formError && (
                     <div className="mt-5 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025]">
                       <div className="flex items-center gap-3 px-4 py-3">
@@ -373,16 +340,13 @@ const CreateEvent = () => {
                           <span className="text-xs text-white/60">!</span>
                         </div>
 
-                        <p className="text-xs leading-5 text-white/45">
-                          {formError}
-                        </p>
+                        <p className="text-xs leading-5 text-white/45">{formError}</p>
                       </div>
                     </div>
                   )}
 
-                  {/* =================================================
-                      CREATE BUTTON
-                  ================================================= */}
+                  {/* CREATE BUTTON */}
+
                   <button
                     type="submit"
                     className="mt-7 flex h-14 w-full cursor-pointer items-center justify-center rounded-full bg-white text-sm font-medium text-black transition-all duration-300 hover:bg-white/90 hover:shadow-[0_15px_45px_rgba(255,255,255,0.08)] active:scale-[0.99]"
@@ -392,24 +356,20 @@ const CreateEvent = () => {
 
                   {/* NO ACCOUNT */}
                   {page.noAccount && (
-                    <p className="mt-4 text-center text-[11px] text-white/25">
-                      {page.noAccount}
-                    </p>
+                    <p className="mt-4 text-center text-[11px] text-white/25">{page.noAccount}</p>
                   )}
                 </form>
               </section>
             </ScrollReveal>
           </>
         ) : (
-          /* =========================================================
-             SUCCESS / QR SECTION
-          ========================================================= */
+          //  SUCCESS / QR SECTION
+
           <ScrollReveal direction="up">
             <section className="mx-auto max-w-3xl text-center">
-              {/* =================================================
-                  SUCCESS BADGE
-              ================================================= */}
-              <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-white/55 backdrop-blur-xl sm:text-xs">
+              {/* SUCCESS BADGE */}
+
+              <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] tracking-[0.2em] text-white/55 uppercase backdrop-blur-xl sm:text-xs">
                 <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white text-black">
                   <Check size={10} strokeWidth={2.5} />
                 </span>
@@ -417,9 +377,8 @@ const CreateEvent = () => {
                 {page.eventCreated}
               </div>
 
-              {/* =================================================
-                  TITLE
-              ================================================= */}
+              {/* TITLE */}
+
               <h1 className="font-serif text-[44px] leading-[0.95] tracking-[-0.045em] text-white sm:text-6xl">
                 {page.eventReady}
               </h1>
@@ -429,29 +388,26 @@ const CreateEvent = () => {
                 {page.shareEvent}
               </p>
 
-              {/* =================================================
-                  QR CARD
-              ================================================= */}
+              {/* QR CARD */}
+
               <div className="relative mx-auto mt-12 max-w-xl overflow-hidden rounded-[32px] border border-white/[0.09] bg-white/[0.035] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.55)] backdrop-blur-2xl sm:rounded-[40px] sm:p-9">
                 {/* CARD GLOW */}
                 <div className="pointer-events-none absolute -top-32 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-white/[0.025] blur-3xl" />
 
-                {/* =================================================
-                    EVENT INFO
-                ================================================= */}
+                {/* EVENT INFO */}
+
                 <div className="relative">
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-white/25">
+                  <p className="text-[10px] tracking-[0.22em] text-white/25 uppercase">
                     {page.shareEvent}
                   </p>
 
-                  <h2 className="mt-3 break-words font-serif text-3xl tracking-[-0.025em] text-white sm:text-4xl">
+                  <h2 className="mt-3 font-serif text-3xl tracking-[-0.025em] break-words text-white sm:text-4xl">
                     {eventName}
                   </h2>
                 </div>
 
-                {/* =================================================
-                    QR CODE
-                ================================================= */}
+                {/* QR CODE */}
+
                 <div className="relative mx-auto mt-9 flex h-56 w-56 items-center justify-center rounded-[30px] bg-white p-4 shadow-[0_25px_70px_rgba(0,0,0,0.4)] sm:h-60 sm:w-60">
                   <QRCodeSVG
                     value={eventUrl}
@@ -463,9 +419,8 @@ const CreateEvent = () => {
                   />
                 </div>
 
-                {/* =================================================
-                    SCAN TEXT
-                ================================================= */}
+                {/* SCAN TEXT */}
+
                 <div className="mt-7 flex items-center justify-center gap-3 text-xs text-white/35">
                   <span className="h-px w-8 bg-white/10" />
 
@@ -474,30 +429,24 @@ const CreateEvent = () => {
                   <span className="h-px w-8 bg-white/10" />
                 </div>
 
-                {/* =================================================
-                    EVENT LINK
-                ================================================= */}
+                {/* EVENT LINK */}
+
                 <div className="mt-7 rounded-2xl border border-white/[0.08] bg-black/20 px-4 py-4 text-left">
                   <div className="flex items-center justify-between gap-4">
-                    <p className="text-[9px] uppercase tracking-[0.2em] text-white/25">
+                    <p className="text-[9px] tracking-[0.2em] text-white/25 uppercase">
                       {page.copyInviteLink}
                     </p>
 
-                    <Copy
-                      size={13}
-                      strokeWidth={1.4}
-                      className="shrink-0 text-white/20"
-                    />
+                    <Copy size={13} strokeWidth={1.4} className="shrink-0 text-white/20" />
                   </div>
 
-                  <p className="mt-2 break-all font-mono text-xs leading-5 text-white/55">
+                  <p className="mt-2 font-mono text-xs leading-5 break-all text-white/55">
                     {eventUrl}
                   </p>
                 </div>
 
-                {/* =================================================
-                    COPY BUTTON
-                ================================================= */}
+                {/* COPY BUTTON */}
+
                 <button
                   type="button"
                   onClick={handleCopy}
@@ -520,17 +469,13 @@ const CreateEvent = () => {
                   )}
                 </button>
 
-                {/* =================================================
-                    SMALL NOTE
-                ================================================= */}
-                <p className="mt-5 text-[10px] leading-5 text-white/20">
-                  {page.scanToJoin}
-                </p>
+                {/* SMALL NOTE */}
+
+                <p className="mt-5 text-[10px] leading-5 text-white/20">{page.scanToJoin}</p>
               </div>
 
-              {/* =================================================
-                  BACK BUTTON
-              ================================================= */}
+              {/* BACK BUTTON */}
+
               <button
                 type="button"
                 onClick={handleBack}

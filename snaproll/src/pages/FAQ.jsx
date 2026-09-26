@@ -16,18 +16,16 @@ const FAQ = () => {
 
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
-      {/* =========================================================
-          HERO
-      ========================================================== */}
-      <section className="relative mx-auto max-w-7xl px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32 md:pb-24 lg:px-12 lg:pb-28">
+      {/* HERO */}
+
+      <section className="relative mx-auto max-w-7xl px-5 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-20 md:pb-24 lg:px-12 lg:pb-28">
         <div className="grid items-center gap-12 sm:gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
-          {/* =====================================================
-              PHONE
-          ====================================================== */}
+          {/* PHONE */}
+
           <ScrollReveal duration={1200} y={45}>
             <div className="flex flex-col items-center lg:items-start">
               <div className="mb-7 self-start sm:mb-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
+                <p className="text-xs font-semibold tracking-[0.28em] text-gray-500 uppercase">
                   {faq.badge}
                 </p>
               </div>
@@ -35,9 +33,9 @@ const FAQ = () => {
               {/* PHONE VISUAL */}
               <div className="relative h-125 w-full max-w-135 sm:h-145 sm:max-w-150 md:h-150 lg:h-155">
                 {/* PHONE */}
-                <div className="absolute left-1/2 top-1/2 z-20 h-110 w-55 -translate-x-1/2 -translate-y-1/2 rotate-[-4deg] cursor-pointer transition-transform duration-700 hover:-rotate-1 sm:h-125 sm:w-62.5 md:h-130 md:w-65 lg:h-137.5 lg:w-68.75">
+                <div className="absolute top-1/2 left-1/2 z-20 h-110 w-55 -translate-x-1/2 -translate-y-1/2 rotate-[-4deg] cursor-pointer transition-transform duration-700 hover:-rotate-1 sm:h-125 sm:w-62.5 md:h-130 md:w-65 lg:h-137.5 lg:w-68.75">
                   {/* LEFT SIDE BUTTONS */}
-                  <div className="pointer-events-none absolute -left-3.5 top-[19%] z-50 flex flex-col gap-4 sm:-left-4 sm:gap-5 md:-left-4.5 lg:-left-5">
+                  <div className="pointer-events-none absolute top-[19%] -left-3.5 z-50 flex flex-col gap-4 sm:-left-4 sm:gap-5 md:-left-4.5 lg:-left-5">
                     <span className="block h-5 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-6 md:h-6.5 lg:h-7" />
 
                     <span className="block h-8 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-9 md:h-9.5 lg:h-10" />
@@ -46,61 +44,29 @@ const FAQ = () => {
                   </div>
 
                   {/* RIGHT POWER BUTTON */}
-                  <div className="pointer-events-none absolute -right-2 top-[29%] z-50 sm:-right-2.5">
+                  <div className="pointer-events-none absolute top-[29%] -right-2 z-50 sm:-right-2.5">
                     <span className="block h-10 w-1 rounded-r-full border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-12 md:h-13 lg:h-14" />
                   </div>
 
                   {/* OUTER PHONE FRAME */}
-                  <div
-                    className="
-                      absolute
-                      inset-0
-                      rounded-[38px]
-                      border
-                      border-white/30
-                      bg-linear-to-br
-                      from-white
-                      via-gray-200
-                      to-gray-500
-                      p-1.5
-                      shadow-[0_35px_90px_rgba(255,255,255,0.12)]
-                      sm:rounded-[42px]
-                      lg:rounded-[48px]
-                    "
-                  >
+                  <div className="absolute inset-0 rounded-[38px] border border-white/30 bg-linear-to-br from-white via-gray-200 to-gray-500 p-1.5 shadow-[0_35px_90px_rgba(255,255,255,0.12)] sm:rounded-[42px] lg:rounded-[48px]">
                     {/* INNER BLACK BODY */}
-                    <div
-                      className="
-                        relative
-                        h-full
-                        w-full
-                        overflow-hidden
-                        rounded-[32px]
-                        border
-                        border-black/80
-                        bg-black
-                        p-1
-                        sm:rounded-[36px]
-                        lg:rounded-[41px]
-                      "
-                    >
+                    <div className="relative h-full w-full overflow-hidden rounded-[32px] border border-black/80 bg-black p-1 sm:rounded-[36px] lg:rounded-[41px]">
                       {/* SCREEN */}
                       <div className="relative h-full w-full overflow-hidden rounded-[27px] bg-neutral-950 sm:rounded-[31px] lg:rounded-[36px]">
                         {/* DYNAMIC ISLAND */}
-                        <div className="absolute left-1/2 top-2 z-40 h-6 w-20 -translate-x-1/2 rounded-full bg-black shadow-inner sm:top-2.5 sm:h-7 sm:w-24 lg:top-3 lg:h-8 lg:w-28" />
+                        <div className="absolute top-2 left-1/2 z-40 h-6 w-20 -translate-x-1/2 rounded-full bg-black shadow-inner sm:top-2.5 sm:h-7 sm:w-24 lg:top-3 lg:h-8 lg:w-28" />
 
                         {/* CAMERA DOT */}
-                        <div className="absolute left-1/2 top-[15px] z-50 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-gray-700 sm:top-[18px] lg:top-[20px]" />
+                        <div className="absolute top-[15px] left-1/2 z-50 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-gray-700 sm:top-[18px] lg:top-[20px]" />
 
                         {/* TOP CONTENT */}
-                        <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-4 pt-10 sm:px-5 sm:pt-12 lg:px-6 lg:pt-14">
-                          <span className="text-[9px] font-semibold uppercase tracking-[0.25em] text-white sm:text-[10px]">
+                        <div className="absolute top-0 right-0 left-0 z-20 flex items-center justify-between px-4 pt-10 sm:px-5 sm:pt-12 lg:px-6 lg:pt-14">
+                          <span className="text-[9px] font-semibold tracking-[0.25em] text-white uppercase sm:text-[10px]">
                             SnapRoll
                           </span>
 
-                          <span className="text-[8px] text-gray-500 sm:text-[9px]">
-                            FAQ
-                          </span>
+                          <span className="text-[8px] text-gray-500 sm:text-[9px]">FAQ</span>
                         </div>
 
                         {/* MAIN SCREEN CONTENT */}
@@ -109,22 +75,18 @@ const FAQ = () => {
                           <div className="mb-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3.5 backdrop-blur-sm transition-colors duration-300 hover:border-white/20 sm:mb-4 sm:p-4 lg:mb-5 lg:p-5">
                             {/* CARD HEADER */}
                             <div className="flex items-center justify-between">
-                              <span className="text-[8px] uppercase tracking-[0.2em] text-gray-500 sm:text-[9px]">
+                              <span className="text-[8px] tracking-[0.2em] text-gray-500 uppercase sm:text-[9px]">
                                 {faq.frequentlyAsked}
                               </span>
 
-                              <span className="text-[8px] text-gray-600 sm:text-[9px]">
-                                FAQ
-                              </span>
+                              <span className="text-[8px] text-gray-600 sm:text-[9px]">FAQ</span>
                             </div>
 
                             {/* CARD TITLE */}
                             <p className="mt-3 font-serif text-xl leading-tight text-white sm:mt-4 sm:text-2xl lg:text-3xl">
                               {faq.everything}
                               <br />
-                              <span className="text-gray-500">
-                                {faq.inOnePlace}
-                              </span>
+                              <span className="text-gray-500">{faq.inOnePlace}</span>
                             </p>
 
                             {/* QUESTION PREVIEW */}
@@ -149,7 +111,7 @@ const FAQ = () => {
 
                           {/* BOTTOM BAR */}
                           <div className="flex items-center justify-between border-t border-white/10 pt-3 sm:pt-4">
-                            <span className="text-[8px] uppercase tracking-[0.2em] text-gray-500 sm:text-[9px]">
+                            <span className="text-[8px] tracking-[0.2em] text-gray-500 uppercase sm:text-[9px]">
                               {faq.badge}
                             </span>
 
@@ -164,29 +126,27 @@ const FAQ = () => {
                 </div>
 
                 {/* MEMORY CARD */}
-                <div className="absolute bottom-[4%] left-[2%] z-30 hidden w-32 cursor-pointer rotate-[-10deg] rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-[-6deg] hover:scale-[1.02] sm:block md:w-34 lg:w-36">
+                <div className="absolute bottom-[4%] left-[2%] z-30 hidden w-32 rotate-[-10deg] cursor-pointer rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:scale-[1.02] hover:rotate-[-6deg] sm:block md:w-34 lg:w-36">
                   <div className="flex aspect-square items-center justify-center rounded-xl bg-neutral-900">
                     <div className="text-center">
-                      <span className="block text-[8px] uppercase tracking-[0.3em] text-gray-600">
+                      <span className="block text-[8px] tracking-[0.3em] text-gray-600 uppercase">
                         SnapRoll
                       </span>
 
-                      <span className="mt-2 block font-serif text-3xl text-gray-700">
-                        ?
-                      </span>
+                      <span className="mt-2 block font-serif text-3xl text-gray-700">?</span>
                     </div>
                   </div>
 
                   <div className="pt-3">
-                    <p className="text-[8px] uppercase tracking-[0.2em] text-black">
+                    <p className="text-[8px] tracking-[0.2em] text-black uppercase">
                       {faq.questionCount}
                     </p>
                   </div>
                 </div>
 
                 {/* FLOATING LABEL */}
-                <div className="absolute bottom-[16%] right-[2%] z-30 hidden cursor-pointer rounded-full border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-md transition-colors duration-300 hover:border-white/25 hover:bg-white/10 sm:block md:px-4">
-                  <span className="text-[7px] uppercase tracking-[0.25em] text-gray-400 sm:text-[8px]">
+                <div className="absolute right-[2%] bottom-[16%] z-30 hidden cursor-pointer rounded-full border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-md transition-colors duration-300 hover:border-white/25 hover:bg-white/10 sm:block md:px-4">
+                  <span className="text-[7px] tracking-[0.25em] text-gray-400 uppercase sm:text-[8px]">
                     {faq.phoneStory}
                   </span>
                 </div>
@@ -199,18 +159,17 @@ const FAQ = () => {
             </div>
           </ScrollReveal>
 
-          {/* =====================================================
-              HERO TEXT
-          ====================================================== */}
+          {/* HERO TEXT */}
+
           <div className="max-w-3xl">
             <ScrollReveal delay={180} duration={1000} y={35}>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-gray-600 sm:mb-5">
+              <p className="mb-4 text-xs font-semibold tracking-[0.25em] text-gray-600 uppercase sm:mb-5">
                 {faq.eyebrow}
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={300} duration={1100} y={40}>
-              <h1 className="font-serif text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl md:text-[3.8rem] lg:text-7xl">
+              <h1 className="font-serif text-4xl leading-[1.02] font-medium tracking-[-0.04em] sm:text-5xl md:text-[3.8rem] lg:text-7xl">
                 {faq.title1}
                 <br />
                 <span className="text-gray-500">{faq.title2}</span>
@@ -229,16 +188,15 @@ const FAQ = () => {
         <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-full bg-linear-to-t from-black to-transparent sm:h-28" />
       </section>
 
-      {/* =========================================================
-          FAQ LIST
-      ========================================================== */}
+      {/* FAQ LIST */}
+
       <section className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 md:py-24 lg:px-12 lg:py-28">
           <div className="grid gap-12 sm:gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
             {/* LEFT SIDE */}
             <ScrollReveal duration={1000} y={35}>
               <div className="lg:sticky lg:top-28 lg:self-start">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
+                <p className="text-xs font-semibold tracking-[0.28em] text-gray-500 uppercase">
                   {faq.frequentlyAsked}
                 </p>
 
@@ -251,7 +209,7 @@ const FAQ = () => {
                 <div className="mt-6 flex items-center gap-3 sm:mt-8">
                   <span className="h-px w-10 bg-white/20" />
 
-                  <span className="text-[9px] uppercase tracking-[0.22em] text-gray-600 sm:text-[10px]">
+                  <span className="text-[9px] tracking-[0.22em] text-gray-600 uppercase sm:text-[10px]">
                     {faq.questionCount}
                   </span>
                 </div>
@@ -261,21 +219,12 @@ const FAQ = () => {
             {/* RIGHT SIDE */}
             <div className="min-w-0">
               {faq.groups.map((group, groupIndex) => (
-                <ScrollReveal
-                  key={group.label}
-                  delay={groupIndex * 120}
-                  duration={1000}
-                  y={35}
-                >
-                  <div
-                    className={
-                      groupIndex !== 0 ? "mt-12 sm:mt-16 lg:mt-20" : ""
-                    }
-                  >
+                <ScrollReveal key={group.label} delay={groupIndex * 120} duration={1000} y={35}>
+                  <div className={groupIndex !== 0 ? "mt-12 sm:mt-16 lg:mt-20" : ""}>
                     {/* CATEGORY */}
                     <div className="mb-5 sm:mb-6">
                       <div className="flex items-center gap-3 sm:gap-4">
-                        <span className="shrink-0 text-[9px] font-semibold uppercase tracking-[0.25em] text-gray-500 sm:text-[10px]">
+                        <span className="shrink-0 text-[9px] font-semibold tracking-[0.25em] text-gray-500 uppercase sm:text-[10px]">
                           {group.label}
                         </span>
 
@@ -295,14 +244,9 @@ const FAQ = () => {
 
                         const previousQuestions = faq.groups
                           .slice(0, groupIndex)
-                          .reduce(
-                            (total, currentGroup) =>
-                              total + currentGroup.items.length,
-                            0,
-                          );
+                          .reduce((total, currentGroup) => total + currentGroup.items.length, 0);
 
-                        const questionNumber =
-                          previousQuestions + itemIndex + 1;
+                        const questionNumber = previousQuestions + itemIndex + 1;
 
                         return (
                           <ScrollReveal
@@ -315,9 +259,7 @@ const FAQ = () => {
                               {/* QUESTION BUTTON */}
                               <button
                                 type="button"
-                                onClick={() =>
-                                  toggleItem(groupIndex, itemIndex)
-                                }
+                                onClick={() => toggleItem(groupIndex, itemIndex)}
                                 aria-expanded={isOpen}
                                 className="group flex w-full cursor-pointer items-center justify-between gap-3 py-4 text-left sm:gap-5 sm:py-5 md:py-6"
                               >
@@ -330,9 +272,7 @@ const FAQ = () => {
                                   {/* QUESTION */}
                                   <span
                                     className={`min-w-0 font-serif text-base leading-6 transition-colors duration-300 sm:text-[17px] md:text-lg ${
-                                      isOpen
-                                        ? "text-white"
-                                        : "text-gray-300 group-hover:text-white"
+                                      isOpen ? "text-white" : "text-gray-300 group-hover:text-white"
                                     }`}
                                   >
                                     {faqItem.question}
@@ -380,15 +320,14 @@ const FAQ = () => {
         </div>
       </section>
 
-      {/* =========================================================
-          FINAL STATEMENT
-      ========================================================== */}
+      {/* FINAL STATEMENT */}
+
       <section className="border-t border-white/10">
         <ScrollReveal duration={1100} y={40}>
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 md:py-24 lg:px-12 lg:py-28">
             <div className="grid gap-7 sm:gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
+                <p className="text-xs font-semibold tracking-[0.28em] text-gray-500 uppercase">
                   {faq.finalLabel}
                 </p>
               </div>

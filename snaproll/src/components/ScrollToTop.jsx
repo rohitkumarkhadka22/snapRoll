@@ -16,8 +16,6 @@ const ScrollToTop = () => {
       });
     }
 
-    // Extra frame to make sure route content
-    // has already rendered before resetting again
     requestAnimationFrame(() => {
       window.scrollTo(0, 0);
 
