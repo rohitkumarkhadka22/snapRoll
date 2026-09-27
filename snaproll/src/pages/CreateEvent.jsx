@@ -3,6 +3,7 @@ import { CalendarDays, Users, Camera, Sparkles, Check, Copy, ArrowLeft } from "l
 import ScrollReveal from "../components/ScrollReveal";
 import { QRCodeSVG } from "qrcode.react";
 import useLanguage from "../context/useLanguage";
+import { buildEventUrl, getLocalDateInputValue } from "../utils/eventLinks";
 
 const CreateEvent = () => {
   const { t } = useLanguage();
@@ -14,6 +15,8 @@ const CreateEvent = () => {
   const [photos, setPhotos] = useState("50");
   const [created, setCreated] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState("");
+  const today = getLocalDateInputValue();
 
   // CUSTOM VALIDATION
   const [formError, setFormError] = useState("");
@@ -54,7 +57,7 @@ const CreateEvent = () => {
       return;
     }
 
-    if (!eventDate) {
+    if (!eventDate || eventDate < today) {
       setFormError(page.validationEventDate);
 
       setTimeout(() => {
@@ -91,13 +94,15 @@ const CreateEvent = () => {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(eventUrl);
+      setCopyError("");
       setCopied(true);
 
       setTimeout(() => {
         setCopied(false);
       }, 2000);
-    } catch (error) {
-      console.error("Failed to copy event link:", error);
+    } catch {
+      setCopied(false);
+      setCopyError("Copy failed. Select the invite link above and copy it manually.");
     }
   };
 
@@ -114,13 +119,11 @@ const CreateEvent = () => {
     }, 50);
   };
 
-  const eventSlug = eventName
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-
-  const eventUrl = `https://snaproll.app/event/${eventSlug || "demo"}`;
+  const publicAppUrl = (import.meta.env.VITE_PUBLIC_APP_URL || window.location.origin).replace(
+    /\/$/,
+    "",
+  );
+  const eventUrl = buildEventUrl(eventName, publicAppUrl);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-black px-5 pt-28 pb-24 text-white sm:px-8 sm:pt-32">
@@ -200,6 +203,7 @@ const CreateEvent = () => {
                     <input
                       ref={eventNameRef}
                       type="text"
+                      maxLength={100}
                       value={eventName}
                       onChange={(e) => {
                         setEventName(e.target.value);
@@ -234,6 +238,7 @@ const CreateEvent = () => {
                       <input
                         ref={eventDateRef}
                         type="date"
+                        min={today}
                         value={eventDate}
                         onChange={(e) => {
                           setEventDate(e.target.value);
@@ -468,6 +473,12 @@ const CreateEvent = () => {
                     </>
                   )}
                 </button>
+
+                {copyError && (
+                  <p role="alert" className="mt-3 text-xs leading-5 text-red-300">
+                    {copyError}
+                  </p>
+                )}
 
                 {/* SMALL NOTE */}
 

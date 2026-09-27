@@ -29,6 +29,7 @@ import {
 } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import useLanguage from "../context/useLanguage";
+import { buildJoinUrl } from "../utils/eventLinks";
 
 /* =========================================================
    EVENT IMAGES
@@ -64,16 +65,10 @@ const playSound = (type = "click") => {
 
     if (type === "success") {
       oscillator.frequency.setValueAtTime(520, ctx.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(
-        760,
-        ctx.currentTime + 0.12,
-      );
+      oscillator.frequency.exponentialRampToValueAtTime(760, ctx.currentTime + 0.12);
     } else if (type === "camera") {
       oscillator.frequency.setValueAtTime(180, ctx.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(
-        80,
-        ctx.currentTime + 0.08,
-      );
+      oscillator.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.08);
     } else {
       oscillator.frequency.setValueAtTime(420, ctx.currentTime);
     }
@@ -164,8 +159,8 @@ const HowItWorks = () => {
           HERO
       ===================================================== */}
 
-      <section className="relative px-4 pb-16 pt-28 sm:px-8 sm:pb-24 sm:pt-36 md:pt-40 lg:px-12 lg:pb-20 lg:pt-44">
-        <div className="pointer-events-none absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-white/[0.045] blur-[120px] sm:h-100 sm:w-100" />
+      <section className="relative px-4 pt-28 pb-16 sm:px-8 sm:pt-36 sm:pb-24 md:pt-40 lg:px-12 lg:pt-44 lg:pb-20">
+        <div className="pointer-events-none absolute top-20 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-white/[0.045] blur-[120px] sm:h-100 sm:w-100" />
 
         <div className="relative mx-auto max-w-5xl text-center">
           <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2 text-[10px] tracking-[0.18em] text-white/50 backdrop-blur-xl sm:text-xs">
@@ -190,12 +185,12 @@ const HowItWorks = () => {
 
         <ScrollReveal>
           <div className="group relative mx-auto mt-10 h-105 max-w-5xl sm:mt-14 sm:h-130 lg:mt-17 lg:h-150">
-            <div className="absolute left-1/2 top-1/2 h-60 w-60 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.04] blur-3xl sm:h-72 sm:w-72" />
+            <div className="absolute top-1/2 left-1/2 h-60 w-60 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.04] blur-3xl sm:h-72 sm:w-72" />
 
-            <div className="absolute left-1/2 top-1/2 hidden h-px w-[74%] -translate-x-1/2 bg-linear-to-r from-transparent via-white/10 to-transparent sm:block" />
+            <div className="absolute top-1/2 left-1/2 hidden h-px w-[74%] -translate-x-1/2 bg-linear-to-r from-transparent via-white/10 to-transparent sm:block" />
 
             <HeroFloat
-              className="left-0 top-[18%] -rotate-6 opacity-0 -translate-y-3 sm:left-[1%] sm:top-[20%]"
+              className="top-[18%] left-0 -translate-y-3 -rotate-6 opacity-0 sm:top-[20%] sm:left-[1%]"
               icon={<QrCode size={25} />}
               label={h.scan}
               delay="duration-300"
@@ -203,7 +198,7 @@ const HowItWorks = () => {
             />
 
             <HeroFloat
-              className="right-0 top-[14%] rotate-6 opacity-0 translate-y-3 sm:right-[1%] sm:top-[16%]"
+              className="top-[14%] right-0 translate-y-3 rotate-6 opacity-0 sm:top-[16%] sm:right-[1%]"
               icon={<Camera size={25} />}
               label={h.shoot}
               delay="delay-75 duration-500"
@@ -211,7 +206,7 @@ const HowItWorks = () => {
             />
 
             <HeroFloat
-              className="bottom-[8%] left-[3%] rotate-6 opacity-0 translate-y-3 sm:bottom-[10%] sm:left-[8%]"
+              className="bottom-[8%] left-[3%] translate-y-3 rotate-6 opacity-0 sm:bottom-[10%] sm:left-[8%]"
               icon={<Users size={25} />}
               label={h.join}
               delay="delay-150 duration-500"
@@ -219,7 +214,7 @@ const HowItWorks = () => {
             />
 
             <HeroFloat
-              className="bottom-[6%] right-[3%] -rotate-6 opacity-0 -translate-y-3 sm:bottom-[8%] sm:right-[8%]"
+              className="right-[3%] bottom-[6%] -translate-y-3 -rotate-6 opacity-0 sm:right-[8%] sm:bottom-[8%]"
               icon={<Sparkles size={25} />}
               label={h.reveal}
               delay="delay-200 duration-500"
@@ -228,11 +223,11 @@ const HowItWorks = () => {
 
             {/* HERO PHONE */}
 
-            <div className="absolute left-1/2 top-1/2 h-135 w-70 -translate-x-1/2 -translate-y-1/2 rotate-2 rounded-[2.8rem] border border-white/15 bg-[#080808] p-2 shadow-[0_35px_100px_rgba(255,255,255,0.09)] transition-all duration-700 group-hover:rotate-0 group-hover:translate-y-[-52%] sm:h-140 sm:w-72 lg:h-143.75 lg:w-75">
+            <div className="absolute top-1/2 left-1/2 h-135 w-70 -translate-x-1/2 -translate-y-1/2 rotate-2 rounded-[2.8rem] border border-white/15 bg-[#080808] p-2 shadow-[0_35px_100px_rgba(255,255,255,0.09)] transition-all duration-700 group-hover:translate-y-[-52%] group-hover:rotate-0 sm:h-140 sm:w-72 lg:h-143.75 lg:w-75">
               <PhoneReflection />
 
               <div className="relative h-full overflow-hidden rounded-[2.3rem] border border-white/8 bg-[#111]">
-                <div className="absolute left-1/2 top-3 z-30 h-5 w-20 -translate-x-1/2 rounded-full bg-black" />
+                <div className="absolute top-3 left-1/2 z-30 h-5 w-20 -translate-x-1/2 rounded-full bg-black" />
 
                 <img
                   src={EVENT_IMAGES[0]}
@@ -242,9 +237,9 @@ const HowItWorks = () => {
 
                 <div className="absolute inset-0 bg-linear-to-b from-black/75 via-black/15 to-black/95" />
 
-                <div className="relative z-10 flex h-full flex-col px-4 pb-5 pt-12">
+                <div className="relative z-10 flex h-full flex-col px-4 pt-12 pb-5">
                   <div className="flex items-center justify-between">
-                    <span className="text-[8px] uppercase tracking-[0.2em] text-white/45">
+                    <span className="text-[8px] tracking-[0.2em] text-white/45 uppercase">
                       SNAPROLL
                     </span>
 
@@ -280,9 +275,7 @@ const HowItWorks = () => {
 
                   <div className="mt-auto rounded-2xl border border-white/10 bg-black/50 p-3 backdrop-blur-xl">
                     <div className="flex items-center justify-between">
-                      <span className="text-[8px] text-white/40">
-                        {h.moments}
-                      </span>
+                      <span className="text-[8px] text-white/40">{h.moments}</span>
 
                       <span className="text-xs text-white/80">
                         {capturedPhotos.length || 18} / {shots}
@@ -293,10 +286,7 @@ const HowItWorks = () => {
                       <div
                         className="h-full rounded-full bg-white/70 transition-all"
                         style={{
-                          width: `${Math.min(
-                            100,
-                            ((capturedPhotos.length || 18) / shots) * 100,
-                          )}%`,
+                          width: `${Math.min(100, ((capturedPhotos.length || 18) / shots) * 100)}%`,
                         }}
                       />
                     </div>
@@ -307,14 +297,14 @@ const HowItWorks = () => {
 
             {/* HERO CURSOR */}
 
-            <div className="pointer-events-none absolute bottom-5 right-[20%] hidden opacity-0 transition-all duration-500 group-hover:translate-x-2 group-hover:translate-y-2 group-hover:opacity-100 lg:block">
+            <div className="pointer-events-none absolute right-[20%] bottom-5 hidden opacity-0 transition-all duration-500 group-hover:translate-x-2 group-hover:translate-y-2 group-hover:opacity-100 lg:block">
               <div className="relative">
                 <MousePointer2
                   size={27}
                   className="fill-white text-black drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
                 />
 
-                <span className="absolute left-5 top-5 whitespace-nowrap rounded-full border border-white/10 bg-black/80 px-2 py-1 text-[7px] uppercase tracking-[0.12em] text-white/60 backdrop-blur-xl">
+                <span className="absolute top-5 left-5 rounded-full border border-white/10 bg-black/80 px-2 py-1 text-[7px] tracking-[0.12em] whitespace-nowrap text-white/60 uppercase backdrop-blur-xl">
                   {h.tryIt}
                 </span>
               </div>
@@ -363,12 +353,10 @@ const HowItWorks = () => {
       ===================================================== */}
 
       <section className="relative overflow-hidden border-t border-white/8 px-5 py-20 sm:px-8 sm:py-28">
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-87.5 w-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.035] blur-[100px]" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 h-87.5 w-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.035] blur-[100px]" />
 
         <div className="relative mx-auto max-w-3xl text-center">
-          <p className="mb-5 text-xs tracking-[0.2em] text-white/30">
-            {h.readyToCapture}
-          </p>
+          <p className="mb-5 text-xs tracking-[0.2em] text-white/30">{h.readyToCapture}</p>
 
           <h2 className="font-serif text-3xl tracking-[-0.04em] sm:text-5xl md:text-6xl">
             {h.finalTitle1}
@@ -432,7 +420,7 @@ const StepSection = ({
             </span>
 
             <div className="min-w-0 flex-1">
-              <p className="mb-4 text-[11px] uppercase tracking-[0.2em] text-white/30">
+              <p className="mb-4 text-[11px] tracking-[0.2em] text-white/30 uppercase">
                 {h.step} {step.number}
               </p>
 
@@ -446,10 +434,7 @@ const StepSection = ({
 
               <div className="mt-8 hidden grid-cols-2 gap-3 sm:grid">
                 {h.steps[step.key].features.map((feature) => (
-                  <div
-                    key={feature}
-                    className="flex items-center gap-2 text-sm text-white/45"
-                  >
+                  <div key={feature} className="flex items-center gap-2 text-sm text-white/45">
                     <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
                       <Check size={10} />
                     </span>
@@ -465,7 +450,7 @@ const StepSection = ({
                 <div className="h-px w-10 shrink-0 bg-white/10" />
 
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-white/30">
+                  <p className="text-[10px] tracking-[0.18em] text-white/30 uppercase">
                     {h.quickHint}
                   </p>
 
@@ -494,15 +479,13 @@ const StepSection = ({
                 }}
                 className="mt-7 flex w-full cursor-pointer items-center justify-between border-t border-white/[0.08] pt-5 sm:hidden"
               >
-                <span className="text-xs uppercase tracking-[0.15em] text-white/40">
+                <span className="text-xs tracking-[0.15em] text-white/40 uppercase">
                   {h.whatHappens}
                 </span>
 
                 <ChevronDown
                   size={16}
-                  className={`transition-transform duration-300 ${
-                    isOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
@@ -513,10 +496,7 @@ const StepSection = ({
               >
                 <div className="space-y-3 pt-5">
                   {h.steps[step.key].features.map((feature) => (
-                    <div
-                      key={feature}
-                      className="flex items-center gap-2 text-sm text-white/45"
-                    >
+                    <div key={feature} className="flex items-center gap-2 text-sm text-white/45">
                       <Check size={13} />
                       {feature}
                     </div>
@@ -590,7 +570,7 @@ const PhoneMockup = ({
 
   return (
     <div className="relative flex w-full max-w-[430px] justify-center px-2 sm:px-5">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.045] blur-[100px] sm:h-80 sm:w-80" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.045] blur-[100px] sm:h-80 sm:w-80" />
 
       <div className="relative w-full max-w-[305px] sm:max-w-[330px] lg:max-w-[340px]">
         {/* LEFT SIDE BUTTONS */}
@@ -601,19 +581,19 @@ const PhoneMockup = ({
             playSound("click");
           }}
           title={h.silent}
-          className="absolute -left-[3px] top-[100px] z-30 h-8 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:top-[110px] sm:h-9 sm:w-[6px]"
+          className="absolute top-[100px] -left-[3px] z-30 h-8 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:top-[110px] sm:-left-[6px] sm:h-9 sm:w-[6px]"
         />
 
         <button
           onClick={() => changeVolume(10)}
           title={h.volumeUp}
-          className="absolute -left-[3px] top-[150px] z-30 h-11 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:top-[165px] sm:h-13 sm:w-[6px]"
+          className="absolute top-[150px] -left-[3px] z-30 h-11 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:top-[165px] sm:-left-[6px] sm:h-13 sm:w-[6px]"
         />
 
         <button
           onClick={() => changeVolume(-10)}
           title={h.volumeDown}
-          className="absolute -left-[3px] top-[200px] z-30 h-11 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:-left-[6px] sm:top-[220px] sm:h-13 sm:w-[6px]"
+          className="absolute top-[200px] -left-[3px] z-30 h-11 w-[5px] -translate-x-full cursor-pointer rounded-l-md border border-white/20 bg-[#292929] transition hover:bg-[#444] active:scale-90 sm:top-[220px] sm:-left-[6px] sm:h-13 sm:w-[6px]"
         />
 
         {/* RIGHT POWER */}
@@ -621,14 +601,14 @@ const PhoneMockup = ({
         <button
           onClick={togglePower}
           title={powered ? h.turnPhoneOff : h.turnPhoneOn}
-          className="absolute -right-[3px] top-[170px] z-40 h-16 w-[5px] translate-x-full cursor-pointer rounded-r-md border border-white/20 bg-[#292929] transition hover:bg-[#555] active:scale-90 sm:-right-[6px] sm:top-[180px] sm:h-20 sm:w-[6px]"
+          className="absolute top-[170px] -right-[3px] z-40 h-16 w-[5px] translate-x-full cursor-pointer rounded-r-md border border-white/20 bg-[#292929] transition hover:bg-[#555] active:scale-90 sm:top-[180px] sm:-right-[6px] sm:h-20 sm:w-[6px]"
         />
 
         {/* PHONE */}
 
         <div className="relative rounded-[40px] border border-white/[0.18] bg-[#171717] p-[5px] shadow-[0_35px_100px_rgba(0,0,0,0.8)] transition-transform duration-700 hover:-translate-y-2 sm:rounded-[48px] sm:p-[7px]">
           <div className="relative overflow-hidden rounded-[34px] border border-white/[0.08] bg-black sm:rounded-[40px]">
-            <div className="absolute left-1/2 top-3 z-40 h-[23px] w-[82px] -translate-x-1/2 rounded-full bg-black shadow-inner sm:h-[25px] sm:w-[96px]" />
+            <div className="absolute top-3 left-1/2 z-40 h-[23px] w-[82px] -translate-x-1/2 rounded-full bg-black shadow-inner sm:h-[25px] sm:w-[96px]" />
 
             <div className="relative h-[570px] min-h-[570px] overflow-hidden sm:h-[620px] sm:min-h-[620px]">
               {!powered ? (
@@ -653,12 +633,7 @@ const PhoneMockup = ({
                   )}
 
                   {step === 1 && (
-                    <ShareQR
-                      h={h}
-                      eventName={eventName}
-                      shots={shots}
-                      guests={guests}
-                    />
+                    <ShareQR h={h} eventName={eventName} shots={shots} guests={guests} />
                   )}
 
                   {step === 2 && <GuestJoin h={h} eventName={eventName} />}
@@ -675,11 +650,7 @@ const PhoneMockup = ({
                   )}
 
                   {step === 4 && (
-                    <RevealRoll
-                      h={h}
-                      eventName={eventName}
-                      capturedPhotos={capturedPhotos}
-                    />
+                    <RevealRoll h={h} eventName={eventName} capturedPhotos={capturedPhotos} />
                   )}
                 </>
               )}
@@ -690,7 +661,7 @@ const PhoneMockup = ({
         {/* SOUND */}
 
         {powered && (
-          <div className="absolute -right-16 top-8 hidden rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-[9px] text-white/35 backdrop-blur-xl sm:-right-20 sm:block">
+          <div className="absolute top-8 -right-16 hidden rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-[9px] text-white/35 backdrop-blur-xl sm:-right-20 sm:block">
             <div className="flex items-center gap-2">
               {silent ? <VolumeX size={12} /> : <Volume2 size={12} />}
 
@@ -703,10 +674,7 @@ const PhoneMockup = ({
 
         <div className="pointer-events-none absolute -right-7 bottom-24 hidden animate-[bounce_2.5s_infinite] lg:block">
           <div className="rounded-full border border-white/10 bg-black/80 p-2 shadow-xl backdrop-blur">
-            <MousePointer2
-              size={17}
-              className="rotate-[-12deg] fill-white text-white"
-            />
+            <MousePointer2 size={17} className="rotate-[-12deg] fill-white text-white" />
           </div>
         </div>
       </div>
@@ -741,9 +709,7 @@ const CreateRoll = ({
           <Check size={30} />
         </div>
 
-        <p className="mt-7 text-[10px] uppercase tracking-[0.2em] text-white/30">
-          {h.rollCreated}
-        </p>
+        <p className="mt-7 text-[10px] tracking-[0.2em] text-white/30 uppercase">{h.rollCreated}</p>
 
         <h3 className="mt-2 max-w-[210px] font-serif text-3xl">{eventName}</h3>
 
@@ -772,12 +738,10 @@ const CreateRoll = ({
   }
 
   return (
-    <div className="h-full overflow-y-auto px-3 pb-6 pt-12 scrollbar-thin sm:px-5 sm:pb-7 sm:pt-14">
+    <div className="h-full scrollbar-thin overflow-y-auto px-3 pt-12 pb-6 sm:px-5 sm:pt-14 sm:pb-7">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-[10px] uppercase tracking-[0.18em] text-white/30">
-            {h.newRoll}
-          </p>
+          <p className="text-[10px] tracking-[0.18em] text-white/30 uppercase">{h.newRoll}</p>
 
           <h3 className="mt-2 font-serif text-2xl">{h.create}</h3>
         </div>
@@ -821,7 +785,7 @@ const CreateRoll = ({
               setEventDate(e.target.value);
               playSound("click");
             }}
-            className="w-full cursor-pointer bg-transparent text-xs text-white/70 outline-none [color-scheme:dark]"
+            className="w-full cursor-pointer bg-transparent text-xs text-white/70 [color-scheme:dark] outline-none"
           />
         </div>
 
@@ -903,6 +867,8 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
   const [copied, setCopied] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("WARM");
   const [selectedImage, setSelectedImage] = useState(EVENT_IMAGES[0]);
+  const publicAppUrl = import.meta.env.VITE_PUBLIC_APP_URL || window.location.origin;
+  const joinUrl = buildJoinUrl(eventName, publicAppUrl);
 
   const filters = [
     {
@@ -922,7 +888,7 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
   const copyLink = () => {
     if (navigator?.clipboard) {
       navigator.clipboard
-        .writeText(`https://snaproll.app/join/${encodeURIComponent(eventName)}`)
+        .writeText(joinUrl)
         .catch(() => {});
     }
 
@@ -935,13 +901,11 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
   };
 
   return (
-    <div className="relative h-full min-h-[570px] overflow-y-auto bg-[#080808] px-3 pb-6 pt-12 sm:min-h-[620px] sm:px-4 sm:pb-7 sm:pt-14">
+    <div className="relative h-full min-h-[570px] overflow-y-auto bg-[#080808] px-3 pt-12 pb-6 sm:min-h-[620px] sm:px-4 sm:pt-14 sm:pb-7">
       {/* HEADER */}
 
       <div className="text-center">
-        <p className="text-[9px] uppercase tracking-[0.18em] text-white/30">
-          {h.step} 02
-        </p>
+        <p className="text-[9px] tracking-[0.18em] text-white/30 uppercase">{h.step} 02</p>
 
         <h3 className="mt-2 font-serif text-2xl">{h.shareRoll}</h3>
       </div>
@@ -953,17 +917,14 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
           src={selectedImage}
           alt={h.preview}
           className={`h-[200px] w-full object-cover transition-all duration-500 sm:h-[220px] ${
-            filters.find((item) => item.name === selectedFilter)?.className ||
-            ""
+            filters.find((item) => item.name === selectedFilter)?.className || ""
           }`}
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
 
-        <div className="absolute bottom-3 left-3 min-w-0 max-w-[90%]">
-          <p className="text-[8px] uppercase tracking-[0.15em] text-white/40">
-            {h.preview}
-          </p>
+        <div className="absolute bottom-3 left-3 max-w-[90%] min-w-0">
+          <p className="text-[8px] tracking-[0.15em] text-white/40 uppercase">{h.preview}</p>
 
           <p className="mt-1 truncate font-serif text-xl">{eventName}</p>
         </div>
@@ -975,7 +936,7 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
         <div className="mb-2 flex items-center gap-2">
           <Filter size={12} className="text-white/40" />
 
-          <span className="text-[9px] uppercase tracking-[0.15em] text-white/35">
+          <span className="text-[9px] tracking-[0.15em] text-white/35 uppercase">
             {h.chooseFilter}
           </span>
         </div>
@@ -1001,12 +962,10 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
                 className={`h-12 w-full rounded-lg object-cover sm:h-14 ${item.className}`}
               />
 
-              <span className="mt-1 block text-[8px] text-white/50">
-                {item.name}
-              </span>
+              <span className="mt-1 block text-[8px] text-white/50">{item.name}</span>
 
               {selectedFilter === item.name && (
-                <span className="absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full bg-white text-black">
+                <span className="absolute top-2 right-2 flex h-4 w-4 items-center justify-center rounded-full bg-white text-black">
                   <Check size={9} />
                 </span>
               )}
@@ -1020,16 +979,14 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
       <div className="mt-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.035] p-3">
         <div className="shrink-0 rounded-xl bg-white p-2">
           <QRCodeSVG
-            value={`https://snaproll.app/join/${encodeURIComponent(eventName)}`}
+            value={joinUrl}
             size={65}
             level="H"
           />
         </div>
 
         <div className="min-w-0 text-left">
-          <p className="text-[8px] uppercase tracking-[0.15em] text-white/30">
-            {h.scanToJoin}
-          </p>
+          <p className="text-[8px] tracking-[0.15em] text-white/30 uppercase">{h.scanToJoin}</p>
 
           <p className="mt-1 truncate text-xs text-white/65">{eventName}</p>
 
@@ -1075,7 +1032,7 @@ const GuestJoin = ({ h, eventName }) => {
       <div className="relative flex h-full min-h-[570px] flex-col overflow-hidden bg-black sm:min-h-[620px]">
         {/* RIGHT PREVIEW */}
 
-        <div className="absolute right-0 top-0 h-full w-[38%] overflow-hidden border-l border-white/10 lg:w-[45%]">
+        <div className="absolute top-0 right-0 h-full w-[38%] overflow-hidden border-l border-white/10 lg:w-[45%]">
           <img
             src={previewImage}
             alt={h.preview}
@@ -1092,9 +1049,7 @@ const GuestJoin = ({ h, eventName }) => {
             <Check size={25} />
           </div>
 
-          <p className="mt-6 text-[9px] uppercase tracking-[0.2em] text-white/30">
-            {h.welcome}
-          </p>
+          <p className="mt-6 text-[9px] tracking-[0.2em] text-white/30 uppercase">{h.welcome}</p>
 
           <h3 className="mt-2 max-w-full truncate font-serif text-2xl">
             {h.hey}, {name || h.guest}.
@@ -1116,11 +1071,7 @@ const GuestJoin = ({ h, eventName }) => {
                   previewImage === image ? "border-white/60" : "border-white/10"
                 }`}
               >
-                <img
-                  src={image}
-                  alt={h.preview}
-                  className="h-full w-full object-cover"
-                />
+                <img src={image} alt={h.preview} className="h-full w-full object-cover" />
               </button>
             ))}
           </div>
@@ -1148,11 +1099,7 @@ const GuestJoin = ({ h, eventName }) => {
         </div>
 
         {previewOpen && (
-          <PreviewModal
-            h={h}
-            image={previewImage}
-            onClose={() => setPreviewOpen(false)}
-          />
+          <PreviewModal h={h} image={previewImage} onClose={() => setPreviewOpen(false)} />
         )}
       </div>
     );
@@ -1162,12 +1109,8 @@ const GuestJoin = ({ h, eventName }) => {
     <div className="relative flex h-full min-h-[570px] overflow-hidden bg-black sm:min-h-[620px]">
       {/* RIGHT PHOTO */}
 
-      <div className="absolute right-0 top-0 h-full w-[35%] overflow-hidden lg:w-[42%]">
-        <img
-          src={previewImage}
-          alt={h.preview}
-          className="h-full w-full object-cover opacity-65"
-        />
+      <div className="absolute top-0 right-0 h-full w-[35%] overflow-hidden lg:w-[42%]">
+        <img src={previewImage} alt={h.preview} className="h-full w-full object-cover opacity-65" />
 
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-transparent" />
 
@@ -1176,7 +1119,7 @@ const GuestJoin = ({ h, eventName }) => {
             setPreviewOpen(true);
             playSound("click");
           }}
-          className="absolute bottom-20 right-2 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/50 backdrop-blur-xl sm:right-3"
+          className="absolute right-2 bottom-20 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/50 backdrop-blur-xl sm:right-3"
         >
           <Eye size={13} />
         </button>
@@ -1189,9 +1132,7 @@ const GuestJoin = ({ h, eventName }) => {
           <ScanLine size={22} className="text-white/70" />
         </div>
 
-        <p className="mt-5 text-[9px] uppercase tracking-[0.18em] text-white/30">
-          {h.joinRoll}
-        </p>
+        <p className="mt-5 text-[9px] tracking-[0.18em] text-white/30 uppercase">{h.joinRoll}</p>
 
         <h3 className="mt-2 font-serif text-2xl">{h.invited}</h3>
 
@@ -1228,11 +1169,7 @@ const GuestJoin = ({ h, eventName }) => {
       </div>
 
       {previewOpen && (
-        <PreviewModal
-          h={h}
-          image={previewImage}
-          onClose={() => setPreviewOpen(false)}
-        />
+        <PreviewModal h={h} image={previewImage} onClose={() => setPreviewOpen(false)} />
       )}
     </div>
   );
@@ -1242,14 +1179,7 @@ const GuestJoin = ({ h, eventName }) => {
    STEP 04 — CAMERA
 ========================================================= */
 
-const ShootCamera = ({
-  h,
-  silent,
-  volume,
-  shots,
-  capturedPhotos,
-  setCapturedPhotos,
-}) => {
+const ShootCamera = ({ h, silent, volume, shots, capturedPhotos, setCapturedPhotos }) => {
   const [remaining, setRemaining] = useState(shots);
   const [filter, setFilter] = useState("WARM");
   const [flashEnabled, setFlashEnabled] = useState(false);
@@ -1310,7 +1240,7 @@ const ShootCamera = ({
 
         <div className="absolute inset-0 bg-black/20" />
 
-        <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-3 pt-12 sm:px-5 sm:pt-14">
+        <div className="absolute top-0 right-0 left-0 z-20 flex items-center justify-between px-3 pt-12 sm:px-5 sm:pt-14">
           <button
             onClick={() => {
               setViewingPhotos(false);
@@ -1337,7 +1267,7 @@ const ShootCamera = ({
           </button>
         </div>
 
-        <div className="absolute bottom-28 right-2 z-20 flex flex-col gap-2 sm:right-3">
+        <div className="absolute right-2 bottom-28 z-20 flex flex-col gap-2 sm:right-3">
           <button
             onClick={nextPhoto}
             disabled={selectedPhoto >= capturedPhotos.length - 1}
@@ -1357,9 +1287,7 @@ const ShootCamera = ({
 
         <div className="absolute bottom-5 left-3 z-20 sm:bottom-6 sm:left-4">
           <div className="rounded-2xl border border-white/15 bg-black/45 px-4 py-3 backdrop-blur-xl">
-            <p className="text-[8px] uppercase tracking-[0.15em] text-white/40">
-              {h.captured}
-            </p>
+            <p className="text-[8px] tracking-[0.15em] text-white/40 uppercase">{h.captured}</p>
 
             <p className="mt-1 font-serif text-2xl">
               {selectedPhoto + 1}
@@ -1395,17 +1323,11 @@ const ShootCamera = ({
       <div className="absolute inset-0 overflow-hidden">
         <img
           src={
-            capturedPhotos.length > 0
-              ? capturedPhotos[capturedPhotos.length - 1]
-              : EVENT_IMAGES[1]
+            capturedPhotos.length > 0 ? capturedPhotos[capturedPhotos.length - 1] : EVENT_IMAGES[1]
           }
           alt={h.cameraPreview}
           className={`h-full w-full object-cover opacity-45 transition-all duration-700 ${
-            filter === "B&W"
-              ? "grayscale"
-              : filter === "FLASH"
-                ? "brightness-125"
-                : ""
+            filter === "B&W" ? "grayscale" : filter === "FLASH" ? "brightness-125" : ""
           } ${mirror ? "scale-x-[-1]" : ""}`}
         />
 
@@ -1415,16 +1337,14 @@ const ShootCamera = ({
           <div className="absolute inset-0 bg-gradient-to-br from-orange-300/[0.12] via-transparent to-black" />
         )}
 
-        {filter === "FLASH" && (
-          <div className="absolute inset-0 bg-white/[0.08]" />
-        )}
+        {filter === "FLASH" && <div className="absolute inset-0 bg-white/[0.08]" />}
 
         {grid && (
           <div className="pointer-events-none absolute inset-0 opacity-20">
-            <div className="absolute left-1/3 top-0 h-full w-px bg-white/30" />
-            <div className="absolute left-2/3 top-0 h-full w-px bg-white/30" />
-            <div className="absolute left-0 top-1/3 h-px w-full bg-white/30" />
-            <div className="absolute left-0 top-2/3 h-px w-full bg-white/30" />
+            <div className="absolute top-0 left-1/3 h-full w-px bg-white/30" />
+            <div className="absolute top-0 left-2/3 h-full w-px bg-white/30" />
+            <div className="absolute top-1/3 left-0 h-px w-full bg-white/30" />
+            <div className="absolute top-2/3 left-0 h-px w-full bg-white/30" />
           </div>
         )}
       </div>
@@ -1432,13 +1352,11 @@ const ShootCamera = ({
       {/* CAPTURE FEEDBACK */}
 
       {captureFeedback && (
-        <div className="absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2">
           <div className="rounded-2xl border border-white/15 bg-black/75 px-5 py-4 text-center shadow-2xl backdrop-blur-xl sm:px-6">
-            <p className="font-serif text-3xl text-white">
-              {capturedPhotos.length}
-            </p>
+            <p className="font-serif text-3xl text-white">{capturedPhotos.length}</p>
 
-            <p className="mt-1 whitespace-nowrap text-[9px] uppercase tracking-[0.18em] text-white/45">
+            <p className="mt-1 text-[9px] tracking-[0.18em] whitespace-nowrap text-white/45 uppercase">
               {capturedPhotos.length === 1 ? h.photoTaken : h.photosTaken}
             </p>
           </div>
@@ -1458,9 +1376,7 @@ const ShootCamera = ({
 
         <button
           onClick={() => {
-            setFilter((prev) =>
-              prev === "WARM" ? "FLASH" : prev === "FLASH" ? "B&W" : "WARM",
-            );
+            setFilter((prev) => (prev === "WARM" ? "FLASH" : prev === "FLASH" ? "B&W" : "WARM"));
 
             if (!silent) playSound("click");
           }}
@@ -1477,9 +1393,7 @@ const ShootCamera = ({
           }}
           title={h.cameraSettings}
           className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border transition ${
-            settingsOpen
-              ? "border-white/30 bg-white/15"
-              : "border-white/10 bg-black/40"
+            settingsOpen ? "border-white/30 bg-white/15" : "border-white/10 bg-black/40"
           } backdrop-blur`}
         >
           <Settings size={14} />
@@ -1488,11 +1402,9 @@ const ShootCamera = ({
 
       {/* LEFT COUNTER */}
 
-      <div className="absolute left-2 top-1/2 z-10 -translate-y-1/2 sm:left-5">
+      <div className="absolute top-1/2 left-2 z-10 -translate-y-1/2 sm:left-5">
         <div className="rounded-2xl border border-white/15 bg-black/40 px-2.5 py-3 text-center backdrop-blur-xl sm:px-3">
-          <p className="text-[8px] uppercase tracking-[0.15em] text-white/40">
-            {h.shots}
-          </p>
+          <p className="text-[8px] tracking-[0.15em] text-white/40 uppercase">{h.shots}</p>
 
           <p className="mt-1 font-serif text-2xl">{remaining}</p>
 
@@ -1511,7 +1423,7 @@ const ShootCamera = ({
             if (!silent) playSound("click");
           }}
           title={h.preview}
-          className="absolute right-2 top-1/2 z-10 flex -translate-y-1/2 cursor-pointer flex-col items-center gap-1 rounded-2xl border border-white/15 bg-black/45 p-1.5 backdrop-blur-xl sm:right-4 sm:p-2"
+          className="absolute top-1/2 right-2 z-10 flex -translate-y-1/2 cursor-pointer flex-col items-center gap-1 rounded-2xl border border-white/15 bg-black/45 p-1.5 backdrop-blur-xl sm:right-4 sm:p-2"
         >
           <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-white/10 sm:h-12 sm:w-12">
             <img
@@ -1523,9 +1435,7 @@ const ShootCamera = ({
 
           <span className="text-[7px] text-white/55">{h.preview}</span>
 
-          <span className="text-[7px] text-white/35">
-            {capturedPhotos.length}
-          </span>
+          <span className="text-[7px] text-white/35">{capturedPhotos.length}</span>
         </button>
       )}
 
@@ -1536,11 +1446,8 @@ const ShootCamera = ({
 
         <div className="absolute h-16 w-16 rounded-full border border-white/[0.08] sm:h-24 sm:w-24" />
 
-        <div className="absolute right-7 top-1/2 animate-[bounce_2s_infinite] sm:right-9">
-          <MousePointer2
-            size={20}
-            className="rotate-[-12deg] fill-white text-white"
-          />
+        <div className="absolute top-1/2 right-7 animate-[bounce_2s_infinite] sm:right-9">
+          <MousePointer2 size={20} className="rotate-[-12deg] fill-white text-white" />
         </div>
       </div>
 
@@ -1557,9 +1464,7 @@ const ShootCamera = ({
           }}
           title={flashEnabled ? h.flashOn : h.flashOff}
           className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border transition sm:h-10 sm:w-10 ${
-            flashEnabled
-              ? "border-white/30 bg-white/20"
-              : "border-white/10 bg-black/40"
+            flashEnabled ? "border-white/30 bg-white/20" : "border-white/10 bg-black/40"
           }`}
         >
           <Zap size={14} />
@@ -1593,7 +1498,7 @@ const ShootCamera = ({
           <ImageIcon size={14} />
 
           {capturedPhotos.length > 0 && (
-            <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[7px] font-bold text-black">
+            <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[7px] font-bold text-black">
               {capturedPhotos.length}
             </span>
           )}
@@ -1632,27 +1537,14 @@ const ShootCamera = ({
    CAMERA SETTINGS
 ========================================================= */
 
-const CameraSettings = ({
-  h,
-  grid,
-  setGrid,
-  timer,
-  setTimer,
-  mirror,
-  setMirror,
-  onClose,
-}) => {
+const CameraSettings = ({ h, grid, setGrid, timer, setTimer, mirror, setMirror, onClose }) => {
   return (
     <div className="absolute inset-x-2 bottom-2 z-[60] overflow-hidden rounded-3xl border border-white/15 bg-black/90 p-3 shadow-2xl backdrop-blur-2xl sm:inset-x-3 sm:bottom-3 sm:p-4">
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-[8px] uppercase tracking-[0.18em] text-white/30">
-            {h.cameraSettings}
-          </p>
+          <p className="text-[8px] tracking-[0.18em] text-white/30 uppercase">{h.cameraSettings}</p>
 
-          <h4 className="mt-1 truncate font-serif text-xl">
-            {h.customizeShot}
-          </h4>
+          <h4 className="mt-1 truncate font-serif text-xl">{h.customizeShot}</h4>
         </div>
 
         <button
@@ -1680,9 +1572,7 @@ const CameraSettings = ({
             <div className="min-w-0 text-left">
               <p className="text-[10px] text-white/65">{h.cameraGrid}</p>
 
-              <p className="truncate text-[8px] text-white/25">
-                {h.alignFrame}
-              </p>
+              <p className="truncate text-[8px] text-white/25">{h.alignFrame}</p>
             </div>
           </div>
 
@@ -1728,9 +1618,7 @@ const CameraSettings = ({
             <div className="min-w-0 text-left">
               <p className="text-[10px] text-white/65">{h.mirrorCamera}</p>
 
-              <p className="truncate text-[8px] text-white/25">
-                {h.flipPreview}
-              </p>
+              <p className="truncate text-[8px] text-white/25">{h.flipPreview}</p>
             </div>
           </div>
 
@@ -1798,16 +1686,12 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
   ];
 
   return (
-    <div className="h-full min-h-[570px] overflow-y-auto px-4 pb-6 pt-12 sm:min-h-[620px] sm:px-5 sm:pb-7 sm:pt-14">
+    <div className="h-full min-h-[570px] overflow-y-auto px-4 pt-12 pb-6 sm:min-h-[620px] sm:px-5 sm:pt-14 sm:pb-7">
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-[10px] uppercase tracking-[0.18em] text-white/30">
-            {h.rollComplete}
-          </p>
+          <p className="text-[10px] tracking-[0.18em] text-white/30 uppercase">{h.rollComplete}</p>
 
-          <h3 className="mt-2 max-w-[200px] truncate font-serif text-2xl">
-            {eventName}
-          </h3>
+          <h3 className="mt-2 max-w-[200px] truncate font-serif text-2xl">{eventName}</h3>
         </div>
 
         <div className="flex h-10 w-10 shrink-0 animate-pulse items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
@@ -1820,10 +1704,7 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
       <div className="relative mt-7 h-44 overflow-hidden rounded-3xl border border-white/[0.1] sm:h-48">
         <div className="absolute inset-0 grid grid-cols-3 gap-1 p-1">
           {memories.slice(0, 6).map((image, index) => (
-            <div
-              key={`${image}-${index}`}
-              className="overflow-hidden rounded-lg"
-            >
+            <div key={`${image}-${index}`} className="overflow-hidden rounded-lg">
               <img
                 src={image}
                 alt={`${h.snaprollMemory} ${index + 1}`}
@@ -1842,13 +1723,11 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
                 <LockKeyhole size={20} className="text-white/60" />
               </div>
 
-              <p className="mt-3 text-[10px] uppercase tracking-[0.16em] text-white/50">
+              <p className="mt-3 text-[10px] tracking-[0.16em] text-white/50 uppercase">
                 {h.memoriesLocked}
               </p>
 
-              <p className="mt-1 text-[8px] text-white/25">
-                {h.revealToUnlock}
-              </p>
+              <p className="mt-1 text-[8px] text-white/25">{h.revealToUnlock}</p>
             </div>
           </div>
         )}
@@ -1861,7 +1740,7 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
               <div className="flex items-center gap-2">
                 <Sparkles size={11} />
 
-                <span className="text-[8px] uppercase tracking-[0.15em] text-white/75">
+                <span className="text-[8px] tracking-[0.15em] text-white/75 uppercase">
                   {h.memoriesUnlocked}
                 </span>
               </div>
@@ -1931,9 +1810,7 @@ const PowerOffScreen = ({ h, onPower }) => {
         <Power size={24} className="text-white/25" />
       </div>
 
-      <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-white/20">
-        {h.powerOff}
-      </p>
+      <p className="mt-5 text-[10px] tracking-[0.2em] text-white/20 uppercase">{h.powerOff}</p>
 
       <p className="mt-2 max-w-[180px] text-[10px] leading-5 text-white/15">
         {h.powerOffDescription}
@@ -1966,15 +1843,13 @@ const PreviewModal = ({ h, image, onClose }) => {
         <button
           onClick={onClose}
           title={h.close}
-          className="absolute right-3 top-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/60 backdrop-blur-xl"
+          className="absolute top-3 right-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/60 backdrop-blur-xl"
         >
           <X size={14} />
         </button>
 
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4 pt-14">
-          <p className="text-[8px] uppercase tracking-[0.15em] text-white/40">
-            {h.photoPreview}
-          </p>
+        <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/90 to-transparent p-4 pt-14">
+          <p className="text-[8px] tracking-[0.15em] text-white/40 uppercase">{h.photoPreview}</p>
 
           <p className="mt-1 font-serif text-lg">{h.snaprollMemory}</p>
         </div>
@@ -2009,9 +1884,9 @@ const HeroFloat = ({ className, icon, label, delay, onClick }) => {
 const PhoneReflection = () => {
   return (
     <div className="pointer-events-none absolute inset-0 z-30 overflow-hidden rounded-[2.5rem]">
-      <div className="absolute -left-20 top-20 h-[380px] w-20 rotate-[20deg] bg-white/[0.025] blur-2xl" />
+      <div className="absolute top-20 -left-20 h-[380px] w-20 rotate-[20deg] bg-white/[0.025] blur-2xl" />
 
-      <div className="absolute right-0 top-0 h-full w-px bg-white/[0.08]" />
+      <div className="absolute top-0 right-0 h-full w-px bg-white/[0.08]" />
     </div>
   );
 };

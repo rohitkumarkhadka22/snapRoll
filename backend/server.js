@@ -1,24 +1,24 @@
-const express = require("express");
-const cors = require("cors");
 require("dotenv").config();
 
-const chatRoutes = require("./routes/chatRoutes");
+const { createApp } = require("./app");
+const { getConfig } = require("./config");
 
-const app = express();
+const config = getConfig();
+const app = createApp(config);
 
-app.use(cors());
-app.use(express.json({ limit: "1mb" }));
+const server = app.listen(config.port, () => {
+  console.log(`SnapRoll backend listening on port ${config.port}`);
+});
 
-app.get("/", (req, res) => {
-  res.json({
-    message: "SnapRoll backend is running ",
+function shutdown(signal) {
+  console.log(`${signal} received; shutting down`);
+  server.close((error) => {
+    if (error) {
+      console.error("Graceful shutdown failed", error);
+      process.exitCode = 1;
+    }
   });
-});
+}
 
-app.use("/api/chat", chatRoutes);
-
-const PORT = process.env.PORT || 5001;
-
-app.listen(PORT, () => {
-  console.log(`SnapRoll backend running on port ${PORT}`);
-});
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+process.on("SIGINT", () => shutdown("SIGINT"));

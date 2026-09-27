@@ -1,16 +1,47 @@
-# React + Vite
+# SnapRoll
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SnapRoll currently consists of a React/Vite marketing and interactive prototype frontend plus an Express API for the AI assistant.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Requires Node.js 20.19 or newer.
 
-## React Compiler
+```sh
+cd backend
+cp .env.example .env
+npm ci
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+In another terminal:
 
-## Expanding the ESLint configuration
+```sh
+cd snaproll
+cp .env.example .env
+npm ci
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The Vite development server proxies `/api` and `/health` to the backend on port 5001.
+
+## Verification
+
+```sh
+cd snaproll && npm run check
+cd ../backend && npm run check
+```
+
+These commands run linting, unit/integration tests, syntax checks, and the production frontend build.
+
+## Production configuration
+
+- Serve the frontend and API from the same HTTPS origin when possible. Otherwise set backend `CLIENT_ORIGINS` and frontend `VITE_API_BASE_URL` to matching HTTPS origins.
+- Set `VITE_PUBLIC_APP_URL` to the public frontend origin.
+- Set `VITE_CONTACT_ENDPOINT` to an HTTPS service that validates, rate-limits, and delivers contact messages.
+- Configure `OLLAMA_URL` and `OLLAMA_MODEL` for the production AI service. Do not expose that service publicly.
+- Route platform health checks to `/health`.
+- Add platform-level TLS, CSP/HSTS headers, distributed rate limiting, structured logs, and error monitoring.
+
+## Current product scope
+
+Authentication, persistent events, guest identities, uploads, galleries, reactions, comments, payments, and notifications are not present in this repository. The event and camera experiences in the frontend are demonstrations. They must not be represented as a complete production application until those server-side systems and their authorization tests exist.

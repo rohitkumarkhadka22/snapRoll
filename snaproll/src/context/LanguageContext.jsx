@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 import translations from "../translations";
 
 export const LanguageContext = createContext(null);
@@ -28,28 +28,18 @@ export const languages = [
   },
 ];
 
-export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-
-  if (!context) {
-    throw new Error("useLanguage must be used inside a LanguageProvider");
-  }
-
-  return context;
-};
-
 const LanguageProvider = ({ children }) => {
   const [selectedLanguage, setSelectedLanguage] = useState(() => {
-    const savedLanguage = localStorage.getItem("snaproll-language");
+    try {
+      const savedLanguage = localStorage.getItem("snaproll-language");
 
-    if (savedLanguage) {
-      try {
+      if (savedLanguage) {
         const parsed = JSON.parse(savedLanguage);
 
         return languages.find((language) => language.name === parsed.name) || languages[0];
-      } catch {
-        return languages[0];
       }
+    } catch {
+      // Storage can be unavailable in private or locked-down browser contexts.
     }
 
     return languages[0];
@@ -60,7 +50,11 @@ const LanguageProvider = ({ children }) => {
 
     setSelectedLanguage(selected);
 
-    localStorage.setItem("snaproll-language", JSON.stringify(selected));
+    try {
+      localStorage.setItem("snaproll-language", JSON.stringify(selected));
+    } catch {
+      // The language still changes for the current session when storage is unavailable.
+    }
   };
 
   const t = translations[selectedLanguage.code] || translations.en;

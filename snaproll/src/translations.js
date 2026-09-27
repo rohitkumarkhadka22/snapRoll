@@ -39,8 +39,7 @@ const translations = {
       keepTheMoment: "Keep the moment",
 
       whatItDoes: "What it does",
-      disposableCamera:
-        "A digital disposable camera for the moments you don't want to miss.",
+      disposableCamera: "A digital disposable camera for the moments you don't want to miss.",
 
       oneEvent: "One event.",
       oneSharedCamera: "One shared camera.",
@@ -269,8 +268,7 @@ const translations = {
       revealRoll: "Reveal the roll",
 
       powerOff: "Power off",
-      powerOffDescription:
-        "Press the side power button to turn this SnapRoll camera on.",
+      powerOffDescription: "Press the side power button to turn this SnapRoll camera on.",
       turnOn: "Turn on",
 
       photoPreview: "Photo preview",
@@ -516,8 +514,7 @@ const translations = {
           items: [
             {
               question: "Is SnapRoll free?",
-              answer:
-                "Yes. SnapRoll currently has no in-app purchases or paid tiers.",
+              answer: "Yes. SnapRoll currently has no in-app purchases or paid tiers.",
             },
           ],
         },
@@ -538,8 +535,7 @@ const translations = {
             },
             {
               question: "Is SnapRoll available on iOS and Android?",
-              answer:
-                "SnapRoll is designed to be available on both iOS and Android.",
+              answer: "SnapRoll is designed to be available on both iOS and Android.",
             },
           ],
         },
@@ -609,14 +605,12 @@ const translations = {
       readyWhenYouAre: "Ready when you are",
       finalTitle1: "Make your next event",
       finalTitle2: "worth remembering.",
-      finalDescription:
-        "One shared camera. Everyone gets to capture the moment.",
+      finalDescription: "One shared camera. Everyone gets to capture the moment.",
       buildYourEvent: "Build your event",
       validationEventName: "Every memory needs a name. Give your event one.",
       validationEventDate: "Choose the day your memories will begin.",
     },
   },
-  
 
   /* =====================================================
      SPANISH
@@ -658,8 +652,7 @@ const translations = {
       keepTheMoment: "Guarda el momento",
 
       whatItDoes: "Lo que hace",
-      disposableCamera:
-        "Una cámara digital desechable para los momentos que no quieres perderte.",
+      disposableCamera: "Una cámara digital desechable para los momentos que no quieres perderte.",
 
       oneEvent: "Un evento.",
       oneSharedCamera: "Una cámara compartida.",
@@ -671,8 +664,7 @@ const translations = {
       whatItDoesDescription2:
         "Los invitados simplemente escanean el código QR con su teléfono y entran directamente al evento. Sin búsquedas, sin configuraciones complicadas y sin necesidad de descargar nada para participar.",
 
-      scanOnce:
-        "Escanea una vez. Únete al evento. Empieza a capturar el momento.",
+      scanOnce: "Escanea una vez. Únete al evento. Empieza a capturar el momento.",
       scanToJoin: "Escanea para unirte",
 
       howItWorksTitle: "Cómo funciona",
@@ -889,8 +881,7 @@ const translations = {
       revealRoll: "Revelar el rollo",
 
       powerOff: "Apagado",
-      powerOffDescription:
-        "Pulsa el botón lateral de encendido para activar esta cámara SnapRoll.",
+      powerOffDescription: "Pulsa el botón lateral de encendido para activar esta cámara SnapRoll.",
       turnOn: "Encender",
 
       photoPreview: "Vista previa de foto",
@@ -1061,8 +1052,7 @@ const translations = {
       phoneStory: "Tu historia",
       phoneMoments: "Pequeños momentos.",
       phoneFilter: "Vintage",
-      phoneDescription:
-        "Algunas respuestas antes de empezar a capturar los momentos.",
+      phoneDescription: "Algunas respuestas antes de empezar a capturar los momentos.",
 
       frequentlyAsked: "Preguntas frecuentes",
       everything: "Todo",
@@ -1072,8 +1062,7 @@ const translations = {
       groups: [
         {
           label: "Primeros pasos",
-          description:
-            "Todo lo que necesitas saber antes de unirte a un evento.",
+          description: "Todo lo que necesitas saber antes de unirte a un evento.",
           items: [
             {
               question: "¿Los invitados necesitan crear una cuenta?",
@@ -1081,8 +1070,7 @@ const translations = {
                 "No. Los invitados escanean el código QR del evento, escriben un nombre y empiezan a capturar — sin registro, sin contraseña y sin necesidad de ir a una tienda de aplicaciones.",
             },
             {
-              question:
-                "¿Necesito descargar la aplicación para unirme a un evento?",
+              question: "¿Necesito descargar la aplicación para unirme a un evento?",
               answer:
                 "No. Los invitados pueden unirse escaneando el código QR o introduciendo el código del evento y eligiendo un nombre. No es necesario descargar la aplicación.",
             },
@@ -1146,8 +1134,7 @@ const translations = {
             },
             {
               question: "¿SnapRoll está disponible en iOS y Android?",
-              answer:
-                "SnapRoll está diseñado para estar disponible tanto en iOS como en Android.",
+              answer: "SnapRoll está diseñado para estar disponible tanto en iOS como en Android.",
             },
           ],
         },
@@ -1217,11 +1204,9 @@ const translations = {
       readyWhenYouAre: "Cuando estés listo",
       finalTitle1: "Haz que tu próximo evento",
       finalTitle2: "merezca ser recordado.",
-      finalDescription:
-        "Una cámara compartida. Todos pueden capturar el momento.",
+      finalDescription: "Una cámara compartida. Todos pueden capturar el momento.",
       buildYourEvent: "Crea tu evento",
-      validationEventName:
-        "Cada recuerdo necesita un nombre. Dale uno a tu evento.",
+      validationEventName: "Cada recuerdo necesita un nombre. Dale uno a tu evento.",
       validationEventDate: "Elige el día en que comenzarán tus recuerdos.",
     },
   },
@@ -1496,8 +1481,7 @@ const translations = {
       revealRoll: "Révéler le roll",
 
       powerOff: "Éteint",
-      powerOffDescription:
-        "Appuyez sur le bouton latéral pour allumer cette caméra SnapRoll.",
+      powerOffDescription: "Appuyez sur le bouton latéral pour allumer cette caméra SnapRoll.",
       turnOn: "Allumer",
 
       photoPreview: "Aperçu de la photo",
@@ -1668,8 +1652,7 @@ const translations = {
       phoneStory: "Votre histoire",
       phoneMoments: "Petits moments.",
       phoneFilter: "Vintage",
-      phoneDescription:
-        "Quelques réponses avant de commencer à capturer les moments.",
+      phoneDescription: "Quelques réponses avant de commencer à capturer les moments.",
 
       frequentlyAsked: "Questions fréquentes",
       everything: "Tout",
@@ -1679,8 +1662,7 @@ const translations = {
       groups: [
         {
           label: "Premiers pas",
-          description:
-            "Tout ce que vous devez savoir avant de rejoindre un événement.",
+          description: "Tout ce que vous devez savoir avant de rejoindre un événement.",
           items: [
             {
               question: "Les invités doivent-ils créer un compte ?",
@@ -1688,8 +1670,7 @@ const translations = {
                 "Non. Les invités scannent le QR code de l'événement, saisissent un nom et commencent à prendre des photos — sans inscription, sans mot de passe et sans passer par l'App Store.",
             },
             {
-              question:
-                "Dois-je télécharger l'application pour rejoindre un événement ?",
+              question: "Dois-je télécharger l'application pour rejoindre un événement ?",
               answer:
                 "Non. Les invités peuvent rejoindre un événement en scannant le QR code ou en saisissant le code de l'événement, puis en choisissant un nom. Aucun téléchargement n'est nécessaire.",
             },
@@ -1698,8 +1679,7 @@ const translations = {
 
         {
           label: "Événements et fonctionnalités",
-          description:
-            "Comment SnapRoll fonctionne une fois votre événement commencé.",
+          description: "Comment SnapRoll fonctionne une fois votre événement commencé.",
           items: [
             {
               question: "Quand pouvons-nous voir les photos ?",
@@ -1748,15 +1728,13 @@ const translations = {
                 "Oui. L'hôte peut supprimer définitivement son profil et ses données depuis l'application.",
             },
             {
-              question:
-                "Dans quelles langues l'application est-elle disponible ?",
+              question: "Dans quelles langues l'application est-elle disponible ?",
               answer:
                 "L'application est entièrement traduite en quatre langues : English, Français, Español et Português.",
             },
             {
               question: "SnapRoll est-il disponible sur iOS et Android ?",
-              answer:
-                "SnapRoll est conçu pour être disponible sur iOS et Android.",
+              answer: "SnapRoll est conçu pour être disponible sur iOS et Android.",
             },
           ],
         },
@@ -1812,8 +1790,7 @@ const translations = {
       subjectPlaceholder: "Comment pouvons-nous vous aider ?",
       message: "Message",
       messagePlaceholder: "Dites-nous ce qui se passe...",
-      formNote:
-        "Pas de complications. Dites-nous simplement ce que vous avez en tête.",
+      formNote: "Pas de complications. Dites-nous simplement ce que vous avez en tête.",
       sendMessage: "Envoyer le message",
       messageSent: "Message envoyé",
       successMessage: "Merci — nous vous répondrons bientôt.",
@@ -1827,11 +1804,9 @@ const translations = {
       readyWhenYouAre: "Quand vous êtes prêt",
       finalTitle1: "Faites de votre prochain événement",
       finalTitle2: "un souvenir inoubliable.",
-      finalDescription:
-        "Un appareil photo partagé. Chacun peut capturer le moment.",
+      finalDescription: "Un appareil photo partagé. Chacun peut capturer le moment.",
       buildYourEvent: "Créer votre événement",
-      validationEventName:
-        "Chaque souvenir a besoin d'un nom. Donnez-en un à votre événement.",
+      validationEventName: "Chaque souvenir a besoin d'un nom. Donnez-en un à votre événement.",
       validationEventDate: "Choisissez le jour où vos souvenirs commenceront.",
     },
   },
@@ -1876,8 +1851,7 @@ const translations = {
       keepTheMoment: "Guarde o momento",
 
       whatItDoes: "O que faz",
-      disposableCamera:
-        "Uma câmera digital descartável para os momentos que você não quer perder.",
+      disposableCamera: "Uma câmera digital descartável para os momentos que você não quer perder.",
 
       oneEvent: "Um evento.",
       oneSharedCamera: "Uma câmera compartilhada.",
@@ -1889,8 +1863,7 @@ const translations = {
       whatItDoesDescription2:
         "Os convidados simplesmente escaneiam o QR code com o celular e entram diretamente no evento. Sem pesquisas, sem configurações complicadas e sem precisar baixar nada para participar.",
 
-      scanOnce:
-        "Escaneie uma vez. Entre no evento. Comece a capturar o momento.",
+      scanOnce: "Escaneie uma vez. Entre no evento. Comece a capturar o momento.",
       scanToJoin: "Escaneie para participar",
 
       howItWorksTitle: "Como funciona",
@@ -1940,8 +1913,7 @@ const translations = {
 
       phoneTitle1: "Capture",
       phoneTitle2: "o momento.",
-      phoneDescription:
-        "Uma câmera compartilhada. Cada convidado. Cada memória.",
+      phoneDescription: "Uma câmera compartilhada. Cada convidado. Cada memória.",
 
       moments: "MOMENTOS",
 
@@ -2108,8 +2080,7 @@ const translations = {
       revealRoll: "Revelar o roll",
 
       powerOff: "Desligado",
-      powerOffDescription:
-        "Pressione o botão lateral para ligar esta câmera SnapRoll.",
+      powerOffDescription: "Pressione o botão lateral para ligar esta câmera SnapRoll.",
       turnOn: "Ligar",
 
       photoPreview: "Prévia da foto",
@@ -2291,8 +2262,7 @@ const translations = {
       phoneStory: "Sua história",
       phoneMoments: "Pequenos momentos.",
       phoneFilter: "Vintage",
-      phoneDescription:
-        "Algumas respostas antes de começar a capturar os momentos.",
+      phoneDescription: "Algumas respostas antes de começar a capturar os momentos.",
 
       frequentlyAsked: "Perguntas frequentes",
       everything: "Tudo",
@@ -2302,8 +2272,7 @@ const translations = {
       groups: [
         {
           label: "Primeiros passos",
-          description:
-            "Tudo o que você precisa saber antes de entrar em um evento.",
+          description: "Tudo o que você precisa saber antes de entrar em um evento.",
           items: [
             {
               question: "Os convidados precisam criar uma conta?",
@@ -2361,8 +2330,7 @@ const translations = {
 
         {
           label: "Conta e aplicativo",
-          description:
-            "Algumas coisas importantes para saber sobre o aplicativo.",
+          description: "Algumas coisas importantes para saber sobre o aplicativo.",
           items: [
             {
               question: "Posso excluir minha conta e meus dados?",
@@ -2447,11 +2415,9 @@ const translations = {
       readyWhenYouAre: "Quando você estiver pronto",
       finalTitle1: "Faça do seu próximo evento",
       finalTitle2: "uma lembrança inesquecível.",
-      finalDescription:
-        "Uma câmera compartilhada. Todos podem capturar o momento.",
+      finalDescription: "Uma câmera compartilhada. Todos podem capturar o momento.",
       buildYourEvent: "Crie seu evento",
-      validationEventName:
-        "Toda memória precisa de um nome. Dê um ao seu evento.",
+      validationEventName: "Toda memória precisa de um nome. Dê um ao seu evento.",
       validationEventDate: "Escolha o dia em que suas memórias começarão.",
     },
   },

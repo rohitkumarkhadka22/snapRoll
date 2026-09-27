@@ -1,11 +1,23 @@
-const { generateStream } = require("../services/aiService");
+const { generateStream, getInstantReply } = require("../services/aiService");
 
 // =====================================================
 // CHAT CONTROLLER
 // =====================================================
 
 const chat = async (req, res) => {
+  const upstreamController = new AbortController();
+
+  res.on("close", () => {
+    if (!res.writableEnded) upstreamController.abort();
+  });
+
   try {
+    if (!req.body || typeof req.body !== "object" || Array.isArray(req.body)) {
+      return res
+        .status(400)
+        .json({ error: "Request body must be a JSON object" });
+    }
+
     const { message, conversation } = req.body;
 
     // =================================================
@@ -18,6 +30,37 @@ const chat = async (req, res) => {
       });
     }
 
+    if (message.trim().length > 2000) {
+      return res
+        .status(400)
+        .json({ error: "Message must be 2,000 characters or fewer" });
+    }
+
+    if (conversation !== undefined && !Array.isArray(conversation)) {
+      return res.status(400).json({ error: "Conversation must be an array" });
+    }
+
+    if (Array.isArray(conversation) && conversation.length > 16) {
+      return res
+        .status(400)
+        .json({ error: "Conversation cannot exceed 16 messages" });
+    }
+
+    if (
+      Array.isArray(conversation) &&
+      conversation.some(
+        (item) =>
+          !item ||
+          !["user", "assistant"].includes(item.role) ||
+          typeof item.content !== "string" ||
+          item.content.length > 4000,
+      )
+    ) {
+      return res
+        .status(400)
+        .json({ error: "Conversation contains an invalid message" });
+    }
+
     // =================================================
     // STREAM HEADERS
     // =================================================
@@ -27,8 +70,6 @@ const chat = async (req, res) => {
     res.setHeader("Content-Type", "application/x-ndjson; charset=utf-8");
 
     res.setHeader("Cache-Control", "no-cache, no-transform");
-
-    res.setHeader("Connection", "keep-alive");
 
     // Helpful when using nginx/proxies
     res.setHeader("X-Accel-Buffering", "no");
@@ -41,7 +82,13 @@ const chat = async (req, res) => {
       res.flushHeaders();
     }
 
-    let fullReply = "";
+    const instantReply = getInstantReply(message);
+    if (instantReply) {
+      res.write(`${JSON.stringify({ token: instantReply })}\n`);
+      res.write(`${JSON.stringify({ done: true })}\n`);
+      res.end();
+      return;
+    }
 
     // =================================================
     // STREAM FROM OLLAMA
@@ -50,10 +97,9 @@ const chat = async (req, res) => {
     await generateStream({
       message,
       conversation,
+      signal: upstreamController.signal,
 
       onToken: (token) => {
-        fullReply += token;
-
         // Send each token/chunk to frontend
         res.write(
           JSON.stringify({
@@ -73,12 +119,11 @@ const chat = async (req, res) => {
       }) + "\n",
     );
 
-    console.log("USER:", message.trim());
-    console.log("AI:", fullReply.trim());
-
     res.end();
   } catch (error) {
-    console.error("Chat error:", error);
+    if (upstreamController.signal.aborted || res.destroyed) return;
+
+    console.error("Chat request failed:", error?.message || "Unknown error");
 
     // If headers have already been sent,
     // send an error chunk instead of JSON response.

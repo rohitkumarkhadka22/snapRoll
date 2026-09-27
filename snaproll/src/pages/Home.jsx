@@ -3,6 +3,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { useRef } from "react";
 import ScrollReveal from "../components/ScrollReveal";
 import useLanguage from "../context/useLanguage";
+import { buildEventUrl } from "../utils/eventLinks";
 
 const Home = () => {
   // GLOBAL LANGUAGE
@@ -34,7 +35,8 @@ const Home = () => {
     },
   ];
 
-  const eventUrl = "https://snaproll.app/event/demo";
+  const publicAppUrl = import.meta.env.VITE_PUBLIC_APP_URL || window.location.origin;
+  const eventUrl = buildEventUrl("demo", publicAppUrl);
 
   return (
     <main className="overflow-hidden bg-black text-white">

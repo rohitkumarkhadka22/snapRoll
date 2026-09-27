@@ -3,6 +3,20 @@ const { getRelevantKnowledge } = require("../data/snaprollKnowledge");
 const OLLAMA_URL = process.env.OLLAMA_URL || "http://localhost:11434/api/chat";
 
 const OLLAMA_MODEL = process.env.OLLAMA_MODEL || "qwen2.5:3b";
+const MAX_AI_RESPONSE_CHARS = 20_000;
+
+function getInstantReply(message) {
+  const normalized = String(message || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z]/g, "");
+
+  if (/^(hi+|hello+|hey+|hlo+|namaste)$/.test(normalized)) {
+    return "Hello! 👋 How can I help you with SnapRoll today?";
+  }
+
+  return null;
+}
 
 // =====================================================
 // BASE SYSTEM PROMPT
@@ -111,12 +125,11 @@ async function generateReply({ message, conversation = [] }) {
         temperature: 0.4,
       },
     }),
+    signal: AbortSignal.timeout(60_000),
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
-
-    throw new Error(`Ollama request failed: ${errorText}`);
+    throw new Error(`Ollama request failed with status ${response.status}`);
   }
 
   const data = await response.json();
@@ -130,11 +143,16 @@ async function generateReply({ message, conversation = [] }) {
 // STREAMING RESPONSE
 // =====================================================
 
-async function generateStream({ message, conversation = [], onToken }) {
+async function generateStream({ message, conversation = [], onToken, signal }) {
   const messages = buildMessages({
     message,
     conversation,
   });
+
+  const timeoutSignal = AbortSignal.timeout(60_000);
+  const requestSignal = signal
+    ? AbortSignal.any([signal, timeoutSignal])
+    : timeoutSignal;
 
   const response = await fetch(OLLAMA_URL, {
     method: "POST",
@@ -154,12 +172,11 @@ async function generateStream({ message, conversation = [], onToken }) {
         temperature: 0.4,
       },
     }),
+    signal: requestSignal,
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
-
-    throw new Error(`Ollama request failed: ${errorText}`);
+    throw new Error(`Ollama request failed with status ${response.status}`);
   }
 
   if (!response.body) {
@@ -171,6 +188,7 @@ async function generateStream({ message, conversation = [], onToken }) {
   const decoder = new TextDecoder();
 
   let buffer = "";
+  let responseLength = 0;
 
   try {
     while (true) {
@@ -192,44 +210,55 @@ async function generateStream({ message, conversation = [], onToken }) {
 
         if (!trimmed) continue;
 
+        let data;
         try {
-          const data = JSON.parse(trimmed);
-
-          const token = data.message?.content || "";
-
-          if (token) {
-            onToken(token);
-          }
-
-          if (data.done) {
-            return;
-          }
-        } catch (parseError) {
-          console.error("Ollama stream parse error:", parseError);
+          data = JSON.parse(trimmed);
+        } catch {
+          continue;
         }
+
+        const token = data.message?.content || "";
+
+        if (token) {
+          responseLength += token.length;
+          if (responseLength > MAX_AI_RESPONSE_CHARS) {
+            throw new Error("AI response exceeded the maximum size");
+          }
+          onToken(token);
+        }
+
+        if (data.done) return;
       }
     }
 
     // Handle anything remaining in buffer
     if (buffer.trim()) {
+      let data;
       try {
-        const data = JSON.parse(buffer);
-
-        const token = data.message?.content || "";
-
-        if (token) {
-          onToken(token);
-        }
+        data = JSON.parse(buffer);
       } catch {
-        // Ignore incomplete final chunk
+        data = null;
+      }
+
+      const token = data?.message?.content || "";
+      if (token) {
+        responseLength += token.length;
+        if (responseLength > MAX_AI_RESPONSE_CHARS) {
+          throw new Error("AI response exceeded the maximum size");
+        }
+        onToken(token);
       }
     }
   } finally {
+    await reader.cancel().catch(() => {});
     reader.releaseLock();
   }
 }
 
 module.exports = {
+  buildMessages,
+  cleanConversation,
   generateReply,
   generateStream,
+  getInstantReply,
 };

@@ -2,6 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X, Send, Sparkles } from "lucide-react";
 import chatbotImage from "../assets/images/chatbot.jpg";
+import { parseStreamLine } from "../utils/ndjson";
+
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+const CHAT_ENDPOINT = `${API_BASE_URL}/api/chat`;
+const MAX_MESSAGE_LENGTH = 2000;
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,11 +29,17 @@ const Chatbot = () => {
   const streamBufferRef = useRef("");
   const streamTimerRef = useRef(null);
   const abortControllerRef = useRef(null);
+  const requestTimeoutRef = useRef(null);
+  const requestTimedOutRef = useRef(false);
+  const pulseTimeoutRef = useRef(null);
+  const focusTimeoutRef = useRef(null);
 
   // SMART CHATGPT-STYLE SCROLL
 
   const shouldAutoScrollRef = useRef(true);
   const forceScrollRef = useRef(false);
+  const scrollFrameRef = useRef(null);
+  const touchYRef = useRef(null);
 
   // SCROLL TO BOTTOM
 
@@ -53,7 +64,24 @@ const Chatbot = () => {
     const distanceFromBottom =
       container.scrollHeight - container.scrollTop - container.clientHeight;
 
-    shouldAutoScrollRef.current = distanceFromBottom <= 40;
+    const isNearBottom = distanceFromBottom <= 40;
+    shouldAutoScrollRef.current = isNearBottom;
+
+    if (!isNearBottom && scrollFrameRef.current) {
+      cancelAnimationFrame(scrollFrameRef.current);
+      scrollFrameRef.current = null;
+      forceScrollRef.current = false;
+    }
+  };
+
+  const pauseAutoScroll = () => {
+    shouldAutoScrollRef.current = false;
+    forceScrollRef.current = false;
+
+    if (scrollFrameRef.current) {
+      cancelAnimationFrame(scrollFrameRef.current);
+      scrollFrameRef.current = null;
+    }
   };
 
   // USER SCROLL
@@ -62,13 +90,33 @@ const Chatbot = () => {
     updateScrollPosition();
   };
 
+  const handleMessagesWheel = (event) => {
+    if (event.deltaY < 0) pauseAutoScroll();
+  };
+
+  const handleMessagesTouchStart = (event) => {
+    touchYRef.current = event.touches[0]?.clientY ?? null;
+  };
+
+  const handleMessagesTouchMove = (event) => {
+    const nextY = event.touches[0]?.clientY;
+
+    if (nextY !== undefined && touchYRef.current !== null && nextY > touchYRef.current) {
+      pauseAutoScroll();
+    }
+
+    touchYRef.current = nextY ?? null;
+  };
+
   // CHATGPT-STYLE AUTO SCROLL
 
   useEffect(() => {
     if (!isOpen) return;
 
+    if (scrollFrameRef.current) cancelAnimationFrame(scrollFrameRef.current);
+
     if (forceScrollRef.current) {
-      requestAnimationFrame(() => {
+      scrollFrameRef.current = requestAnimationFrame(() => {
         const container = messagesContainerRef.current;
 
         if (!container) return;
@@ -77,20 +125,26 @@ const Chatbot = () => {
 
         forceScrollRef.current = false;
         shouldAutoScrollRef.current = true;
+        scrollFrameRef.current = null;
       });
 
-      return;
+      return () => cancelAnimationFrame(scrollFrameRef.current);
     }
 
     if (shouldAutoScrollRef.current) {
-      requestAnimationFrame(() => {
+      scrollFrameRef.current = requestAnimationFrame(() => {
         const container = messagesContainerRef.current;
 
         if (!container) return;
 
         container.scrollTop = container.scrollHeight;
+        scrollFrameRef.current = null;
       });
     }
+
+    return () => {
+      if (scrollFrameRef.current) cancelAnimationFrame(scrollFrameRef.current);
+    };
   }, [messages, isOpen]);
 
   // BOT PULSE
@@ -101,12 +155,15 @@ const Chatbot = () => {
     const interval = setInterval(() => {
       setBotPulse(true);
 
-      setTimeout(() => {
+      pulseTimeoutRef.current = setTimeout(() => {
         setBotPulse(false);
       }, 700);
     }, 3000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(pulseTimeoutRef.current);
+    };
   }, [isOpen]);
 
   // FOCUS INPUT WHEN CHAT OPENS
@@ -138,6 +195,20 @@ const Chatbot = () => {
     streamBufferRef.current = "";
   };
 
+  useEffect(
+    () => () => {
+      abortControllerRef.current?.abort();
+      clearTimeout(requestTimeoutRef.current);
+      clearTimeout(focusTimeoutRef.current);
+      clearTimeout(pulseTimeoutRef.current);
+      if (scrollFrameRef.current) cancelAnimationFrame(scrollFrameRef.current);
+
+      if (streamTimerRef.current) clearInterval(streamTimerRef.current);
+      streamBufferRef.current = "";
+    },
+    [],
+  );
+
   // STOP GENERATING
 
   const stopGenerating = () => {
@@ -148,11 +219,16 @@ const Chatbot = () => {
 
     cleanupStream();
 
+    setMessages((prev) => {
+      const last = prev[prev.length - 1];
+      return last?.role === "assistant" && !last.content ? prev.slice(0, -1) : prev;
+    });
+
     setLoading(false);
 
     shouldAutoScrollRef.current = false;
 
-    setTimeout(() => {
+    focusTimeoutRef.current = setTimeout(() => {
       inputRef.current?.focus();
     }, 50);
   };
@@ -207,6 +283,11 @@ const Chatbot = () => {
     const controller = new AbortController();
 
     abortControllerRef.current = controller;
+    requestTimedOutRef.current = false;
+    requestTimeoutRef.current = setTimeout(() => {
+      requestTimedOutRef.current = true;
+      controller.abort();
+    }, 60_000);
 
     // KEEP PREVIOUS CONVERSATION
 
@@ -238,7 +319,7 @@ const Chatbot = () => {
     try {
       // SEND REQUEST
 
-      const response = await fetch("http://localhost:5001/api/chat", {
+      const response = await fetch(CHAT_ENDPOINT, {
         method: "POST",
 
         headers: {
@@ -269,6 +350,11 @@ const Chatbot = () => {
         throw new Error(errorMessage);
       }
 
+      const contentType = response.headers.get("content-type") || "";
+      if (!contentType.includes("application/x-ndjson")) {
+        throw new Error("The assistant service returned an invalid response.");
+      }
+
       // STREAM CHECK
 
       if (!response.body) {
@@ -281,6 +367,7 @@ const Chatbot = () => {
 
       let buffer = "";
       let streamFinished = false;
+      let receivedToken = false;
 
       // READ STREAM
 
@@ -302,31 +389,18 @@ const Chatbot = () => {
 
           if (!trimmed) continue;
 
-          try {
-            const data = JSON.parse(trimmed);
+          const data = parseStreamLine(trimmed);
+          if (!data) continue;
 
-            // RECEIVE AI TOKEN
+          if (typeof data.token === "string") {
+            receivedToken = true;
+            streamBufferRef.current += data.token;
+            startSmoothTyping();
+          }
 
-            if (data.token) {
-              streamBufferRef.current += data.token;
-
-              startSmoothTyping();
-            }
-
-            // STREAM ERROR
-
-            if (data.error) {
-              throw new Error(data.error);
-            }
-
-            // STREAM FINISHED
-
-            if (data.done) {
-              streamFinished = true;
-              break;
-            }
-          } catch (parseError) {
-            console.error("Stream parse error:", parseError);
+          if (data.done) {
+            streamFinished = true;
+            break;
           }
         }
       }
@@ -334,21 +408,16 @@ const Chatbot = () => {
       // PROCESS FINAL BUFFER
 
       if (buffer.trim()) {
-        try {
-          const data = JSON.parse(buffer);
-
-          if (data.token) {
-            streamBufferRef.current += data.token;
-
-            startSmoothTyping();
-          }
-
-          if (data.error) {
-            throw new Error(data.error);
-          }
-        } catch {
-          // Ignore incomplete final chunk.
+        const data = parseStreamLine(buffer);
+        if (typeof data?.token === "string") {
+          receivedToken = true;
+          streamBufferRef.current += data.token;
+          startSmoothTyping();
         }
+      }
+
+      if (!receivedToken) {
+        throw new Error("The assistant returned an empty response.");
       }
 
       // WAIT FOR LOCAL TYPING TO FINISH
@@ -382,11 +451,7 @@ const Chatbot = () => {
         // Already released.
       }
     } catch (error) {
-      if (error?.name === "AbortError") {
-        console.log("Generation stopped by user.");
-      } else {
-        console.error("Chat error:", error);
-
+      if (error?.name !== "AbortError" || requestTimedOutRef.current) {
         cleanupStream();
 
         setMessages((prev) => {
@@ -397,7 +462,11 @@ const Chatbot = () => {
           if (updated[lastIndex]?.role === "assistant") {
             updated[lastIndex] = {
               ...updated[lastIndex],
-              content: "Sorry, I'm having trouble connecting right now. Please try again.",
+              content: requestTimedOutRef.current
+                ? "The assistant took too long to respond. Please try again."
+                : error?.message === "Unable to connect to AI"
+                  ? "The assistant is temporarily unavailable. Please try again shortly."
+                  : "Sorry, I couldn't complete that request. Check your connection and try again.",
             };
           }
 
@@ -405,11 +474,14 @@ const Chatbot = () => {
         });
       }
     } finally {
+      clearTimeout(requestTimeoutRef.current);
+      requestTimeoutRef.current = null;
+      requestTimedOutRef.current = false;
       abortControllerRef.current = null;
 
       setLoading(false);
 
-      setTimeout(() => {
+      focusTimeoutRef.current = setTimeout(() => {
         inputRef.current?.focus();
       }, 100);
     }
@@ -441,6 +513,9 @@ const Chatbot = () => {
 
       {isOpen && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="SnapRoll Assistant"
           data-lenis-prevent
           className="fixed right-3 bottom-3 left-3 z-[999999] flex h-[calc(100dvh-24px)] max-h-[680px] animate-[chatOpen_0.3s_ease-out] flex-col overflow-hidden rounded-[24px] border border-white/10 bg-black/95 shadow-[0_25px_80px_rgba(0,0,0,0.7)] backdrop-blur-2xl sm:right-5 sm:bottom-24 sm:left-auto sm:h-[520px] sm:max-h-none sm:w-[360px] sm:rounded-[28px]"
         >
@@ -482,6 +557,9 @@ const Chatbot = () => {
             ref={messagesContainerRef}
             data-lenis-prevent
             onScroll={handleMessagesScroll}
+            onWheel={handleMessagesWheel}
+            onTouchStart={handleMessagesTouchStart}
+            onTouchMove={handleMessagesTouchMove}
             className="chatbot-messages min-h-0 flex-1 touch-pan-y space-y-3 overflow-x-hidden overflow-y-auto overscroll-contain p-3.5 sm:space-y-4 sm:p-4"
             style={{
               overscrollBehavior: "contain",
@@ -551,7 +629,7 @@ const Chatbot = () => {
                 ref={inputRef}
                 type="text"
                 value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={(e) => setMessage(e.target.value.slice(0, MAX_MESSAGE_LENGTH))}
                 onKeyDown={handleKeyDown}
                 placeholder={loading ? "SnapRoll AI is thinking..." : "Ask anything..."}
                 disabled={loading}
@@ -585,7 +663,8 @@ const Chatbot = () => {
 
       <button
         onClick={() => {
-          setIsOpen((prev) => !prev);
+          if (isOpen) closeChat();
+          else setIsOpen(true);
           setBotPulse(false);
         }}
         className={`group fixed right-4 bottom-4 z-[999999] flex h-12 w-12 cursor-pointer items-center justify-center overflow-visible rounded-full border border-white/20 bg-black shadow-[0_15px_40px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-110 hover:shadow-[0_20px_55px_rgba(255,255,255,0.15)] active:scale-95 sm:right-5 sm:bottom-5 sm:h-14 sm:w-14 ${botPulse ? "bot-pulse" : ""} `}

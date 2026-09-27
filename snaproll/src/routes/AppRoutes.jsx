@@ -1,34 +1,45 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Home from "../pages/Home";
-import HowItWorks from "../pages/HowItWorks";
-import Pricing from "../pages/Pricing";
-import Events from "../pages/Events";
-import CreateEvent from "../pages/CreateEvent";
-import FAQ from "../pages/FAQ";
-import Contact from "../pages/Contact";
+const Home = lazy(() => import("../pages/Home"));
+const HowItWorks = lazy(() => import("../pages/HowItWorks"));
+const Pricing = lazy(() => import("../pages/Pricing"));
+const Events = lazy(() => import("../pages/Events"));
+const CreateEvent = lazy(() => import("../pages/CreateEvent"));
+const FAQ = lazy(() => import("../pages/FAQ"));
+const Contact = lazy(() => import("../pages/Contact"));
+const NotFound = lazy(() => import("../pages/NotFound"));
 
 const AppRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
+    <Suspense
+      fallback={
+        <main className="flex min-h-screen items-center justify-center bg-black text-sm text-white/50">
+          Loading…
+        </main>
+      }
+    >
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-      <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
 
-      <Route path="/pricing" element={<Pricing />} />
+        <Route path="/pricing" element={<Pricing />} />
 
-      <Route path="/events" element={<Events />} />
+        <Route path="/events" element={<Events />} />
 
-      {/* Create Event */}
-      <Route path="/events/create" element={<CreateEvent />} />
+        {/* Create Event */}
+        <Route path="/events/create" element={<CreateEvent />} />
 
-      {/* Optional: support old URL */}
-      <Route path="/event/create" element={<CreateEvent />} />
+        {/* Optional: support old URL */}
+        <Route path="/event/create" element={<CreateEvent />} />
 
-      <Route path="/faq" element={<FAQ />} />
+        <Route path="/faq" element={<FAQ />} />
 
-      <Route path="/contact" element={<Contact />} />
-    </Routes>
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 };
 

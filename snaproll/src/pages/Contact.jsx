@@ -13,6 +13,8 @@ import {
 
 import useLanguage from "../context/useLanguage";
 
+const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT;
+
 //  SCROLL REVEAL
 
 const Reveal = ({ children, className = "", delay = 0 }) => {
@@ -76,6 +78,8 @@ const Contact = () => {
 
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   //  HANDLE CHANGE
 
@@ -93,16 +97,18 @@ const Contact = () => {
         [name]: "",
       }));
     }
+
+    if (submitError) setSubmitError("");
   };
 
   //  HANDLE SUBMIT
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = {};
 
-    if (!form.name.trim()) {
+    if (!form.name.trim() || form.name.trim().length > 100) {
       newErrors.name = t.contact.nameError;
     }
 
@@ -112,11 +118,11 @@ const Contact = () => {
       newErrors.email = t.contact.emailInvalid;
     }
 
-    if (!form.subject.trim()) {
+    if (!form.subject.trim() || form.subject.trim().length > 160) {
       newErrors.subject = t.contact.subjectError;
     }
 
-    if (!form.message.trim()) {
+    if (!form.message.trim() || form.message.trim().length > 5000) {
       newErrors.message = t.contact.messageError;
     }
 
@@ -127,18 +133,40 @@ const Contact = () => {
     }
 
     setErrors({});
-    setSubmitted(true);
+    setSubmitError("");
 
-    setForm({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+    if (!CONTACT_ENDPOINT) {
+      setSubmitError(
+        "Online messages are temporarily unavailable. Please email snapRoll67@gmail.com instead.",
+      );
+      return;
+    }
 
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 4500);
+    setSubmitting(true);
+
+    try {
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          subject: form.subject.trim(),
+          message: form.message.trim(),
+        }),
+      });
+
+      if (!response.ok) throw new Error("Contact delivery failed");
+
+      setSubmitted(true);
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch {
+      setSubmitError(
+        "We couldn't send your message. Please try again or email snapRoll67@gmail.com.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -483,7 +511,8 @@ const Contact = () => {
                       {/* INSTAGRAM */}
 
                       <a
-                        href="#"
+                        aria-disabled="true"
+                        title="Instagram profile not configured"
                         className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] tracking-wider text-white/40 uppercase transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
                       >
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
@@ -536,7 +565,8 @@ const Contact = () => {
                       {/* TIKTOK */}
 
                       <a
-                        href="#"
+                        aria-disabled="true"
+                        title="TikTok profile not configured"
                         className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] tracking-wider text-white/40 uppercase transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
                       >
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
@@ -627,6 +657,7 @@ const Contact = () => {
                         id="name"
                         name="name"
                         type="text"
+                        maxLength={100}
                         autoComplete="name"
                         value={form.name}
                         onChange={handleChange}
@@ -655,6 +686,7 @@ const Contact = () => {
                         id="email"
                         name="email"
                         type="email"
+                        maxLength={254}
                         autoComplete="email"
                         value={form.email}
                         onChange={handleChange}
@@ -684,6 +716,7 @@ const Contact = () => {
                       id="subject"
                       name="subject"
                       type="text"
+                      maxLength={160}
                       value={form.subject}
                       onChange={handleChange}
                       placeholder={t.contact.subjectPlaceholder}
@@ -711,6 +744,7 @@ const Contact = () => {
                       id="message"
                       name="message"
                       rows={6}
+                      maxLength={5000}
                       value={form.message}
                       onChange={handleChange}
                       placeholder={t.contact.messagePlaceholder}
@@ -733,6 +767,7 @@ const Contact = () => {
 
                     <button
                       type="submit"
+                      disabled={submitting || submitted}
                       className="group relative flex h-13 cursor-pointer items-center justify-center gap-3 rounded-full bg-white px-7 text-xs font-medium text-black transition-all duration-300 hover:scale-[1.025] hover:bg-white/90 active:scale-[0.98]"
                     >
                       {submitted ? (
@@ -741,6 +776,8 @@ const Contact = () => {
 
                           <Check size={15} />
                         </>
+                      ) : submitting ? (
+                        <span>Sending…</span>
                       ) : (
                         <>
                           <span>{t.contact.sendMessage}</span>
@@ -760,6 +797,12 @@ const Contact = () => {
                       )}
                     </button>
                   </div>
+
+                  {submitError && (
+                    <p role="alert" className="mt-4 text-sm leading-6 text-red-300">
+                      {submitError}
+                    </p>
+                  )}
                 </form>
 
                 {/* SUCCESS */}

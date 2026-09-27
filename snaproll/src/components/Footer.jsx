@@ -138,19 +138,13 @@ const Footer = () => {
             <p className="font-serif text-xl tracking-[-0.02em] text-white">LEGAL</p>
 
             <div className="mt-6 flex flex-col gap-4">
-              <Link
-                to="/privacy"
-                className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
-              >
+              <span className="w-fit text-sm text-gray-600" title="Not yet published">
                 Privacy policy
-              </Link>
+              </span>
 
-              <Link
-                to="/terms"
-                className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
-              >
+              <span className="w-fit text-sm text-gray-600" title="Not yet published">
                 Terms of service
-              </Link>
+              </span>
 
               <Link
                 to="/contact"
