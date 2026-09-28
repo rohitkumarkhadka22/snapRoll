@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   Camera,
   Check,
   ChevronRight,
+  Handshake,
+  Heart,
+  LifeBuoy,
+  Lightbulb,
   MessageCircle,
   MousePointer2,
   Send,
@@ -12,50 +17,185 @@ import {
 } from "lucide-react";
 
 import useLanguage from "../context/useLanguage";
+import birthdayImage from "../assets/images/events/birthday.jpg";
+import graduationImage from "../assets/images/events/graduate.jpg";
+import partyImage from "../assets/images/events/party.jpg";
 
 const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT;
+
+const TOPIC_COPY = {
+  en: {
+    eyebrow: "Start with what matters",
+    title: "What brings you here?",
+    note: "Choose a path and we’ll prepare your message.",
+    selected: "Selected",
+    topics: [
+      {
+        id: "event",
+        label: "Plan an event",
+        hint: "Create something memorable",
+        subject: "Planning a SnapRoll event",
+      },
+      {
+        id: "support",
+        label: "Get support",
+        hint: "We’ll help you get unstuck",
+        subject: "SnapRoll product support",
+      },
+      {
+        id: "partner",
+        label: "Partner with us",
+        hint: "Let’s build something together",
+        subject: "Partnership opportunity",
+      },
+      {
+        id: "feedback",
+        label: "Share an idea",
+        hint: "Help shape what comes next",
+        subject: "Product feedback and ideas",
+      },
+    ],
+  },
+  es: {
+    eyebrow: "Empieza por lo importante",
+    title: "¿Qué te trae por aquí?",
+    note: "Elige una opción y prepararemos tu mensaje.",
+    selected: "Seleccionado",
+    topics: [
+      {
+        id: "event",
+        label: "Planear un evento",
+        hint: "Crea algo inolvidable",
+        subject: "Planificación de un evento SnapRoll",
+      },
+      {
+        id: "support",
+        label: "Obtener ayuda",
+        hint: "Te ayudaremos a continuar",
+        subject: "Soporte del producto SnapRoll",
+      },
+      {
+        id: "partner",
+        label: "Colaborar",
+        hint: "Construyamos algo juntos",
+        subject: "Oportunidad de colaboración",
+      },
+      {
+        id: "feedback",
+        label: "Compartir una idea",
+        hint: "Ayuda a crear lo que sigue",
+        subject: "Comentarios e ideas sobre el producto",
+      },
+    ],
+  },
+  fr: {
+    eyebrow: "Commencez par l’essentiel",
+    title: "Qu’est-ce qui vous amène ?",
+    note: "Choisissez une option et nous préparerons votre message.",
+    selected: "Sélectionné",
+    topics: [
+      {
+        id: "event",
+        label: "Planifier un événement",
+        hint: "Créez un moment inoubliable",
+        subject: "Planification d’un événement SnapRoll",
+      },
+      {
+        id: "support",
+        label: "Obtenir de l’aide",
+        hint: "Nous vous aiderons à avancer",
+        subject: "Assistance produit SnapRoll",
+      },
+      {
+        id: "partner",
+        label: "Devenir partenaire",
+        hint: "Créons quelque chose ensemble",
+        subject: "Opportunité de partenariat",
+      },
+      {
+        id: "feedback",
+        label: "Partager une idée",
+        hint: "Imaginez la suite avec nous",
+        subject: "Commentaires et idées produit",
+      },
+    ],
+  },
+  pt: {
+    eyebrow: "Comece pelo que importa",
+    title: "O que traz você até aqui?",
+    note: "Escolha uma opção e prepararemos sua mensagem.",
+    selected: "Selecionado",
+    topics: [
+      {
+        id: "event",
+        label: "Planejar um evento",
+        hint: "Crie algo inesquecível",
+        subject: "Planejamento de um evento SnapRoll",
+      },
+      {
+        id: "support",
+        label: "Obter suporte",
+        hint: "Ajudaremos você a continuar",
+        subject: "Suporte do produto SnapRoll",
+      },
+      {
+        id: "partner",
+        label: "Criar uma parceria",
+        hint: "Vamos construir algo juntos",
+        subject: "Oportunidade de parceria",
+      },
+      {
+        id: "feedback",
+        label: "Compartilhar uma ideia",
+        hint: "Ajude a criar o que vem depois",
+        subject: "Feedback e ideias sobre o produto",
+      },
+    ],
+  },
+};
+
+const TOPIC_ICONS = {
+  event: Heart,
+  support: LifeBuoy,
+  partner: Handshake,
+  feedback: Lightbulb,
+};
 
 //  SCROLL REVEAL
 
 const Reveal = ({ children, className = "", delay = 0 }) => {
   const [visible, setVisible] = useState(false);
+  const elementRef = useRef(null);
 
   useEffect(() => {
-    let observer;
+    const element = elementRef.current;
+    if (!element) return;
 
-    const timer = setTimeout(() => {
-      const elements = document.querySelectorAll(".contact-reveal");
+    if (!("IntersectionObserver" in window)) {
+      const frame = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(frame);
+    }
 
-      const element = Array.from(elements).find((el) => !el.dataset.revealObserved);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
+    );
 
-      if (!element) return;
-
-      element.dataset.revealObserved = "true";
-
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer?.unobserve(entry.target);
-          }
-        },
-        {
-          threshold: 0.12,
-          rootMargin: "0px 0px -60px 0px",
-        },
-      );
-
-      observer.observe(element);
-    }, 0);
+    observer.observe(element);
 
     return () => {
-      clearTimeout(timer);
-      observer?.disconnect();
+      observer.disconnect();
     };
   }, []);
 
   return (
     <div
+      ref={elementRef}
       className={`contact-reveal ${visible ? "contact-reveal-visible" : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
@@ -67,7 +207,8 @@ const Reveal = ({ children, className = "", delay = 0 }) => {
 //  CONTACT
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { selectedLanguage, t } = useLanguage();
+  const topicCopy = TOPIC_COPY[selectedLanguage.code] || TOPIC_COPY.en;
 
   const [form, setForm] = useState({
     name: "",
@@ -80,6 +221,22 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState("");
+  const subjectRef = useRef(null);
+
+  const chooseTopic = (topic) => {
+    setSelectedTopic(topic.id);
+    setForm((prev) => ({ ...prev, subject: topic.subject }));
+    setErrors((prev) => ({ ...prev, subject: "" }));
+    setSubmitError("");
+
+    document.getElementById("contact-form")?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
+    setTimeout(() => subjectRef.current?.focus({ preventScroll: true }), 650);
+  };
 
   //  HANDLE CHANGE
 
@@ -228,10 +385,89 @@ const Contact = () => {
             </Reveal>
           </div>
 
+          {/* CONVERSATION STARTER */}
+
+          <Reveal delay={240} className="mt-14 sm:mt-16">
+            <section className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] p-5 backdrop-blur-xl sm:p-7 lg:p-8">
+              <div className="pointer-events-none absolute top-0 left-1/2 h-px w-2/3 -translate-x-1/2 bg-linear-to-r from-transparent via-white/35 to-transparent" />
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-[9px] tracking-[0.3em] text-white/30 uppercase">
+                    {topicCopy.eyebrow}
+                  </p>
+                  <h2 className="mt-2 font-serif text-2xl tracking-[-0.025em] sm:text-3xl">
+                    {topicCopy.title}
+                  </h2>
+                </div>
+                <p className="max-w-xs text-xs leading-5 text-white/30">{topicCopy.note}</p>
+              </div>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {topicCopy.topics.map((topic) => {
+                  const TopicIcon = TOPIC_ICONS[topic.id];
+                  const isSelected = selectedTopic === topic.id;
+
+                  return (
+                    <button
+                      key={topic.id}
+                      type="button"
+                      onClick={() => chooseTopic(topic)}
+                      aria-pressed={isSelected}
+                      className={`group relative min-h-36 cursor-pointer overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:outline-none ${
+                        isSelected
+                          ? "border-white/35 bg-white text-black shadow-[0_18px_50px_rgba(255,255,255,0.1)]"
+                          : "border-white/10 bg-black/25 hover:border-white/25 hover:bg-white/[0.055]"
+                      }`}
+                    >
+                      <div
+                        className={`flex h-10 w-10 items-center justify-center rounded-full border ${
+                          isSelected
+                            ? "border-black/10 bg-black text-white"
+                            : "border-white/10 bg-white/[0.04] text-white/55"
+                        }`}
+                      >
+                        <TopicIcon size={16} strokeWidth={1.6} />
+                      </div>
+
+                      <p className="mt-5 text-sm font-medium">{topic.label}</p>
+                      <p
+                        className={`mt-1.5 text-[10px] leading-4 ${isSelected ? "text-black/55" : "text-white/30"}`}
+                      >
+                        {topic.hint}
+                      </p>
+
+                      <span
+                        className={`absolute top-4 right-4 text-xs transition-all duration-300 ${
+                          isSelected
+                            ? "text-black"
+                            : "translate-x-1 text-white/20 group-hover:translate-x-0 group-hover:text-white/60"
+                        }`}
+                        aria-hidden="true"
+                      >
+                        {isSelected ? "✓" : "↗"}
+                      </span>
+
+                      {isSelected && <span className="sr-only">{topicCopy.selected}</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          </Reveal>
+
           {/* HERO VISUAL */}
 
           <Reveal delay={280} className="relative mt-20">
             <div className="relative h-105 overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#060606] sm:h-125 lg:h-145">
+              <img
+                src={partyImage}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full scale-105 object-cover opacity-[0.16] saturate-50 transition-transform duration-[1800ms] hover:scale-100"
+              />
+              <div className="absolute inset-0 bg-linear-to-b from-black/35 via-black/75 to-black" />
+
               <div className="absolute inset-0 opacity-30">
                 <div className="absolute top-0 left-1/2 h-full w-px bg-white/[0.08]" />
 
@@ -316,22 +552,40 @@ const Contact = () => {
                     {/* MEMORY GRID */}
 
                     <div className="mt-5 grid flex-1 grid-cols-2 gap-1.5 overflow-hidden">
-                      <div className="relative overflow-hidden rounded-xl bg-linear-to-br from-white/20 via-white/5 to-black">
-                        <div className="absolute bottom-2 left-2 h-8 w-8 rounded-full bg-white/10 blur-md" />
+                      <div className="relative overflow-hidden rounded-xl">
+                        <img
+                          src={birthdayImage}
+                          alt=""
+                          className="h-full w-full object-cover opacity-75"
+                        />
                         <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
                       </div>
 
-                      <div className="relative overflow-hidden rounded-xl bg-linear-to-bl from-white/15 via-white/5 to-black">
-                        <div className="absolute top-3 right-2 h-10 w-10 rounded-full bg-white/10 blur-md" />
+                      <div className="relative overflow-hidden rounded-xl">
+                        <img
+                          src={graduationImage}
+                          alt=""
+                          className="h-full w-full object-cover opacity-75"
+                        />
                         <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
                       </div>
 
-                      <div className="relative overflow-hidden rounded-xl bg-linear-to-tr from-white/15 via-black to-white/5">
-                        <div className="absolute right-2 bottom-2 h-12 w-12 rounded-full bg-white/10 blur-lg" />
+                      <div className="relative overflow-hidden rounded-xl">
+                        <img
+                          src={partyImage}
+                          alt=""
+                          className="h-full w-full object-cover opacity-75"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/45 to-transparent" />
                       </div>
 
-                      <div className="relative overflow-hidden rounded-xl bg-linear-to-tl from-white/20 via-white/5 to-black">
-                        <div className="absolute top-2 left-2 h-7 w-7 rounded-full bg-white/10 blur-md" />
+                      <div className="relative overflow-hidden rounded-xl">
+                        <img
+                          src={birthdayImage}
+                          alt=""
+                          className="h-full w-full object-cover opacity-75"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/45 to-transparent" />
                       </div>
                     </div>
 
@@ -432,8 +686,9 @@ const Contact = () => {
             {/* INFO CARD */}
 
             <Reveal>
-              <div className="relative h-full overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] p-6 backdrop-blur-xl sm:p-8 lg:p-10">
+              <div className="group relative h-full overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] p-6 backdrop-blur-xl transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04] sm:p-8 lg:p-10">
                 <div className="absolute top-[-80px] right-[-80px] h-45 w-45 rounded-full bg-white/[0.025] blur-[70px]" />
+                <div className="absolute inset-x-10 top-0 h-px bg-linear-to-r from-transparent via-white/35 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div className="relative">
                   <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
@@ -458,7 +713,7 @@ const Contact = () => {
 
                   <a
                     href="mailto:snapRoll67@gmail.com"
-                    className="group mt-10 flex items-center gap-4"
+                    className="group mt-10 flex cursor-pointer items-center gap-4"
                   >
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-black transition-all duration-300 group-hover:border-white/25 group-hover:bg-white/[0.06]">
                       <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
@@ -513,7 +768,7 @@ const Contact = () => {
                       <a
                         aria-disabled="true"
                         title="Instagram profile not configured"
-                        className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] tracking-wider text-white/40 uppercase transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+                        className="group flex cursor-not-allowed items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] tracking-wider text-white/30 uppercase"
                       >
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
                           <rect
@@ -567,7 +822,7 @@ const Contact = () => {
                       <a
                         aria-disabled="true"
                         title="TikTok profile not configured"
-                        className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] tracking-wider text-white/40 uppercase transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+                        className="group flex cursor-not-allowed items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.025] px-4 py-2.5 text-[9px] tracking-wider text-white/30 uppercase"
                       >
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
                           <path
@@ -620,8 +875,12 @@ const Contact = () => {
             {/* FORM */}
 
             <Reveal delay={160}>
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#080808] p-6 sm:p-8 lg:p-10">
+              <div
+                id="contact-form"
+                className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-linear-to-br from-[#0d0d0d] via-[#080808] to-black p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:p-8 lg:p-10"
+              >
                 <div className="absolute top-0 left-1/2 h-px w-2/3 -translate-x-1/2 bg-linear-to-r from-transparent via-white/30 to-transparent" />
+                <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-white/[0.035] blur-[90px]" />
 
                 <div className="flex items-start justify-between">
                   <div>
@@ -662,7 +921,7 @@ const Contact = () => {
                         value={form.name}
                         onChange={handleChange}
                         placeholder={t.contact.yourName}
-                        className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white transition-all duration-300 outline-none placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
+                        className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white transition-all duration-300 outline-none placeholder:text-white/15 hover:border-white/20 focus:border-white/35 focus:bg-white/[0.06] focus:shadow-[0_0_0_4px_rgba(255,255,255,0.035)]"
                       />
 
                       {/* ONLY ERROR IS RED */}
@@ -691,7 +950,7 @@ const Contact = () => {
                         value={form.email}
                         onChange={handleChange}
                         placeholder={t.contact.emailPlaceholder}
-                        className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white transition-all duration-300 outline-none placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
+                        className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white transition-all duration-300 outline-none placeholder:text-white/15 hover:border-white/20 focus:border-white/35 focus:bg-white/[0.06] focus:shadow-[0_0_0_4px_rgba(255,255,255,0.035)]"
                       />
 
                       {/* ONLY ERROR IS RED */}
@@ -713,6 +972,7 @@ const Contact = () => {
                     </label>
 
                     <input
+                      ref={subjectRef}
                       id="subject"
                       name="subject"
                       type="text"
@@ -720,7 +980,7 @@ const Contact = () => {
                       value={form.subject}
                       onChange={handleChange}
                       placeholder={t.contact.subjectPlaceholder}
-                      className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white transition-all duration-300 outline-none placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
+                      className="h-13 w-full rounded-xl border border-white/10 bg-white/[0.025] px-4 text-sm text-white transition-all duration-300 outline-none placeholder:text-white/15 hover:border-white/20 focus:border-white/35 focus:bg-white/[0.06] focus:shadow-[0_0_0_4px_rgba(255,255,255,0.035)]"
                     />
 
                     {/* ONLY ERROR IS RED */}
@@ -748,7 +1008,7 @@ const Contact = () => {
                       value={form.message}
                       onChange={handleChange}
                       placeholder={t.contact.messagePlaceholder}
-                      className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.025] px-4 py-4 text-sm leading-6 text-white transition-all duration-300 outline-none placeholder:text-white/15 focus:border-white/30 focus:bg-white/[0.05]"
+                      className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.025] px-4 py-4 text-sm leading-6 text-white transition-all duration-300 outline-none placeholder:text-white/15 hover:border-white/20 focus:border-white/35 focus:bg-white/[0.06] focus:shadow-[0_0_0_4px_rgba(255,255,255,0.035)]"
                     />
 
                     {/* ONLY ERROR IS RED */}
@@ -768,7 +1028,7 @@ const Contact = () => {
                     <button
                       type="submit"
                       disabled={submitting || submitted}
-                      className="group relative flex h-13 cursor-pointer items-center justify-center gap-3 rounded-full bg-white px-7 text-xs font-medium text-black transition-all duration-300 hover:scale-[1.025] hover:bg-white/90 active:scale-[0.98]"
+                      className="group relative flex h-13 cursor-pointer items-center justify-center gap-3 rounded-full bg-white px-7 text-xs font-medium text-black shadow-[0_12px_35px_rgba(255,255,255,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90 hover:shadow-[0_16px_45px_rgba(255,255,255,0.14)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {submitted ? (
                         <>
@@ -851,9 +1111,9 @@ const Contact = () => {
                   {t.contact.finalDescription}
                 </p>
 
-                <a
-                  href="/events"
-                  className="group relative mx-auto mt-9 flex w-fit items-center gap-3 rounded-full border border-white/15 bg-white/[0.06] px-6 py-3.5 text-xs text-white transition-all duration-300 hover:border-white/30 hover:bg-white/[0.1]"
+                <Link
+                  to="/events"
+                  className="group relative mx-auto mt-9 flex w-fit cursor-pointer items-center gap-3 rounded-full border border-white/15 bg-white/[0.06] px-6 py-3.5 text-xs text-white transition-all duration-300 hover:border-white/30 hover:bg-white/[0.1]"
                 >
                   {t.contact.buildYourEvent}
 
@@ -866,7 +1126,7 @@ const Contact = () => {
                     size={17}
                     className="absolute -right-5 -bottom-5 rotate-[-12deg] fill-white text-black opacity-0 transition-all duration-300 group-hover:opacity-100"
                   />
-                </a>
+                </Link>
               </div>
             </div>
           </Reveal>

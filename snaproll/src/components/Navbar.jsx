@@ -208,7 +208,7 @@ const Navbar = () => {
               <span className="relative text-base">{selectedLanguage.flag}</span>
 
               <span className="relative text-xs font-medium text-gray-300">
-                {selectedLanguage.name}
+                {selectedLanguage.nativeName}
               </span>
 
               <span
@@ -238,7 +238,7 @@ const Navbar = () => {
                   >
                     <span className="text-lg">{language.flag}</span>
 
-                    <span className="text-sm">{language.name}</span>
+                    <span className="text-sm">{language.nativeName}</span>
 
                     {selectedLanguage.name === language.name && (
                       <span className="ml-auto text-xs text-white">✓</span>
@@ -320,7 +320,7 @@ const Navbar = () => {
 
                     <span className="relative">{language.flag}</span>
 
-                    <span className="text-xs">{language.name}</span>
+                    <span className="text-xs">{language.nativeName}</span>
 
                     {selectedLanguage.name === language.name && (
                       <span className="ml-auto text-xs">✓</span>
