@@ -51,9 +51,7 @@ const LanguageGate = () => {
           >
             Welcome · Bienvenido
           </h1>
-          <p className="mt-3 text-sm text-white/45 sm:text-base">
-            Bienvenue · Bem-vindo
-          </p>
+          <p className="mt-3 text-sm text-white/45 sm:text-base">Bienvenue · Bem-vindo</p>
         </div>
 
         <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2">
@@ -64,7 +62,7 @@ const LanguageGate = () => {
               type="button"
               onClick={() => changeLanguage(language)}
               aria-label={`${INTRODUCTIONS[language.code]}: ${language.nativeName}`}
-              className="group flex min-h-24 cursor-pointer items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.035] p-4 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08] focus-visible:border-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 sm:p-5"
+              className="group flex min-h-24 cursor-pointer items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.035] p-4 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08] focus-visible:border-white/50 focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:outline-none sm:p-5"
             >
               <span className="text-3xl" aria-hidden="true">
                 {language.flag}

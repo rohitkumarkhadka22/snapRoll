@@ -197,6 +197,13 @@ const translations = {
 
       copyInviteLink: "Copy invite link",
       linkCopied: "Link copied",
+      shareEventAction: "Share event",
+      eventShared: "Event shared",
+      downloadQr: "Download QR code",
+      qrDownloaded: "QR code downloaded",
+      eventOverview: "Event overview",
+      copyFailed: "Copy failed. Select the invite link and copy it manually.",
+      shareFailed: "Sharing is unavailable right now. Copy the invite link instead.",
 
       welcome: "Welcome",
       hey: "Hey",
@@ -428,6 +435,13 @@ const translations = {
       continue: "Continue",
       next: "Next",
       previous: "Previous",
+
+      livePreview: "Live preview",
+      setupProgress: "Setup progress",
+      detailsComplete: "details complete",
+      noAccount: "No account required. Your event is created instantly.",
+      validationEventName: "Every memory needs a name. Give your event one.",
+      validationEventDate: "Choose today or a future date for your event.",
 
       chooseOccasion: "Choose your occasion",
 
@@ -810,6 +824,13 @@ const translations = {
 
       copyInviteLink: "Copiar enlace",
       linkCopied: "Enlace copiado",
+      shareEventAction: "Compartir evento",
+      eventShared: "Evento compartido",
+      downloadQr: "Descargar código QR",
+      qrDownloaded: "Código QR descargado",
+      eventOverview: "Resumen del evento",
+      copyFailed: "No se pudo copiar. Selecciona el enlace y cópialo manualmente.",
+      shareFailed: "No se puede compartir ahora. Copia el enlace de invitación.",
 
       welcome: "Bienvenido",
       hey: "Hola",
@@ -1026,6 +1047,13 @@ const translations = {
       continue: "Continuar",
       next: "Siguiente",
       previous: "Anterior",
+
+      livePreview: "Vista previa en vivo",
+      setupProgress: "Progreso de configuración",
+      detailsComplete: "datos completados",
+      noAccount: "No necesitas una cuenta. Tu evento se crea al instante.",
+      validationEventName: "Cada recuerdo necesita un nombre. Dale uno a tu evento.",
+      validationEventDate: "Elige hoy o una fecha futura para tu evento.",
 
       chooseOccasion: "Elige tu ocasión",
 
@@ -1410,6 +1438,13 @@ const translations = {
 
       copyInviteLink: "Copier le lien",
       linkCopied: "Lien copié",
+      shareEventAction: "Partager l'événement",
+      eventShared: "Événement partagé",
+      downloadQr: "Télécharger le QR code",
+      qrDownloaded: "QR code téléchargé",
+      eventOverview: "Aperçu de l'événement",
+      copyFailed: "Échec de la copie. Sélectionnez le lien et copiez-le manuellement.",
+      shareFailed: "Le partage est indisponible. Copiez plutôt le lien d'invitation.",
 
       welcome: "Bienvenue",
       hey: "Salut",
@@ -1626,6 +1661,13 @@ const translations = {
       continue: "Continuer",
       next: "Suivant",
       previous: "Précédent",
+
+      livePreview: "Aperçu en direct",
+      setupProgress: "Progression de la configuration",
+      detailsComplete: "informations complétées",
+      noAccount: "Aucun compte requis. Votre événement est créé instantanément.",
+      validationEventName: "Chaque souvenir a besoin d'un nom. Donnez-en un à votre événement.",
+      validationEventDate: "Choisissez aujourd'hui ou une date future pour votre événement.",
 
       chooseOccasion: "Choisissez votre occasion",
 
@@ -2009,6 +2051,13 @@ const translations = {
 
       copyInviteLink: "Copiar link",
       linkCopied: "Link copiado",
+      shareEventAction: "Compartilhar evento",
+      eventShared: "Evento compartilhado",
+      downloadQr: "Baixar código QR",
+      qrDownloaded: "Código QR baixado",
+      eventOverview: "Visão geral do evento",
+      copyFailed: "Falha ao copiar. Selecione o link e copie-o manualmente.",
+      shareFailed: "O compartilhamento está indisponível. Copie o link do convite.",
 
       welcome: "Bem-vindo",
       hey: "Olá",
@@ -2236,6 +2285,13 @@ const translations = {
       continue: "Continuar",
       next: "Próximo",
       previous: "Anterior",
+
+      livePreview: "Prévia ao vivo",
+      setupProgress: "Progresso da configuração",
+      detailsComplete: "detalhes concluídos",
+      noAccount: "Nenhuma conta é necessária. Seu evento é criado instantaneamente.",
+      validationEventName: "Toda memória precisa de um nome. Dê um ao seu evento.",
+      validationEventDate: "Escolha hoje ou uma data futura para o seu evento.",
 
       chooseOccasion: "Escolha sua ocasião",
 

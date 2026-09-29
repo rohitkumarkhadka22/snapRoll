@@ -152,15 +152,20 @@ const Chatbot = () => {
   useEffect(() => {
     if (isOpen) return;
 
-    const interval = setInterval(() => {
+    const triggerJiggle = () => {
       setBotPulse(true);
+      clearTimeout(pulseTimeoutRef.current);
 
       pulseTimeoutRef.current = setTimeout(() => {
         setBotPulse(false);
-      }, 700);
-    }, 3000);
+      }, 1100);
+    };
+
+    const initialJiggle = setTimeout(triggerJiggle, 1200);
+    const interval = setInterval(triggerJiggle, 5500);
 
     return () => {
+      clearTimeout(initialJiggle);
       clearInterval(interval);
       clearTimeout(pulseTimeoutRef.current);
     };
@@ -667,7 +672,7 @@ const Chatbot = () => {
           else setIsOpen(true);
           setBotPulse(false);
         }}
-        className={`group fixed right-4 bottom-4 z-[999999] flex h-12 w-12 cursor-pointer items-center justify-center overflow-visible rounded-full border border-white/20 bg-black shadow-[0_15px_40px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-110 hover:shadow-[0_20px_55px_rgba(255,255,255,0.15)] active:scale-95 sm:right-5 sm:bottom-5 sm:h-14 sm:w-14 ${botPulse ? "bot-pulse" : ""} `}
+        className={`chatbot-launcher group fixed right-4 bottom-4 z-[999999] h-13 w-13 cursor-pointer items-center justify-center overflow-visible rounded-full border border-amber-100/25 bg-linear-to-br from-zinc-700 via-black to-black shadow-[0_16px_45px_rgba(0,0,0,0.65),0_0_28px_rgba(245,158,11,0.10)] transition-[transform,box-shadow,border-color] duration-300 hover:scale-110 hover:border-amber-100/45 hover:shadow-[0_20px_60px_rgba(0,0,0,0.7),0_0_38px_rgba(245,158,11,0.22)] active:scale-95 sm:right-5 sm:bottom-5 sm:h-15 sm:w-15 ${isOpen ? "hidden sm:flex" : "flex"} ${botPulse ? "bot-jiggle" : ""} `}
         aria-label={isOpen ? "Close SnapRoll Assistant" : "Open SnapRoll Assistant"}
       >
         {isOpen ? (
@@ -676,11 +681,29 @@ const Chatbot = () => {
             className="text-white transition-all duration-300 group-hover:rotate-90 sm:h-[22px] sm:w-[22px]"
           />
         ) : (
-          <img
-            src={chatbotImage}
-            alt="SnapRoll Assistant"
-            className="h-full w-full rounded-full object-cover"
-          />
+          <>
+            <span className="chatbot-launcher-ring chatbot-launcher-ring-one pointer-events-none absolute rounded-full border border-amber-100/20" />
+            <span className="chatbot-launcher-ring chatbot-launcher-ring-two pointer-events-none absolute rounded-full border border-white/10" />
+
+            <span
+              className={`pointer-events-none absolute right-[calc(100%+12px)] hidden w-max items-center gap-2 rounded-full border border-white/10 bg-black/85 px-3.5 py-2 text-[10px] font-medium tracking-[0.08em] text-white/70 shadow-xl backdrop-blur-xl transition-all duration-300 sm:flex ${
+                botPulse
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
+              }`}
+            >
+              <Sparkles size={11} className="text-amber-200" />
+              Ask SnapRoll AI
+            </span>
+
+            <span className="absolute inset-1 z-0 rounded-full bg-linear-to-br from-amber-100/25 via-transparent to-rose-300/15" />
+
+            <img
+              src={chatbotImage}
+              alt="SnapRoll Assistant"
+              className="relative z-10 h-full w-full rounded-full object-cover p-0.5 transition-transform duration-300 group-hover:scale-[1.03] group-hover:rotate-[-3deg]"
+            />
+          </>
         )}
 
         {!isOpen && (

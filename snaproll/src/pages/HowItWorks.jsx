@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
 import {
   ArrowLeft,
@@ -364,13 +365,17 @@ const HowItWorks = () => {
             <span className="text-white/30">{h.finalTitle2}</span>
           </h2>
 
-          <button
+          <Link
+            to="/events/create"
             onClick={() => playSound("success")}
-            className="mt-9 inline-flex cursor-pointer items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black transition duration-300 hover:scale-105 hover:bg-white/90 active:scale-95"
+            className="group mt-9 inline-flex cursor-pointer items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black transition duration-300 hover:scale-105 hover:bg-white/90 active:scale-95"
           >
             {h.createYourRoll}
-            <Sparkles size={15} />
-          </button>
+            <Sparkles
+              size={15}
+              className="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
+            />
+          </Link>
         </div>
       </section>
     </main>
@@ -887,9 +892,7 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
 
   const copyLink = () => {
     if (navigator?.clipboard) {
-      navigator.clipboard
-        .writeText(joinUrl)
-        .catch(() => {});
+      navigator.clipboard.writeText(joinUrl).catch(() => {});
     }
 
     setCopied(true);
@@ -978,11 +981,7 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
 
       <div className="mt-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.035] p-3">
         <div className="shrink-0 rounded-xl bg-white p-2">
-          <QRCodeSVG
-            value={joinUrl}
-            size={65}
-            level="H"
-          />
+          <QRCodeSVG value={joinUrl} size={65} level="H" />
         </div>
 
         <div className="min-w-0 text-left">

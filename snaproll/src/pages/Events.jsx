@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight, Camera, Check, Heart, Sparkles, Star } from "lucide-react";
 import { LanguageContext } from "../context/LanguageContext";
 
-import birthdayImage from "../assets/images/events/birthday.jpg";
+import birthdayImage from "../assets/images/events/Birthday.jpg";
 import weddingImage from "../assets/images/events/wedding.jpg";
 import anniversaryImage from "../assets/images/events/anniversary.jpg";
 import graduationImage from "../assets/images/events/graduate.jpg";
@@ -44,94 +44,100 @@ const events = [
 
 //  EVENT CARD
 
-const EventCard = ({ event, t, featured = false }) => {
+const EventCard = ({ event, t, featured = false, entranceDelay = 0 }) => {
   const eventTranslation = t.events.eventTypes[event.key];
 
   return (
-    <article
-      className={`group relative overflow-hidden rounded-[26px] border border-white/10 bg-[#101010] transition-transform duration-300 ease-out hover:-translate-y-1 ${featured ? "min-h-130 sm:min-h-145 lg:min-h-160" : "min-h-115 sm:min-h-125"} `}
+    <div
+      className="events-card-enter h-full"
+      style={{ "--events-card-delay": `${entranceDelay}ms` }}
     >
-      {/* IMAGE */}
-      <div className="absolute inset-0">
-        <img
-          src={event.image}
-          alt={`${eventTranslation.title} event`}
-          loading="lazy"
-          decoding="async"
-          draggable="false"
-          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
-        />
+      <article
+        className={`group relative h-full overflow-hidden rounded-[26px] border border-white/10 bg-[#101010] transition-transform duration-300 ease-out hover:-translate-y-1 ${featured ? "min-h-130 sm:min-h-145 lg:min-h-160" : "min-h-115 sm:min-h-125"} `}
+      >
+        {/* IMAGE */}
+        <div className="absolute inset-0">
+          <img
+            src={event.image}
+            alt={`${eventTranslation.title} event`}
+            loading={featured ? "eager" : "lazy"}
+            fetchPriority={featured ? "high" : "auto"}
+            decoding="async"
+            draggable="false"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+          />
 
-        <div className="absolute inset-0 bg-linear-to-t from-black via-black/35 to-black/5" />
+          <div className="absolute inset-0 bg-linear-to-t from-black via-black/35 to-black/5" />
 
-        <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/45 to-transparent" />
-      </div>
-
-      {/* TOP */}
-      <div className="absolute top-4 right-4 left-4 z-20 flex items-center justify-between sm:top-5 sm:right-5 sm:left-5">
-        {/* CAMERA */}
-        <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur-sm">
-          <Camera size={14} />
+          <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/45 to-transparent" />
         </div>
 
-        {/* LIVE MEMORIES */}
-        <div className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/45 px-2.5 py-1.5 text-[8px] tracking-[0.14em] text-white/75 uppercase backdrop-blur-sm sm:px-3 sm:text-[9px]">
-          <Star size={10} strokeWidth={1.8} className="fill-white text-white" />
-
-          <span>{t.events.liveMemories}</span>
-        </div>
-      </div>
-
-      {/* CONTENT */}
-      <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-6">
-        <div className="flex items-end justify-between gap-3 sm:gap-4">
-          <div className="min-w-0">
-            <p className="text-[8px] tracking-[0.22em] text-white/45 uppercase sm:text-[9px]">
-              {t.events.snaprollEvent}
-            </p>
-
-            <h3
-              className={`mt-2 font-medium tracking-[-0.04em] text-white ${featured ? "text-2xl sm:text-3xl lg:text-4xl" : "text-xl sm:text-2xl"} `}
-            >
-              {eventTranslation.title}
-            </h3>
+        {/* TOP */}
+        <div className="absolute top-4 right-4 left-4 z-20 flex items-center justify-between sm:top-5 sm:right-5 sm:left-5">
+          {/* CAMERA */}
+          <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur-sm">
+            <Camera size={14} />
           </div>
 
-          <span className="shrink-0 text-xl sm:text-2xl">{event.emoji}</span>
+          {/* LIVE MEMORIES */}
+          <div className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/45 px-2.5 py-1.5 text-[8px] tracking-[0.14em] text-white/75 uppercase backdrop-blur-sm sm:px-3 sm:text-[9px]">
+            <Star size={10} strokeWidth={1.8} className="fill-white text-white" />
+
+            <span>{t.events.liveMemories}</span>
+          </div>
         </div>
 
-        <p className="mt-3 max-w-md text-[11px] leading-5 text-white/55 sm:text-sm">
-          {eventTranslation.description}
-        </p>
+        {/* CONTENT */}
+        <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-6">
+          <div className="flex items-end justify-between gap-3 sm:gap-4">
+            <div className="min-w-0">
+              <p className="text-[8px] tracking-[0.22em] text-white/45 uppercase sm:text-[9px]">
+                {t.events.snaprollEvent}
+              </p>
 
-        <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4 sm:mt-5">
-          <div className="flex min-w-0 items-center gap-2">
-            <div className="flex -space-x-2">
-              {[1, 2, 3].map((item) => (
-                <div
-                  key={item}
-                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-[#151515] bg-white/10 text-[8px] text-white/55"
-                >
-                  {item}
-                </div>
-              ))}
+              <h3
+                className={`mt-2 font-medium tracking-[-0.04em] text-white ${featured ? "text-2xl sm:text-3xl lg:text-4xl" : "text-xl sm:text-2xl"} `}
+              >
+                {eventTranslation.title}
+              </h3>
             </div>
 
-            <span className="truncate text-[9px] text-white/40 sm:text-[10px]">
-              {event.moments} {t.events.moments}
-            </span>
+            <span className="shrink-0 text-xl sm:text-2xl">{event.emoji}</span>
           </div>
 
-          <button
-            type="button"
-            aria-label={`Like ${eventTranslation.title}`}
-            className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/30 text-white/70 transition-all duration-200 hover:bg-white hover:text-black"
-          >
-            <Heart size={14} />
-          </button>
+          <p className="mt-3 max-w-md text-[11px] leading-5 text-white/55 sm:text-sm">
+            {eventTranslation.description}
+          </p>
+
+          <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4 sm:mt-5">
+            <div className="flex min-w-0 items-center gap-2">
+              <div className="flex -space-x-2">
+                {[1, 2, 3].map((item) => (
+                  <div
+                    key={item}
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-[#151515] bg-white/10 text-[8px] text-white/55"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+
+              <span className="truncate text-[9px] text-white/40 sm:text-[10px]">
+                {event.moments} {t.events.moments}
+              </span>
+            </div>
+
+            <button
+              type="button"
+              aria-label={`Like ${eventTranslation.title}`}
+              className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/30 text-white/70 transition-all duration-200 hover:bg-white hover:text-black"
+            >
+              <Heart size={14} />
+            </button>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </div>
   );
 };
 
@@ -168,19 +174,19 @@ const Events = () => {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+    <main className="events-page relative min-h-screen overflow-hidden bg-black text-white">
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-0 left-1/2 h-125 w-125 -translate-x-1/2 rounded-full bg-white/[0.025] blur-[90px] sm:h-175 sm:w-175 sm:blur-[100px]" />
+        <div className="events-orb absolute top-0 left-1/2 h-125 w-125 -translate-x-1/2 rounded-full bg-white/[0.035] blur-[90px] sm:h-175 sm:w-175 sm:blur-[100px]" />
 
-        <div className="absolute top-[45%] -right-40 h-100 w-100 rounded-full bg-white/[0.015] blur-[80px] sm:-right-48 sm:h-125 sm:w-125 sm:blur-[90px]" />
+        <div className="events-orb events-orb-secondary absolute top-[45%] -right-40 h-100 w-100 rounded-full bg-white/[0.02] blur-[80px] sm:-right-48 sm:h-125 sm:w-125 sm:blur-[90px]" />
       </div>
 
       {/* HERO */}
       <section className="relative px-5 pt-32 pb-12 sm:px-8 sm:pt-40 sm:pb-14 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="grid items-start gap-8 md:gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-            <div>
+            <div className="events-hero-primary">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-[10px] text-white/55 sm:mb-7 sm:text-xs">
                 <Camera size={13} />
                 {t.events.badge}
@@ -194,7 +200,7 @@ const Events = () => {
               </h1>
             </div>
 
-            <div className="lg:pb-2">
+            <div className="events-hero-copy lg:pb-2">
               <div className="mb-5 h-px w-12 bg-white/30" />
 
               <p className="max-w-md text-sm leading-6 text-white/45 sm:text-base sm:leading-7">
@@ -210,18 +216,18 @@ const Events = () => {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-4 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <EventCard event={events[0]} t={t} featured />
+              <EventCard event={events[0]} t={t} featured entranceDelay={300} />
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
-              <EventCard event={events[1]} t={t} />
-              <EventCard event={events[2]} t={t} />
+              <EventCard event={events[1]} t={t} entranceDelay={410} />
+              <EventCard event={events[2]} t={t} entranceDelay={520} />
             </div>
           </div>
 
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <EventCard event={events[3]} t={t} />
-            <EventCard event={events[4]} t={t} />
+            <EventCard event={events[3]} t={t} entranceDelay={630} />
+            <EventCard event={events[4]} t={t} entranceDelay={740} />
           </div>
         </div>
       </section>

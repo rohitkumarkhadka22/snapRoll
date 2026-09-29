@@ -4,6 +4,9 @@ import { useRef } from "react";
 import ScrollReveal from "../components/ScrollReveal";
 import useLanguage from "../context/useLanguage";
 import { buildEventUrl } from "../utils/eventLinks";
+import graduationMemory from "../assets/images/home-graduation.jpg";
+import weddingReception from "../assets/images/home-wedding-reception.jpg";
+import weddingSparklers from "../assets/images/home-wedding-sparklers.jpg";
 
 const Home = () => {
   // GLOBAL LANGUAGE
@@ -193,23 +196,37 @@ const Home = () => {
           {/* RIGHT — SNAPROLL VISUAL */}
 
           <ScrollReveal delay={250} direction="left">
-            <div className="relative mx-auto h-120 w-full max-w-125 sm:h-145 sm:max-w-137.5 md:h-145 md:max-w-137.5 lg:h-170 lg:max-w-150">
-              {/* MEMORY 02 */}
-              <div className="absolute top-[5%] right-[2%] hidden w-48 rotate-10 rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-7 sm:block sm:w-53.75 md:right-[5%] lg:right-[8%] lg:w-61.25">
-                <div className="flex aspect-4/5 items-center justify-center rounded-xl bg-neutral-900">
-                  <div className="text-center">
-                    <span className="block text-[9px] tracking-[0.3em] text-gray-600 uppercase">
-                      {t.home.memory}
-                    </span>
+            <div className="relative isolate mx-auto h-120 w-full max-w-125 sm:h-145 sm:max-w-137.5 md:h-145 md:max-w-137.5 lg:h-170 lg:max-w-150">
+              {/* CINEMATIC AMBIENT LIGHT */}
+              <div className="pointer-events-none absolute top-[12%] right-[5%] h-52 w-52 rounded-full bg-rose-500/10 blur-[85px] sm:h-72 sm:w-72" />
+              <div className="pointer-events-none absolute bottom-[8%] left-[4%] h-56 w-56 rounded-full bg-amber-400/12 blur-[90px] sm:h-80 sm:w-80" />
+              <div className="pointer-events-none absolute top-1/2 left-1/2 h-[76%] w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/5 bg-white/[0.025] blur-sm" />
 
-                    <span className="mt-2 block font-serif text-3xl text-gray-700">02</span>
-                  </div>
+              {/* MEMORY 02 */}
+              <div className="absolute top-[3%] right-[1%] z-10 w-32 rotate-10 rounded-xl border border-white/12 bg-[#101010]/95 p-2 shadow-[0_28px_80px_rgba(190,24,93,0.16)] backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:rotate-7 hover:border-white/25 sm:top-[5%] sm:w-53.75 sm:rounded-2xl sm:p-3 md:right-[5%] lg:right-[8%] lg:w-61.25">
+                <div className="relative aspect-4/5 overflow-hidden rounded-lg bg-neutral-900 sm:rounded-xl">
+                  <img
+                    src={graduationMemory}
+                    alt="Graduates celebrating together"
+                    className="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                    loading="eager"
+                    decoding="async"
+                  />
+
+                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/35 via-transparent to-black/5" />
+
+                  <span className="absolute right-2 bottom-2 rounded-full bg-black/55 px-2 py-1 text-[7px] tracking-[0.2em] text-white/80 uppercase backdrop-blur-sm sm:right-3 sm:bottom-3 sm:text-[8px]">
+                    {t.home.memory} 02
+                  </span>
                 </div>
 
                 <div className="flex items-center justify-between px-1 pt-3">
-                  <span className="text-[9px] tracking-[0.2em] text-black uppercase">SnapRoll</span>
+                  <span className="flex items-center gap-1.5 text-[9px] tracking-[0.2em] text-white/75 uppercase">
+                    <span className="h-1.5 w-1.5 rounded-full bg-rose-400 shadow-[0_0_10px_rgba(251,113,133,0.8)]" />
+                    SnapRoll
+                  </span>
 
-                  <span className="text-[9px] text-gray-400">2026</span>
+                  <span className="text-[9px] text-white/30">2026</span>
                 </div>
               </div>
 
@@ -217,24 +234,35 @@ const Home = () => {
               <div className="absolute top-1/2 left-1/2 z-20 h-105 w-52.5 -translate-x-1/2 -translate-y-1/2 rotate-[-4deg] transition-transform duration-700 hover:-rotate-1 sm:h-125 sm:w-62.5 md:h-130 md:w-65 lg:h-147.5 lg:w-73.75">
                 {/* LEFT SIDE BUTTONS */}
                 <div className="pointer-events-none absolute top-[19%] -left-4 z-50 flex flex-col gap-5 sm:-left-5">
-                  <span className="block h-6 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-7" />
+                  <span className="block h-6 w-1 rounded-l-full rounded-r-sm border border-white/15 bg-zinc-700 shadow-[0_1px_5px_rgba(0,0,0,0.8)] sm:h-7" />
 
-                  <span className="block h-9 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-10" />
+                  <span className="block h-9 w-1 rounded-l-full rounded-r-sm border border-white/15 bg-zinc-700 shadow-[0_1px_5px_rgba(0,0,0,0.8)] sm:h-10" />
 
-                  <span className="block h-9 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-10" />
+                  <span className="block h-9 w-1 rounded-l-full rounded-r-sm border border-white/15 bg-zinc-700 shadow-[0_1px_5px_rgba(0,0,0,0.8)] sm:h-10" />
                 </div>
 
                 {/* RIGHT SIDE POWER BUTTON */}
                 <div className="pointer-events-none absolute top-[29%] -right-2.5 z-50">
-                  <span className="block h-12 w-1 rounded-r-full border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-14" />
+                  <span className="block h-12 w-1 rounded-r-full border border-white/15 bg-zinc-700 shadow-[0_1px_5px_rgba(0,0,0,0.8)] sm:h-14" />
                 </div>
 
                 {/* OUTER PHONE FRAME */}
-                <div className="absolute inset-0 rounded-[38px] border border-white/30 bg-linear-to-br from-white via-gray-200 to-gray-500 p-1.5 shadow-[0_35px_90px_rgba(255,255,255,0.12)] sm:rounded-[44px] lg:rounded-[48px]">
+                <div className="absolute inset-0 rounded-[38px] border border-white/20 bg-linear-to-br from-zinc-500 via-zinc-950 to-zinc-600 p-1.5 shadow-[0_36px_100px_rgba(0,0,0,0.75),0_0_70px_rgba(245,158,11,0.10)] sm:rounded-[44px] lg:rounded-[48px]">
                   {/* INNER BLACK BODY */}
-                  <div className="relative h-full w-full overflow-hidden rounded-[32px] border border-black/80 bg-black p-1 sm:rounded-[38px] lg:rounded-[41px]">
+                  <div className="relative h-full w-full overflow-hidden rounded-[32px] border border-white/8 bg-black p-1 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[38px] lg:rounded-[41px]">
                     {/* SCREEN */}
                     <div className="relative h-full w-full overflow-hidden rounded-[27px] bg-neutral-950 sm:rounded-[33px] lg:rounded-[36px]">
+                      <img
+                        src={weddingReception}
+                        alt="Newlyweds celebrating with their guests"
+                        className="absolute inset-0 h-full w-full object-cover object-[50%_52%]"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                      />
+
+                      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/55 via-black/5 to-black/90" />
+
                       {/* DYNAMIC ISLAND */}
                       <div className="absolute top-2.5 left-1/2 z-40 h-7 w-22 -translate-x-1/2 rounded-full bg-black shadow-inner sm:top-3 sm:h-8 sm:w-28" />
 
@@ -252,7 +280,7 @@ const Home = () => {
 
                       {/* MAIN SCREEN CONTENT */}
                       <div className="flex h-full flex-col justify-end p-4 sm:p-6">
-                        <div className="mb-4 rounded-2xl border border-white/10 bg-white/4 p-3.5 backdrop-blur-sm sm:mb-5 sm:p-5">
+                        <div className="mb-4 rounded-2xl border border-white/15 bg-black/35 p-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md sm:mb-5 sm:p-5">
                           <div className="flex items-center justify-between">
                             <span className="text-[9px] tracking-[0.2em] text-gray-500 uppercase">
                               {t.home.yourStory}
@@ -273,7 +301,7 @@ const Home = () => {
                             {t.home.capture}
                           </span>
 
-                          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black sm:h-10 sm:w-10">
+                          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f4c06a] text-black shadow-[0_0_24px_rgba(244,192,106,0.35)] sm:h-10 sm:w-10">
                             →
                           </span>
                         </div>
@@ -284,27 +312,34 @@ const Home = () => {
               </div>
 
               {/* MEMORY 01 */}
-              <div className="absolute bottom-[5%] left-[2%] z-30 w-37.5 rotate-[-11deg] rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:rotate-[-7deg] sm:w-48.75 md:left-[4%] lg:left-[6%] lg:w-52.5">
-                <div className="flex aspect-square items-center justify-center rounded-xl bg-neutral-900">
-                  <div className="text-center">
-                    <span className="block text-[9px] tracking-[0.3em] text-gray-600 uppercase">
-                      {t.home.memory}
-                    </span>
+              <div className="absolute bottom-[5%] left-[2%] z-30 w-37.5 rotate-[-11deg] rounded-2xl border border-white/12 bg-[#101010]/95 p-3 shadow-[0_28px_80px_rgba(245,158,11,0.18)] backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:rotate-[-7deg] hover:border-white/25 sm:w-48.75 md:left-[4%] lg:left-[6%] lg:w-52.5">
+                <div className="relative aspect-square overflow-hidden rounded-xl bg-neutral-900">
+                  <img
+                    src={weddingSparklers}
+                    alt="Wedding guests celebrating with sparklers"
+                    className="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                    loading="eager"
+                    decoding="async"
+                  />
 
-                    <span className="mt-2 block font-serif text-4xl text-gray-700">01</span>
-                  </div>
+                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent" />
+
+                  <span className="absolute right-2 bottom-2 rounded-full bg-black/55 px-2 py-1 text-[7px] tracking-[0.2em] text-white/80 uppercase backdrop-blur-sm sm:text-[8px]">
+                    {t.home.memory} 01
+                  </span>
                 </div>
 
                 <div className="pt-3">
-                  <p className="text-[9px] tracking-[0.2em] text-black uppercase">
+                  <p className="flex items-center gap-2 text-[9px] tracking-[0.2em] text-white/65 uppercase">
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.8)]" />
                     {t.home.aMomentWorthKeeping}
                   </p>
                 </div>
               </div>
 
               {/* KEEP THE MOMENT */}
-              <div className="absolute right-[1%] bottom-[18%] z-30 hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md sm:block lg:right-[3%]">
-                <span className="text-[9px] tracking-[0.25em] text-gray-400 uppercase">
+              <div className="absolute right-[1%] bottom-[18%] z-30 hidden rounded-full border border-white/12 bg-black/45 px-4 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md sm:block lg:right-[3%]">
+                <span className="text-[9px] tracking-[0.25em] text-white/55 uppercase">
                   {t.home.keepTheMoment}
                 </span>
               </div>

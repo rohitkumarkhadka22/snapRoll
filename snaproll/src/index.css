@@ -131,6 +131,309 @@ body {
 }
 
 /* =========================================================
+   EVENTS — ROUTE ENTRANCE
+========================================================= */
+
+@keyframes eventsPageIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes eventsHeroIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes eventsCopyIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes eventsCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(42px) scale(0.975);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes eventsOrbIn {
+  from {
+    opacity: 0;
+    clip-path: circle(0% at 50% 50%);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: circle(75% at 50% 50%);
+  }
+}
+
+.events-page {
+  animation: eventsPageIn 450ms ease-out both;
+}
+
+.events-hero-primary {
+  animation: eventsHeroIn 850ms cubic-bezier(0.22, 1, 0.36, 1) 60ms both;
+  will-change: opacity, transform, filter;
+}
+
+.events-hero-copy {
+  animation: eventsCopyIn 800ms cubic-bezier(0.22, 1, 0.36, 1) 180ms both;
+  will-change: opacity, transform;
+}
+
+.events-card-enter {
+  animation: eventsCardIn 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--events-card-delay, 300ms) both;
+  will-change: opacity, transform, filter;
+}
+
+.events-orb {
+  animation: eventsOrbIn 1300ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
+}
+
+.events-orb-secondary {
+  animation-delay: 350ms;
+}
+
+/* =========================================================
+   CREATE EVENT — ROUTE ENTRANCE
+========================================================= */
+
+@keyframes createEventPageIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes createEventHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes createEventCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(48px) scale(0.965);
+    filter: blur(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes createEventPreviewIn {
+  from {
+    opacity: 0;
+    transform: translateX(26px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes createSuccessHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes createSuccessCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(45px) scale(0.97);
+    filter: blur(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes createSuccessQrIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.72) rotate(-4deg);
+  }
+
+  65% {
+    opacity: 1;
+    transform: scale(1.04) rotate(1deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes createSuccessSparkFloat {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0) scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.2);
+  }
+}
+
+@keyframes createEventOrbIn {
+  from {
+    opacity: 0;
+    clip-path: circle(0% at 50% 50%);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: circle(75% at 50% 50%);
+  }
+}
+
+@keyframes createEventSweepIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+.create-event-page {
+  animation: createEventPageIn 500ms ease-out both;
+}
+
+.create-event-header {
+  animation: createEventHeaderIn 850ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+  will-change: opacity, transform, filter;
+}
+
+.create-event-card {
+  animation: createEventCardIn 950ms cubic-bezier(0.22, 1, 0.36, 1) 240ms both;
+  will-change: opacity, transform, filter;
+}
+
+.create-event-preview {
+  animation: createEventPreviewIn 900ms cubic-bezier(0.22, 1, 0.36, 1) 420ms both;
+}
+
+.create-success-header {
+  animation: createSuccessHeaderIn 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.create-success-card {
+  animation: createSuccessCardIn 950ms cubic-bezier(0.22, 1, 0.36, 1) 180ms both;
+}
+
+.create-success-qr {
+  animation: createSuccessQrIn 850ms cubic-bezier(0.22, 1, 0.36, 1) 520ms both;
+}
+
+.create-success-spark {
+  position: absolute;
+  height: 4px;
+  width: 4px;
+  border-radius: 999px;
+  background: rgb(253 230 138);
+  box-shadow: 0 0 16px rgba(253, 230, 138, 0.8);
+  animation: createSuccessSparkFloat 2.6s ease-in-out infinite;
+}
+
+.create-success-spark-one {
+  top: 10%;
+  left: 9%;
+}
+
+.create-success-spark-two {
+  top: 42%;
+  right: 7%;
+  animation-delay: 500ms;
+}
+
+.create-success-spark-three {
+  bottom: 5%;
+  left: 22%;
+  animation-delay: 900ms;
+}
+
+.create-event-orb {
+  animation: createEventOrbIn 1200ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.create-event-orb-left {
+  animation-delay: 180ms;
+}
+
+.create-event-orb-right {
+  animation-delay: 320ms;
+}
+
+.create-event-sweep {
+  transform-origin: center;
+  animation: createEventSweepIn 900ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+}
+
+/* =========================================================
    REDUCED MOTION
    Accessibility + smoother experience for users
    who disable animations
@@ -175,30 +478,80 @@ body {
   }
 }
 
-@keyframes botPulse {
+@keyframes botJiggle {
   0% {
-    transform: scale(1);
+    transform: translateY(0) rotate(0) scale(1);
   }
 
-  25% {
-    transform: scale(1.1) rotate(-3deg);
+  10% {
+    transform: translateY(-3px) rotate(-7deg) scale(1.04);
+  }
+
+  20% {
+    transform: translateY(-2px) rotate(7deg) scale(1.06);
+  }
+
+  30% {
+    transform: translateY(-3px) rotate(-5deg) scale(1.07);
+  }
+
+  40% {
+    transform: translateY(-1px) rotate(5deg) scale(1.05);
   }
 
   50% {
-    transform: scale(1.05) rotate(3deg);
+    transform: translateY(0) rotate(0) scale(1);
   }
 
-  75% {
-    transform: scale(1.08) rotate(-2deg);
+  64% {
+    transform: translateY(-2px) rotate(-4deg) scale(1.04);
+  }
+
+  76% {
+    transform: translateY(-1px) rotate(4deg) scale(1.04);
+  }
+
+  88% {
+    transform: translateY(0) rotate(-2deg) scale(1.01);
   }
 
   100% {
-    transform: scale(1);
+    transform: translateY(0) rotate(0) scale(1);
   }
 }
 
-.bot-pulse {
-  animation: botPulse 0.7s ease-in-out;
+@keyframes chatbotLauncherRing {
+  0% {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+
+  25% {
+    opacity: 0.55;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.55);
+  }
+}
+
+.bot-jiggle {
+  animation: botJiggle 1.05s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.bot-jiggle:hover {
+  animation-play-state: paused;
+}
+
+.chatbot-launcher-ring-one {
+  inset: -4px;
+  animation: chatbotLauncherRing 2.8s ease-out infinite;
+}
+
+.chatbot-launcher-ring-two {
+  inset: -8px;
+  animation: chatbotLauncherRing 2.8s ease-out 1.4s infinite;
 }
 
 /* Chatbot scrollbar */
