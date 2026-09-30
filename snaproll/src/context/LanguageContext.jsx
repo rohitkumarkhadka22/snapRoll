@@ -1,5 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-
 import { createContext, useEffect, useMemo, useState } from "react";
 import translations from "../translations";
 
@@ -32,22 +30,10 @@ export const languages = [
   },
 ];
 
-const getSavedLanguage = () => {
-  try {
-    const savedLanguage = localStorage.getItem("snaproll-language");
-    if (!savedLanguage) return null;
-
-    const parsed = JSON.parse(savedLanguage);
-    return languages.find((language) => language.code === parsed.code) || null;
-  } catch {
-    return null;
-  }
-};
-
-const LanguageProvider = ({ children }) => {
-  const [initialLanguage] = useState(getSavedLanguage);
-  const [selectedLanguage, setSelectedLanguage] = useState(initialLanguage || languages[0]);
-  const [hasChosenLanguage, setHasChosenLanguage] = useState(Boolean(initialLanguage));
+const LanguageProvider = ({ children, initialLanguageCode }) => {
+  const serverLanguage = languages.find((language) => language.code === initialLanguageCode);
+  const [selectedLanguage, setSelectedLanguage] = useState(serverLanguage || languages[0]);
+  const [hasChosenLanguage, setHasChosenLanguage] = useState(Boolean(serverLanguage));
 
   const changeLanguage = (language) => {
     const selected = languages.find((item) => item.code === language.code) || languages[0];
@@ -59,6 +45,12 @@ const LanguageProvider = ({ children }) => {
       localStorage.setItem("snaproll-language", JSON.stringify(selected));
     } catch {
       // The language still changes for the current session when storage is unavailable.
+    }
+
+    try {
+      document.cookie = `snaproll-language=${encodeURIComponent(selected.code)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+    } catch {
+      // The server selection request remains the source of truth when cookies are restricted.
     }
   };
 

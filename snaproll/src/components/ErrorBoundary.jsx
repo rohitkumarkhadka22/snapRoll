@@ -11,7 +11,9 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, info) {
-    if (import.meta.env.DEV) console.error("Uncaught application error", error, info);
+    if (process.env.NODE_ENV !== "production") {
+      console.error("Uncaught application error", error, info);
+    }
   }
 
   render() {

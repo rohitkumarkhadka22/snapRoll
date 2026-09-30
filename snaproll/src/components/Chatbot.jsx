@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X, Send, Sparkles } from "lucide-react";
-import chatbotImage from "../assets/images/chatbot.jpg";
+import chatbotImageAsset from "../assets/images/chatbot.jpg";
 import { parseStreamLine } from "../utils/ndjson";
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+const chatbotImage = chatbotImageAsset.src;
+
+const API_BASE_URL = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/$/, "");
 const CHAT_ENDPOINT = `${API_BASE_URL}/api/chat`;
 const MAX_MESSAGE_LENGTH = 2000;
 
 const Chatbot = () => {
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,6 +23,10 @@ const Chatbot = () => {
       content: "Hi! 👋 I'm the SnapRoll Assistant. How can I help you today?",
     },
   ]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const messagesContainerRef = useRef(null);
   const inputRef = useRef(null);
@@ -511,6 +518,8 @@ const Chatbot = () => {
 
     setIsOpen(false);
   };
+
+  if (!mounted) return null;
 
   return createPortal(
     <>

@@ -1,5 +1,7 @@
+"use client";
+
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { QRCodeSVG } from "qrcode.react";
 import {
   ArrowLeft,
@@ -164,27 +166,31 @@ const HowItWorks = () => {
         <div className="pointer-events-none absolute top-20 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-white/[0.045] blur-[120px] sm:h-100 sm:w-100" />
 
         <div className="relative mx-auto max-w-5xl text-center">
-          <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2 text-[10px] tracking-[0.18em] text-white/50 backdrop-blur-xl sm:text-xs">
-            <Sparkles size={13} />
-            <span className="truncate">{h.badge}</span>
-          </div>
-
-          <h1 className="font-serif text-4xl leading-[0.95] tracking-tighter sm:text-6xl md:text-[4rem] lg:text-8xl">
-            {h.heroTitle1}
-            <br />
-            <span className="text-white/30">{h.heroTitle2}</span>
-          </h1>
-
-          <p className="mx-auto mt-7 max-w-2xl px-1 text-sm leading-7 text-white/45 sm:px-0 sm:text-base">
-            {h.heroDescription}
-          </p>
+          <ScrollReveal duration={800} y={22}>
+            <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2 text-[10px] tracking-[0.18em] text-white/50 backdrop-blur-xl sm:text-xs">
+              <Sparkles size={13} />
+              <span className="truncate">{h.badge}</span>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={110} duration={900} y={30}>
+            <h1 className="font-serif text-4xl leading-[0.95] tracking-tighter sm:text-6xl md:text-[4rem] lg:text-8xl">
+              {h.heroTitle1}
+              <br />
+              <span className="text-white/30">{h.heroTitle2}</span>
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal delay={220} duration={850} y={24}>
+            <p className="mx-auto mt-7 max-w-2xl px-1 text-sm leading-7 text-white/45 sm:px-0 sm:text-base">
+              {h.heroDescription}
+            </p>
+          </ScrollReveal>
         </div>
 
         {/* =================================================
             HERO PHONE
         ================================================= */}
 
-        <ScrollReveal>
+        <ScrollReveal delay={300} duration={1000} y={42}>
           <div className="group relative mx-auto mt-10 h-105 max-w-5xl sm:mt-14 sm:h-130 lg:mt-17 lg:h-150">
             <div className="absolute top-1/2 left-1/2 h-60 w-60 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.04] blur-3xl sm:h-72 sm:w-72" />
 
@@ -357,25 +363,29 @@ const HowItWorks = () => {
         <div className="pointer-events-none absolute top-1/2 left-1/2 h-87.5 w-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.035] blur-[100px]" />
 
         <div className="relative mx-auto max-w-3xl text-center">
-          <p className="mb-5 text-xs tracking-[0.2em] text-white/30">{h.readyToCapture}</p>
-
-          <h2 className="font-serif text-3xl tracking-[-0.04em] sm:text-5xl md:text-6xl">
-            {h.finalTitle1}
-            <br />
-            <span className="text-white/30">{h.finalTitle2}</span>
-          </h2>
-
-          <Link
-            to="/events/create"
-            onClick={() => playSound("success")}
-            className="group mt-9 inline-flex cursor-pointer items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black transition duration-300 hover:scale-105 hover:bg-white/90 active:scale-95"
-          >
-            {h.createYourRoll}
-            <Sparkles
-              size={15}
-              className="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
-            />
-          </Link>
+          <ScrollReveal duration={800} y={22}>
+            <p className="mb-5 text-xs tracking-[0.2em] text-white/30">{h.readyToCapture}</p>
+          </ScrollReveal>
+          <ScrollReveal delay={110} duration={900} y={30}>
+            <h2 className="font-serif text-3xl tracking-[-0.04em] sm:text-5xl md:text-6xl">
+              {h.finalTitle1}
+              <br />
+              <span className="text-white/30">{h.finalTitle2}</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={220} duration={800} y={20}>
+            <Link
+              href="/events/create"
+              onClick={() => playSound("success")}
+              className="group mt-9 inline-flex cursor-pointer items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black transition duration-300 hover:scale-105 hover:bg-white/90 active:scale-95"
+            >
+              {h.createYourRoll}
+              <Sparkles
+                size={15}
+                className="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
+              />
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
     </main>
@@ -872,7 +882,7 @@ const ShareQR = ({ h, eventName, shots, guests }) => {
   const [copied, setCopied] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("WARM");
   const [selectedImage, setSelectedImage] = useState(EVENT_IMAGES[0]);
-  const publicAppUrl = import.meta.env.VITE_PUBLIC_APP_URL || window.location.origin;
+  const publicAppUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const joinUrl = buildJoinUrl(eventName, publicAppUrl);
 
   const filters = [

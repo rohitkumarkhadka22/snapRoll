@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { QRCodeSVG } from "qrcode.react";
 import { useRef } from "react";
 import ScrollReveal from "../components/ScrollReveal";
 import useLanguage from "../context/useLanguage";
 import { buildEventUrl } from "../utils/eventLinks";
-import graduationMemory from "../assets/images/home-graduation.jpg";
-import weddingReception from "../assets/images/home-wedding-reception.jpg";
-import weddingSparklers from "../assets/images/home-wedding-sparklers.jpg";
+import graduationMemoryAsset from "../assets/images/home-graduation.jpg";
+import weddingReceptionAsset from "../assets/images/home-wedding-reception.jpg";
+import weddingSparklersAsset from "../assets/images/home-wedding-sparklers.jpg";
+
+const graduationMemory = graduationMemoryAsset.src;
+const weddingReception = weddingReceptionAsset.src;
+const weddingSparklers = weddingSparklersAsset.src;
 
 const Home = () => {
   // GLOBAL LANGUAGE
@@ -38,7 +44,7 @@ const Home = () => {
     },
   ];
 
-  const publicAppUrl = import.meta.env.VITE_PUBLIC_APP_URL || window.location.origin;
+  const publicAppUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const eventUrl = buildEventUrl("demo", publicAppUrl);
 
   return (
@@ -78,7 +84,7 @@ const Home = () => {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 {/* GET STARTED */}
                 <Link
-                  to="/events"
+                  href="/events"
                   className="group relative inline-flex h-13 w-full items-center justify-center overflow-hidden rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_30px_rgba(0,0,0,0.3)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 hover:-translate-y-1 hover:border-white/40 hover:bg-white/15 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_15px_40px_rgba(255,255,255,0.08)] sm:w-auto"
                 >
                   <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/15 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
@@ -94,7 +100,7 @@ const Home = () => {
 
                 {/* HOW IT WORKS */}
                 <Link
-                  to="/how-it-works"
+                  href="/how-it-works"
                   className="group relative inline-flex h-13 w-full items-center justify-center overflow-hidden rounded-full border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_8px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 hover:-translate-y-1 hover:border-white/35 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_15px_40px_rgba(255,255,255,0.06)] sm:w-auto"
                 >
                   <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/10 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
@@ -448,7 +454,7 @@ const Home = () => {
 
             <ScrollReveal delay={150}>
               <Link
-                to="/how-it-works"
+                href="/how-it-works"
                 className="group inline-flex items-center text-sm font-medium text-gray-400 transition-colors hover:text-white"
               >
                 {t.home.exploreHowItWorks}
@@ -495,7 +501,7 @@ const Home = () => {
 
           <ScrollReveal delay={300}>
             <Link
-              to="/events"
+              href="/events"
               className="group relative mt-10 inline-flex h-14 w-full items-center justify-center overflow-hidden rounded-full border border-white/20 bg-white/10 px-8 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_10px_35px_rgba(0,0,0,0.3)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 hover:-translate-y-1 hover:border-white/35 hover:bg-white/15 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_15px_40px_rgba(255,255,255,0.08)] sm:w-auto"
             >
               <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/15 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />

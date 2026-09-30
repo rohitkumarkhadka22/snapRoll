@@ -1,5 +1,7 @@
+"use client";
+
 import { Check, ArrowRight, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import ScrollReveal from "../components/ScrollReveal";
 import useLanguage from "../context/useLanguage";
 
@@ -164,7 +166,7 @@ const Pricing = () => {
 
                   {/* CTA */}
                   <Link
-                    to={plan.link}
+                    href={plan.link}
                     className={`mt-7 flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-full border text-sm font-medium transition-all duration-300 sm:mt-8 ${
                       plan.popular
                         ? "border-white bg-white text-black hover:bg-white/90"
@@ -332,7 +334,7 @@ const Pricing = () => {
 
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link
-                  to="/events/create"
+                  href="/events/create"
                   className="group inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-white bg-white px-7 text-sm font-medium text-black transition-all duration-300 hover:bg-white/90 sm:w-auto"
                 >
                   Create an event
@@ -343,7 +345,7 @@ const Pricing = () => {
                 </Link>
 
                 <Link
-                  to="/how-it-works"
+                  href="/how-it-works"
                   className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-7 text-sm font-medium text-white transition-all duration-300 hover:border-white/20 hover:bg-white/[0.09] sm:w-auto"
                 >
                   See how it works

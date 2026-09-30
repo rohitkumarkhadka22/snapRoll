@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const Footer = () => {
   const handleBackToTop = () => {
@@ -18,7 +18,7 @@ const Footer = () => {
 
           <div>
             <Link
-              to="/"
+              href="/"
               className="font-serif text-3xl tracking-[-0.04em] transition-opacity duration-300 hover:opacity-70"
             >
               SNAPROLL
@@ -26,21 +26,21 @@ const Footer = () => {
 
             <div className="mt-6 flex flex-col gap-4">
               <Link
-                to="/"
+                href="/"
                 className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
                 What it does
               </Link>
 
               <Link
-                to="/how-it-works"
+                href="/how-it-works"
                 className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
                 How it works
               </Link>
 
               <Link
-                to="/faq"
+                href="/faq"
                 className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
                 FAQ
@@ -147,14 +147,14 @@ const Footer = () => {
               </span>
 
               <Link
-                to="/contact"
+                href="/contact"
                 className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
                 Contact
               </Link>
 
               <Link
-                to="/contact"
+                href="/contact"
                 className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
                 Support

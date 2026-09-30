@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const NotFound = () => (
   <main className="flex min-h-screen items-center justify-center bg-black px-6 text-center text-white">
@@ -11,7 +11,7 @@ const NotFound = () => (
         The link may be incorrect, expired, or the page may have moved.
       </p>
       <Link
-        to="/"
+        href="/"
         className="mt-8 inline-flex rounded-full bg-white px-6 py-3 text-sm font-medium text-black"
       >
         Return home

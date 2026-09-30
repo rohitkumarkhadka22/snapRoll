@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import {
   CalendarDays,
@@ -190,7 +192,7 @@ const CreateEvent = () => {
     }, 50);
   };
 
-  const publicAppUrl = (import.meta.env.VITE_PUBLIC_APP_URL || window.location.origin).replace(
+  const publicAppUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(
     /\/$/,
     "",
   );

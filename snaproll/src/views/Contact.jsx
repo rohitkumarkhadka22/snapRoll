@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+"use client";
+
+import { useRef, useState } from "react";
+import Link from "next/link";
 import {
   ArrowUpRight,
   Camera,
@@ -17,11 +19,16 @@ import {
 } from "lucide-react";
 
 import useLanguage from "../context/useLanguage";
-import birthdayImage from "../assets/images/events/birthday.jpg";
-import graduationImage from "../assets/images/events/graduate.jpg";
-import partyImage from "../assets/images/events/party.jpg";
+import ScrollReveal from "../components/ScrollReveal";
+import birthdayImageAsset from "../assets/images/events/birthday.avif";
+import graduationImageAsset from "../assets/images/events/graduation.avif";
+import partyImageAsset from "../assets/images/events/party.avif";
 
-const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT;
+const birthdayImage = birthdayImageAsset.src;
+const graduationImage = graduationImageAsset.src;
+const partyImage = partyImageAsset.src;
+
+const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT;
 
 const TOPIC_COPY = {
   en: {
@@ -163,46 +170,11 @@ const TOPIC_ICONS = {
 
 //  SCROLL REVEAL
 
-const Reveal = ({ children, className = "", delay = 0 }) => {
-  const [visible, setVisible] = useState(false);
-  const elementRef = useRef(null);
-
-  useEffect(() => {
-    const element = elementRef.current;
-    if (!element) return;
-
-    if (!("IntersectionObserver" in window)) {
-      const frame = requestAnimationFrame(() => setVisible(true));
-      return () => cancelAnimationFrame(frame);
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
-    );
-
-    observer.observe(element);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  return (
-    <div
-      ref={elementRef}
-      className={`contact-reveal ${visible ? "contact-reveal-visible" : ""} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-};
+const Reveal = ({ children, className = "", delay = 0 }) => (
+  <ScrollReveal className={className} delay={delay} duration={1050} y={42}>
+    {children}
+  </ScrollReveal>
+);
 
 //  CONTACT
 
@@ -1112,7 +1084,7 @@ const Contact = () => {
                 </p>
 
                 <Link
-                  to="/events"
+                  href="/events"
                   className="group relative mx-auto mt-9 flex w-fit cursor-pointer items-center gap-3 rounded-full border border-white/15 bg-white/[0.06] px-6 py-3.5 text-xs text-white transition-all duration-300 hover:border-white/30 hover:bg-white/[0.1]"
                 >
                   {t.contact.buildYourEvent}

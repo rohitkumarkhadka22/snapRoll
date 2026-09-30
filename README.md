@@ -1,6 +1,6 @@
 # SnapRoll
 
-SnapRoll currently consists of a React/Vite marketing and interactive prototype frontend plus an Express API for the AI assistant.
+SnapRoll consists of a React application rendered with the Next.js App Router plus an Express API for the AI assistant. Public marketing routes are pre-rendered as crawlable HTML and hydrated for interactive behavior in the browser.
 
 ## Local development
 
@@ -22,7 +22,7 @@ npm ci
 npm run dev
 ```
 
-The Vite development server proxies `/api` and `/health` to the backend on port 5001.
+The Next.js development server runs on port 3000 and proxies `/api` and `/health` to the Express backend on port 5001.
 
 ## Verification
 
@@ -35,12 +35,14 @@ These commands run linting, unit/integration tests, syntax checks, and the produ
 
 ## Production configuration
 
-- Serve the frontend and API from the same HTTPS origin when possible. Otherwise set backend `CLIENT_ORIGINS` and frontend `VITE_API_BASE_URL` to matching HTTPS origins.
-- Set `VITE_PUBLIC_APP_URL` to the public frontend origin.
-- Set `VITE_CONTACT_ENDPOINT` to an HTTPS service that validates, rate-limits, and delivers contact messages.
+- Set frontend `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin before building so canonical URLs, invite links, `robots.txt`, and `sitemap.xml` do not use localhost.
+- Set frontend `BACKEND_URL` to the private Express origin. If the browser calls Express directly instead of the built-in proxy, set `NEXT_PUBLIC_API_BASE_URL` and backend `CLIENT_ORIGINS` to matching HTTPS origins.
+- Set `NEXT_PUBLIC_CONTACT_ENDPOINT` to an HTTPS service that validates, rate-limits, and delivers contact messages.
 - Configure `OLLAMA_URL` and `OLLAMA_MODEL` for the production AI service. Do not expose that service publicly.
 - Route platform health checks to `/health`.
 - Add platform-level TLS, CSP/HSTS headers, distributed rate limiting, structured logs, and error monitoring.
+
+After deployment, submit `/sitemap.xml` in Google Search Console. Search visibility is influenced by content quality, competition, links, performance, and time; technical rendering alone cannot guarantee a first-place ranking.
 
 ## Current product scope
 

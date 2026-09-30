@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import logo from "../assets/images/logo1.png";
+import Link from "next/link";
+import logoAsset from "../assets/images/logo1.png";
 import useLanguage from "../context/useLanguage";
+
+const logo = logoAsset.src;
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -92,7 +94,7 @@ const Navbar = () => {
             <span className="relative text-xl leading-none">{menuOpen ? "×" : "☰"}</span>
           </button>
 
-          <Link to="/" onClick={closeMenu} className="flex shrink-0 items-center">
+          <Link href="/" onClick={closeMenu} className="flex shrink-0 items-center">
             <img
               src={logo}
               alt="SnapRoll"
@@ -103,7 +105,7 @@ const Navbar = () => {
 
         {/* DESKTOP LOGO */}
         <Link
-          to="/"
+          href="/"
           onClick={closeMenu}
           className="group relative z-10 hidden shrink-0 items-center lg:flex"
         >
@@ -119,7 +121,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2 lg:gap-3 xl:-translate-x-4">
             {/* HOME */}
             <Link
-              to="/"
+              href="/"
               onMouseMove={handleLiquidMouseMove}
               className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
@@ -130,7 +132,7 @@ const Navbar = () => {
 
             {/* HOW IT WORKS */}
             <Link
-              to="/how-it-works"
+              href="/how-it-works"
               onMouseMove={handleLiquidMouseMove}
               className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
@@ -141,7 +143,7 @@ const Navbar = () => {
 
             {/* PRICING */}
             <Link
-              to="/pricing"
+              href="/pricing"
               onMouseMove={handleLiquidMouseMove}
               className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
@@ -152,7 +154,7 @@ const Navbar = () => {
 
             {/* FAQ */}
             <Link
-              to="/faq"
+              href="/faq"
               onMouseMove={handleLiquidMouseMove}
               className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
@@ -163,7 +165,7 @@ const Navbar = () => {
 
             {/* CONTACT */}
             <Link
-              to="/contact"
+              href="/contact"
               onMouseMove={handleLiquidMouseMove}
               className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
@@ -178,7 +180,7 @@ const Navbar = () => {
         <div className="relative z-10 hidden shrink-0 items-center gap-2.5 lg:flex">
           {/* BUILD YOUR EVENT */}
           <Link
-            to="/events"
+            href="/events"
             onMouseMove={handleLiquidMouseMove}
             className="group relative overflow-hidden rounded-full border border-white/20 bg-white/92 px-5 py-2.5 text-sm font-semibold text-black shadow-[0_2px_12px_rgba(255,255,255,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_5px_20px_rgba(255,255,255,0.12)]"
           >
@@ -258,7 +260,7 @@ const Navbar = () => {
 
           <div className="relative flex flex-col p-5">
             <Link
-              to="/"
+              href="/"
               onClick={closeMenu}
               className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
@@ -266,7 +268,7 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/how-it-works"
+              href="/how-it-works"
               onClick={closeMenu}
               className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
@@ -274,7 +276,7 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/pricing"
+              href="/pricing"
               onClick={closeMenu}
               className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
@@ -282,7 +284,7 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/faq"
+              href="/faq"
               onClick={closeMenu}
               className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
@@ -290,7 +292,7 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/contact"
+              href="/contact"
               onClick={closeMenu}
               className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
@@ -332,7 +334,7 @@ const Navbar = () => {
 
             {/* MOBILE + TABLET BUILD YOUR EVENT */}
             <Link
-              to="/events"
+              href="/events"
               onClick={closeMenu}
               onMouseMove={handleLiquidMouseMove}
               className="group relative mt-5 overflow-hidden rounded-full border border-white/20 bg-white/92 px-6 py-3 text-center text-sm font-semibold text-black shadow-lg shadow-black/20 transition-all duration-300 hover:bg-white"

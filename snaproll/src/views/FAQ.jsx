@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import useLanguage from "../context/useLanguage";
 import ScrollReveal from "../components/ScrollReveal";
