@@ -202,17 +202,14 @@ body {
 
 .events-hero-primary {
   animation: eventsHeroIn 850ms cubic-bezier(0.22, 1, 0.36, 1) 60ms both;
-  will-change: opacity, transform, filter;
 }
 
 .events-hero-copy {
   animation: eventsCopyIn 800ms cubic-bezier(0.22, 1, 0.36, 1) 180ms both;
-  will-change: opacity, transform;
 }
 
 .events-card-enter {
   animation: eventsCardIn 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--events-card-delay, 300ms) both;
-  will-change: opacity, transform, filter;
 }
 
 .events-orb {
@@ -365,12 +362,10 @@ body {
 
 .create-event-header {
   animation: createEventHeaderIn 850ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
-  will-change: opacity, transform, filter;
 }
 
 .create-event-card {
   animation: createEventCardIn 950ms cubic-bezier(0.22, 1, 0.36, 1) 240ms both;
-  will-change: opacity, transform, filter;
 }
 
 .create-event-preview {

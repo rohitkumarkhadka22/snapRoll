@@ -10,10 +10,7 @@ Requires Node.js 20.19 or newer.
 cd backend
 cp .env.example .env
 npm ci
-npm run dev
 ```
-
-In another terminal:
 
 ```sh
 cd snaproll
@@ -22,7 +19,7 @@ npm ci
 npm run dev
 ```
 
-The Next.js development server runs on port 3000 and proxies `/api` and `/health` to the Express backend on port 5001.
+The frontend `npm run dev` command starts both services together. The Next.js development server runs on port 3000 and proxies `/api` and `/health` to the Express backend on port 5002.
 
 ## Verification
 

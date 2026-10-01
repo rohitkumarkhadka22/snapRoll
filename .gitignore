@@ -43,6 +43,7 @@ backend/uploads/
 # Editor settings
 .vscode/*
 !.vscode/extensions.json
+.nested-git-backup/
 .idea/
 *.suo
 *.ntvs*

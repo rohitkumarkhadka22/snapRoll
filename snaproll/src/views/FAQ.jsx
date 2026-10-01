@@ -3,17 +3,33 @@
 import { useState } from "react";
 import useLanguage from "../context/useLanguage";
 import ScrollReveal from "../components/ScrollReveal";
+import phoneSunsetAsset from "../assets/images/faq-phone-sunset.png";
+import questionWhiteAsset from "../assets/images/faq-question-white.png";
+
+const phoneSunset = phoneSunsetAsset.src;
+const questionWhite = questionWhiteAsset.src;
 
 const FAQ = () => {
   const { t } = useLanguage();
   const faq = t.faq;
 
   const [openItem, setOpenItem] = useState("0-0");
+  const [phoneQuestionIndex, setPhoneQuestionIndex] = useState(0);
+  const [phoneAnswerOpen, setPhoneAnswerOpen] = useState(true);
+  const phoneQuestions = faq.groups.flatMap((group) =>
+    group.items.map((item) => ({ ...item, category: group.label })),
+  );
+  const activePhoneQuestion = phoneQuestions[phoneQuestionIndex] || phoneQuestions[0];
 
   const toggleItem = (groupIndex, itemIndex) => {
     const id = `${groupIndex}-${itemIndex}`;
 
     setOpenItem((current) => (current === id ? null : id));
+  };
+
+  const showNextPhoneQuestion = () => {
+    setPhoneQuestionIndex((current) => (current + 1) % phoneQuestions.length);
+    setPhoneAnswerOpen(true);
   };
 
   return (
@@ -24,7 +40,7 @@ const FAQ = () => {
         <div className="grid items-center gap-12 sm:gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
           {/* PHONE */}
 
-          <ScrollReveal duration={1200} y={45}>
+          <ScrollReveal className="order-2 lg:order-1" duration={1200} y={45}>
             <div className="flex flex-col items-center lg:items-start">
               <div className="mb-7 self-start sm:mb-8">
                 <p className="text-xs font-semibold tracking-[0.28em] text-gray-500 uppercase">
@@ -34,28 +50,42 @@ const FAQ = () => {
 
               {/* PHONE VISUAL */}
               <div className="relative h-125 w-full max-w-135 sm:h-145 sm:max-w-150 md:h-150 lg:h-155">
+                <div className="pointer-events-none absolute top-[12%] right-[5%] h-52 w-52 rounded-full bg-rose-500/10 blur-[85px] sm:h-72 sm:w-72" />
+                <div className="pointer-events-none absolute bottom-[8%] left-[4%] h-56 w-56 rounded-full bg-amber-400/12 blur-[90px] sm:h-80 sm:w-80" />
+                <div className="pointer-events-none absolute top-1/2 left-1/2 h-[76%] w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/5 bg-white/[0.025] blur-sm" />
+
                 {/* PHONE */}
                 <div className="absolute top-1/2 left-1/2 z-20 h-110 w-55 -translate-x-1/2 -translate-y-1/2 rotate-[-4deg] cursor-pointer transition-transform duration-700 hover:-rotate-1 sm:h-125 sm:w-62.5 md:h-130 md:w-65 lg:h-137.5 lg:w-68.75">
                   {/* LEFT SIDE BUTTONS */}
                   <div className="pointer-events-none absolute top-[19%] -left-3.5 z-50 flex flex-col gap-4 sm:-left-4 sm:gap-5 md:-left-4.5 lg:-left-5">
-                    <span className="block h-5 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-6 md:h-6.5 lg:h-7" />
+                    <span className="block h-5 w-1 rounded-l-full rounded-r-sm border border-white/15 bg-zinc-700 shadow-[0_1px_5px_rgba(0,0,0,0.8)] sm:h-6 md:h-6.5 lg:h-7" />
 
-                    <span className="block h-8 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-9 md:h-9.5 lg:h-10" />
+                    <span className="block h-8 w-1 rounded-l-full rounded-r-sm border border-white/15 bg-zinc-700 shadow-[0_1px_5px_rgba(0,0,0,0.8)] sm:h-9 md:h-9.5 lg:h-10" />
 
-                    <span className="block h-8 w-1 rounded-l-full rounded-r-sm border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-9 md:h-9.5 lg:h-10" />
+                    <span className="block h-8 w-1 rounded-l-full rounded-r-sm border border-white/15 bg-zinc-700 shadow-[0_1px_5px_rgba(0,0,0,0.8)] sm:h-9 md:h-9.5 lg:h-10" />
                   </div>
 
                   {/* RIGHT POWER BUTTON */}
                   <div className="pointer-events-none absolute top-[29%] -right-2 z-50 sm:-right-2.5">
-                    <span className="block h-10 w-1 rounded-r-full border border-white/20 bg-gray-400 shadow-[0_1px_4px_rgba(255,255,255,0.45)] sm:h-12 md:h-13 lg:h-14" />
+                    <span className="block h-10 w-1 rounded-r-full border border-white/15 bg-zinc-700 shadow-[0_1px_5px_rgba(0,0,0,0.8)] sm:h-12 md:h-13 lg:h-14" />
                   </div>
 
                   {/* OUTER PHONE FRAME */}
-                  <div className="absolute inset-0 rounded-[38px] border border-white/30 bg-linear-to-br from-white via-gray-200 to-gray-500 p-1.5 shadow-[0_35px_90px_rgba(255,255,255,0.12)] sm:rounded-[42px] lg:rounded-[48px]">
+                  <div className="absolute inset-0 rounded-[38px] border border-white/20 bg-linear-to-br from-zinc-500 via-zinc-950 to-zinc-600 p-1.5 shadow-[0_36px_100px_rgba(0,0,0,0.75),0_0_70px_rgba(245,158,11,0.10)] sm:rounded-[42px] lg:rounded-[48px]">
                     {/* INNER BLACK BODY */}
-                    <div className="relative h-full w-full overflow-hidden rounded-[32px] border border-black/80 bg-black p-1 sm:rounded-[36px] lg:rounded-[41px]">
+                    <div className="relative h-full w-full overflow-hidden rounded-[32px] border border-white/8 bg-black p-1 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[36px] lg:rounded-[41px]">
                       {/* SCREEN */}
                       <div className="relative h-full w-full overflow-hidden rounded-[27px] bg-neutral-950 sm:rounded-[31px] lg:rounded-[36px]">
+                        <img
+                          src={phoneSunset}
+                          alt="A hand photographing a sunset with a phone"
+                          className="absolute inset-0 h-full w-full object-cover object-center"
+                          loading="eager"
+                          fetchPriority="high"
+                          decoding="async"
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/55 via-black/20 to-black/90" />
+
                         {/* DYNAMIC ISLAND */}
                         <div className="absolute top-2 left-1/2 z-40 h-6 w-20 -translate-x-1/2 rounded-full bg-black shadow-inner sm:top-2.5 sm:h-7 sm:w-24 lg:top-3 lg:h-8 lg:w-28" />
 
@@ -68,7 +98,10 @@ const FAQ = () => {
                             SnapRoll
                           </span>
 
-                          <span className="text-[8px] text-gray-500 sm:text-[9px]">FAQ</span>
+                          <span className="text-[8px] text-gray-500 sm:text-[9px]">
+                            {String(phoneQuestionIndex + 1).padStart(2, "0")} /{" "}
+                            {phoneQuestions.length}
+                          </span>
                         </div>
 
                         {/* MAIN SCREEN CONTENT */}
@@ -78,35 +111,43 @@ const FAQ = () => {
                             {/* CARD HEADER */}
                             <div className="flex items-center justify-between">
                               <span className="text-[8px] tracking-[0.2em] text-gray-500 uppercase sm:text-[9px]">
-                                {faq.frequentlyAsked}
+                                {activePhoneQuestion?.category || faq.frequentlyAsked}
                               </span>
 
                               <span className="text-[8px] text-gray-600 sm:text-[9px]">FAQ</span>
                             </div>
 
-                            {/* CARD TITLE */}
-                            <p className="mt-3 font-serif text-xl leading-tight text-white sm:mt-4 sm:text-2xl lg:text-3xl">
-                              {faq.everything}
-                              <br />
-                              <span className="text-gray-500">{faq.inOnePlace}</span>
-                            </p>
-
                             {/* QUESTION PREVIEW */}
-                            {faq.groups?.[0]?.items?.[0] && (
-                              <div className="mt-4 border-t border-white/10 pt-3 sm:mt-5 sm:pt-4">
-                                <div className="flex items-center justify-between gap-2 sm:gap-3">
-                                  <span className="min-w-0 text-[9px] leading-4 text-gray-300 sm:text-[10px]">
-                                    {faq.groups[0].items[0].question}
+                            {activePhoneQuestion && (
+                              <div className="mt-3 border-t border-white/10 pt-3 sm:mt-4 sm:pt-4">
+                                <button
+                                  type="button"
+                                  onClick={() => setPhoneAnswerOpen((current) => !current)}
+                                  aria-expanded={phoneAnswerOpen}
+                                  className="flex w-full cursor-pointer items-center justify-between gap-2 text-left sm:gap-3"
+                                >
+                                  <span className="min-w-0 font-serif text-sm leading-4 text-white sm:text-base sm:leading-5">
+                                    {activePhoneQuestion.question}
                                   </span>
 
-                                  <span className="flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-xs text-black transition-transform duration-300 hover:scale-110 sm:h-7 sm:w-7">
-                                    −
+                                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-xs text-black transition-transform duration-300 hover:scale-110 sm:h-7 sm:w-7">
+                                    {phoneAnswerOpen ? "−" : "+"}
                                   </span>
+                                </button>
+
+                                <div
+                                  className={`grid transition-all duration-300 ${
+                                    phoneAnswerOpen
+                                      ? "grid-rows-[1fr] opacity-100"
+                                      : "grid-rows-[0fr] opacity-0"
+                                  }`}
+                                >
+                                  <div className="overflow-hidden">
+                                    <p className="mt-2 line-clamp-4 text-[8px] leading-4 text-gray-500 sm:mt-3 sm:text-[9px]">
+                                      {activePhoneQuestion.answer}
+                                    </p>
+                                  </div>
                                 </div>
-
-                                <p className="mt-2 line-clamp-3 text-[8px] leading-4 text-gray-500 sm:mt-3 sm:text-[9px]">
-                                  {faq.groups[0].items[0].answer}
-                                </p>
                               </div>
                             )}
                           </div>
@@ -117,9 +158,14 @@ const FAQ = () => {
                               {faq.badge}
                             </span>
 
-                            <span className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white text-black transition-transform duration-300 hover:scale-110 sm:h-9 sm:w-9 lg:h-10 lg:w-10">
+                            <button
+                              type="button"
+                              onClick={showNextPhoneQuestion}
+                              aria-label="Show next FAQ question"
+                              className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white text-black transition-transform duration-300 hover:scale-110 sm:h-9 sm:w-9 lg:h-10 lg:w-10"
+                            >
                               →
-                            </span>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -128,19 +174,19 @@ const FAQ = () => {
                 </div>
 
                 {/* MEMORY CARD */}
-                <div className="absolute bottom-[4%] left-[2%] z-30 hidden w-32 rotate-[-10deg] cursor-pointer rounded-2xl bg-white p-3 shadow-2xl shadow-white/10 transition-transform duration-700 hover:scale-[1.02] hover:rotate-[-6deg] sm:block md:w-34 lg:w-36">
-                  <div className="flex aspect-square items-center justify-center rounded-xl bg-neutral-900">
-                    <div className="text-center">
-                      <span className="block text-[8px] tracking-[0.3em] text-gray-600 uppercase">
-                        SnapRoll
-                      </span>
-
-                      <span className="mt-2 block font-serif text-3xl text-gray-700">?</span>
-                    </div>
+                <div className="absolute bottom-[4%] left-[2%] z-30 w-30 rotate-[-10deg] cursor-pointer rounded-2xl bg-[#101010]/95 p-2.5 shadow-[0_28px_80px_rgba(139,92,246,0.16)] backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] hover:rotate-[-6deg] sm:w-32 sm:p-3 md:w-34 lg:w-36">
+                  <div className="aspect-square overflow-hidden rounded-xl bg-black">
+                    <img
+                      src={questionWhite}
+                      alt="White question mark"
+                      className="h-full w-full object-cover"
+                      loading="eager"
+                      decoding="async"
+                    />
                   </div>
 
                   <div className="pt-3">
-                    <p className="text-[8px] tracking-[0.2em] text-black uppercase">
+                    <p className="text-[8px] tracking-[0.2em] text-white/65 uppercase">
                       {faq.questionCount}
                     </p>
                   </div>
@@ -163,7 +209,7 @@ const FAQ = () => {
 
           {/* HERO TEXT */}
 
-          <div className="max-w-3xl">
+          <div className="order-1 max-w-3xl lg:order-2">
             <ScrollReveal delay={180} duration={1000} y={35}>
               <p className="mb-4 text-xs font-semibold tracking-[0.25em] text-gray-600 uppercase sm:mb-5">
                 {faq.eyebrow}
@@ -261,7 +307,11 @@ const FAQ = () => {
                               {/* QUESTION BUTTON */}
                               <button
                                 type="button"
-                                onClick={() => toggleItem(groupIndex, itemIndex)}
+                                onClick={() => {
+                                  setPhoneQuestionIndex(questionNumber - 1);
+                                  setPhoneAnswerOpen(true);
+                                  toggleItem(groupIndex, itemIndex);
+                                }}
                                 aria-expanded={isOpen}
                                 className="group flex w-full cursor-pointer items-center justify-between gap-3 py-4 text-left sm:gap-5 sm:py-5 md:py-6"
                               >

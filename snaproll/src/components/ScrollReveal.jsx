@@ -33,21 +33,20 @@ const ScrollReveal = ({
 
   const shouldReveal = hasChosenLanguage && isInView;
   const hidden = prefersReducedMotion
-    ? { opacity: 1, x: 0, y: 0, scale: 1 }
-    : { opacity: 0, x: offset.x, y: offset.y, scale: 0.992 };
+    ? { opacity: 1, x: 0, y: 0 }
+    : { opacity: 0, x: offset.x, y: offset.y };
 
   return (
     <motion.div
       ref={ref}
       className={className}
       initial={hidden}
-      animate={shouldReveal ? { opacity: 1, x: 0, y: 0, scale: 1 } : hidden}
+      animate={shouldReveal ? { opacity: 1, x: 0, y: 0 } : hidden}
       transition={{
         duration: prefersReducedMotion ? 0 : duration / 1000,
         delay: prefersReducedMotion ? 0 : delay / 1000,
         ease: EASE_OUT,
       }}
-      style={{ willChange: prefersReducedMotion ? "auto" : "transform, opacity" }}
     >
       {children}
     </motion.div>

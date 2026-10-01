@@ -20,6 +20,12 @@ export async function POST(request) {
     maxAge: 60 * 60 * 24 * 365,
     path: "/",
   });
+  response.cookies.set("snaproll-language-confirmed-v2", "true", {
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 60 * 60 * 24 * 365,
+    path: "/",
+  });
 
   return response;
 }

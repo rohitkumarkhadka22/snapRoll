@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import useLanguage from "../context/useLanguage";
 
@@ -50,37 +49,17 @@ const INTRODUCTIONS = {
 const LanguageGate = () => {
   const { changeLanguage, hasChosenLanguage, languages } = useLanguage();
   const firstOptionRef = useRef(null);
-  const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
   const [selectedCode, setSelectedCode] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleLanguageSelection = async (event, language) => {
+  const handleLanguageSelection = (event, language) => {
     event.preventDefault();
     if (isSubmitting) return;
 
-    const form = event.currentTarget;
     setSelectedCode(language.code);
     setIsSubmitting(true);
-
-    try {
-      const response = await fetch("/language", {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(form),
-      });
-
-      if (!response.ok) throw new Error("Unable to save language preference");
-
-      await new Promise((resolve) => window.setTimeout(resolve, prefersReducedMotion ? 0 : 240));
-
-      changeLanguage(language);
-      router.replace("/");
-      router.refresh();
-    } catch {
-      // Native form submission preserves onboarding even if enhanced navigation fails.
-      form.submit();
-    }
+    changeLanguage(language);
   };
 
   useEffect(() => {

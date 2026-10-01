@@ -13,6 +13,8 @@ const Navbar = () => {
   const { selectedLanguage, languages, changeLanguage, t } = useLanguage();
 
   const lastScrollY = useRef(0);
+  const showNavbarRef = useRef(true);
+  const scrollFrameRef = useRef(null);
 
   const handleLiquidMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -33,24 +35,32 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateNavbar = () => {
       const currentScrollY = window.scrollY;
+      let shouldShowNavbar = showNavbarRef.current;
 
       if (currentScrollY <= 20) {
-        setShowNavbar(true);
-        lastScrollY.current = currentScrollY;
-        return;
-      }
-
-      if (currentScrollY > lastScrollY.current) {
-        setShowNavbar(false);
+        shouldShowNavbar = true;
+      } else if (currentScrollY > lastScrollY.current) {
+        shouldShowNavbar = false;
         setMenuOpen(false);
         setLanguageOpen(false);
       } else if (currentScrollY < lastScrollY.current) {
-        setShowNavbar(true);
+        shouldShowNavbar = true;
+      }
+
+      if (shouldShowNavbar !== showNavbarRef.current) {
+        showNavbarRef.current = shouldShowNavbar;
+        setShowNavbar(shouldShowNavbar);
       }
 
       lastScrollY.current = currentScrollY;
+      scrollFrameRef.current = null;
+    };
+
+    const handleScroll = () => {
+      if (scrollFrameRef.current) return;
+      scrollFrameRef.current = requestAnimationFrame(updateNavbar);
     };
 
     window.addEventListener("scroll", handleScroll, {
@@ -59,6 +69,7 @@ const Navbar = () => {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (scrollFrameRef.current) cancelAnimationFrame(scrollFrameRef.current);
     };
   }, []);
 

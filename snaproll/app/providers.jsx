@@ -9,14 +9,18 @@ import ScrollToTop from "../src/components/ScrollToTop";
 import LanguageProvider from "../src/context/LanguageContext";
 import MainLayout from "../src/layouts/MainLayout";
 
-export default function Providers({ children, initialLanguageCode }) {
+export default function Providers({ children }) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.8,
+      // Keep wheel input responsive. A long duration makes the page feel like
+      // it is dragging behind the user's mouse or trackpad.
+      lerp: 0.14,
       smoothWheel: true,
       // Native touch scrolling is more reliable on phones and avoids swallowing taps.
-      smoothTouch: false,
+      syncTouch: false,
+      wheelMultiplier: 0.95,
       autoRaf: true,
+      respectReducedMotion: true,
     });
 
     window.__lenis = lenis;
@@ -30,7 +34,7 @@ export default function Providers({ children, initialLanguageCode }) {
   return (
     <MotionConfig reducedMotion="user">
       <ErrorBoundary>
-        <LanguageProvider initialLanguageCode={initialLanguageCode}>
+        <LanguageProvider>
           <MainLayout>
             <ScrollToTop />
             {children}

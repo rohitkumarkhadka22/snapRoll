@@ -8,17 +8,20 @@ import LanguageGate from "../components/LanguageGate";
 import useLanguage from "../context/useLanguage";
 
 const MainLayout = ({ children }) => {
-  const { hasChosenLanguage } = useLanguage();
+  const { hasChosenLanguage, isLanguageReady } = useLanguage();
   const prefersReducedMotion = useReducedMotion();
   const hiddenSite = prefersReducedMotion
     ? { opacity: 0, visibility: "hidden" }
-    : { opacity: 0, scale: 0.995, filter: "blur(4px)", visibility: "hidden" };
+    : { opacity: 0, y: 8, visibility: "hidden" };
   const visibleSite = {
     opacity: 1,
-    scale: 1,
-    filter: "blur(0px)",
+    y: 0,
     visibility: "visible",
   };
+
+  if (!isLanguageReady) {
+    return <div className="min-h-screen bg-black" aria-hidden="true" />;
+  }
 
   return (
     <div className="min-h-screen bg-black">

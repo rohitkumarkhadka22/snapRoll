@@ -1,4 +1,4 @@
-const DEFAULT_PORT = 5001;
+const DEFAULT_PORT = 5002;
 
 function parsePositiveInteger(value, fallback) {
   const parsed = Number.parseInt(value, 10);
@@ -15,7 +15,7 @@ function parseAllowedOrigins(value, nodeEnv = process.env.NODE_ENV) {
 
   return nodeEnv === "production"
     ? []
-    : ["http://localhost:5173", "http://127.0.0.1:5173"];
+    : ["http://localhost:3000", "http://127.0.0.1:3000"];
 }
 
 function getConfig(env = process.env) {

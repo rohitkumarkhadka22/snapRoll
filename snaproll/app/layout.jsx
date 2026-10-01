@@ -1,6 +1,5 @@
 import "../src/index.css";
 
-import { cookies } from "next/headers";
 import Providers from "./providers";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -48,12 +47,7 @@ export const viewport = {
   initialScale: 1,
 };
 
-export default async function RootLayout({ children }) {
-  const cookieStore = await cookies();
-  const savedLanguage = cookieStore.get("snaproll-language")?.value;
-  const initialLanguageCode = ["en", "es", "fr", "pt"].includes(savedLanguage)
-    ? savedLanguage
-    : null;
+export default function RootLayout({ children }) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -72,7 +66,7 @@ export default async function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        <Providers initialLanguageCode={initialLanguageCode}>{children}</Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
