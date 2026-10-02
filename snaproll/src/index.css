@@ -54,6 +54,995 @@ body {
 }
 
 /* =========================================================
+   HOW IT WORKS — POWERED-OFF PHONE GLOW
+========================================================= */
+
+.phone-closed-shine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: min(108%, 430px);
+  height: 88%;
+  pointer-events: none;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+
+.phone-closed-shine-hidden {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.86);
+}
+
+.phone-closed-shine-core,
+.phone-closed-shine-orbit,
+.phone-closed-shine-sweep {
+  position: absolute;
+  inset: 0;
+}
+
+.phone-closed-shine-core {
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(251, 191, 36, 0.2) 0%,
+    rgba(244, 114, 182, 0.1) 28%,
+    rgba(139, 92, 246, 0.07) 47%,
+    transparent 72%
+  );
+  filter: blur(28px);
+  animation: phoneClosedGlow 4.8s ease-in-out infinite;
+}
+
+.phone-closed-shine-orbit {
+  inset: 7% 9%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 20deg,
+    transparent 0deg,
+    rgba(251, 191, 36, 0.24) 38deg,
+    transparent 82deg,
+    transparent 205deg,
+    rgba(168, 85, 247, 0.17) 252deg,
+    transparent 310deg
+  );
+  filter: blur(16px);
+  -webkit-mask: radial-gradient(transparent 58%, #000 64%, transparent 74%);
+  mask: radial-gradient(transparent 58%, #000 64%, transparent 74%);
+  animation: phoneClosedOrbit 11s linear infinite;
+}
+
+.phone-closed-shine-sweep {
+  top: 11%;
+  left: 18%;
+  width: 22%;
+  height: 76%;
+  border-radius: 999px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.09), transparent);
+  filter: blur(18px);
+  transform: rotate(18deg);
+  animation: phoneClosedSweep 5.5s ease-in-out infinite;
+}
+
+.phone-screen-shine {
+  animation: phoneScreenShine 5.5s ease-in-out infinite;
+}
+
+/* Host success animation contained inside the phone screen. */
+.roll-created-screen {
+  background: radial-gradient(circle at 50% 38%, rgba(251, 191, 36, 0.08), transparent 31%), #000;
+}
+
+.roll-created-ambient {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(253, 230, 138, 0.13), transparent 68%);
+  filter: blur(12px);
+  transform: translate(-50%, -50%);
+  animation: rollCreatedAmbient 3.4s ease-in-out infinite;
+}
+
+.roll-created-burst {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  width: 128px;
+  height: 128px;
+  place-items: center;
+}
+
+.roll-created-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(253, 230, 138, 0.2);
+  border-radius: 999px;
+}
+
+.roll-created-ring-outer {
+  border-style: dashed;
+  animation:
+    rollCreatedOrbit 12s linear infinite,
+    rollCreatedRingIn 900ms ease-out both;
+}
+
+.roll-created-ring-inner {
+  inset: 13px;
+  border-color: rgba(255, 255, 255, 0.1);
+  animation:
+    rollCreatedOrbit 8s linear infinite reverse,
+    rollCreatedRingIn 700ms ease-out both;
+}
+
+.roll-created-check {
+  position: relative;
+  z-index: 1;
+  box-shadow:
+    0 0 0 8px rgba(255, 255, 255, 0.025),
+    0 0 42px rgba(251, 191, 36, 0.16);
+  animation: rollCreatedCheckIn 700ms cubic-bezier(0.2, 1.45, 0.4, 1) both;
+}
+
+.roll-created-copy {
+  animation: rollCreatedContentIn 700ms cubic-bezier(0.22, 1, 0.36, 1) 380ms both;
+}
+
+.roll-created-action {
+  animation: rollCreatedContentIn 700ms cubic-bezier(0.22, 1, 0.36, 1) 560ms both;
+}
+
+.roll-created-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.roll-created-sparkles span {
+  --spark-angle: calc(var(--spark-index) * 36deg);
+  --spark-distance: 82px;
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgb(253 230 138);
+  box-shadow: 0 0 10px rgba(253, 230, 138, 0.8);
+  opacity: 0;
+  animation: rollCreatedSpark 2.8s ease-out calc(var(--spark-index) * 90ms) infinite;
+}
+
+.roll-created-sparkles span:nth-child(3n + 2) {
+  --spark-distance: 100px;
+}
+
+.roll-created-sparkles span:nth-child(3n) {
+  --spark-distance: 118px;
+}
+
+@keyframes rollCreatedCheckIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.45) rotate(-18deg);
+  }
+  65% {
+    transform: scale(1.08) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes rollCreatedRingIn {
+  from {
+    opacity: 0;
+    scale: 0.55;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes rollCreatedOrbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rollCreatedAmbient {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+@keyframes rollCreatedContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes rollCreatedSpark {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--spark-angle)) translateX(28px) scale(0.4);
+  }
+  22% {
+    opacity: 0.9;
+  }
+  65%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--spark-angle)) translateX(var(--spark-distance))
+      scale(1);
+  }
+}
+
+/* Guest join confirmation animation inside the Step 03 phone. */
+.join-success-photo {
+  transform-origin: right center;
+  animation: joinSuccessPhotoIn 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.join-success-photo-image {
+  animation: joinSuccessPhotoDrift 8s ease-in-out 900ms infinite alternate;
+}
+
+.join-success-photo-sweep {
+  position: absolute;
+  top: -20%;
+  left: -90%;
+  width: 58%;
+  height: 140%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.16), transparent);
+  filter: blur(8px);
+  transform: rotate(12deg);
+  animation: joinSuccessSweep 3.8s ease-in-out 700ms infinite;
+}
+
+.join-success-content {
+  animation: joinSuccessContentIn 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.join-success-badge {
+  animation: joinSuccessBadgeIn 700ms cubic-bezier(0.2, 1.45, 0.4, 1) 180ms both;
+}
+
+.join-success-ripple {
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(253, 230, 138, 0.24);
+  border-radius: 999px;
+  opacity: 0;
+  animation: joinSuccessRipple 2.4s ease-out 650ms infinite;
+}
+
+.join-success-ripple-late {
+  animation-delay: 1.35s;
+}
+
+.join-success-copy {
+  animation: joinSuccessItemIn 650ms cubic-bezier(0.22, 1, 0.36, 1) 360ms both;
+}
+
+.join-success-thumbnails button {
+  animation: joinSuccessThumbnailIn 560ms cubic-bezier(0.2, 1.35, 0.4, 1)
+    calc(520ms + var(--thumbnail-index) * 110ms) both;
+}
+
+.join-success-actions {
+  animation: joinSuccessItemIn 650ms cubic-bezier(0.22, 1, 0.36, 1) 780ms both;
+}
+
+@keyframes joinSuccessPhotoIn {
+  from {
+    opacity: 0;
+    transform: translateX(45%) scale(1.08);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes joinSuccessPhotoDrift {
+  from {
+    transform: scale(1.01) translateX(0);
+  }
+  to {
+    transform: scale(1.08) translateX(-2%);
+  }
+}
+
+@keyframes joinSuccessSweep {
+  0%,
+  28% {
+    opacity: 0;
+    transform: translateX(0) rotate(12deg);
+  }
+  55% {
+    opacity: 0.7;
+  }
+  82%,
+  100% {
+    opacity: 0;
+    transform: translateX(390%) rotate(12deg);
+  }
+}
+
+@keyframes joinSuccessContentIn {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes joinSuccessBadgeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.45) rotate(-15deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes joinSuccessRipple {
+  0% {
+    opacity: 0.65;
+    transform: scale(0.78);
+  }
+  75%,
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+@keyframes joinSuccessItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes joinSuccessThumbnailIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.65) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+/* Step 04 camera — cinematic live view and tactile controls. */
+.shoot-camera-screen {
+  isolation: isolate;
+  animation: cameraScreenIn 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.camera-live-preview {
+  animation: cameraPreviewBreathe 10s ease-in-out infinite alternate;
+}
+
+.camera-vignette {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7),
+      transparent 28%,
+      transparent 64%,
+      rgba(0, 0, 0, 0.82)
+    ),
+    radial-gradient(circle at center, transparent 28%, rgba(0, 0, 0, 0.52) 100%);
+}
+
+.camera-grain {
+  pointer-events: none;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.camera-glass-control,
+.camera-shot-counter,
+.camera-latest-preview,
+.camera-control-dock {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.camera-glass-control {
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.camera-glass-control:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.28);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.camera-live-dot {
+  box-shadow: 0 0 10px rgba(253, 230, 138, 0.8);
+  animation: cameraLiveDot 1.8s ease-in-out infinite;
+}
+
+.camera-focus-reticle {
+  animation: cameraFocusFloat 4s ease-in-out infinite;
+}
+
+.camera-focus-corner {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-color: rgba(255, 255, 255, 0.72);
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.35));
+}
+
+.camera-focus-corner-tl {
+  top: 0;
+  left: 0;
+  border-top: 2px solid;
+  border-left: 2px solid;
+  border-radius: 8px 0 0;
+}
+
+.camera-focus-corner-tr {
+  top: 0;
+  right: 0;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  border-radius: 0 8px 0 0;
+}
+
+.camera-focus-corner-bl {
+  bottom: 0;
+  left: 0;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  border-radius: 0 0 0 8px;
+}
+
+.camera-focus-corner-br {
+  right: 0;
+  bottom: 0;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  border-radius: 0 0 8px;
+}
+
+.camera-focus-ring {
+  position: absolute;
+  inset: 28%;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+}
+
+.camera-focus-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgb(253 230 138);
+  box-shadow: 0 0 12px rgba(253, 230, 138, 0.8);
+  transform: translate(-50%, -50%);
+  animation: cameraFocusDot 2s ease-in-out infinite;
+}
+
+.camera-pointer {
+  animation: cameraPointerHint 2.4s ease-in-out infinite;
+}
+
+.camera-control-dock::before {
+  position: absolute;
+  top: 0;
+  left: 22%;
+  width: 56%;
+  height: 1px;
+  content: "";
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.45), transparent);
+}
+
+.camera-shutter {
+  position: relative;
+  box-shadow:
+    0 0 0 5px rgba(255, 255, 255, 0.04),
+    0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.camera-shutter::after {
+  position: absolute;
+  inset: -7px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  content: "";
+  animation: cameraShutterHalo 2.8s ease-in-out infinite;
+}
+
+.camera-capture-flash {
+  pointer-events: none;
+  animation: cameraCaptureFlash 520ms ease-out both;
+}
+
+.camera-capture-feedback {
+  animation: cameraCaptureFeedback 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cameraScreenIn {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes cameraPreviewBreathe {
+  from {
+    scale: 1.01;
+  }
+  to {
+    scale: 1.055;
+  }
+}
+
+@keyframes cameraLiveDot {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes cameraFocusFloat {
+  0%,
+  100% {
+    transform: scale(0.97);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+}
+
+@keyframes cameraFocusDot {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes cameraPointerHint {
+  0%,
+  100% {
+    transform: translate(0, 5px);
+  }
+  50% {
+    transform: translate(-5px, -5px);
+  }
+}
+
+@keyframes cameraShutterHalo {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes cameraCaptureFlash {
+  0% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes cameraCaptureFeedback {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+  35% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -58%) scale(0.96);
+  }
+}
+
+/* Step 05 — sequential memory reveal finale. */
+.roll-reveal-stage {
+  background: #080808;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    border-color 500ms ease,
+    box-shadow 700ms ease;
+}
+
+.roll-reveal-stage-open {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 14px 42px rgba(251, 191, 36, 0.08);
+}
+
+.roll-reveal-lock-overlay {
+  transition:
+    background-color 600ms ease,
+    backdrop-filter 600ms ease;
+}
+
+.roll-reveal-lock-opening {
+  background-color: rgba(0, 0, 0, 0.4);
+  animation: rollRevealUnlocking 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.roll-reveal-lock-opening .roll-reveal-lock {
+  animation: rollRevealLockOpen 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.roll-reveal-unlocking-light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgb(254 240 138);
+  box-shadow:
+    0 0 28px rgba(253, 230, 138, 0.9),
+    0 0 80px rgba(251, 191, 36, 0.55);
+  transform: translate(-50%, -50%);
+  animation: rollRevealUnlockingLight 720ms ease-out both;
+}
+
+.roll-memory-tile {
+  transform-origin: center;
+}
+
+.roll-memory-tile-revealed {
+  animation: rollMemoryTileReveal 780ms cubic-bezier(0.2, 1.2, 0.35, 1) var(--memory-delay) both;
+}
+
+.roll-memory-image {
+  filter: saturate(0.82) brightness(0.78);
+}
+
+.roll-memory-tile-revealed .roll-memory-image {
+  filter: saturate(1.05) brightness(1);
+  transition-delay: var(--memory-delay);
+}
+
+.roll-reveal-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 48%, rgba(254, 243, 199, 0.72), transparent 68%);
+  mix-blend-mode: screen;
+  animation: rollRevealFlash 900ms ease-out both;
+}
+
+.roll-reveal-shimmer {
+  position: absolute;
+  top: -40%;
+  left: -45%;
+  width: 28%;
+  height: 180%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+  filter: blur(7px);
+  transform: rotate(14deg);
+  animation: rollRevealShimmer 1.35s cubic-bezier(0.22, 1, 0.36, 1) 180ms both;
+}
+
+.roll-reveal-sparks {
+  position: absolute;
+  inset: 0;
+}
+
+.roll-reveal-sparks span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgb(254 240 138);
+  box-shadow: 0 0 9px rgba(253, 230, 138, 0.9);
+  opacity: 0;
+  animation: rollRevealSpark 1.15s ease-out var(--reveal-spark-delay) both;
+}
+
+.roll-reveal-unlocked {
+  animation: rollRevealBadgeIn 650ms cubic-bezier(0.2, 1.35, 0.4, 1) 720ms both;
+}
+
+.roll-reveal-button {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.04);
+}
+
+.roll-reveal-button::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(105deg, transparent 28%, rgba(253, 230, 138, 0.58), transparent 72%);
+  transform: translateX(-120%);
+}
+
+.roll-reveal-button:not(.roll-reveal-button-active)::before {
+  animation: rollRevealButtonShine 3.2s ease-in-out infinite;
+}
+
+.roll-reveal-button-opening {
+  box-shadow: 0 0 34px rgba(253, 230, 138, 0.22);
+}
+
+@keyframes rollRevealUnlocking {
+  0% {
+    clip-path: inset(0);
+  }
+  70% {
+    opacity: 1;
+    clip-path: inset(0);
+  }
+  100% {
+    opacity: 0;
+    clip-path: inset(50% 0 50% 0);
+  }
+}
+
+@keyframes rollRevealLockOpen {
+  0%,
+  30% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+  55% {
+    transform: scale(1.18) rotate(-7deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.55) rotate(12deg);
+  }
+}
+
+@keyframes rollRevealUnlockingLight {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(15);
+  }
+}
+
+@keyframes rollMemoryTileReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.72) rotate(var(--memory-rotation));
+    filter: blur(8px);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.04) rotate(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes rollRevealFlash {
+  0% {
+    opacity: 0.95;
+    transform: scale(0.3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
+@keyframes rollRevealShimmer {
+  from {
+    opacity: 0;
+    transform: translateX(0) rotate(14deg);
+  }
+  30% {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(650%) rotate(14deg);
+  }
+}
+
+@keyframes rollRevealSpark {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--reveal-spark-angle)) translateX(12px) scale(0.4);
+  }
+  28% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--reveal-spark-angle)) translateX(88px) scale(1);
+  }
+}
+
+@keyframes rollRevealBadgeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rollRevealButtonShine {
+  0%,
+  50% {
+    transform: translateX(-120%);
+  }
+  82%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes phoneClosedGlow {
+  0%,
+  100% {
+    opacity: 0.68;
+    transform: scale(0.94);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes phoneClosedOrbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes phoneClosedSweep {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateX(-28px) rotate(18deg);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translateX(210px) rotate(18deg);
+  }
+}
+
+@keyframes phoneScreenShine {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translateX(-30px) rotate(18deg);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: translateX(245px) rotate(18deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-closed-shine-core,
+  .phone-closed-shine-orbit,
+  .phone-closed-shine-sweep,
+  .phone-screen-shine,
+  .roll-created-ambient,
+  .roll-created-ring,
+  .roll-created-check,
+  .roll-created-copy,
+  .roll-created-action,
+  .roll-created-sparkles span,
+  .join-success-photo,
+  .join-success-photo-image,
+  .join-success-photo-sweep,
+  .join-success-content,
+  .join-success-badge,
+  .join-success-ripple,
+  .join-success-copy,
+  .join-success-thumbnails button,
+  .join-success-actions,
+  .shoot-camera-screen,
+  .camera-live-preview,
+  .camera-live-dot,
+  .camera-focus-reticle,
+  .camera-focus-dot,
+  .camera-pointer,
+  .camera-shutter::after,
+  .camera-capture-flash,
+  .camera-capture-feedback,
+  .roll-memory-tile-revealed,
+  .roll-reveal-lock-opening,
+  .roll-reveal-lock-opening .roll-reveal-lock,
+  .roll-reveal-unlocking-light,
+  .roll-reveal-flash,
+  .roll-reveal-shimmer,
+  .roll-reveal-sparks span,
+  .roll-reveal-unlocked,
+  .roll-reveal-button::before {
+    animation: none;
+  }
+}
+
+/* =========================================================
    ROLL REVEAL
    Used for image / card entrance animations
 ========================================================= */

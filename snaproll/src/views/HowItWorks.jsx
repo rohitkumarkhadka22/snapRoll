@@ -584,10 +584,17 @@ const PhoneMockup = ({
   };
 
   return (
-    <div className="relative flex w-full max-w-[430px] justify-center px-2 sm:px-5">
-      <div className="pointer-events-none absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.045] blur-[100px] sm:h-80 sm:w-80" />
+    <div className="relative isolate flex w-full max-w-[430px] justify-center px-2 sm:px-5">
+      <div
+        aria-hidden="true"
+        className={`phone-closed-shine ${powered ? "phone-closed-shine-hidden" : ""}`}
+      >
+        <div className="phone-closed-shine-core" />
+        <div className="phone-closed-shine-orbit" />
+        <div className="phone-closed-shine-sweep" />
+      </div>
 
-      <div className="relative w-full max-w-[305px] sm:max-w-[330px] lg:max-w-[340px]">
+      <div className="relative z-10 w-full max-w-[305px] sm:max-w-[330px] lg:max-w-[340px]">
         {/* LEFT SIDE BUTTONS */}
 
         <button
@@ -719,31 +726,48 @@ const CreateRoll = ({
 
   if (created) {
     return (
-      <div className="flex h-full min-h-[570px] flex-col items-center justify-center overflow-y-auto px-4 py-10 text-center sm:min-h-[620px] sm:px-6">
-        <div className="flex h-20 w-20 shrink-0 animate-[pulse_2s_infinite] items-center justify-center rounded-full border border-white/15 bg-white/[0.06]">
-          <Check size={30} />
+      <div className="roll-created-screen relative flex h-full min-h-[570px] flex-col items-center justify-center overflow-hidden px-4 py-10 text-center sm:min-h-[620px] sm:px-6">
+        <div aria-hidden="true" className="roll-created-ambient" />
+
+        <div aria-hidden="true" className="roll-created-sparkles">
+          {Array.from({ length: 10 }, (_, index) => (
+            <span key={index} style={{ "--spark-index": index }} />
+          ))}
         </div>
 
-        <p className="mt-7 text-[10px] tracking-[0.2em] text-white/30 uppercase">{h.rollCreated}</p>
+        <div className="roll-created-burst">
+          <span aria-hidden="true" className="roll-created-ring roll-created-ring-outer" />
+          <span aria-hidden="true" className="roll-created-ring roll-created-ring-inner" />
 
-        <h3 className="mt-2 max-w-[210px] font-serif text-3xl">{eventName}</h3>
+          <div className="roll-created-check flex h-20 w-20 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.08]">
+            <Check size={30} />
+          </div>
+        </div>
 
-        <p className="mt-3 text-xs text-white/35">
-          {shots} {h.shots} · {guests} {h.guests}
-        </p>
+        <div className="roll-created-copy relative z-10">
+          <p className="mt-7 text-[10px] tracking-[0.2em] text-white/30 uppercase">
+            {h.rollCreated}
+          </p>
 
-        <p className="mt-2 text-[10px] text-white/20">
-          {h.ends}{" "}
-          {new Date(eventDate).toLocaleDateString(selectedLanguage.code, {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          })}
-        </p>
+          <h3 className="mt-2 max-w-[210px] font-serif text-3xl">{eventName}</h3>
+
+          <p className="mt-3 text-xs text-white/35">
+            {shots} {h.shots} · {guests} {h.guests}
+          </p>
+
+          <p className="mt-2 text-[10px] text-white/20">
+            {h.ends}{" "}
+            {new Date(eventDate).toLocaleDateString(selectedLanguage.code, {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </p>
+        </div>
 
         <button
-          onClick={() => window.location.reload()}
-          className="mt-8 flex cursor-pointer items-center gap-2 rounded-full border border-white/10 px-5 py-2.5 text-xs text-white/50 transition hover:bg-white/[0.06]"
+          onClick={() => window.location.assign("/")}
+          className="roll-created-action relative z-10 mt-8 flex cursor-pointer items-center gap-2 rounded-full border border-white/10 px-5 py-2.5 text-xs text-white/50 transition hover:bg-white/[0.06]"
         >
           <RotateCcw size={13} />
           {h.editRoll}
@@ -1038,44 +1062,53 @@ const GuestJoin = ({ h, eventName }) => {
 
   if (joined) {
     return (
-      <div className="relative flex h-full min-h-[570px] flex-col overflow-hidden bg-black sm:min-h-[620px]">
+      <div className="join-success-screen relative flex h-full min-h-[570px] flex-col overflow-hidden bg-black sm:min-h-[620px]">
         {/* RIGHT PREVIEW */}
 
-        <div className="absolute top-0 right-0 h-full w-[38%] overflow-hidden border-l border-white/10 lg:w-[45%]">
+        <div className="join-success-photo absolute top-0 right-0 h-full w-[38%] overflow-hidden border-l border-white/10 lg:w-[45%]">
           <img
             src={previewImage}
             alt={h.preview}
-            className="h-full w-full object-cover opacity-70"
+            className="join-success-photo-image h-full w-full object-cover opacity-70"
           />
 
           <div className="absolute inset-0 bg-black/30" />
+          <div aria-hidden="true" className="join-success-photo-sweep" />
         </div>
 
         {/* LEFT CONTENT */}
 
-        <div className="relative z-10 flex h-full w-[70%] flex-col items-center justify-center bg-gradient-to-r from-black via-black/95 to-transparent px-3 text-center sm:w-[68%] sm:px-4 lg:w-[65%] lg:px-5">
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.05]">
-            <Check size={25} />
+        <div className="join-success-content relative z-10 flex h-full w-[70%] flex-col items-center justify-center bg-gradient-to-r from-black via-black/95 to-transparent px-3 text-center sm:w-[68%] sm:px-4 lg:w-[65%] lg:px-5">
+          <div className="join-success-badge relative flex h-20 w-20 items-center justify-center">
+            <span aria-hidden="true" className="join-success-ripple" />
+            <span aria-hidden="true" className="join-success-ripple join-success-ripple-late" />
+
+            <div className="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.07] shadow-[0_0_35px_rgba(251,191,36,0.14)]">
+              <Check size={25} />
+            </div>
           </div>
 
-          <p className="mt-6 text-[9px] tracking-[0.2em] text-white/30 uppercase">{h.welcome}</p>
+          <div className="join-success-copy">
+            <p className="mt-6 text-[9px] tracking-[0.2em] text-white/30 uppercase">{h.welcome}</p>
 
-          <h3 className="mt-2 max-w-full truncate font-serif text-2xl">
-            {h.hey}, {name || h.guest}.
-          </h3>
+            <h3 className="mt-2 max-w-full truncate font-serif text-2xl">
+              {h.hey}, {name || h.guest}.
+            </h3>
 
-          <p className="mt-3 max-w-[160px] text-[10px] leading-5 text-white/35">
-            {h.nowPartOf} <span className="text-white/65">{eventName}</span>
-          </p>
+            <p className="mt-3 max-w-[160px] text-[10px] leading-5 text-white/35">
+              {h.nowPartOf} <span className="text-white/65">{eventName}</span>
+            </p>
+          </div>
 
-          <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {EVENT_IMAGES.slice(0, 3).map((image) => (
+          <div className="join-success-thumbnails mt-6 flex flex-wrap justify-center gap-2">
+            {EVENT_IMAGES.slice(0, 3).map((image, index) => (
               <button
                 key={image}
                 onClick={() => {
                   setPreviewImage(image);
                   playSound("click");
                 }}
+                style={{ "--thumbnail-index": index }}
                 className={`h-10 w-10 cursor-pointer overflow-hidden rounded-lg border transition ${
                   previewImage === image ? "border-white/60" : "border-white/10"
                 }`}
@@ -1090,7 +1123,7 @@ const GuestJoin = ({ h, eventName }) => {
               setJoined(false);
               playSound("click");
             }}
-            className="mt-7 cursor-pointer rounded-full border border-white/10 px-4 py-2 text-[9px] text-white/40 transition hover:bg-white/[0.06]"
+            className="join-success-actions mt-7 cursor-pointer rounded-full border border-white/10 px-4 py-2 text-[9px] text-white/40 transition hover:bg-white/[0.06]"
           >
             {h.changeName}
           </button>
@@ -1100,7 +1133,7 @@ const GuestJoin = ({ h, eventName }) => {
               setPreviewOpen(true);
               playSound("click");
             }}
-            className="mt-2 flex cursor-pointer items-center gap-2 text-[9px] text-white/35 hover:text-white/60"
+            className="join-success-actions mt-2 flex cursor-pointer items-center gap-2 text-[9px] text-white/35 hover:text-white/60"
           >
             <Eye size={12} />
             {h.viewPreview}
@@ -1326,7 +1359,7 @@ const ShootCamera = ({ h, silent, volume, shots, capturedPhotos, setCapturedPhot
   ======================================================= */
 
   return (
-    <div className="relative flex h-full min-h-[570px] flex-col justify-between overflow-hidden bg-[#151515] p-3 pt-12 sm:min-h-[620px] sm:p-5 sm:pt-14">
+    <div className="shoot-camera-screen relative flex h-full min-h-[570px] flex-col justify-between overflow-hidden bg-[#151515] p-3 pt-12 sm:min-h-[620px] sm:p-5 sm:pt-14">
       {/* IMAGE */}
 
       <div className="absolute inset-0 overflow-hidden">
@@ -1335,12 +1368,13 @@ const ShootCamera = ({ h, silent, volume, shots, capturedPhotos, setCapturedPhot
             capturedPhotos.length > 0 ? capturedPhotos[capturedPhotos.length - 1] : EVENT_IMAGES[1]
           }
           alt={h.cameraPreview}
-          className={`h-full w-full object-cover opacity-45 transition-all duration-700 ${
+          className={`camera-live-preview h-full w-full object-cover opacity-60 transition-all duration-700 ${
             filter === "B&W" ? "grayscale" : filter === "FLASH" ? "brightness-125" : ""
           } ${mirror ? "scale-x-[-1]" : ""}`}
         />
 
-        <div className="absolute inset-0 bg-black/45" />
+        <div className="camera-vignette absolute inset-0" />
+        <div aria-hidden="true" className="camera-grain absolute inset-0" />
 
         {filter === "WARM" && (
           <div className="absolute inset-0 bg-gradient-to-br from-orange-300/[0.12] via-transparent to-black" />
@@ -1361,15 +1395,23 @@ const ShootCamera = ({ h, silent, volume, shots, capturedPhotos, setCapturedPhot
       {/* CAPTURE FEEDBACK */}
 
       {captureFeedback && (
-        <div className="absolute top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2">
-          <div className="rounded-2xl border border-white/15 bg-black/75 px-5 py-4 text-center shadow-2xl backdrop-blur-xl sm:px-6">
-            <p className="font-serif text-3xl text-white">{capturedPhotos.length}</p>
+        <>
+          <div aria-hidden="true" className="camera-capture-flash absolute inset-0 z-40 bg-white" />
 
-            <p className="mt-1 text-[9px] tracking-[0.18em] whitespace-nowrap text-white/45 uppercase">
-              {capturedPhotos.length === 1 ? h.photoTaken : h.photosTaken}
-            </p>
+          <div className="camera-capture-feedback absolute top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2">
+            <div className="rounded-3xl border border-white/20 bg-black/65 px-6 py-5 text-center shadow-[0_20px_70px_rgba(0,0,0,0.55)] backdrop-blur-2xl">
+              <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-white text-black">
+                <Check size={15} strokeWidth={2.5} />
+              </div>
+
+              <p className="font-serif text-3xl text-white">{capturedPhotos.length}</p>
+
+              <p className="mt-1 text-[9px] tracking-[0.18em] whitespace-nowrap text-white/45 uppercase">
+                {capturedPhotos.length === 1 ? h.photoTaken : h.photosTaken}
+              </p>
+            </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* TOP */}
@@ -1378,7 +1420,7 @@ const ShootCamera = ({ h, silent, volume, shots, capturedPhotos, setCapturedPhot
         <button
           onClick={() => !silent && playSound("click")}
           title={h.back}
-          className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-black/40 backdrop-blur"
+          className="camera-glass-control flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/35 backdrop-blur-xl"
         >
           <ArrowLeft size={15} />
         </button>
@@ -1389,8 +1431,9 @@ const ShootCamera = ({ h, silent, volume, shots, capturedPhotos, setCapturedPhot
 
             if (!silent) playSound("click");
           }}
-          className="cursor-pointer rounded-full border border-white/10 bg-black/40 px-3 py-1.5 text-[9px] text-white/70 backdrop-blur"
+          className="camera-glass-control flex cursor-pointer items-center gap-1.5 rounded-full border border-white/15 bg-black/35 px-3 py-1.5 text-[9px] tracking-[0.08em] text-white/75 backdrop-blur-xl"
         >
+          <span className="camera-live-dot h-1.5 w-1.5 rounded-full bg-amber-200" />
           {filter}
         </button>
 
@@ -1412,7 +1455,7 @@ const ShootCamera = ({ h, silent, volume, shots, capturedPhotos, setCapturedPhot
       {/* LEFT COUNTER */}
 
       <div className="absolute top-1/2 left-2 z-10 -translate-y-1/2 sm:left-5">
-        <div className="rounded-2xl border border-white/15 bg-black/40 px-2.5 py-3 text-center backdrop-blur-xl sm:px-3">
+        <div className="camera-shot-counter rounded-2xl border border-white/15 bg-black/35 px-2.5 py-3 text-center shadow-[0_12px_35px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:px-3">
           <p className="text-[8px] tracking-[0.15em] text-white/40 uppercase">{h.shots}</p>
 
           <p className="mt-1 font-serif text-2xl">{remaining}</p>
@@ -1432,7 +1475,7 @@ const ShootCamera = ({ h, silent, volume, shots, capturedPhotos, setCapturedPhot
             if (!silent) playSound("click");
           }}
           title={h.preview}
-          className="absolute top-1/2 right-2 z-10 flex -translate-y-1/2 cursor-pointer flex-col items-center gap-1 rounded-2xl border border-white/15 bg-black/45 p-1.5 backdrop-blur-xl sm:right-4 sm:p-2"
+          className="camera-latest-preview absolute top-1/2 right-2 z-10 flex -translate-y-1/2 cursor-pointer flex-col items-center gap-1 rounded-2xl border border-white/15 bg-black/40 p-1.5 shadow-[0_12px_35px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:right-4 sm:p-2"
         >
           <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-white/10 sm:h-12 sm:w-12">
             <img
@@ -1451,18 +1494,23 @@ const ShootCamera = ({ h, silent, volume, shots, capturedPhotos, setCapturedPhot
       {/* CENTER */}
 
       <div className="relative z-10 flex flex-1 items-center justify-center">
-        <div className="h-24 w-24 rounded-full border border-white/[0.18] bg-white/[0.025] backdrop-blur-xl sm:h-32 sm:w-32" />
+        <div className="camera-focus-reticle relative h-28 w-28 sm:h-36 sm:w-36">
+          <span className="camera-focus-corner camera-focus-corner-tl" />
+          <span className="camera-focus-corner camera-focus-corner-tr" />
+          <span className="camera-focus-corner camera-focus-corner-bl" />
+          <span className="camera-focus-corner camera-focus-corner-br" />
+          <span className="camera-focus-ring" />
+          <span className="camera-focus-dot" />
+        </div>
 
-        <div className="absolute h-16 w-16 rounded-full border border-white/[0.08] sm:h-24 sm:w-24" />
-
-        <div className="absolute top-1/2 right-7 animate-[bounce_2s_infinite] sm:right-9">
+        <div className="camera-pointer absolute top-1/2 right-7 sm:right-9">
           <MousePointer2 size={20} className="rotate-[-12deg] fill-white text-white" />
         </div>
       </div>
 
       {/* BOTTOM */}
 
-      <div className="relative z-10 mt-auto flex items-center justify-between px-0 pb-1 sm:px-2 sm:pb-2">
+      <div className="camera-control-dock relative z-10 mt-auto flex items-center justify-between rounded-[28px] border border-white/10 bg-black/30 px-3 py-3 shadow-[0_18px_55px_rgba(0,0,0,0.35)] backdrop-blur-2xl sm:px-4 sm:py-4">
         {/* FLASH */}
 
         <button
@@ -1485,7 +1533,7 @@ const ShootCamera = ({ h, silent, volume, shots, capturedPhotos, setCapturedPhot
           onClick={takePhoto}
           disabled={remaining === 0}
           title={h.takePhoto}
-          className="group flex h-[68px] w-[68px] cursor-pointer items-center justify-center rounded-full border border-white/50 bg-white/[0.08] transition duration-200 hover:scale-105 active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 sm:h-[78px] sm:w-[78px]"
+          className="camera-shutter group flex h-[68px] w-[68px] cursor-pointer items-center justify-center rounded-full border border-white/55 bg-white/[0.08] transition duration-200 hover:scale-105 active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 sm:h-[78px] sm:w-[78px]"
         >
           <span className="h-[52px] w-[52px] rounded-full bg-white shadow-[0_0_25px_rgba(255,255,255,0.25)] transition group-hover:scale-95 sm:h-[60px] sm:w-[60px]" />
         </button>
@@ -1516,7 +1564,7 @@ const ShootCamera = ({ h, silent, volume, shots, capturedPhotos, setCapturedPhot
 
       {/* SOUND */}
 
-      <div className="absolute bottom-24 left-1/2 z-10 -translate-x-1/2 sm:bottom-28">
+      <div className="absolute bottom-25 left-1/2 z-10 -translate-x-1/2 sm:bottom-30">
         <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5 text-[9px] text-white/40 backdrop-blur-xl">
           {silent ? <VolumeX size={11} /> : <Volume2 size={11} />}
 
@@ -1675,6 +1723,7 @@ const Toggle = ({ active }) => {
 
 const RevealRoll = ({ h, eventName, capturedPhotos }) => {
   const [reveal, setReveal] = useState(false);
+  const [revealing, setRevealing] = useState(false);
   const [timing, setTiming] = useState("rightAfter");
 
   const memories = capturedPhotos.length > 0 ? capturedPhotos : EVENT_IMAGES;
@@ -1710,15 +1759,28 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
 
       {/* MEMORIES */}
 
-      <div className="relative mt-7 h-44 overflow-hidden rounded-3xl border border-white/[0.1] sm:h-48">
+      <div
+        className={`roll-reveal-stage relative mt-7 h-44 overflow-hidden rounded-3xl border sm:h-48 ${
+          reveal ? "roll-reveal-stage-open border-amber-100/20" : "border-white/[0.1]"
+        }`}
+      >
         <div className="absolute inset-0 grid grid-cols-3 gap-1 p-1">
           {memories.slice(0, 6).map((image, index) => (
-            <div key={`${image}-${index}`} className="overflow-hidden rounded-lg">
+            <div
+              key={`${image}-${index}`}
+              style={{
+                "--memory-delay": `${index * 95}ms`,
+                "--memory-rotation": `${(index - 2) * 2}deg`,
+              }}
+              className={`roll-memory-tile overflow-hidden rounded-lg ${
+                reveal ? "roll-memory-tile-revealed" : ""
+              }`}
+            >
               <img
                 src={image}
                 alt={`${h.snaprollMemory} ${index + 1}`}
-                className={`h-full w-full object-cover transition-all duration-700 ${
-                  reveal ? "scale-100" : "scale-110"
+                className={`roll-memory-image h-full w-full object-cover transition-all duration-700 ${
+                  reveal ? "scale-100" : "scale-110 blur-[2px]"
                 }`}
               />
             </div>
@@ -1726,9 +1788,15 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
         </div>
 
         {!reveal && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/65 px-4 text-center backdrop-blur-[10px]">
-            <div>
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
+          <div
+            className={`roll-reveal-lock-overlay absolute inset-0 flex items-center justify-center bg-black/65 px-4 text-center backdrop-blur-[10px] ${
+              revealing ? "roll-reveal-lock-opening" : ""
+            }`}
+          >
+            {revealing && <div aria-hidden="true" className="roll-reveal-unlocking-light" />}
+
+            <div className="relative z-10">
+              <div className="roll-reveal-lock mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
                 <LockKeyhole size={20} className="text-white/60" />
               </div>
 
@@ -1742,10 +1810,24 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
         )}
 
         {reveal && (
-          <div className="absolute inset-0 overflow-hidden">
+          <div className="roll-reveal-celebration pointer-events-none absolute inset-0 overflow-hidden">
             <div className="absolute inset-0 bg-black/10" />
+            <div aria-hidden="true" className="roll-reveal-flash" />
+            <div aria-hidden="true" className="roll-reveal-shimmer" />
 
-            <div className="absolute bottom-3 left-3 rounded-full border border-white/20 bg-black/55 px-3 py-1.5 backdrop-blur-xl">
+            <div aria-hidden="true" className="roll-reveal-sparks">
+              {Array.from({ length: 9 }, (_, index) => (
+                <span
+                  key={index}
+                  style={{
+                    "--reveal-spark-angle": `${index * 40}deg`,
+                    "--reveal-spark-delay": `${120 + index * 45}ms`,
+                  }}
+                />
+              ))}
+            </div>
+
+            <div className="roll-reveal-unlocked absolute bottom-3 left-3 rounded-full border border-white/20 bg-black/55 px-3 py-1.5 backdrop-blur-xl">
               <div className="flex items-center gap-2">
                 <Sparkles size={11} />
 
@@ -1787,10 +1869,25 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
 
       <button
         onClick={() => {
-          setReveal((prev) => !prev);
+          if (revealing) return;
+
+          if (reveal) {
+            setReveal(false);
+          } else {
+            setRevealing(true);
+
+            setTimeout(() => {
+              setReveal(true);
+              setRevealing(false);
+            }, 720);
+          }
+
           playSound("success");
         }}
-        className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-white py-3 text-xs font-semibold text-black transition hover:scale-[1.02] active:scale-95"
+        disabled={revealing}
+        className={`roll-reveal-button mt-4 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-white py-3 text-xs font-semibold text-black transition hover:scale-[1.02] active:scale-95 ${
+          reveal ? "roll-reveal-button-active" : ""
+        } ${revealing ? "roll-reveal-button-opening cursor-wait" : ""}`}
       >
         {reveal ? (
           <>
@@ -1799,7 +1896,7 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
           </>
         ) : (
           <>
-            <Sparkles size={13} />
+            <Sparkles size={13} className={revealing ? "animate-spin" : ""} />
             {h.revealRoll}
           </>
         )}
@@ -1814,20 +1911,31 @@ const RevealRoll = ({ h, eventName, capturedPhotos }) => {
 
 const PowerOffScreen = ({ h, onPower }) => {
   return (
-    <div className="flex h-full min-h-[570px] flex-col items-center justify-center bg-black px-5 text-center sm:min-h-[620px] sm:px-6">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.025]">
-        <Power size={24} className="text-white/25" />
+    <div className="relative flex h-full min-h-[570px] flex-col items-center justify-center overflow-hidden bg-black px-5 text-center sm:min-h-[620px] sm:px-6">
+      <div
+        aria-hidden="true"
+        className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(251,191,36,0.11),rgba(168,85,247,0.055)_38%,transparent_70%)] blur-2xl"
+      />
+      <div
+        aria-hidden="true"
+        className="phone-screen-shine absolute top-[8%] -left-1/3 h-[78%] w-24 rotate-[18deg] bg-linear-to-r from-transparent via-white/[0.055] to-transparent blur-xl"
+      />
+
+      <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-amber-200/15 bg-white/[0.035] shadow-[0_0_35px_rgba(251,191,36,0.12)]">
+        <Power size={24} className="text-amber-100/40" />
       </div>
 
-      <p className="mt-5 text-[10px] tracking-[0.2em] text-white/20 uppercase">{h.powerOff}</p>
+      <p className="relative z-10 mt-5 text-[10px] tracking-[0.2em] text-white/25 uppercase">
+        {h.powerOff}
+      </p>
 
-      <p className="mt-2 max-w-[180px] text-[10px] leading-5 text-white/15">
+      <p className="relative z-10 mt-2 max-w-[180px] text-[10px] leading-5 text-white/20">
         {h.powerOffDescription}
       </p>
 
       <button
         onClick={onPower}
-        className="mt-7 cursor-pointer rounded-full border border-white/10 px-5 py-2.5 text-xs text-white/40 transition hover:bg-white/[0.06] active:scale-95"
+        className="relative z-10 mt-7 cursor-pointer rounded-full border border-amber-100/15 bg-white/[0.025] px-5 py-2.5 text-xs text-white/50 shadow-[0_0_28px_rgba(251,191,36,0.07)] transition hover:border-amber-100/30 hover:bg-white/[0.07] hover:text-white/75 hover:shadow-[0_0_35px_rgba(251,191,36,0.14)] active:scale-95"
       >
         {h.turnOn}
       </button>
