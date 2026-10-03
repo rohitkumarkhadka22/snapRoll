@@ -1,6 +1,12 @@
 import "../src/index.css";
 
+import { cookies } from "next/headers";
 import Providers from "./providers";
+import {
+  getLanguageByCode,
+  LANGUAGE_CONFIRMATION_COOKIE,
+  LANGUAGE_COOKIE,
+} from "../src/context/languageConfig";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -47,7 +53,10 @@ export const viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const cookieStore = await cookies();
+  const initialLanguage = getLanguageByCode(cookieStore.get(LANGUAGE_COOKIE)?.value).code;
+  const initialLanguageConfirmed = cookieStore.get(LANGUAGE_CONFIRMATION_COOKIE)?.value === "true";
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -60,13 +69,18 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en">
+    <html lang={initialLanguage}>
       <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        <Providers>{children}</Providers>
+        <Providers
+          initialLanguage={initialLanguage}
+          initialLanguageConfirmed={initialLanguageConfirmed}
+        >
+          {children}
+        </Providers>
       </body>
     </html>
   );

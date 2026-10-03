@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import logoAsset from "../assets/images/logo1.png";
 import useLanguage from "../context/useLanguage";
-
-const logo = logoAsset.src;
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -105,10 +104,12 @@ const Navbar = () => {
             <span className="relative text-xl leading-none">{menuOpen ? "×" : "☰"}</span>
           </button>
 
-          <Link href="/" onClick={closeMenu} className="flex shrink-0 items-center">
-            <img
-              src={logo}
+          <Link href="/" prefetch={true} onClick={closeMenu} className="flex shrink-0 items-center">
+            <Image
+              src={logoAsset}
               alt="SnapRoll"
+              priority
+              sizes="48px"
               className="h-12 w-12 object-contain transition duration-300 hover:scale-105"
             />
           </Link>
@@ -117,12 +118,15 @@ const Navbar = () => {
         {/* DESKTOP LOGO */}
         <Link
           href="/"
+          prefetch={true}
           onClick={closeMenu}
           className="group relative z-10 hidden shrink-0 items-center lg:flex"
         >
-          <img
-            src={logo}
+          <Image
+            src={logoAsset}
             alt="SnapRoll"
+            priority
+            sizes="64px"
             className="h-14 w-14 object-contain transition duration-300 group-hover:scale-105 sm:h-16 sm:w-16"
           />
         </Link>
@@ -133,6 +137,7 @@ const Navbar = () => {
             {/* HOME */}
             <Link
               href="/"
+              prefetch={true}
               onMouseMove={handleLiquidMouseMove}
               className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
@@ -144,6 +149,7 @@ const Navbar = () => {
             {/* HOW IT WORKS */}
             <Link
               href="/how-it-works"
+              prefetch={true}
               onMouseMove={handleLiquidMouseMove}
               className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
@@ -155,6 +161,7 @@ const Navbar = () => {
             {/* PRICING */}
             <Link
               href="/pricing"
+              prefetch={true}
               onMouseMove={handleLiquidMouseMove}
               className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
@@ -166,6 +173,7 @@ const Navbar = () => {
             {/* FAQ */}
             <Link
               href="/faq"
+              prefetch={true}
               onMouseMove={handleLiquidMouseMove}
               className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
@@ -177,6 +185,7 @@ const Navbar = () => {
             {/* CONTACT */}
             <Link
               href="/contact"
+              prefetch={true}
               onMouseMove={handleLiquidMouseMove}
               className="group relative overflow-hidden rounded-2xl border border-white/12 bg-white/4.5 px-4 py-2.5 text-sm font-medium text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.035] hover:border-white/30 hover:bg-white/16 hover:text-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.30)]"
             >
@@ -192,6 +201,7 @@ const Navbar = () => {
           {/* BUILD YOUR EVENT */}
           <Link
             href="/events"
+            prefetch={true}
             onMouseMove={handleLiquidMouseMove}
             className="group relative overflow-hidden rounded-full border border-white/20 bg-white/92 px-5 py-2.5 text-sm font-semibold text-black shadow-[0_2px_12px_rgba(255,255,255,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_5px_20px_rgba(255,255,255,0.12)]"
           >
@@ -272,6 +282,7 @@ const Navbar = () => {
           <div className="relative flex flex-col p-5">
             <Link
               href="/"
+              prefetch={true}
               onClick={closeMenu}
               className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
@@ -280,6 +291,7 @@ const Navbar = () => {
 
             <Link
               href="/how-it-works"
+              prefetch={true}
               onClick={closeMenu}
               className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
@@ -288,6 +300,7 @@ const Navbar = () => {
 
             <Link
               href="/pricing"
+              prefetch={true}
               onClick={closeMenu}
               className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
@@ -296,6 +309,7 @@ const Navbar = () => {
 
             <Link
               href="/faq"
+              prefetch={true}
               onClick={closeMenu}
               className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
@@ -304,6 +318,7 @@ const Navbar = () => {
 
             <Link
               href="/contact"
+              prefetch={true}
               onClick={closeMenu}
               className="border-b border-white/8 py-4 text-sm text-gray-300 transition-colors hover:text-white"
             >
@@ -346,6 +361,7 @@ const Navbar = () => {
             {/* MOBILE + TABLET BUILD YOUR EVENT */}
             <Link
               href="/events"
+              prefetch={true}
               onClick={closeMenu}
               onMouseMove={handleLiquidMouseMove}
               className="group relative mt-5 overflow-hidden rounded-full border border-white/20 bg-white/92 px-6 py-3 text-center text-sm font-semibold text-black shadow-lg shadow-black/20 transition-all duration-300 hover:bg-white"
@@ -369,4 +385,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

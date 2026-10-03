@@ -1,13 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import useLanguage from "../context/useLanguage";
 import ScrollReveal from "../components/ScrollReveal";
 import phoneSunsetAsset from "../assets/images/faq-phone-sunset.png";
 import questionWhiteAsset from "../assets/images/faq-question-white.png";
-
-const phoneSunset = phoneSunsetAsset.src;
-const questionWhite = questionWhiteAsset.src;
 
 const FAQ = () => {
   const { t } = useLanguage();
@@ -40,7 +38,7 @@ const FAQ = () => {
         <div className="grid items-center gap-12 sm:gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
           {/* PHONE */}
 
-          <ScrollReveal className="order-2 lg:order-1" duration={1200} y={45}>
+          <ScrollReveal priority className="order-2 lg:order-1" duration={1200} y={45}>
             <div className="flex flex-col items-center lg:items-start">
               <div className="mb-7 self-start sm:mb-8">
                 <p className="text-xs font-semibold tracking-[0.28em] text-gray-500 uppercase">
@@ -76,13 +74,13 @@ const FAQ = () => {
                     <div className="relative h-full w-full overflow-hidden rounded-[32px] border border-white/8 bg-black p-1 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[36px] lg:rounded-[41px]">
                       {/* SCREEN */}
                       <div className="relative h-full w-full overflow-hidden rounded-[27px] bg-neutral-950 sm:rounded-[31px] lg:rounded-[36px]">
-                        <img
-                          src={phoneSunset}
+                        <Image
+                          src={phoneSunsetAsset}
                           alt="A hand photographing a sunset with a phone"
-                          className="absolute inset-0 h-full w-full object-cover object-center"
-                          loading="eager"
-                          fetchPriority="high"
-                          decoding="async"
+                          fill
+                          priority
+                          sizes="(min-width: 1024px) 275px, (min-width: 640px) 250px, 220px"
+                          className="object-cover object-center"
                         />
                         <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/55 via-black/20 to-black/90" />
 
@@ -175,13 +173,13 @@ const FAQ = () => {
 
                 {/* MEMORY CARD */}
                 <div className="absolute bottom-[4%] left-[2%] z-30 w-30 rotate-[-10deg] cursor-pointer rounded-2xl bg-[#101010]/95 p-2.5 shadow-[0_28px_80px_rgba(139,92,246,0.16)] backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:scale-[1.02] hover:rotate-[-6deg] sm:w-32 sm:p-3 md:w-34 lg:w-36">
-                  <div className="aspect-square overflow-hidden rounded-xl bg-black">
-                    <img
-                      src={questionWhite}
+                  <div className="relative aspect-square overflow-hidden rounded-xl bg-black">
+                    <Image
+                      src={questionWhiteAsset}
                       alt="White question mark"
-                      className="h-full w-full object-cover"
-                      loading="eager"
-                      decoding="async"
+                      fill
+                      sizes="144px"
+                      className="object-cover"
                     />
                   </div>
 
@@ -210,13 +208,13 @@ const FAQ = () => {
           {/* HERO TEXT */}
 
           <div className="order-1 max-w-3xl lg:order-2">
-            <ScrollReveal delay={180} duration={1000} y={35}>
+            <ScrollReveal priority delay={180} duration={1000} y={35}>
               <p className="mb-4 text-xs font-semibold tracking-[0.25em] text-gray-600 uppercase sm:mb-5">
                 {faq.eyebrow}
               </p>
             </ScrollReveal>
 
-            <ScrollReveal delay={300} duration={1100} y={40}>
+            <ScrollReveal priority delay={300} duration={1100} y={40}>
               <h1 className="font-serif text-4xl leading-[1.02] font-medium tracking-[-0.04em] sm:text-5xl md:text-[3.8rem] lg:text-7xl">
                 {faq.title1}
                 <br />
@@ -224,7 +222,7 @@ const FAQ = () => {
               </h1>
             </ScrollReveal>
 
-            <ScrollReveal delay={420} duration={1000} y={35}>
+            <ScrollReveal priority delay={420} duration={1000} y={35}>
               <p className="mt-6 max-w-xl text-base leading-7 text-gray-400 sm:mt-7 sm:text-lg sm:leading-8">
                 {faq.heroDescription}
               </p>

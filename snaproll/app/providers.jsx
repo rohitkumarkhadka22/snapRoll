@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Lenis from "lenis";
 import { MotionConfig } from "motion/react";
 
 import ErrorBoundary from "../src/components/ErrorBoundary";
@@ -9,32 +8,42 @@ import ScrollToTop from "../src/components/ScrollToTop";
 import LanguageProvider from "../src/context/LanguageContext";
 import MainLayout from "../src/layouts/MainLayout";
 
-export default function Providers({ children }) {
+export default function Providers({ children, initialLanguage, initialLanguageConfirmed }) {
   useEffect(() => {
-    const lenis = new Lenis({
-      // Keep wheel input responsive. A long duration makes the page feel like
-      // it is dragging behind the user's mouse or trackpad.
-      lerp: 0.14,
-      smoothWheel: true,
-      // Native touch scrolling is more reliable on phones and avoids swallowing taps.
-      syncTouch: false,
-      wheelMultiplier: 0.95,
-      autoRaf: true,
-      respectReducedMotion: true,
+    let lenis;
+    let active = true;
+
+    // Smooth scrolling is progressive enhancement; loading it after hydration
+    // keeps it out of the critical navigation bundle.
+    import("lenis").then(({ default: Lenis }) => {
+      if (!active) return;
+
+      lenis = new Lenis({
+        lerp: 0.14,
+        smoothWheel: true,
+        syncTouch: false,
+        wheelMultiplier: 0.95,
+        autoRaf: true,
+        respectReducedMotion: true,
+      });
+
+      window.__lenis = lenis;
     });
 
-    window.__lenis = lenis;
-
     return () => {
-      delete window.__lenis;
-      lenis.destroy();
+      active = false;
+      if (window.__lenis === lenis) delete window.__lenis;
+      lenis?.destroy();
     };
   }, []);
 
   return (
     <MotionConfig reducedMotion="user">
       <ErrorBoundary>
-        <LanguageProvider>
+        <LanguageProvider
+          initialLanguage={initialLanguage}
+          initialLanguageConfirmed={initialLanguageConfirmed}
+        >
           <MainLayout>
             <ScrollToTop />
             {children}

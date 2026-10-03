@@ -12,6 +12,7 @@ const NotFound = () => (
       </p>
       <Link
         href="/"
+        prefetch={true}
         className="mt-8 inline-flex rounded-full bg-white px-6 py-3 text-sm font-medium text-black"
       >
         Return home

@@ -20,9 +20,9 @@ import {
 
 import useLanguage from "../context/useLanguage";
 import ScrollReveal from "../components/ScrollReveal";
-import birthdayImageAsset from "../assets/images/events/birthday.avif";
-import graduationImageAsset from "../assets/images/events/graduation.avif";
-import partyImageAsset from "../assets/images/events/party.avif";
+import birthdayImageAsset from "../assets/images/events/birthday.jpg";
+import graduationImageAsset from "../assets/images/events/graduation.jpg";
+import partyImageAsset from "../assets/images/events/party.jpg";
 
 const birthdayImage = birthdayImageAsset.src;
 const graduationImage = graduationImageAsset.src;

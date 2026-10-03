@@ -8,6 +8,7 @@ import {
   getLocalDateInputValue,
 } from "../src/utils/eventLinks.js";
 import { parseStreamLine } from "../src/utils/ndjson.js";
+import { getLanguageByCode } from "../src/context/languageConfig.js";
 
 test("event URLs are normalized and safely encoded", () => {
   assert.equal(createEventSlug("  Sam & Jo's Party!  "), "sam-jo-s-party");
@@ -31,4 +32,9 @@ test("stream parser preserves server errors instead of swallowing them", () => {
   assert.throws(() => parseStreamLine('{"error":"service unavailable"}'), {
     message: "service unavailable",
   });
+});
+
+test("language selection accepts supported codes and safely falls back to English", () => {
+  assert.equal(getLanguageByCode("fr").nativeName, "Français");
+  assert.equal(getLanguageByCode("not-supported").code, "en");
 });

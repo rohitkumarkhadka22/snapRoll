@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
 import { useRef } from "react";
 import ScrollReveal from "../components/ScrollReveal";
@@ -9,10 +10,6 @@ import { buildEventUrl } from "../utils/eventLinks";
 import graduationMemoryAsset from "../assets/images/home-graduation.jpg";
 import weddingReceptionAsset from "../assets/images/home-wedding-reception.jpg";
 import weddingSparklersAsset from "../assets/images/home-wedding-sparklers.jpg";
-
-const graduationMemory = graduationMemoryAsset.src;
-const weddingReception = weddingReceptionAsset.src;
-const weddingSparklers = weddingSparklersAsset.src;
 
 const Home = () => {
   // GLOBAL LANGUAGE
@@ -55,13 +52,13 @@ const Home = () => {
         <div className="grid w-full grid-cols-1 items-center gap-10 md:gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-6">
           {/* LEFT CONTENT */}
           <div className="relative z-20 max-w-xl md:max-w-2xl lg:max-w-xl">
-            <ScrollReveal>
+            <ScrollReveal priority>
               <p className="mb-5 text-xs font-semibold tracking-[0.28em] text-gray-500 uppercase sm:text-sm">
                 {t.home.eyebrow}
               </p>
             </ScrollReveal>
 
-            <ScrollReveal delay={150}>
+            <ScrollReveal priority delay={150}>
               <h1 className="font-serif text-4xl leading-[0.98] font-medium tracking-[-0.045em] sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl">
                 {t.home.heroTitle1}
                 <br />
@@ -72,7 +69,7 @@ const Home = () => {
               </h1>
             </ScrollReveal>
 
-            <ScrollReveal delay={300}>
+            <ScrollReveal priority delay={300}>
               <p className="mt-6 max-w-lg text-base leading-7 text-gray-400 sm:mt-7 sm:text-lg sm:leading-8">
                 {t.home.heroDescription}
               </p>
@@ -80,11 +77,12 @@ const Home = () => {
 
             {/* LIQUID GLASS HERO BUTTONS */}
 
-            <ScrollReveal delay={450}>
+            <ScrollReveal priority delay={450}>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 {/* GET STARTED */}
                 <Link
                   href="/events"
+                  prefetch={true}
                   className="group relative inline-flex h-13 w-full items-center justify-center overflow-hidden rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_30px_rgba(0,0,0,0.3)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 hover:-translate-y-1 hover:border-white/40 hover:bg-white/15 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_15px_40px_rgba(255,255,255,0.08)] sm:w-auto"
                 >
                   <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/15 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
@@ -101,6 +99,7 @@ const Home = () => {
                 {/* HOW IT WORKS */}
                 <Link
                   href="/how-it-works"
+                  prefetch={true}
                   className="group relative inline-flex h-13 w-full items-center justify-center overflow-hidden rounded-full border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_8px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 hover:-translate-y-1 hover:border-white/35 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_15px_40px_rgba(255,255,255,0.06)] sm:w-auto"
                 >
                   <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/10 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
@@ -117,7 +116,7 @@ const Home = () => {
             </ScrollReveal>
 
             {/* COMING SOON */}
-            <ScrollReveal delay={600}>
+            <ScrollReveal priority delay={600}>
               <div className="mt-8">
                 <p className="mb-4 text-[10px] font-medium tracking-[0.22em] text-gray-600 uppercase">
                   {t.home.comingSoon}
@@ -211,12 +210,12 @@ const Home = () => {
               {/* MEMORY 02 */}
               <div className="absolute top-[3%] right-[1%] z-10 w-32 rotate-10 rounded-xl border border-white/12 bg-[#101010]/95 p-2 shadow-[0_28px_80px_rgba(190,24,93,0.16)] backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:rotate-7 hover:border-white/25 sm:top-[5%] sm:w-53.75 sm:rounded-2xl sm:p-3 md:right-[5%] lg:right-[8%] lg:w-61.25">
                 <div className="relative aspect-4/5 overflow-hidden rounded-lg bg-neutral-900 sm:rounded-xl">
-                  <img
-                    src={graduationMemory}
+                  <Image
+                    src={graduationMemoryAsset}
                     alt="Graduates celebrating together"
-                    className="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105"
-                    loading="eager"
-                    decoding="async"
+                    fill
+                    sizes="(min-width: 1024px) 245px, (min-width: 640px) 215px, 128px"
+                    className="object-cover object-center transition-transform duration-700 hover:scale-105"
                   />
 
                   <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/35 via-transparent to-black/5" />
@@ -258,13 +257,13 @@ const Home = () => {
                   <div className="relative h-full w-full overflow-hidden rounded-[32px] border border-white/8 bg-black p-1 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)] sm:rounded-[38px] lg:rounded-[41px]">
                     {/* SCREEN */}
                     <div className="relative h-full w-full overflow-hidden rounded-[27px] bg-neutral-950 sm:rounded-[33px] lg:rounded-[36px]">
-                      <img
-                        src={weddingReception}
+                      <Image
+                        src={weddingReceptionAsset}
                         alt="Newlyweds celebrating with their guests"
-                        className="absolute inset-0 h-full w-full object-cover object-[50%_52%]"
-                        loading="eager"
-                        fetchPriority="high"
-                        decoding="async"
+                        fill
+                        priority
+                        sizes="(min-width: 1024px) 295px, (min-width: 640px) 250px, 210px"
+                        className="object-cover object-[50%_52%]"
                       />
 
                       <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/55 via-black/5 to-black/90" />
@@ -320,12 +319,12 @@ const Home = () => {
               {/* MEMORY 01 */}
               <div className="absolute bottom-[5%] left-[2%] z-30 w-37.5 rotate-[-11deg] rounded-2xl border border-white/12 bg-[#101010]/95 p-3 shadow-[0_28px_80px_rgba(245,158,11,0.18)] backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:rotate-[-7deg] hover:border-white/25 sm:w-48.75 md:left-[4%] lg:left-[6%] lg:w-52.5">
                 <div className="relative aspect-square overflow-hidden rounded-xl bg-neutral-900">
-                  <img
-                    src={weddingSparklers}
+                  <Image
+                    src={weddingSparklersAsset}
                     alt="Wedding guests celebrating with sparklers"
-                    className="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105"
-                    loading="eager"
-                    decoding="async"
+                    fill
+                    sizes="(min-width: 1024px) 210px, (min-width: 640px) 195px, 150px"
+                    className="object-cover object-center transition-transform duration-700 hover:scale-105"
                   />
 
                   <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent" />
@@ -455,6 +454,7 @@ const Home = () => {
             <ScrollReveal delay={150}>
               <Link
                 href="/how-it-works"
+                prefetch={true}
                 className="group inline-flex items-center text-sm font-medium text-gray-400 transition-colors hover:text-white"
               >
                 {t.home.exploreHowItWorks}
@@ -502,6 +502,7 @@ const Home = () => {
           <ScrollReveal delay={300}>
             <Link
               href="/events"
+              prefetch={true}
               className="group relative mt-10 inline-flex h-14 w-full items-center justify-center overflow-hidden rounded-full border border-white/20 bg-white/10 px-8 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_10px_35px_rgba(0,0,0,0.3)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 hover:-translate-y-1 hover:border-white/35 hover:bg-white/15 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_15px_40px_rgba(255,255,255,0.08)] sm:w-auto"
             >
               <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/15 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />

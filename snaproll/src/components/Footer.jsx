@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Link from "next/link";
 
 const Footer = () => {
@@ -19,6 +20,7 @@ const Footer = () => {
           <div>
             <Link
               href="/"
+              prefetch={true}
               className="font-serif text-3xl tracking-[-0.04em] transition-opacity duration-300 hover:opacity-70"
             >
               SNAPROLL
@@ -27,6 +29,7 @@ const Footer = () => {
             <div className="mt-6 flex flex-col gap-4">
               <Link
                 href="/"
+                prefetch={true}
                 className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
                 What it does
@@ -34,6 +37,7 @@ const Footer = () => {
 
               <Link
                 href="/how-it-works"
+                prefetch={true}
                 className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
                 How it works
@@ -41,6 +45,7 @@ const Footer = () => {
 
               <Link
                 href="/faq"
+                prefetch={true}
                 className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
                 FAQ
@@ -148,6 +153,7 @@ const Footer = () => {
 
               <Link
                 href="/contact"
+                prefetch={true}
                 className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
                 Contact
@@ -155,6 +161,7 @@ const Footer = () => {
 
               <Link
                 href="/contact"
+                prefetch={true}
                 className="w-fit text-sm text-gray-400 transition-colors duration-300 hover:text-white"
               >
                 Support
@@ -192,4 +199,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

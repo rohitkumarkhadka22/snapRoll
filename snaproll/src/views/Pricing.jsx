@@ -1,13 +1,8 @@
-"use client";
-
 import { Check, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import ScrollReveal from "../components/ScrollReveal";
-import useLanguage from "../context/useLanguage";
 
 const Pricing = () => {
-  useLanguage();
-
   const plans = [
     {
       name: "Free",
@@ -98,14 +93,14 @@ const Pricing = () => {
         <div className="pointer-events-none absolute top-16 left-1/2 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-white/[0.035] blur-3xl sm:top-20 sm:h-[420px] sm:w-[420px]" />
 
         <div className="relative mx-auto max-w-5xl text-center">
-          <ScrollReveal duration={900} y={25}>
+          <ScrollReveal priority duration={900} y={25}>
             <div className="mb-5 inline-flex cursor-default items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] tracking-[0.18em] text-white/60 backdrop-blur-xl sm:mb-6 sm:text-xs">
               <Sparkles size={13} strokeWidth={1.5} />
               SIMPLE PRICING
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={100} duration={1000} y={30}>
+          <ScrollReveal priority delay={100} duration={1000} y={30}>
             <h1 className="mx-auto max-w-4xl cursor-default font-serif text-4xl leading-[1] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
               Simple pricing.
               <br />
@@ -113,7 +108,7 @@ const Pricing = () => {
             </h1>
           </ScrollReveal>
 
-          <ScrollReveal delay={200} duration={1000} y={30}>
+          <ScrollReveal priority delay={200} duration={1000} y={30}>
             <p className="mx-auto mt-6 max-w-2xl cursor-default text-sm leading-6 text-white/55 sm:mt-7 sm:text-lg sm:leading-7">
               Bring everyone into the moment, capture every memory, and keep everything together in
               one shared event.
@@ -167,6 +162,7 @@ const Pricing = () => {
                   {/* CTA */}
                   <Link
                     href={plan.link}
+                    prefetch={true}
                     className={`mt-7 flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-full border text-sm font-medium transition-all duration-300 sm:mt-8 ${
                       plan.popular
                         ? "border-white bg-white text-black hover:bg-white/90"
@@ -335,6 +331,7 @@ const Pricing = () => {
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link
                   href="/events/create"
+                  prefetch={true}
                   className="group inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-white bg-white px-7 text-sm font-medium text-black transition-all duration-300 hover:bg-white/90 sm:w-auto"
                 >
                   Create an event
@@ -346,6 +343,7 @@ const Pricing = () => {
 
                 <Link
                   href="/how-it-works"
+                  prefetch={true}
                   className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-7 text-sm font-medium text-white transition-all duration-300 hover:border-white/20 hover:bg-white/[0.09] sm:w-auto"
                 >
                   See how it works

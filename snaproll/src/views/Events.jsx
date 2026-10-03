@@ -1,16 +1,17 @@
 "use client";
 
 import { useContext } from "react";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Camera, Check, Heart, Sparkles, Star } from "lucide-react";
 import { LanguageContext } from "../context/LanguageContext";
 import ScrollReveal from "../components/ScrollReveal";
 
-import birthdayImageAsset from "../assets/images/events/birthday.avif";
+import birthdayImageAsset from "../assets/images/events/birthday.jpg";
 import weddingImageAsset from "../assets/images/events/wedding.jpg";
 import anniversaryImageAsset from "../assets/images/events/anniversary.jpg";
-import graduationImageAsset from "../assets/images/events/graduation.avif";
-import partyImageAsset from "../assets/images/events/party.avif";
+import graduationImageAsset from "../assets/images/events/graduation.jpg";
+import partyImageAsset from "../assets/images/events/party.jpg";
 
 const birthdayImage = birthdayImageAsset.src;
 const weddingImage = weddingImageAsset.src;
@@ -63,14 +64,14 @@ const EventCard = ({ event, t, featured = false, entranceDelay = 0 }) => {
       >
         {/* IMAGE */}
         <div className="absolute inset-0">
-          <img
+          <Image
             src={event.image}
             alt={`${eventTranslation.title} event`}
-            loading={featured ? "eager" : "lazy"}
-            fetchPriority={featured ? "high" : "auto"}
-            decoding="async"
-            draggable="false"
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+            fill
+            priority={featured}
+            sizes={featured ? "(min-width: 1024px) 58vw, 100vw" : "(min-width: 1024px) 42vw, 100vw"}
+            draggable={false}
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
           />
 
           <div className="absolute inset-0 bg-linear-to-t from-black via-black/35 to-black/5" />
@@ -173,11 +174,6 @@ const EventType = ({ event, t }) => {
 
 const Events = () => {
   const { t } = useContext(LanguageContext);
-  const router = useRouter();
-
-  const handleCreateEvent = () => {
-    router.push("/events/create");
-  };
 
   return (
     <main className="events-page relative min-h-screen overflow-hidden bg-black text-white">
@@ -192,7 +188,7 @@ const Events = () => {
       <section className="relative px-5 pt-32 pb-12 sm:px-8 sm:pt-40 sm:pb-14 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="grid items-start gap-8 md:gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-            <ScrollReveal duration={850} y={28}>
+            <ScrollReveal priority duration={850} y={28}>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-[10px] text-white/55 sm:mb-7 sm:text-xs">
                 <Camera size={13} />
                 {t.events.badge}
@@ -206,7 +202,7 @@ const Events = () => {
               </h1>
             </ScrollReveal>
 
-            <ScrollReveal delay={140} duration={850} y={28} className="lg:pb-2">
+            <ScrollReveal priority delay={140} duration={850} y={28} className="lg:pb-2">
               <div className="mb-5 h-px w-12 bg-white/30" />
 
               <p className="max-w-md text-sm leading-6 text-white/45 sm:text-base sm:leading-7">
@@ -351,9 +347,9 @@ const Events = () => {
             </p>
           </ScrollReveal>
           <ScrollReveal delay={270} duration={800} y={20}>
-            <button
-              type="button"
-              onClick={handleCreateEvent}
+            <Link
+              href="/events/create"
+              prefetch={true}
               className="group mt-7 inline-flex cursor-pointer items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-medium text-black transition-transform duration-200 hover:-translate-y-0.5 sm:mt-8"
             >
               {t.events.createEvent}
@@ -362,7 +358,7 @@ const Events = () => {
                 size={15}
                 className="transition-transform duration-200 group-hover:translate-x-1"
               />
-            </button>
+            </Link>
           </ScrollReveal>
         </div>
       </section>

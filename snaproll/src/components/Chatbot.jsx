@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X, Send, Sparkles } from "lucide-react";
 import chatbotImageAsset from "../assets/images/chatbot.jpg";
@@ -724,4 +724,4 @@ const Chatbot = () => {
   );
 };
 
-export default Chatbot;
+export default memo(Chatbot);

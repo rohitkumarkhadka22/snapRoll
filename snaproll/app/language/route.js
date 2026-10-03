@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
+import {
+  LANGUAGE_CONFIRMATION_COOKIE,
+  LANGUAGE_COOKIE,
+  languages,
+} from "../../src/context/languageConfig";
 
-const SUPPORTED_LANGUAGES = new Set(["en", "es", "fr", "pt"]);
+const SUPPORTED_LANGUAGES = new Set(languages.map(({ code }) => code));
 
 export async function POST(request) {
   const formData = await request.formData();
@@ -14,13 +19,13 @@ export async function POST(request) {
         status: 303,
         headers: { Location: "/" },
       });
-  response.cookies.set("snaproll-language", code, {
+  response.cookies.set(LANGUAGE_COOKIE, code, {
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
     maxAge: 60 * 60 * 24 * 365,
     path: "/",
   });
-  response.cookies.set("snaproll-language-confirmed-v2", "true", {
+  response.cookies.set(LANGUAGE_CONFIRMATION_COOKIE, "true", {
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
     maxAge: 60 * 60 * 24 * 365,

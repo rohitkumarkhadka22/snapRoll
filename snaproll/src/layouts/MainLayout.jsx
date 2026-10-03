@@ -1,43 +1,25 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence } from "motion/react";
+import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Chatbot from "../components/Chatbot";
 import LanguageGate from "../components/LanguageGate";
 import useLanguage from "../context/useLanguage";
 
-const MainLayout = ({ children }) => {
-  const { hasChosenLanguage, isLanguageReady } = useLanguage();
-  const prefersReducedMotion = useReducedMotion();
-  const hiddenSite = prefersReducedMotion
-    ? { opacity: 0, visibility: "hidden" }
-    : { opacity: 0, y: 8, visibility: "hidden" };
-  const visibleSite = {
-    opacity: 1,
-    y: 0,
-    visibility: "visible",
-  };
+const Chatbot = dynamic(() => import("../components/Chatbot"), { ssr: false });
 
-  if (!isLanguageReady) {
-    return <div className="min-h-screen bg-black" aria-hidden="true" />;
-  }
+const MainLayout = ({ children }) => {
+  const { hasChosenLanguage } = useLanguage();
 
   return (
     <div className="min-h-screen bg-black">
       <AnimatePresence>
         {!hasChosenLanguage && <LanguageGate key="language-gate" />}
       </AnimatePresence>
-      <motion.div
-        initial={hasChosenLanguage ? hiddenSite : false}
-        animate={hasChosenLanguage ? visibleSite : hiddenSite}
+      <div
         aria-hidden={!hasChosenLanguage}
-        className={hasChosenLanguage ? "" : "pointer-events-none"}
-        transition={{
-          duration: prefersReducedMotion ? 0 : 0.65,
-          delay: prefersReducedMotion ? 0 : 0.12,
-          ease: [0.22, 1, 0.36, 1],
-        }}
+        className={hasChosenLanguage ? "" : "pointer-events-none invisible"}
       >
         <Navbar />
 
@@ -45,7 +27,7 @@ const MainLayout = ({ children }) => {
 
         <Footer />
         <Chatbot />
-      </motion.div>
+      </div>
     </div>
   );
 };

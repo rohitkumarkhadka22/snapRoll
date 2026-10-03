@@ -13,6 +13,7 @@ const ScrollReveal = ({
   y = 35,
   direction = "up",
   once = true,
+  priority = false,
   className = "",
 }) => {
   const ref = useRef(null);
@@ -31,7 +32,7 @@ const ScrollReveal = ({
     right: { x: y, y: 0 },
   }[direction] || { x: 0, y };
 
-  const shouldReveal = hasChosenLanguage && isInView;
+  const shouldReveal = hasChosenLanguage && (priority || isInView);
   const hidden = prefersReducedMotion
     ? { opacity: 1, x: 0, y: 0 }
     : { opacity: 0, x: offset.x, y: offset.y };
@@ -40,7 +41,7 @@ const ScrollReveal = ({
     <motion.div
       ref={ref}
       className={className}
-      initial={hidden}
+      initial={priority ? false : hidden}
       animate={shouldReveal ? { opacity: 1, x: 0, y: 0 } : hidden}
       transition={{
         duration: prefersReducedMotion ? 0 : duration / 1000,
